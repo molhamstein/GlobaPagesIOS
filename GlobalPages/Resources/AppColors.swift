@@ -29,4 +29,6 @@ struct AppColors {
     static let primary = UIColor(red: 235, green: 23, blue: 128)
     // purple
     static let secondary = UIColor(red: 113, green: 74, blue: 154)
+    
+    
 }

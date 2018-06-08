@@ -12,47 +12,74 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BussinesGuidCell" customModule="GlobalPages" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="420" height="192"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BusinessGuidCell" id="gTV-IL-0wX" customClass="BusinessGuidCell" customModule="GlobalPages" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="420" height="96"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="420" height="192"/>
+                <rect key="frame" x="0.0" y="0.0" width="420" height="96"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Businesses Guide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPu-ra-6cJ">
-                        <rect key="frame" x="16" y="16" width="297" height="42"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for businesses NearBy and find them on the map" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9s-zs-hrk">
-                        <rect key="frame" x="16" y="66" width="297" height="90"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Marker" translatesAutoresizingMaskIntoConstraints="NO" id="ist-lD-n06">
-                        <rect key="frame" x="329" y="16" width="75" height="160"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCl-yP-ZEE" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="420" height="96"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Businesses Guide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPu-ra-6cJ">
+                                <rect key="frame" x="20" y="16" width="334" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="h9p-0m-a3X"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for businesses NearBy and find them on the map" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9s-zs-hrk">
+                                <rect key="frame" x="20" y="36" width="326" height="58"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_business_guide" translatesAutoresizingMaskIntoConstraints="NO" id="ist-lD-n06">
+                                <rect key="frame" x="370" y="20.5" width="30" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="PuV-xs-zXp" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                    <constraint firstAttribute="height" constant="75" id="fq2-2p-CGg" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <constraints>
-                            <constraint firstAttribute="width" constant="75" id="PuV-xs-zXp"/>
+                            <constraint firstItem="ist-lD-n06" firstAttribute="leading" secondItem="MPu-ra-6cJ" secondAttribute="trailing" constant="16" id="019-ss-eKM"/>
+                            <constraint firstItem="ist-lD-n06" firstAttribute="centerY" secondItem="QCl-yP-ZEE" secondAttribute="centerY" constant="10" id="PYA-D6-pkH"/>
+                            <constraint firstAttribute="trailing" secondItem="ist-lD-n06" secondAttribute="trailing" constant="20" id="Tbk-pc-tJU"/>
+                            <constraint firstItem="MPu-ra-6cJ" firstAttribute="leading" secondItem="QCl-yP-ZEE" secondAttribute="leading" constant="20" id="bdb-6Y-ifw"/>
+                            <constraint firstItem="ist-lD-n06" firstAttribute="leading" secondItem="O9s-zs-hrk" secondAttribute="trailing" constant="24" id="gmQ-uk-ARY"/>
+                            <constraint firstItem="MPu-ra-6cJ" firstAttribute="top" secondItem="QCl-yP-ZEE" secondAttribute="top" constant="16" id="hfv-uB-u7n"/>
+                            <constraint firstAttribute="bottom" secondItem="O9s-zs-hrk" secondAttribute="bottom" constant="2" id="jgF-76-ZZq"/>
+                            <constraint firstItem="O9s-zs-hrk" firstAttribute="top" secondItem="MPu-ra-6cJ" secondAttribute="bottom" constant="1" id="rwv-ZO-mkj"/>
+                            <constraint firstItem="O9s-zs-hrk" firstAttribute="leading" secondItem="QCl-yP-ZEE" secondAttribute="leading" constant="20" id="yIe-pZ-Fin"/>
                         </constraints>
-                    </imageView>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" red="0.0" green="0.68627450980392157" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" red="0.27843137254901962" green="0.49411764705882355" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="O9s-zs-hrk" firstAttribute="top" secondItem="MPu-ra-6cJ" secondAttribute="bottom" constant="8" id="2zT-ST-ck3"/>
-                <constraint firstAttribute="trailing" secondItem="ist-lD-n06" secondAttribute="trailing" constant="16" id="7Od-s4-0DE"/>
-                <constraint firstItem="MPu-ra-6cJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="ASD-it-raF"/>
-                <constraint firstItem="O9s-zs-hrk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="EhO-4P-220"/>
-                <constraint firstItem="ist-lD-n06" firstAttribute="leading" secondItem="MPu-ra-6cJ" secondAttribute="trailing" constant="16" id="FAt-qT-JCJ"/>
-                <constraint firstItem="ist-lD-n06" firstAttribute="leading" secondItem="O9s-zs-hrk" secondAttribute="trailing" constant="16" id="GYM-8v-CnL"/>
-                <constraint firstItem="MPu-ra-6cJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="ldS-GY-Wid"/>
-                <constraint firstItem="ist-lD-n06" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="vzc-bY-IdA"/>
-                <constraint firstAttribute="bottom" secondItem="ist-lD-n06" secondAttribute="bottom" constant="16" id="xlV-WR-YPK"/>
+                <constraint firstItem="QCl-yP-ZEE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="AHe-PF-cpD"/>
+                <constraint firstAttribute="trailing" secondItem="QCl-yP-ZEE" secondAttribute="trailing" id="Ow3-iK-qW9"/>
+                <constraint firstAttribute="bottom" secondItem="QCl-yP-ZEE" secondAttribute="bottom" id="UfH-Zc-Cvl"/>
+                <constraint firstItem="QCl-yP-ZEE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="z79-Du-juF"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="429" height="190"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="5"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="businessInfoLabel" destination="O9s-zs-hrk" id="jzr-JL-36n"/>
                 <outlet property="businessTitleLabel" destination="MPu-ra-6cJ" id="x1n-sZ-4d9"/>
@@ -62,6 +89,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Marker" width="133" height="170"/>
+        <image name="ic_business_guide" width="30" height="49"/>
     </resources>
 </document>

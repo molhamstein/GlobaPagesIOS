@@ -26,7 +26,7 @@ class ShadowView: UIView {
   /// The x,y offset of the drop-shadow from being cast straight down.
   var shadowOffset = CGSize.zero { didSet { update() } }
   /// The color of the drop-shadow, defaults to black.
-  override var shadowColor:UIColor? { didSet { update() } }
+  var shadowColor:UIColor? { didSet { update() } }
   /// Whether to display the shadow, defaults to false.
   var enableShadow = false { didSet { update() } }
   /// The corner radius to take into account when casting the shadow, defaults to 0.

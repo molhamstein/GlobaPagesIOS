@@ -17,9 +17,9 @@ class XUIButton:UIButton{
         didSet{
 
             if primary{
-                self.backgroundColor = AppColors.primaryButton
+                //self.backgroundColor = AppColors.primaryButton
                 self.setTitleColor(.white, for: .normal)
-                self.makeRounded()
+           
             }
         }
 

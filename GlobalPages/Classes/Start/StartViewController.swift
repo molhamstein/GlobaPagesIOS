@@ -19,13 +19,14 @@ class StartViewController: AbstractController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.performSegue(withIdentifier: "startHomeSegue", sender: self)
         // check if user logged in
-        if DataStore.shared.isLoggedin {
-            DataStore.shared.fetchBaseData()
-            self.performSegue(withIdentifier: "startHomeSegue", sender: self)
-        } else {// user not logged in
-            self.performSegue(withIdentifier: "startLoginSegue", sender: self)
-        }
+//        if DataStore.shared.isLoggedin {
+//          //  DataStore.shared.fetchBaseData()
+//            self.performSegue(withIdentifier: "startHomeSegue", sender: self)
+//        } else {// user not logged in
+//            self.performSegue(withIdentifier: "startLoginSegue", sender: self)
+//        }
     }
 }
 

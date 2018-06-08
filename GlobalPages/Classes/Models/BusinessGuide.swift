@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+
+struct BusinessGuide {
+    var title:String
+    var image:String
+    var info:String
+    
+  
+}

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 extension UIApplication
 {
     static func keyWindow() -> UIWindow? {

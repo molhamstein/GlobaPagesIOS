@@ -49,6 +49,9 @@ struct AppConfig {
         UINavigationBar.appearance().titleTextAttributes = attrs
         // set background color
         UINavigationBar.appearance().barTintColor = AppColors.blueXDark
+        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     }
 }
 
@@ -67,6 +70,11 @@ enum ScreenSize {
     static let isIphone = UIDevice.current.userInterfaceIdiom == .phone
 }
 
+enum ScreenSizeRatio{
+    
+    static let smallRatio = CGFloat(UIScreen.main.bounds.width / 750 ) * 2.0
+    static let largRatio =  CGFloat(UIScreen.main.bounds.width / 750 )
+}
 
 // MARK: media Type
 enum AppMediaType :String{

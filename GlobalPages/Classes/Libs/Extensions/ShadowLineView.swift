@@ -23,7 +23,7 @@ class ShadowLineView: UIView {
   /// The opacity of the drop-shadow line, defaults to 0.
   var shadowOpacity = Float() { didSet { shadowView.shadowOpacity = shadowOpacity } }
   /// The color of the drop-shadow. defaults to black.
-  override var shadowColor:UIColor?{ didSet { shadowView.shadowColor = shadowColor } }
+   var shadowColor:UIColor?{ didSet { shadowView.shadowColor = shadowColor } }
   /// Whether to display the drop-shadow or not, defaults to false.
   var enableShadow = false { didSet { update() } }
   /// The size of the shadow. This extends above and beneath the view. Defaults to 0.

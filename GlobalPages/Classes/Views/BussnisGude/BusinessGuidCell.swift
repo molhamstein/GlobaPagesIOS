@@ -16,10 +16,31 @@ class BusinessGuidCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
     
+    var businessGuide:BusinessGuide?{
+        
+        didSet{
+            
+            guard let businessGuide = businessGuide else {
+                return
+            }
+            
+            
+            self.businessTitleLabel.text = businessGuide.title
+            self.businessInfoLabel.text = businessGuide.info
+            self.imageView.image = UIImage(named:businessGuide.image)
+            
+        }
+        
+        
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.businessInfoLabel.font = AppFonts.normal
+        self.businessTitleLabel.font = AppFonts.xBig
+        
+        
     }
 
 }

@@ -131,7 +131,7 @@ class ResetPasswordViewController: AbstractController {
 //        codeTextField.resignFirstResponder()
 //        passwordTextField.resignFirstResponder()
 //        if currentStageIndex == 0 {
-//            _ = self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
 //        } else {
 //            backStage()
 //        }

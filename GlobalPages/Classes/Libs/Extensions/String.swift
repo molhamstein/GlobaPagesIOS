@@ -12,7 +12,7 @@ extension String {
     
     /// Return count of chars
     var length: Int {
-        return characters.count
+        return count
     }
     
     /// Check if the string is a valid email
@@ -24,15 +24,7 @@ extension String {
     }
     
     
-    /// Check if the string is a valid Date
-    func isValidDate() -> Bool {
-        
-        if let date = DateHelper.getDateFromString(self){
-            return true
-        }
-        return false
-    }
-    
+
     
     /// Check if the string is alphanumeric
     var isAlphanumeric: Bool {

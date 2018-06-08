@@ -19,7 +19,7 @@ extension UITextField {
         let border = CALayer()
         let height = CGFloat(1.0)
 
-        border.borderColor = AppColors.borderColor.cgColor
+        border.borderColor = AppColors.grayDark.cgColor
         border.frame = CGRect(x: 0, y: self.frame.size.height - height , width:  screenWidth - 2 * padding, height: height)
         border.borderWidth = height
         self.layer.addSublayer(border)
@@ -30,18 +30,18 @@ extension UITextField {
         if (AppConfig.currentLanguage == .arabic) {
             self.textAlignment = .right
         }
-        self.textColor = AppColors.green
+        self.textColor = UIColor.black
         self.addTarget(self, action: #selector(startEditing), for: .editingChanged)
         self.addTarget(self, action: #selector(endEdit), for: .editingDidEnd)
     }
     
     
     @objc func startEditing(){
-        self.textColor = AppColors.orange
+     
     }
     
     @objc func endEdit(){
-        self.textColor = AppColors.green
+     
     }
     
     func searchBarStyle() {

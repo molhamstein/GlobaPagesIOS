@@ -18,9 +18,9 @@ struct AppFonts {
     private static let fontNameRegularAR = "DroidArabicKufi"
     
     // MARK: font sizes
-    private static let sizeXBig:Double = 22
-    private static let sizeBig:Double = 18
-    private static let sizeNormal:Double = 16
+    private static let sizeXBig:Double = 26
+    private static let sizeBig:Double = 20
+    private static let sizeNormal:Double = 18
     private static let sizeSmall:Double = 14
     private static let sizeXSmall:Double = 12
     

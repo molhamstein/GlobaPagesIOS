@@ -1,8 +1,8 @@
 //
 //  UIView.swift
-//  Wardah
+//  BrainSocket Code base
 //
-//  Created by Dania on 6/13/17.
+//  Created by BrainSocket on 6/13/17.
 //  Copyright © 2017 BrainSocket. All rights reserved.
 //
 
@@ -20,6 +20,13 @@ class ClosureSleeve {
     }
 }
 
+enum GradientDirection {
+    case horizontal
+    case vertical
+    case diagonal
+    
+}
+
 extension UIView {
     /// add **touch up selector** to any **view**
     ///
@@ -27,7 +34,7 @@ extension UIView {
     ///
     ///     view.tapAction{print("View tapped!")}
     ///
-    /// - Parameters: 
+    /// - Parameters:
     ///     - closure: The block to be excuted when tapping.
     func tapAction( _ closure: @escaping ()->()){
         self.isUserInteractionEnabled = true
@@ -53,24 +60,70 @@ extension UIView {
         }, completion: nil)
     }
     
-    
-    // make view rounded 
-    func makeRounded(){
-    
-        self.cornerRadius = self.frame.height / 2
+    /// set shadow to current view
+    func dropShadow() {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: 1, height: 1)
+        layer.shadowRadius = 12
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = true ? UIScreen.main.scale : 1
     }
     
-    func addShaddow(color:UIColor = .black){
-        
-        self.layer.shadowColor = color.cgColor
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize.zero
-        self.layer.shadowRadius = 2
-        //self.layer.shadowPath = UIBezierPath(rect: CGRect(x: -3, y: 5, width: self.frame.width, height: self.frame.height)).cgPath
-      //  self.layer.shouldRasterize = true
-        
+    func dropShortShadow() {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.35
+        layer.shadowOffset = CGSize(width: 1, height: 1)
+        layer.shadowRadius = 8
+        layer.cornerRadius = 8
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = true ? UIScreen.main.scale : 1
     }
     
+    func bringToFront() {
+        self.superview?.bringSubview(toFront: self)
+    }
+    
+    /// set gradient to current view
+    func applyGradient(colours: [UIColor], direction: GradientDirection) -> Void {
+        
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = colours.map { $0.cgColor }
+        gradient.locations = [0.0,1.0]
+        gradient.borderColor = self.layer.borderColor
+        gradient.borderWidth = self.layer.borderWidth
+        gradient.cornerRadius = self.layer.cornerRadius
+        
+        if direction == .horizontal {
+            
+            gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
+            gradient.endPoint = CGPoint(x: 1.0, y: 0.0)
+            
+        } else if direction == .vertical {
+            
+            gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
+            gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
+            
+        } else if direction == .diagonal {
+            
+            gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
+            gradient.endPoint = CGPoint(x: 1.0, y: 0.0)
+            
+        }
+        self.layer.insertSublayer(gradient, at:0)
+    }
+    
+    
+    func removeGradientLayer() {
+        if let lastLayer = self.layer.sublayers?[0] as? CAGradientLayer {
+            lastLayer.removeFromSuperlayer()
+        }
+    }
     
     /// set corner radius from interface builder
     @IBInspectable var cornerRadius: CGFloat {
@@ -103,14 +156,16 @@ extension UIView {
             layer.borderColor = newValue.cgColor
         }
     }
-
+    
 }
 
 enum AnimationType {
     case animateInFromBottom
+    case animateInFromTop
     case animateInFromRight
     case animateInFromLeft
     case animateOutToBottom
+    case animateOutToTop
     case animateOutToRight
     case animateOutToLeft
 }
@@ -131,12 +186,16 @@ extension UIView {
         switch mode {
         case .animateInFromBottom:
             initialTransform = CGAffineTransform(translationX: 0, y: UIView.animDist)
+        case .animateInFromTop:
+            initialTransform = CGAffineTransform(translationX: 0, y: -UIView.animDist)
         case .animateInFromRight:
             initialTransform = CGAffineTransform(translationX: UIView.animDist, y: 0)
         case .animateInFromLeft:
             initialTransform = CGAffineTransform(translationX: -UIView.animDist, y: 0)
         case .animateOutToBottom:
             finalTransform = CGAffineTransform(translationX: 0, y: UIView.animDist)
+        case .animateOutToTop:
+            finalTransform = CGAffineTransform(translationX: 0, y: -UIView.animDist)
         case .animateOutToRight:
             finalTransform = CGAffineTransform(translationX: UIView.animDist, y: 0)
         case .animateOutToLeft:
@@ -146,13 +205,15 @@ extension UIView {
         switch mode {
         case .animateInFromLeft,
              .animateInFromRight,
+             .animateInFromTop,
              .animateInFromBottom:
             finalTransform = CGAffineTransform.identity
             initialAlpha = 0
             finalAlpha = 1
         case .animateOutToLeft,
              .animateOutToRight,
-             .animateOutToBottom:
+             .animateOutToBottom,
+             .animateOutToTop:
             initialTransform = CGAffineTransform.identity
             initialAlpha = 1
             finalAlpha = 0
@@ -167,4 +228,31 @@ extension UIView {
             
         }
     }
+    
+    func setAnchorPoint(anchorPoint: CGPoint) {
+        
+        var newPoint = CGPoint(x: self.bounds.size.width * anchorPoint.x, y: self.bounds.size.height * anchorPoint.y)
+        var oldPoint = CGPoint(x: self.bounds.size.width * self.layer.anchorPoint.x, y: self.bounds.size.height * self.layer.anchorPoint.y)
+        
+        newPoint = newPoint.applying(self.transform)
+        oldPoint = oldPoint.applying(self.transform)
+        
+        var position : CGPoint = self.layer.position
+        
+        position.x -= oldPoint.x
+        position.x += newPoint.x;
+        
+        position.y -= oldPoint.y;
+        position.y += newPoint.y;
+        
+        self.layer.position = position;
+        self.layer.anchorPoint = anchorPoint;
+    }
+    
+    
+    
+    func makeRounded(){
+        self.cornerRadius = self.frame.width / 2
+    }
 }
+
