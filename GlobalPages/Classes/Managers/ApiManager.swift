@@ -1,0 +1,758 @@
+//
+//  ApiManager.swift
+//
+//  Created by Molham Mahmoud on 25/04/16.
+//  Copyright © 2016. All rights reserved.
+//
+
+import SwiftyJSON
+import Alamofire
+import UIKit
+
+/// - Api store do all Networking stuff
+///     - build server request 
+///     - prepare params
+///     - and add requests headers
+///     - parse Json response to App data models
+///     - parse error code to Server error object
+///
+class ApiManager: NSObject {
+
+    typealias Payload = (MultipartFormData) -> Void
+    
+    /// frequent request headers
+    var headers: HTTPHeaders{
+        get{
+            let httpHeaders = [
+                "Authorization": ((DataStore.shared.token) != nil) ? (DataStore.shared.token)! : "",
+                "Accept-Language": AppConfig.currentLanguage.langCode
+            ]
+            return httpHeaders
+        }
+    }
+    
+    let baseURL = AppConfig.useLiveAPI ? AppConfig.appBaseLiveURL : AppConfig.appBaseDevURL
+    let error_domain = "Rombaye"
+    
+    //MARK: Shared Instance
+    static let shared: ApiManager = ApiManager()
+    
+    private override init(){
+        super.init()
+    }    
+   
+   
+    // MARK: Authorization
+    /// User facebook login request
+    func userFacebookLogin(facebookId: String, fbName: String, fbToken: String, email: String, fbGender: String, imageLink: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)/users/facebookLogin"
+        let parameters : [String : Any] = [
+            "socialId": facebookId,
+            "token": fbToken,
+            "gender": fbGender,
+            "image": imageLink,
+            "email": email,
+            "name": fbName
+        ]
+        // build request
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse["user"])
+                    DataStore.shared.token = jsonResponse["id"].string
+                    DataStore.shared.onUserLogin()
+                    completionBlock(true , nil, user)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
+    
+    /// User twitter login request
+    func userTwitterLogin(accessToken: String, secret: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)auth/twitter/login"
+        let parameters : [String : Any] = [
+            "accessToken": accessToken,
+            "accessTokenSecret": secret
+            ]
+        // build request
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse["user"])
+                    DataStore.shared.me = user
+                    DataStore.shared.onUserLogin()
+                    completionBlock(true , nil, user)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
+    
+    /// User instagram login request
+    func userInstagramLogin(user: AppUser, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)/users/loginInstegram"
+        let parameters : [String : Any] = [
+            "socialId": user.socialId!,
+            "token": user.socialToken!,
+            "gender": user.gender!.rawValue,
+            "image": user.profilePic!,
+            "name": user.userName!
+        ]
+        // build request
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse["user"])
+                    DataStore.shared.token = jsonResponse["id"].string
+                    DataStore.shared.onUserLogin()
+                    completionBlock(true , nil, user)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
+    
+    /// User login request
+    func userLogin(email: String, password: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)/users/login?include=user"
+        
+        let parameters : [String : Any] = [
+            "email": email,
+            "password": password
+        ]
+        // build request
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse["user"])
+                    DataStore.shared.token = jsonResponse["id"].string
+                    DataStore.shared.me = user
+                    DataStore.shared.onUserLogin()
+                    completionBlock(true , nil, user)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                 if let code = responseObject.response?.statusCode, code >= 400 {
+                completionBlock(false, ServerError.unknownError, nil)
+                 } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
+    
+    /// User Signup request
+    func userSignup(user: AppUser, password: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        // url & parameters
+        guard password.length>0,
+            let _ = user.email
+            else {
+                return
+        }
+        
+        let signUpURL = "\(baseURL)/users"
+        
+        var parameters : [String : String] = [
+            "username": user.userName!,
+            "gender": user.gender?.rawValue ?? "male",
+            "ISOCode" : user.countryISOCode!,
+            "email": user.email!,
+            "password": password,
+            "typeLogIn": "registration",
+            "image": " "
+        ]
+        
+        // build request
+        Alamofire.request(signUpURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse["user"])
+                    DataStore.shared.me = user
+                    DataStore.shared.onUserLogin()
+                    completionBlock(true , nil, user)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
+    
+    
+    /// User Signup request
+    func updateUser(user: AppUser, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/users/\(user.objectId!)"
+        
+        var parameters : [String : String] = [
+            "username": user.userName!,
+            "gender": user.gender?.rawValue ?? "male",
+            "ISOCode" : user.countryISOCode!,
+            "typeLogIn": (user.loginType?.rawValue)!
+        ]
+        
+        if let email = user.email {
+            parameters["email"] = email
+        }
+        
+        if let img = user.profilePic {
+            parameters["image"] = img
+        }
+        
+        // build request
+        Alamofire.request(signUpURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse)
+                    DataStore.shared.me = user
+                    //DataStore.shared.onUserLogin()
+                    completionBlock(true , nil, user)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
+    
+    /// get me
+    func getMe(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/users/\(DataStore.shared.me?.objectId ?? " ")"
+        
+        // build request
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse)
+                    DataStore.shared.me = user
+                    //DataStore.shared.onUserLogin()
+                    completionBlock(true , nil, user)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
+    
+    
+    func userVerify(code: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        
+        let signUpURL = "\(baseURL)auth/confirm_code"
+        let parameters : [String : String] = [
+            "code": code
+        ]
+        
+        // build request
+        Alamofire.request(signUpURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse["user"])
+                    DataStore.shared.me = user
+                    DataStore.shared.onUserLogin()
+                    completionBlock(true , nil, user)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
+    
+    func requestResendVerify(completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
+        
+        let signUpURL = "\(baseURL)auth/resend_code"
+        let parameters : [String : String] = [:]
+        
+        // build request
+        Alamofire.request(signUpURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError)
+                } else {
+                    completionBlock(true , nil)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError)
+                } else {
+                    completionBlock(false, ServerError.connectionError)
+                }
+            }
+        }
+    }
+    
+    // MARK: Reset Password
+    /// User forget password
+    func forgetPassword(email: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)auth/forgot_password"
+        let parameters : [String : Any] = [
+            "email": email,
+        ]
+        // build request
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError)
+                } else {
+                    completionBlock(true , nil)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError)
+                } else {
+                    completionBlock(false, ServerError.connectionError)
+                }
+            }
+        }
+    }
+    
+    /// Confirm forget password
+    func confirmForgetPassword(email: String, code: String, password: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)auth/confirm_forgot_password"
+        let parameters : [String : Any] = [
+            "email": email,
+            "code": code,
+            "password": password
+            ]
+        // build request
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse["user"])
+                    DataStore.shared.me = user
+                    DataStore.shared.onUserLogin()
+                    completionBlock(true , nil)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError)
+                } else {
+                    completionBlock(false, ServerError.connectionError)
+                }
+            }
+        }
+    }
+    
+    // MARK: Categories
+    func requestCategories(completionBlock: @escaping (_ categories: Array<Category>?, _ error: NSError?) -> Void) {
+        let categoriesListURL = "\(baseURL)categories"
+        Alamofire.request(categoriesListURL).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let resJson = JSON(responseObject.result.value!)
+                if let data = resJson["data"].array
+                {
+                    let categories: [Category] = data.map{Category(json: $0)}
+                    //save to cache
+                    DataStore.shared.categories = categories
+                    completionBlock(categories, nil)
+                }
+            }
+            if responseObject.result.isFailure {
+                let error : NSError = responseObject.result.error! as NSError
+                completionBlock(nil, error)
+            }
+        }
+    }
+    
+
+    func requesReportTypes(completionBlock: @escaping (_ items: Array<ReportType>?, _ error: NSError?) -> Void) {
+        let categoriesListURL = "\(baseURL)/report-types"
+        Alamofire.request(categoriesListURL).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let resJson = JSON(responseObject.result.value!)
+                if let data = resJson.array {
+                    let items: [ReportType] = data.map{ReportType(json: $0)}
+                    //save to cache
+                    DataStore.shared.reportTypes = items
+                    completionBlock(items, nil)
+                }
+            }
+            if responseObject.result.isFailure {
+                let error : NSError = responseObject.result.error! as NSError
+                completionBlock(nil, error)
+            }
+        }
+    }
+    
+    // MARK: Upload Video
+    func uploadMedia(urls:[URL], mediaType: AppMediaType, completionBlock: @escaping (_ files: [Media], _ errorMessage: String?) -> Void) {
+        
+//        let mediaURL = "\(baseURL)/uploads/videos/upload"
+        var mediaURL = "\(baseURL)/uploadFiles/videos/upload"
+        if mediaType == .image {
+            mediaURL = "\(baseURL)/uploadFiles/images/upload"
+        } else if mediaType == .audio{
+            mediaURL = "\(baseURL)/uploadFiles/audios/upload"
+        }
+        
+        let payload : Payload = /*@escaping*/{ multipartFormData in
+            
+            for url in urls {
+                if mediaType == .image {
+                    do {
+                        let imageData = try Data(contentsOf: url)
+                        if let img = UIImage(data: imageData), let compressedImg = UIImageJPEGRepresentation(img, 0.65) {
+                            multipartFormData.append(compressedImg, withName: "file", fileName: "file", mimeType: "image/png")
+                        }
+                    } catch {
+                    }
+                } else {
+                    multipartFormData.append(url, withName: "file")
+                }
+            }
+        
+        }
+        
+        Alamofire.upload(multipartFormData: payload, to: mediaURL, method: .post, headers: headers,
+                         encodingCompletion: { encodingResult in
+                            
+                switch encodingResult {
+                    case .success(let upload, _, _):
+                        upload.responseJSON { responseObject in
+                                    
+                            if responseObject.result.isSuccess {
+                                        
+                                let resJson = JSON(responseObject.result.value!)
+                                if let resArray = resJson.array {
+                                    var files: [Media] = []
+                                    for  i in 0 ..< resArray.count {
+                                        let media = Media(json:resArray[i])
+                                        media.type = mediaType
+                                        files.append(media)
+                                    }
+                                    completionBlock(files, nil)
+                                 
+                                }
+                            } else { // failure
+                                        
+                                if let code = responseObject.response?.statusCode, code >= 400 {
+                                    completionBlock([], ServerError.unknownError.type.errorMessage)
+                                } else {
+                                    completionBlock([], ServerError.connectionError.type.errorMessage)
+                                }
+                            }
+                    }
+                    case .failure(let encodingError):
+                        completionBlock([], ServerError.connectionError.type.errorMessage)
+                }
+        })
+    }
+    
+    // MARK: Upload Video
+    func uploadImage(imageData:UIImage, completionBlock: @escaping (_ files: [Media], _ errorMessage: String?) -> Void) {
+        
+        var mediaURL = "\(baseURL)/uploadFiles/images/upload"
+        
+        let payload : Payload = /*@escaping*/{ multipartFormData in
+            if let compressedImg = UIImageJPEGRepresentation(imageData, 0.65) {
+                multipartFormData.append(compressedImg, withName: "file", fileName: "file", mimeType: "image/png")
+            }
+        }
+        
+        Alamofire.upload(multipartFormData: payload, to: mediaURL, method: .post, headers: headers,
+                         encodingCompletion: { encodingResult in
+                            
+                            switch encodingResult {
+                            case .success(let upload, _, _):
+                                upload.responseJSON { responseObject in
+                                    
+                                    if responseObject.result.isSuccess {
+                                        let resJson = JSON(responseObject.result.value!)
+                                        if let resArray = resJson.array {
+                                            var files: [Media] = []
+                                            for  i in 0 ..< resArray.count {
+                                                let media = Media(json:resArray[i])
+                                                media.type = .image
+                                                files.append(media)
+                                            }
+                                            completionBlock(files, nil)
+                                        }
+                                    } else { // failure
+                                        if let code = responseObject.response?.statusCode, code >= 400 {
+                                            completionBlock([], ServerError.unknownError.type.errorMessage)
+                                        } else {
+                                            completionBlock([], ServerError.connectionError.type.errorMessage)
+                                        }
+                                    }
+                                }
+                            case .failure(let encodingError):
+                                completionBlock([], ServerError.connectionError.type.errorMessage)
+                            }
+        })
+    }
+    
+    // MARK: notifications
+    func sendPushNotification(msg: String, targetUser: AppUser, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
+        // url & parameters
+        let bottleURL = "\(baseURL)/notifications/sendNotification"
+        
+        let msgBodyParams : [String : Any] = [
+            "en": msg
+        ]
+        
+        let parameters : [String : Any] = [
+            "content": msgBodyParams,
+            "userId": targetUser.objectId!,
+            ]
+        
+        // build request
+        Alamofire.request(bottleURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError)
+                } else {
+                    completionBlock(true , nil)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError)
+                } else {
+                    completionBlock(false, ServerError.connectionError)
+                }
+            }
+        }
+    }
+
+    
+}
+
+
+/**
+ Server error represents custome errors types from back end
+ */
+struct ServerError {
+    
+    static let errorCodeConnection = 50
+    
+    public var errorName:String?
+    public var status: Int?
+    public var code:Int!
+    
+    public var type:ErrorType {
+        get{
+            return ErrorType(rawValue: code) ?? .unknown
+        }
+    }
+    
+    /// Server erros codes meaning according to backend
+    enum ErrorType:Int {
+        case connection = 50
+        case unknown = -111
+        case authorization = 401
+        case userNotActivated = 403
+        case invalidUserName = 405
+        case noBottleFound = 406
+        case alreadyExists = 101
+        case socialLoginFailed = -110
+		case notRegistred = 102
+        case missingInputData = 104
+        case expiredVerifyCode = 107
+        case invalidVerifyCode = 108
+        case userNotFound = 109
+        
+        /// Handle generic error messages
+        /// **Warning:** it is not localized string
+        var errorMessage:String {
+            switch(self) {
+                case .unknown:
+                    return "ERROR_UNKNOWN".localized
+                case .connection:
+                    return "ERROR_NO_CONNECTION".localized
+                case .authorization:
+                    return "ERROR_NOT_AUTHORIZED".localized
+                case .alreadyExists:
+                    return "ERROR_SIGNUP_EMAIL_EXISTS".localized
+				case .notRegistred:
+                    return "ERROR_SIGNIN_WRONG_CREDIST".localized
+                case .missingInputData:
+                    return "ERROR_MISSING_INPUT_DATA".localized
+                case .expiredVerifyCode:
+                    return "ERROR_EXPIRED_VERIFY_CODE".localized
+                case .invalidVerifyCode:
+                    return "ERROR_INVALID_VERIFY_CODE".localized
+                case .userNotFound:
+                    return "ERROR_RESET_WRONG_EMAIL".localized
+                case .userNotActivated:
+                    return "ERROR_UNACTIVATED_USER".localized
+                case .invalidUserName:
+                    return "ERROR_INVALID_USERNAME".localized
+                case .noBottleFound:
+                    return "ERROR_BOTTLE_NOT_FOUND".localized
+                
+                default:
+                    return "ERROR_UNKNOWN".localized
+            }
+        }
+    }
+    
+    public static var connectionError: ServerError{
+        get {
+            var error = ServerError()
+            error.code = ErrorType.connection.rawValue
+            return error
+        }
+    }
+    
+    public static var unknownError: ServerError{
+        get {
+            var error = ServerError()
+            error.code = ErrorType.unknown.rawValue
+            return error
+        }
+    }
+    
+    public static var socialLoginError: ServerError{
+        get {
+            var error = ServerError()
+            error.code = ErrorType.socialLoginFailed.rawValue
+            return error
+        }
+    }
+    
+    public init() {
+    }
+    
+    public init?(json: JSON) {
+        guard let errorCode = json["statusCode"].int else {
+            return nil
+        }
+        code = errorCode
+        if let errorString = json["message"].string{ errorName = errorString}
+        if let statusCode = json["statusCode"].int{ status = statusCode}
+    }
+}
+
+

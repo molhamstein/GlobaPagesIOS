@@ -1,0 +1,130 @@
+/* 
+  Localizable.strings
+  GlobalPages
+
+  Created by Molham mahmoud on 6/3/18.
+  Copyright © 2018 GlobalPages. All rights reserved.
+*/
+
+// Global messages
+"GLOBAL_ERROR_TITLE"                    = "ERROR!";
+"GLOBAL_SUCCESS_TITLE"                  = "SUCCESS";
+"GLOBAL_WARNING_TITLE"                  = "WARNING!";
+"CANCEL"                                = "Cancel";
+"Ok"                                    = "Ok";
+
+// Generic erros
+"ERROR_NO_CONNECTION"                   = "No internet connection, please check your phone settings";
+"ERROR_SIGNUP_EMAIL_EXISTS"             = "Email address already registered";
+"ERROR_SIGNUP_EMAIL_INVALID"            = "Please enter a valid email address";
+"ERROR_SIGNIN_WRONG_CREDIST"             = "Please check your email and password";
+"ERROR_RESET_WRONG_EMAIL"               = "Email address is not registered before";
+"ERROR_MISSING_INPUT_DATA"              = "Please fill in all required information";
+"ERROR_INVALID_VERIFY_CODE"             = "Verification code is not valid";
+"ERROR_EXPIRED_VERIFY_CODE"             = "Verification code was expired";
+"ERROR_BOTTLE_NOT_FOUND"                = "there is no bottle";
+"ERROR_UNACTIVATED_USER"                = "Your Account is not activated yet, please check your email";
+"ERROR_INVALID_USERNAME"                = "Username already exists";
+
+
+// Connection errors messages
+"ERROR_NOT_AUTHORIZED"                  = "You are not authorized to access this data, please login again";
+"ERROR_UNKNOWN"                         = "Unknown error occured";
+"ERROR_SOCIAL_FACEBOOK"                 = "Facebook login failed, please try again";
+"ERROR_SOCIAL_TWITTER"                  = "Twitter login failed, please try again";
+"ERROR_SOCIAL_INSTAGRAM"                = "Instagram login failed, please try again";
+"ERROR_SOCIAL_GOOGLE"                   = "Google login failed, please try again";
+
+// login screen
+"LOGIN_EMAIL_TITLE"                     = "EMAIL";
+"LOGIN_EMAIL_PLACEHOLDER"               = "vobblemail@gmail.com";
+"LOGIN_PSW_TITLE"                       = "PASSWORD";
+"LOGIN_PSW_PLACEHOLDER"                 = "********";
+"LOGIN_FORGOT_PSW"                      = "Forgot Password?";
+"LOGIN_LOGIN_BTN"                       = "Login";
+"LOGIN_REGISTER_BTN_PREFIX"             = "Or";
+"LOGIN_REGISTER_BTN"                    = "Register";
+"LOGIN_REGISTER_BTN_SUFFIX"             = "a new account";
+
+// Signup screen
+"SIGNUP_EMAIL_TITLE"                     = "EMAIL";
+"SIGNUP_EMAIL_PLACEHOLDER"               = "vobblemail@gmail.com";
+"SIGNUP_NAME_TITLE"                      = "USERNAME";
+"SIGNUP_NAME_PLACEHOLDER"                = "Vobbler";
+"SIGNUP_PSW_TITLE"                       = "PASSWORD";
+"SIGNUP_PSW_PLACEHOLDER"                 = "********";
+"SIGNUP_SIGNUP_BTN"                      = "Signup";
+"SIGNUP_LOGIN_BTN"                       = "Login";
+"SIGNUP_LOGIN_BTN_PREFIX"                = "Have an account";
+"SIGNUP_COUNTRY_PLACEHOLDER"             = "Select your country";
+"SIGNUP_ACCESSEPT"                       = "Accept";
+"SIGNUP_PRIVACY"                         = "Privacy Policy";
+"SIGNUP_TERMS"                           = "Terms Of Service";
+"SIGNUP_AND"                             = " and ";
+
+// Start screen
+"START_EMAIL_TITLE"                     = "ENTER EMAIL";
+"START_EMAIL_PLACEHOLDER"               = "vobblemail@gmail.com";
+"START_PASSWORD_TITLE"                  = "ENTER PASSWORD";
+"START_PASSWORD_PLACEHOLDER"            = "********";
+"START_FORGET_PASSWORD"                 = "Forget password?";
+"START_NORMAL_LOGIN"                    = "LOG IN";
+"START_SOCIAL_LOGIN"                    = "Social Log In";
+"START_CREATE_ACCOUNT"                  = "CREATE AN ACCOUNT";
+
+// Date ago
+"YEARS_AGO"                             = "%@ years ago";
+"YEAR_AGO"                              = "%@ year ago";
+"MONTHS_AGO"                            = "%@ months ago";
+"MONTH_AGO"                             = "%@ month ago";
+"DAYS_AGO"                              = "%@ days ago";
+"DAY_AGO"                               = "%@ day ago";
+"HOURS_AGO"                             = "%@ hours ago";
+"HOUR_AGO"                              = "%@ hour ago";
+"MINUTES_AGO"                           = "%@ minutes ago";
+"MINUTE_AGO"                            = "%@ minute ago";
+"SECONDS_AGO"                           = "%@ seconds ago";
+"SECOND_AGO"                            = "%@ second ago";
+"NOW"                                   = "Now";
+
+// Signup
+"SINGUP_VALIDATION_FNAME"               = "Please enter your user name";
+"SINGUP_VALIDATION_EMAIL"               = "Please enter your email";
+"SINGUP_VALIDATION_EMAIL_FORMAT"        = "Please enter a valid email address";
+"SINGUP_VALIDATION_DATE"                = "Please enter your birthday correctly";
+"SINGUP_VALIDATION_PASSWORD"            = "Please enter your password";
+"SINGUP_VALIDATION_PASSWORD_LENGHTH"    = "Password should be 6 characters long at least";
+"SINGUP_VALIDATION_VERIF_CODE"          = "Please enter your verification code";
+"SINGUP_VALIDATION_TERMS"               = "You need to agree to the terms and conditions before signup";
+"SINGUP_VALIDATION_CHOOSE_COUNTRY"      = "Please select your country";
+
+
+"SINGUP_EMAIL_TITLE"                    = "ENTER EMAIL";
+"SINGUP_SOCIAL_WELCOM"                  = "Welcome %@ \n please fill the rest of these information to finish the signup";
+
+// Reset password
+"RESET_STEP1_TITLE"                     = "RESET PASSWORD";
+"RESET_STEP1_DESC"                      = "Please enter your email address to receive a verification code and change your password";
+"RESET_STEP2_DESC"                      = "Enter the code that have received in your email";
+"RESET_ACTION_NEXT"                     = "SEND";
+"RESET_CODE_TITLE"                      = "ENTER CODE";
+"RESET_CODE_PLACEHOLDER"                = "Verification code";
+"RESET_PASSWORD_TITLE"                  = "NEW PASSWORD";
+"RESET_PASSWORD_PLACEHOLDER"            = "******";
+
+// Settings
+"SETTINGS_USER_LOGOUT"                  = "Logout";
+"SETTINGS_USER_LOGOUT_CONFIRM_MSG"      = "Are you sure you want to logout?";
+
+// settings
+"SETTINGS_CONTACT"                      = "Contact Us";
+"SETTINGS_ABOUT"                        = "About us";
+"SETTINGS_SHARE"                        = "Share Vibo";
+"SETTINGS_RATE"                         = "Rate Us";
+"SETTINGS_TERMS"                        = "Terms of Service";
+"SETTINGS_LOGOUT"                       = "Logout";
+"SETTINGS_LOGOUT_MSG"                   = "Are you sure you want to logout?";
+"SETTINGS_SHARE_MSG"                    = "Come over and try this cool App, \n http://brain-socket.com";
+
+"ABOUT_TITLE"                          = "About us";
+"TERMS_TITLE"                          = "Terms of Service";

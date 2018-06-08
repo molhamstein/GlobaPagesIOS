@@ -1,0 +1,6 @@
+framework module Pods_GlobalPages {
+  umbrella header "Pods-GlobalPages-umbrella.h"
+
+  export *
+  module * { export * }
+}
