@@ -7,3 +7,21 @@
 //
 
 import Foundation
+
+
+enum AdsType{
+    
+case image
+case titled
+    
+}
+
+
+struct Ads {
+    var title:String
+    var image:String
+    var info:String
+    var tag:String
+    var address:String
+    var type:AdsType
+}
