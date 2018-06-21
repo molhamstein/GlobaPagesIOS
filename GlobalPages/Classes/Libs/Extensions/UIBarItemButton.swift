@@ -102,10 +102,14 @@ class SSBadgeButton: UIButton {
         badgeLabel.font = badgeFont
         badgeLabel.sizeToFit()
         badgeLabel.textAlignment = .center
+        
         let badgeSize = badgeLabel.frame.size
         
-        let height = max(18, Double(badgeSize.height) + 5.0)
-        let width = max(height, Double(badgeSize.width) + 10.0)
+        var height:Double = 18 //max(18, Double(badgeSize.height) + 5.0)
+        if badge?.count == 3 {
+            height = 24
+        }
+        let width:Double = height //max(height, Double(badgeSize.width) + 10.0)
         
         var vertical: Double?, horizontal: Double?
         if let badgeInset = self.badgeEdgeInsets {
@@ -116,20 +120,28 @@ class SSBadgeButton: UIButton {
             let y = -(Double(badgeSize.height) / 2) - 10 + vertical!
             badgeLabel.frame = CGRect(x: x, y: y, width: width, height: height)
         } else {
-            let x = self.frame.width - CGFloat((width / 2.0))
-            let y = CGFloat(-(height / 2.0))
+            
+            let x = (self.frame.width / 2)
+            let y = CGFloat((height / 2.0) + width  - 7 )
             badgeLabel.frame = CGRect(x: x, y: y, width: CGFloat(width), height: CGFloat(height))
         }
-        
-        badgeLabel.layer.cornerRadius = badgeLabel.frame.height/2
-        badgeLabel.layer.masksToBounds = true
+        self.perform(#selector(setup), with: nil, afterDelay: 0.3)
+       
         addSubview(badgeLabel)
         badgeLabel.isHidden = badge != nil ? false : true
+    }
+    
+    func setup(){
+        
+        badgeLabel.makeRounded()
+        badgeLabel.layer.borderWidth = 1
+        badgeLabel.layer.borderColor = UIColor.white.cgColor
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.addBadgeToButon(badge: nil)
-        fatalError("init(coder:) has not been implemented")
+      //  fatalError("init(coder:) has not been implemented")
     }
 }

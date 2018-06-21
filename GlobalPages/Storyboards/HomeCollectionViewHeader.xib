@@ -11,82 +11,146 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="homeCollectionViewHeaderID" id="eUA-Pv-khb" customClass="HomeCollectionViewHeader" customModule="Wardah" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="296"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="homeCollectionViewHeaderID" id="eUA-Pv-khb" customClass="HomeCollectionViewHeader" customModule="GlobalPages" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="415" height="83"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AEt-DD-NLL">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="296"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Gs-o4-qYc">
+                    <rect key="frame" x="0.0" y="0.0" width="415" height="82.5"/>
                     <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Iqz-O9-J9m">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="236"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z6d-qC-XZy">
+                            <rect key="frame" x="0.0" y="0.0" width="415" height="35"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/8/2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Oo-Na-WZh">
+                                    <rect key="frame" x="32" y="0.0" width="351" height="35"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfb-Jy-19M">
+                                    <rect key="frame" x="383" y="0.0" width="24" height="35"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="vy2-2d-ES7"/>
+                                    </constraints>
+                                    <state key="normal" image="rightArrow"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7x6-tZ-ULM">
+                                    <rect key="frame" x="8" y="0.0" width="24" height="35"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="VMh-0l-7um"/>
+                                    </constraints>
+                                    <state key="normal" image="leftArrow"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="236" id="x6y-hA-7as" customClass="XNSLayoutConstraint" customModule="Wardah" customModuleProvider="target"/>
+                                <constraint firstAttribute="bottom" secondItem="7x6-tZ-ULM" secondAttribute="bottom" id="57x-p8-uln" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstAttribute="bottom" secondItem="bfb-Jy-19M" secondAttribute="bottom" id="Aev-Tg-JGK" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstItem="4Oo-Na-WZh" firstAttribute="top" secondItem="Z6d-qC-XZy" secondAttribute="top" id="HVf-Af-XLK" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstItem="4Oo-Na-WZh" firstAttribute="leading" secondItem="7x6-tZ-ULM" secondAttribute="trailing" id="W3y-9v-PnE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstAttribute="height" constant="35" id="cEb-y7-X71" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstItem="bfb-Jy-19M" firstAttribute="top" secondItem="Z6d-qC-XZy" secondAttribute="top" id="d9A-Dv-144" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstItem="7x6-tZ-ULM" firstAttribute="leading" secondItem="Z6d-qC-XZy" secondAttribute="leading" constant="8" id="eQJ-Mv-YLN" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="mPw-dI-Xas"/>
+                                <constraint firstAttribute="bottom" secondItem="4Oo-Na-WZh" secondAttribute="bottom" id="mTk-rU-YUy" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstItem="bfb-Jy-19M" firstAttribute="leading" secondItem="4Oo-Na-WZh" secondAttribute="trailing" id="oAZ-MC-CfM" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstItem="7x6-tZ-ULM" firstAttribute="top" secondItem="Z6d-qC-XZy" secondAttribute="top" id="p5G-Dl-rA0" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstAttribute="trailing" secondItem="bfb-Jy-19M" secondAttribute="trailing" constant="8" id="q3E-WU-rkP" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                             </constraints>
-                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pZM-yJ-AhU">
-                                <size key="itemSize" width="366" height="241"/>
-                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </collectionViewFlowLayout>
-                            <cells>
-                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XW8-8T-Sh6">
-                                    <rect key="frame" x="0.0" y="-2.5" width="366" height="241"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                        <rect key="frame" x="0.0" y="0.0" width="366" height="241"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </view>
-                                </collectionViewCell>
-                            </cells>
-                        </collectionView>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3kK-YZ-7vS">
-                            <rect key="frame" x="0.0" y="236" width="375" height="60"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N86-9z-mK8">
+                            <rect key="frame" x="0.0" y="35" width="415" height="47.5"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dy-ho-uCb">
+                                    <rect key="frame" x="325" y="0.0" width="90" height="47.5"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ap-v7-3ge">
+                                            <rect key="frame" x="8" y="13" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="otb-cM-kw5"/>
+                                                <constraint firstAttribute="width" constant="20" id="vRo-OA-cym"/>
+                                            </constraints>
+                                            <state key="normal" image="ic_search"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiS-O5-sq6">
+                                            <rect key="frame" x="52" y="12.5" width="22" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="LOT-1B-HXr" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                <constraint firstAttribute="width" constant="22" id="WdR-Ly-PsJ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                            </constraints>
+                                            <state key="normal" image="ic_nearby"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="3Ap-v7-3ge" firstAttribute="leading" secondItem="7dy-ho-uCb" secondAttribute="leading" constant="8" id="4xS-jr-4XL" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                        <constraint firstItem="iiS-O5-sq6" firstAttribute="centerY" secondItem="7dy-ho-uCb" secondAttribute="centerY" id="CIB-WG-UG7" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                        <constraint firstAttribute="trailing" secondItem="iiS-O5-sq6" secondAttribute="trailing" constant="16" id="jdP-ff-djS" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                        <constraint firstAttribute="width" constant="90" id="w1c-fC-b2k" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                        <constraint firstItem="3Ap-v7-3ge" firstAttribute="centerY" secondItem="7dy-ho-uCb" secondAttribute="centerY" id="wBr-ir-UxQ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                    </constraints>
+                                </view>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BVX-r8-vd3">
+                                    <rect key="frame" x="0.0" y="0.0" width="325" height="47.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JWe-pJ-sns">
+                                        <size key="itemSize" width="50" height="50"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                    <cells>
+                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1Ad-41-bwX">
+                                            <rect key="frame" x="8" y="-1.5" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </view>
+                                        </collectionViewCell>
+                                    </cells>
+                                </collectionView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="6Ss-xK-oq2" customClass="XNSLayoutConstraint" customModule="Wardah" customModuleProvider="target"/>
+                                <constraint firstItem="7dy-ho-uCb" firstAttribute="leading" secondItem="BVX-r8-vd3" secondAttribute="trailing" id="3qG-Jb-QwO"/>
+                                <constraint firstAttribute="bottom" secondItem="7dy-ho-uCb" secondAttribute="bottom" id="5oG-gP-eIE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstAttribute="height" constant="47.5" id="C2Y-Xt-z9y" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstAttribute="bottom" secondItem="BVX-r8-vd3" secondAttribute="bottom" id="d95-U2-yMp"/>
+                                <constraint firstItem="BVX-r8-vd3" firstAttribute="leading" secondItem="N86-9z-mK8" secondAttribute="leading" id="ekU-Ag-ilt"/>
+                                <constraint firstAttribute="trailing" secondItem="7dy-ho-uCb" secondAttribute="trailing" id="lSl-c3-1n9" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstItem="BVX-r8-vd3" firstAttribute="top" secondItem="N86-9z-mK8" secondAttribute="top" id="n7D-x8-f0i"/>
+                                <constraint firstItem="7dy-ho-uCb" firstAttribute="top" secondItem="N86-9z-mK8" secondAttribute="top" id="pPn-gQ-7xb" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                             </constraints>
-                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="80S-4p-HQL">
-                                <size key="itemSize" width="50" height="50"/>
-                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </collectionViewFlowLayout>
-                            <cells>
-                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="C7o-6v-uf2">
-                                    <rect key="frame" x="0.0" y="5" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </view>
-                                </collectionViewCell>
-                            </cells>
-                        </collectionView>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="3kK-YZ-7vS" secondAttribute="trailing" id="1WP-9d-Vwj"/>
-                        <constraint firstAttribute="bottom" secondItem="3kK-YZ-7vS" secondAttribute="bottom" id="As2-Ny-Lov"/>
-                        <constraint firstItem="Iqz-O9-J9m" firstAttribute="leading" secondItem="AEt-DD-NLL" secondAttribute="leading" id="FPD-at-UdD" customClass="XNSLayoutConstraint" customModule="Wardah" customModuleProvider="target"/>
-                        <constraint firstItem="3kK-YZ-7vS" firstAttribute="leading" secondItem="AEt-DD-NLL" secondAttribute="leading" id="GSf-wi-SzC"/>
-                        <constraint firstItem="Iqz-O9-J9m" firstAttribute="top" secondItem="AEt-DD-NLL" secondAttribute="top" id="S35-hi-iua" customClass="XNSLayoutConstraint" customModule="Wardah" customModuleProvider="target"/>
-                        <constraint firstAttribute="trailing" secondItem="Iqz-O9-J9m" secondAttribute="trailing" id="V3Z-B4-whA" customClass="XNSLayoutConstraint" customModule="Wardah" customModuleProvider="target"/>
-                        <constraint firstAttribute="height" constant="296" id="YEa-Sr-vRx" customClass="XNSLayoutConstraint" customModule="Wardah" customModuleProvider="target"/>
+                        <constraint firstItem="N86-9z-mK8" firstAttribute="leading" secondItem="7Gs-o4-qYc" secondAttribute="leading" id="Ph1-Gg-ihc"/>
+                        <constraint firstItem="N86-9z-mK8" firstAttribute="top" secondItem="Z6d-qC-XZy" secondAttribute="bottom" id="Wfu-fT-DAZ"/>
+                        <constraint firstAttribute="trailing" secondItem="N86-9z-mK8" secondAttribute="trailing" id="dIE-nQ-som"/>
+                        <constraint firstItem="Z6d-qC-XZy" firstAttribute="top" secondItem="7Gs-o4-qYc" secondAttribute="top" id="fGF-Nq-9r5"/>
+                        <constraint firstAttribute="height" constant="82.5" id="flW-Kd-3EO"/>
+                        <constraint firstItem="Z6d-qC-XZy" firstAttribute="leading" secondItem="7Gs-o4-qYc" secondAttribute="leading" id="nRq-KY-vE1"/>
+                        <constraint firstAttribute="trailing" secondItem="Z6d-qC-XZy" secondAttribute="trailing" id="qOu-r2-QBA"/>
                     </constraints>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="AEt-DD-NLL" secondAttribute="trailing" id="1Vg-Tv-nEX"/>
-                <constraint firstAttribute="bottom" secondItem="AEt-DD-NLL" secondAttribute="bottom" id="7Vc-Kq-je3"/>
-                <constraint firstItem="AEt-DD-NLL" firstAttribute="top" secondItem="eUA-Pv-khb" secondAttribute="top" id="LdF-Kq-uwS"/>
-                <constraint firstItem="AEt-DD-NLL" firstAttribute="leading" secondItem="eUA-Pv-khb" secondAttribute="leading" id="eUe-z2-Or5"/>
+                <constraint firstAttribute="trailing" secondItem="7Gs-o4-qYc" secondAttribute="trailing" id="8v5-Nd-K99"/>
+                <constraint firstItem="7Gs-o4-qYc" firstAttribute="top" secondItem="eUA-Pv-khb" secondAttribute="top" id="Dpb-O6-mYR"/>
+                <constraint firstItem="7Gs-o4-qYc" firstAttribute="leading" secondItem="eUA-Pv-khb" secondAttribute="leading" id="PDk-Ry-9bF"/>
             </constraints>
             <connections>
-                <outlet property="categoryCollectionView" destination="3kK-YZ-7vS" id="Zye-9S-ZcL"/>
-                <outlet property="headerCollectionView" destination="Iqz-O9-J9m" id="6di-EN-znb"/>
+                <outlet property="filtterCollectionView" destination="BVX-r8-vd3" id="1JW-Uk-bmx"/>
             </connections>
+            <point key="canvasLocation" x="4.5" y="-54.5"/>
         </collectionReusableView>
     </objects>
+    <resources>
+        <image name="ic_nearby" width="14" height="23"/>
+        <image name="ic_search" width="20" height="20"/>
+        <image name="leftArrow" width="39" height="71"/>
+        <image name="rightArrow" width="39" height="71"/>
+    </resources>
 </document>

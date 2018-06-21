@@ -63,6 +63,7 @@
                             <userDefinedRuntimeAttribute type="color" keyPath="endColor">
                                 <color key="value" red="0.27843137254901962" green="0.49411764705882355" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalMode" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>

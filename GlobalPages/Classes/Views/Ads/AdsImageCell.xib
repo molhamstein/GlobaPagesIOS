@@ -12,20 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AdsCell" id="gTV-IL-0wX" customClass="AdsCell" customModule="GlobalPages" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AdsImageCell" id="gTV-IL-0wX" customClass="AdsImageCell" customModule="GlobalPages" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="162" height="584"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="162" height="584"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPi-fB-rAU">
-                        <rect key="frame" x="8" y="8" width="146" height="203"/>
-                        <string key="text">Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas</string>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXJ-pO-jaN">
                         <rect key="frame" x="0.0" y="0.0" width="162" height="100"/>
                         <subviews>
@@ -43,7 +36,7 @@
                         </constraints>
                     </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2x-X2-xd6">
-                        <rect key="frame" x="0.0" y="211" width="162" height="20"/>
+                        <rect key="frame" x="0.0" y="90" width="162" height="20"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ai0-p9-Ylq">
                                 <rect key="frame" x="8" y="9" width="125" height="1"/>
@@ -88,7 +81,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deS-ei-Ukl">
-                        <rect key="frame" x="8" y="253.5" width="125" height="1"/>
+                        <rect key="frame" x="8" y="132.5" width="125" height="1"/>
                         <color key="backgroundColor" name="yellowLight"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Ool-lD-R7x"/>
@@ -96,13 +89,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Damascus Al-Mazeh Villas" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmX-kG-iUI">
-                        <rect key="frame" x="8" y="231" width="146" height="14.5"/>
+                        <rect key="frame" x="8" y="110" width="146" height="14.5"/>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBy-qF-wY3">
-                        <rect key="frame" x="8" y="262" width="146" height="203"/>
+                        <rect key="frame" x="8" y="141" width="146" height="203"/>
                         <string key="text">Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas</string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -113,20 +106,17 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="k2x-X2-xd6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="08X-Ev-p4J"/>
-                <constraint firstAttribute="trailing" secondItem="iPi-fB-rAU" secondAttribute="trailing" constant="8" id="5YE-gF-9Q0"/>
                 <constraint firstItem="GmX-kG-iUI" firstAttribute="top" secondItem="k2x-X2-xd6" secondAttribute="bottom" id="6Kl-iI-dbn"/>
                 <constraint firstItem="KBy-qF-wY3" firstAttribute="top" secondItem="deS-ei-Ukl" secondAttribute="bottom" constant="8" id="9HI-YN-Fgf"/>
                 <constraint firstAttribute="trailing" secondItem="KBy-qF-wY3" secondAttribute="trailing" constant="8" id="Ehf-1i-eyN"/>
                 <constraint firstAttribute="trailing" secondItem="ZXJ-pO-jaN" secondAttribute="trailing" id="HYj-yU-nGo"/>
                 <constraint firstAttribute="trailing" secondItem="k2x-X2-xd6" secondAttribute="trailing" id="RXY-BG-T2C"/>
-                <constraint firstItem="iPi-fB-rAU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="S7T-hS-Jg9"/>
                 <constraint firstItem="ZXJ-pO-jaN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SbG-QI-fib"/>
-                <constraint firstItem="k2x-X2-xd6" firstAttribute="top" secondItem="iPi-fB-rAU" secondAttribute="bottom" id="Sf3-BR-1hI"/>
                 <constraint firstItem="GmX-kG-iUI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ax8-tn-xVa"/>
                 <constraint firstItem="KBy-qF-wY3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dDp-d2-gO9"/>
                 <constraint firstItem="deS-ei-Ukl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dro-yH-tma"/>
-                <constraint firstItem="iPi-fB-rAU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="eg5-uI-1Pf"/>
                 <constraint firstItem="deS-ei-Ukl" firstAttribute="top" secondItem="GmX-kG-iUI" secondAttribute="bottom" constant="8" id="gmC-M0-zH0"/>
+                <constraint firstItem="k2x-X2-xd6" firstAttribute="top" secondItem="ZXJ-pO-jaN" secondAttribute="bottom" constant="-10" id="kd3-pr-pav"/>
                 <constraint firstAttribute="trailing" secondItem="GmX-kG-iUI" secondAttribute="trailing" constant="8" id="mBT-jY-c7a"/>
                 <constraint firstAttribute="trailing" secondItem="mly-pc-vI1" secondAttribute="trailing" id="pyf-V7-Qn0"/>
                 <constraint firstItem="ZXJ-pO-jaN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xeN-xw-EmW"/>
@@ -144,7 +134,6 @@
                 <outlet property="lineView" destination="deS-ei-Ukl" id="scc-9A-Rpv"/>
                 <outlet property="tagLabel" destination="mly-pc-vI1" id="byx-v1-FJp"/>
                 <outlet property="tagView" destination="OeV-CF-tg2" id="VAA-9C-4SI"/>
-                <outlet property="titleLabel" destination="iPi-fB-rAU" id="UpW-2A-ZLr"/>
                 <outlet property="topView" destination="ZXJ-pO-jaN" id="EFd-0J-wGJ"/>
             </connections>
             <point key="canvasLocation" x="81" y="82"/>
