@@ -19,6 +19,7 @@ class AdsImageCell: UICollectionViewCell {
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var lineView2: UIView!
     
     
     var add:Ads?{
@@ -45,6 +46,14 @@ class AdsImageCell: UICollectionViewCell {
         self.descriptionLabel.font = UIFont.systemFont(ofSize: 17)
         self.addressLabel.font = UIFont.systemFont(ofSize: 17)
      
+        
+        
+        // colors
+        self.tagView.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .horizontal)
+        self.lineView.backgroundColor = AppColors.yellowLight
+        self.lineView2.backgroundColor = AppColors.yellowLight
+        
+        
         self.roundedBorder(value: 5.0)
         self.addShadow()
     }

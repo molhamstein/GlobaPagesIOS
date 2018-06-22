@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -40,7 +39,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ai0-p9-Ylq">
                                 <rect key="frame" x="8" y="9" width="125" height="1"/>
-                                <color key="backgroundColor" name="yellowLight"/>
+                                <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="cSc-aE-vX7"/>
                                     <constraint firstAttribute="height" constant="1" id="leJ-gg-VYf"/>
@@ -56,7 +55,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" name="yellowLight"/>
+                                <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="mly-pc-vI1" firstAttribute="leading" secondItem="OeV-CF-tg2" secondAttribute="leading" id="4UZ-9O-FtQ"/>
                                     <constraint firstAttribute="width" constant="90" id="5mT-dc-BGE"/>
@@ -82,7 +81,7 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deS-ei-Ukl">
                         <rect key="frame" x="8" y="132.5" width="125" height="1"/>
-                        <color key="backgroundColor" name="yellowLight"/>
+                        <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Ool-lD-R7x"/>
                             <constraint firstAttribute="width" constant="125" id="VkF-3a-RZJ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
@@ -132,6 +131,7 @@
                 <outlet property="descriptionLabel" destination="GmX-kG-iUI" id="NL4-oc-b8k"/>
                 <outlet property="imageView" destination="m6t-dg-Fcz" id="Sy6-gc-AQZ"/>
                 <outlet property="lineView" destination="deS-ei-Ukl" id="scc-9A-Rpv"/>
+                <outlet property="lineView2" destination="ai0-p9-Ylq" id="Pev-DZ-yTB"/>
                 <outlet property="tagLabel" destination="mly-pc-vI1" id="byx-v1-FJp"/>
                 <outlet property="tagView" destination="OeV-CF-tg2" id="VAA-9C-4SI"/>
                 <outlet property="topView" destination="ZXJ-pO-jaN" id="EFd-0J-wGJ"/>
@@ -141,8 +141,5 @@
     </objects>
     <resources>
         <image name="AI_Image" width="1139" height="643"/>
-        <namedColor name="yellowLight">
-            <color red="1" green="0.83137254901960789" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>

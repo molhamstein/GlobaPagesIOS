@@ -30,5 +30,12 @@ struct AppColors {
     // purple
     static let secondary = UIColor(red: 113, green: 74, blue: 154)
     
+    // colors
+    static let yellowLight = UIColor(red: 255, green: 247, blue: 251)
+    static let yellowDark = UIColor(red: 237, green: 182, blue: 0)
+    
+    static let blueLight = UIColor(red: 0, green: 175, blue: 255)
+    static let blueDark = UIColor(red: 71, green: 126, blue: 224)
+    
     
 }
