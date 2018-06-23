@@ -93,7 +93,7 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         let _navProfileButton = UIButton()
         _navProfileButton.setBackgroundImage(UIImage(named: "navProfile"), for: .normal)
         _navProfileButton.frame = CGRect(x: 0, y: 0, width: 33, height: 26)
-        _navProfileButton.addTarget(self, action: #selector(profileButtonAction(_:)), for: .touchUpInside)
+       // _navProfileButton.addTarget(self, action: #selector(profileButtonAction(_:)), for: .touchUpInside)
         return UIBarButtonItem(customView: _navProfileButton)
     }
     
@@ -187,10 +187,10 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     func closeButtonAction(_ sender: AnyObject) {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
-    
-    func profileButtonAction( _ sender:AnyObject) {
-        ActionShowProfile.execute()
-    }
+//
+//    func profileButtonAction( _ sender:AnyObject) {
+//        ActionShowProfile.execute()
+//    }
     
     // MARK: Show toast message
     /// Show toast message with key and type

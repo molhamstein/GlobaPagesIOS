@@ -16,8 +16,6 @@ struct AppColors {
     static let grayLight = UIColor(red: 103, green: 113, blue: 117)
     static let grayXDark = UIColor(red: 63, green: 69, blue: 71)
     
-    static let blueXLight = UIColor(red: 0, green: 175, blue: 255)
-    static let blueXDark = UIColor(red: 71, green: 126, blue: 224)
     
     static let pinkLight = UIColor(red: 253, green: 213, blue: 177)
     static let pinkDark = UIColor(red: 255, green: 74, blue: 153)
@@ -31,11 +29,13 @@ struct AppColors {
     static let secondary = UIColor(red: 113, green: 74, blue: 154)
     
     // colors
-    static let yellowLight = UIColor(red: 255, green: 247, blue: 251)
+    static let yellowLight = UIColor(red: 255, green: 212, blue: 0)
     static let yellowDark = UIColor(red: 237, green: 182, blue: 0)
     
+    static let blueXLight = UIColor(red: 0, green: 175, blue: 255)
     static let blueLight = UIColor(red: 0, green: 175, blue: 255)
     static let blueDark = UIColor(red: 71, green: 126, blue: 224)
+    static let blueXDark = UIColor(red: 71, green: 126, blue: 224)
     
     
 }

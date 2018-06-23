@@ -24,7 +24,7 @@ class LoginViewController: AbstractController {
     // MARK: Properties
     
     //main view
-    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var mainView: UIView!
     
     // login view
     @IBOutlet weak var loginView: UIView!
@@ -66,25 +66,6 @@ class LoginViewController: AbstractController {
     // country
     @IBOutlet weak var countryView: UIView!
     
-    // socialLogin Step 2
-    @IBOutlet weak var socialInfoView: UIView!
-    @IBOutlet weak var lblSocialInfoWelcome: UILabel!
-    @IBOutlet weak var btnSocialInfoMale: UIButton!
-    @IBOutlet weak var btnSocialInfoFemale: UIButton!
-    @IBOutlet weak var vSocialInfoMale: UIView!
-    @IBOutlet weak var vSocialInfoFemale: UIView!
-    @IBOutlet weak var btnSocialInfoSelectCountry: UIButton!
-    @IBOutlet weak var lblSocialInfoMale: UILabel!
-    @IBOutlet weak var lblSocialInfoFemale: UILabel!
-    @IBOutlet weak var btnSocialInfoCheckButton: UIButton!
-    @IBOutlet weak var btnSocialInfoSubmit: VobbleButton!
-    
-    // social view
-    @IBOutlet weak var socialView: UIView!
-    @IBOutlet weak var socialLabel: UILabel!
-    @IBOutlet weak var facebookButton: UIButton!
-    @IBOutlet weak var twitterButton: UIButton!
-    @IBOutlet weak var instagramButton: UIButton!
     
     // Data
     var tempUserInfoHolder: AppUser = AppUser()
@@ -123,7 +104,6 @@ class LoginViewController: AbstractController {
             self.signupView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.signupView.frame.height)
             self.loginView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.loginView.frame.height)
             self.countryView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.countryView.frame.height)
-            self.socialInfoView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.socialInfoView.frame.height)
                         
             dispatch_main_after(0.7) {
                 self.showView(withType: .login)
@@ -136,9 +116,9 @@ class LoginViewController: AbstractController {
         super.viewDidAppear(animated)
         
         if !self.isInitialized {
-            self.backgroundView.applyGradient(colours: [AppColors.blueXDark, AppColors.blueXLight], direction: .diagonal)
-            self.loginButton.applyGradient(colours: [AppColors.blueXDark, AppColors.blueXLight], direction: .diagonal)
-            self.signupButton.applyGradient(colours: [AppColors.blueXDark, AppColors.blueXLight], direction: .diagonal)
+            self.mainView.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
+            self.loginButton.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
+            self.signupButton.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
         }
         self.isInitialized = true
     }
@@ -172,9 +152,6 @@ class LoginViewController: AbstractController {
         svLoginPrefixLabel.font = AppFonts.normal
         selectCountryButton.titleLabel?.font = AppFonts.big
         
-        btnSocialInfoSelectCountry.titleLabel?.font = AppFonts.big
-        lblSocialInfoWelcome.font = AppFonts.big
-        
         lvEmailLabel.text = "LOGIN_EMAIL_TITLE".localized
         lvEmailTextField.placeholder = "LOGIN_EMAIL_PLACEHOLDER".localized
         lvPasswordLabel.text = "LOGIN_PSW_TITLE".localized
@@ -202,8 +179,6 @@ class LoginViewController: AbstractController {
         svLoginPrefixLabel.text = "SIGNUP_LOGIN_BTN_PREFIX".localized
         selectCountryButton.setTitle("SIGNUP_COUNTRY_PLACEHOLDER".localized, for: .normal)
         
-        btnSocialInfoSelectCountry.setTitle("SIGNUP_COUNTRY_PLACEHOLDER".localized, for: .normal)
-
 //        loginButton.setTitle("START_NORMAL_LOGIN".localized, for: .normal)
 //        loginButton.setTitle("START_NORMAL_LOGIN".localized, for: .highlighted)
 //        loginButton.hideTextWhenLoading = true
@@ -273,80 +248,16 @@ class LoginViewController: AbstractController {
     }
     
     @IBAction func facebookAction(_ sender: UIButton) {
-        // show activity loader
-        self.showActivityLoader(true)
-        // start social facebook login
-        SocialManager.shared.facebookLogin(controller: self) { (user, isSuccess, error) in
-            // hide activity loader
-            self.showActivityLoader(false)
-            
-            // login succeed go to home screen
-            if (isSuccess) {
-                if let tempRegistredUser = user, let name = tempRegistredUser.userName {
-                    self.tempUserInfoHolder = tempRegistredUser
-                    self.lblSocialInfoWelcome.text = String(format: "SINGUP_SOCIAL_WELCOM".localized, name)
-                    self.showView(withType: .socialLoginStep2)
-                }
-                //self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
-            } else {
-                let errorServer = error ?? ServerError.unknownError
-                // social login failed
-                if errorServer.type == ServerError.socialLoginError.type {
-                    self.showMessage(message: "ERROR_SOCIAL_FACEBOOK", type: .error)
-                } else {
-                    self.showMessage(message: errorServer.type.errorMessage, type: .error)
-                }
-            }
-        }
+        
     }
     
     @IBAction func instagramAction(_ sender: UIButton) {
-        // show activity loader
-        self.showActivityLoader(true)
-        SocialManager.shared.instagramLogin(controller: self) { (user, isSuccess, error) in
-            // hide activity loader
-            self.showActivityLoader(false)
-            // login succeed go to home screen
-            if (isSuccess) {
-                if let tempRegistredUser = user, let name = tempRegistredUser.userName {
-                    self.tempUserInfoHolder = tempRegistredUser
-                    self.lblSocialInfoWelcome.text = String(format: "SINGUP_SOCIAL_WELCOM".localized, name)
-                    self.showView(withType: .socialLoginStep2)
-                }
-                //self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
-            } else {
-                let errorServer = error ?? ServerError.unknownError
-                // social login failed
-                if errorServer.type == ServerError.socialLoginError.type {
-                    self.showMessage(message: "ERROR_SOCIAL_INSTAGRAM", type: .error)
-                } else {
-                    self.showMessage(message: errorServer.type.errorMessage, type: .error)
-                }
-            }
-        }
+        
     }
     
     @IBAction func googleAction(_ sender: UIButton) {
-        // show activity loader
-        self.showActivityLoader(true)
         
-        SocialManager.shared.googleLogin(delegateController: self)
-        
-        
-//        GIDSignIn.sharedInstance().clientID = AppConfig.googleClientID
-//        GIDSignIn.sharedInstance().delegate = self
-//        GIDSignIn.sharedInstance().uiDelegate = self
-//        GIDSignIn.sharedInstance().signIn()
-        
-        
-//        GIDSignIn.sharedInstance().delegate = self
-//        GIDSignIn.sharedInstance().uiDelegate = self
-        
-        //GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/plus.login")
-        //GIDSignIn.sharedInstance().scopes.append("https://www.googleapis.com/auth/plus.me")
-        //GIDSignIn.sharedInstance().signInSilently()
     }
-    
     
     @IBAction func registerBtnPressed(_ sender: AnyObject) {
         
@@ -410,17 +321,16 @@ class LoginViewController: AbstractController {
         hideView(withType: .countryV)
     }
     
-    
     @IBAction func pickCountryPressed(_ sender: Any) {
         hideView(withType: .countryV)
         selectCountryButton.setTitle(countryName, for: .normal)
-        btnSocialInfoSelectCountry.setTitle(countryName, for: .normal)
+        //btnSocialInfoSelectCountry.setTitle(countryName, for: .normal)
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         hideView(withType: .countryV)
         selectCountryButton.setTitle(countryName, for: .normal)
-        btnSocialInfoSelectCountry.setTitle(countryName, for: .normal)
+        //btnSocialInfoSelectCountry.setTitle(countryName, for: .normal)
     }
     
     @IBAction func countryBtnPressed(_ sender: UIButton) {
@@ -434,11 +344,6 @@ class LoginViewController: AbstractController {
         maleLabel.alpha = 0.5
         maleButton.alpha = 0.5
         
-        vSocialInfoFemale.alpha = 1
-        lblSocialInfoFemale.alpha = 1
-        lblSocialInfoMale.alpha = 0.5
-        vSocialInfoMale.alpha = 0.5
-        
         isMale = false
     }
     
@@ -449,11 +354,6 @@ class LoginViewController: AbstractController {
         femaleLabel.alpha = 0.5
         femaleButton.alpha = 0.5
         
-        vSocialInfoFemale.alpha = 0.5
-        lblSocialInfoFemale.alpha = 0.5
-        lblSocialInfoMale.alpha = 1
-        vSocialInfoMale.alpha = 1
-        
         isMale = true
     }
     
@@ -461,11 +361,9 @@ class LoginViewController: AbstractController {
         
         if checkButton.isSelected == false  {
             checkButton.isSelected = true
-            btnSocialInfoCheckButton.isSelected = true
         }
         else {
             checkButton.isSelected = false
-            btnSocialInfoCheckButton.isSelected = false
         }
     }
     
@@ -528,21 +426,6 @@ class LoginViewController: AbstractController {
     
     func validateSocialLoginStep2Fields () -> Bool {
         
-        if !checkButton.isSelected {
-            showMessage(message:"SINGUP_VALIDATION_TERMS".localized, type: .warning)
-            return false
-        }
-        
-        tempUserInfoHolder.gender = isMale ? .male : .female
-        
-        if let countryIsoCode = countryCode {
-            tempUserInfoHolder.countryISOCode = countryIsoCode
-        } else {
-            showMessage(message:"SINGUP_VALIDATION_CHOOSE_COUNTRY".localized, type: .warning)
-            return false
-        }
-        
-        
         return true
     }
     
@@ -586,12 +469,13 @@ class LoginViewController: AbstractController {
                 
             })
         case .socialLoginStep2 :
-            socialInfoView.dropShadow()
-            UIView.animate(withDuration: 0.4, delay:0.0, options: UIViewAnimationOptions.curveLinear, animations: {
-                self.socialInfoView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 0)
-            }, completion: {(finished: Bool) in
-                
-            })
+//            socialInfoView.dropShadow()
+//            UIView.animate(withDuration: 0.4, delay:0.0, options: UIViewAnimationOptions.curveLinear, animations: {
+//                self.socialInfoView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 0)
+//            }, completion: {(finished: Bool) in
+//
+//            })
+            break
         }
     }
     
@@ -616,38 +500,15 @@ class LoginViewController: AbstractController {
                 
             })
         case .socialLoginStep2:
-            UIView.animate(withDuration: 0.3, delay:0.0, options: UIViewAnimationOptions.curveLinear, animations: {
-                self.socialInfoView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.socialInfoView.frame.height)
-            }, completion: {(finished: Bool) in
-                
-            })
+//            UIView.animate(withDuration: 0.3, delay:0.0, options: UIViewAnimationOptions.curveLinear, animations: {
+//                self.socialInfoView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.socialInfoView.frame.height)
+//            }, completion: {(finished: Bool) in
+//
+//            })
+            break
         }
     }
-        
     
-    // social user registration step 2
-    @IBAction func updateSocialUserInfoAction(_ sender: Any) {
-            
-        if validateSocialLoginStep2Fields() {
-            // show loader
-            btnSocialInfoSubmit.isLoading = true
-            self.view.isUserInteractionEnabled = false
-
-            tempUserInfoHolder.countryISOCode = countryCode
-            tempUserInfoHolder.gender = isMale ? .male : .female
-            
-            ApiManager.shared.updateUser(user: tempUserInfoHolder) { (success: Bool, err: ServerError?, user: AppUser?) in
-                self.view.isUserInteractionEnabled = true
-                self.btnSocialInfoSubmit.isLoading = false
-                if success {
-                    self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
-                } else {
-                    self.showMessage(message:(err?.type.errorMessage)!, type: .error)
-                }
-            }
-        }
-    }
-
 }
 
 extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{
@@ -669,26 +530,7 @@ extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{
     
     //completed sign In
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        self.showActivityLoader(true)
-        SocialManager.shared.googleLoginResult(signIn, didSignInFor: user, withError: error) { (user, success, error) in
-            self.showActivityLoader(false)
-            if (success) {
-                if let tempRegistredUser = user, let name = tempRegistredUser.userName {
-                    self.tempUserInfoHolder = tempRegistredUser
-                    self.lblSocialInfoWelcome.text = String(format: "SINGUP_SOCIAL_WELCOM".localized, name)
-                    self.showView(withType: .socialLoginStep2)
-                }
-                //self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
-            } else {
-                let errorServer = error ?? ServerError.unknownError
-                // social login failed
-                if errorServer.type == ServerError.socialLoginError.type {
-                    self.showMessage(message: "ERROR_SOCIAL_GOOGLE", type: .error)
-                } else {
-                    self.showMessage(message: errorServer.type.errorMessage, type: .error)
-                }
-            }
-        }
+        
     }
     
     public func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {

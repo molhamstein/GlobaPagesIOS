@@ -23,19 +23,13 @@ class HomeViewController: AbstractController {
     static var businessGuidCellId = "BusinessGuidCell"
     var businessGuides:[BusinessGuide] = []
     
-    
-    
     // date View
     @IBOutlet weak var dateView: UIView!
-    
-    
-    
     
     // filter View
     @IBOutlet weak var fillterView: UIView!
     weak var filtterCollectionView: UICollectionView?
     static var filtterCellId = "filtterCell"
-    
     
     // Ads View
     @IBOutlet weak var adsView: UIView!
@@ -52,17 +46,14 @@ class HomeViewController: AbstractController {
 
     override func customizeView() {
         
-        self.notificationButton.makeRounded()
-        self.profileButton.makeRounded()
-        self.notificationButton.dropShadow()
-        self.profileButton.dropShadow()
+        //self.notificationButton.makeRounded()
+        //self.profileButton.makeRounded()
+        self.notificationButton.dropShortShadow()
+        self.profileButton.dropShortShadow()
         self.notificationButton.badge = "2"
         
         // setFonts
         self.navBarTitleLabel.font = AppFonts.xBig
-    
-        
-        
         
         // businessGuid CollectionView
         let nib = UINib(nibName: HomeViewController.businessGuidCellId, bundle: nil)
@@ -71,20 +62,15 @@ class HomeViewController: AbstractController {
         // adds Collection view Header
         self.adsCollectionView.register(UINib(nibName: "HomeCollectionViewHeader",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "homeCollectionViewHeaderID")
         
-        
-        
         // adds Collection view Cells
         let nib2 = UINib(nibName: HomeViewController.adsImageCellId, bundle: nil)
         self.adsCollectionView.register(nib2, forCellWithReuseIdentifier: HomeViewController.adsImageCellId)
         
-        
         let nib3 = UINib(nibName: HomeViewController.adsTitledCellId, bundle: nil)
         self.adsCollectionView.register(nib3, forCellWithReuseIdentifier: HomeViewController.adsTitledCellId)
         
-        
         getBusinessGuides()
         getAds()
-        
         
 //        self.adsCollectionView.collectionViewLayout.invalidateLayout()
 //        self.adsCollectionView.reloadData()
@@ -93,10 +79,6 @@ class HomeViewController: AbstractController {
         let layout = PinterestLayout()
         layout.delegate = self
         adsCollectionView.collectionViewLayout = layout
-
-      
-        
-       
     }
     
     
@@ -108,41 +90,45 @@ class HomeViewController: AbstractController {
         
         businessGuides.append(BusinessGuide(title:"Businesses Guide",image:"ic_business_guide",info:"Search for businesses Nearby and find them on the map"))
         
-         self.businessGuidCollectionView.reloadData()
+        self.businessGuidCollectionView.reloadData()
     }
     
 
     func getAds(){
         
+        adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
+        
+        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
+        
+        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
+        
+        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
+        
+        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
+        
+        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
         
         adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
         
+        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
         
-          adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
+        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus  Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
         
+        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh VillasDamascus Al-Mazzeh VillasDamascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
         
-          adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-          adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-          adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-          adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-          adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
-        
-          adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-          adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus  Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-          adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh VillasDamascus Al-Mazzeh VillasDamascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-          adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al- Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
+        adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al- Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
         self.adsCollectionView.collectionViewLayout.invalidateLayout()
         self.adsCollectionView.reloadData()
   
     }
     
+    @IBAction func profileButtonAction(_ sender: AnyObject) {
+        if DataStore.shared.isLoggedin {
+            self.performSegue(withIdentifier: "HomeProfileSegue", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "HomeLoginSegue", sender: self)
+        }
+    }
 }
 
 
@@ -201,12 +187,7 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
      
         return UICollectionViewCell()
     }
-    
-    
-    
 }
-
-
 
 extension HomeViewController:UICollectionViewDelegateFlowLayout{
     
@@ -223,11 +204,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
          return CGSize(width: self.view.frame.width * 0.5 - 16, height: getCellContentSize(indexPath: indexPath))
         }
         
-    
         return CGSize(width: self.view.frame.width * 0.7, height: self.businessGuidView.frame.height - 16)
-        
-        
-        
     }
     
     
@@ -246,7 +223,6 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
             
         }
             return 0
-        
     }
     
     
@@ -263,15 +239,11 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
         }
         
         return UICollectionReusableView()
-
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected")
     }
-    
-  
 }
 
 
@@ -284,9 +256,6 @@ extension HomeViewController : PinterestLayoutDelegate {
     func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
         return 0
     }
-    
- 
-    
     
     func getCellContentSize(indexPath:IndexPath) -> CGFloat{
         var height:CGFloat = 0
@@ -311,5 +280,4 @@ extension HomeViewController : PinterestLayoutDelegate {
         }
         return CGSize(width: 0, height: 0)
     }
-    
 }

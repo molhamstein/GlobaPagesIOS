@@ -73,6 +73,11 @@
                                                     <constraint firstAttribute="width" constant="45" id="z7o-oz-oiG" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                 </constraints>
                                                 <state key="normal" image="alarmIcon"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="22.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY6-WX-0hX" customClass="SSBadgeButton" customModule="GlobalPages" customModuleProvider="target">
                                                 <rect key="frame" x="314" y="23" width="45" height="45"/>
@@ -82,8 +87,13 @@
                                                     <constraint firstAttribute="width" constant="45" id="LYE-s2-LPE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                 </constraints>
                                                 <state key="normal" image="profileIcon"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="22.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="Ie8-ec-MON" kind="presentation" id="ahG-Q5-Som"/>
+                                                    <action selector="profileButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hP1-1q-VE7"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -217,6 +227,8 @@
                         <outlet property="navBarView" destination="pwL-Tn-JK2" id="OBq-HA-bfC"/>
                         <outlet property="notificationButton" destination="7yl-3T-Swd" id="jPE-CF-HeZ"/>
                         <outlet property="profileButton" destination="lY6-WX-0hX" id="SG5-Ee-gA5"/>
+                        <segue destination="oA4-Fy-5Qo" kind="presentation" identifier="HomeLoginSegue" id="S9U-qp-FMS"/>
+                        <segue destination="Ie8-ec-MON" kind="presentation" identifier="HomeProfileSegue" id="kbV-h1-kla"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -411,6 +423,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0eS-S8-I8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="801" y="-878"/>
+        </scene>
+        <!--LoginViewControllerID-->
+        <scene sceneID="Nb7-yF-OUZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Start" referencedIdentifier="LoginViewControllerID" id="oA4-Fy-5Qo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="awC-mP-GoF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1737" y="-879"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nOu-W5-4Qj">
