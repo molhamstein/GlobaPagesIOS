@@ -17,7 +17,7 @@ class AdsImageCell: UICollectionViewCell {
     @IBOutlet weak var tagView: UIView!
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var lineView: UIView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var lineView2: UIView!
     
@@ -31,7 +31,7 @@ class AdsImageCell: UICollectionViewCell {
             }
             self.imageView.image = UIImage(named: add.image)
             self.tagLabel.text = add.tag
-            self.descriptionLabel.text = add.info
+            self.titleLabel.text = add.title
             self.addressLabel.text = add.address
             
         }
@@ -43,15 +43,15 @@ class AdsImageCell: UICollectionViewCell {
         super.awakeFromNib()
         // fonts
         self.tagLabel.font = UIFont.systemFont(ofSize: 12)
-        self.descriptionLabel.font = UIFont.systemFont(ofSize: 17)
+        self.titleLabel.font = UIFont.systemFont(ofSize: 17)
         self.addressLabel.font = UIFont.systemFont(ofSize: 17)
      
         
         
         // colors
-        self.tagView.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .horizontal)
-        self.lineView.backgroundColor = AppColors.yellowLight
-        self.lineView2.backgroundColor = AppColors.yellowLight
+      //  self.tagView.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .horizontal)
+       // self.lineView.backgroundColor = AppColors.yellowLight
+        //self.lineView2.backgroundColor = AppColors.yellowLight
         
         
         self.roundedBorder(value: 5.0)

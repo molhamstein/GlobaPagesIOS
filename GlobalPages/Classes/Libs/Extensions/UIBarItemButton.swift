@@ -78,7 +78,7 @@ class SSBadgeButton: UIButton {
         }
     }
     
-    public var badgeFont = UIFont.systemFont(ofSize: 12.0) {
+    public var badgeFont = UIFont.systemFont(ofSize: 11.0) {
         didSet {
             badgeLabel.font = badgeFont
         }
@@ -105,9 +105,9 @@ class SSBadgeButton: UIButton {
         
         let badgeSize = badgeLabel.frame.size
         
-        var height:Double = 18 //max(18, Double(badgeSize.height) + 5.0)
+        var height:Double = 20 //max(18, Double(badgeSize.height) + 5.0)
         if badge?.count == 3 {
-            height = 24
+            height = 26
         }
         let width:Double = height //max(height, Double(badgeSize.width) + 10.0)
         

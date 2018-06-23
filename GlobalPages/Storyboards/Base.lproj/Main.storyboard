@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMY-Ql-96F" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="181"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_pattern" translatesAutoresizingMaskIntoConstraints="NO" id="VTp-20-E5t">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_pattern" translatesAutoresizingMaskIntoConstraints="NO" id="VTp-20-E5t">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="181"/>
                                     </imageView>
                                 </subviews>
@@ -40,7 +40,6 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="endColor">
                                         <color key="value" red="0.92941176470588238" green="0.71372549019607845" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="diagonalMode" value="NO"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalMode" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>

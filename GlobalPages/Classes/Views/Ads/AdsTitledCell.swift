@@ -50,9 +50,9 @@ class AdsTitledCell: UICollectionViewCell {
         
         
         // colors
-        self.tagView.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .horizontal)
-        self.lineView.backgroundColor = AppColors.yellowLight
-        self.lineView2.backgroundColor = AppColors.yellowLight
+       // self.tagView.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .horizontal)
+      //  self.lineView.backgroundColor = AppColors.yellowLight
+        //self.lineView2.backgroundColor = AppColors.yellowLight
         
         
     

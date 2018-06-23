@@ -94,7 +94,7 @@ extension UIView {
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.frame = self.bounds
         gradient.colors = colours.map { $0.cgColor }
-        gradient.locations = [0.0,1.0]
+       // gradient.locations = [0.0,1.0]
         gradient.borderColor = self.layer.borderColor
         gradient.borderWidth = self.layer.borderWidth
         gradient.cornerRadius = self.layer.cornerRadius

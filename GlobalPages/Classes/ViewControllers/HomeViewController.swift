@@ -56,7 +56,7 @@ class HomeViewController: AbstractController {
         self.profileButton.makeRounded()
         self.notificationButton.dropShadow()
         self.profileButton.dropShadow()
-        self.notificationButton.badge = "22"
+        self.notificationButton.badge = "2"
         
         // setFonts
         self.navBarTitleLabel.font = AppFonts.xBig
@@ -115,7 +115,7 @@ class HomeViewController: AbstractController {
     func getAds(){
         
         
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
+        adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
         
         
           adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
@@ -129,7 +129,7 @@ class HomeViewController: AbstractController {
         
           adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
         
-          adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
+          adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
         
           adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
         
@@ -137,7 +137,7 @@ class HomeViewController: AbstractController {
         
           adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh VillasDamascus Al-Mazzeh VillasDamascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
         
-          adds.append(Ads(title: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al- Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
+          adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al- Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
         self.adsCollectionView.collectionViewLayout.invalidateLayout()
         self.adsCollectionView.reloadData()
   
