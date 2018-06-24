@@ -46,8 +46,8 @@ class HomeViewController: AbstractController {
 
     override func customizeView() {
         
-        //self.notificationButton.makeRounded()
-        //self.profileButton.makeRounded()
+        self.notificationButton.makeRounded()
+        self.profileButton.makeRounded()
         self.notificationButton.dropShortShadow()
         self.profileButton.dropShortShadow()
         self.notificationButton.badge = "2"

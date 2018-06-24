@@ -73,11 +73,6 @@
                                                     <constraint firstAttribute="width" constant="45" id="z7o-oz-oiG" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                 </constraints>
                                                 <state key="normal" image="alarmIcon"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="22.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY6-WX-0hX" customClass="SSBadgeButton" customModule="GlobalPages" customModuleProvider="target">
                                                 <rect key="frame" x="314" y="23" width="45" height="45"/>
@@ -87,11 +82,6 @@
                                                     <constraint firstAttribute="width" constant="45" id="LYE-s2-LPE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                 </constraints>
                                                 <state key="normal" image="profileIcon"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="22.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="profileButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hP1-1q-VE7"/>
                                                 </connections>
@@ -153,7 +143,7 @@
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qw6-rv-S15">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="524"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="w0X-a7-yWv">
                                                     <size key="itemSize" width="50" height="50"/>
                                                     <size key="headerReferenceSize" width="50" height="50"/>
@@ -233,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="362.39999999999998" y="29.55665024630542"/>
+            <point key="canvasLocation" x="334" y="-86"/>
         </scene>
         <!--Settings-->
         <scene sceneID="wgi-Ir-3v1">

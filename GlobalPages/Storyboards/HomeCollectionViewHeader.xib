@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="homeCollectionViewHeaderID" id="eUA-Pv-khb" customClass="HomeCollectionViewHeader" customModule="GlobalPages" customModuleProvider="target">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="homeCollectionViewHeaderID" id="eUA-Pv-khb" userLabel="I" customClass="HomeCollectionViewHeader" customModule="GlobalPages" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="415" height="83"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -32,14 +32,15 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="vy2-2d-ES7"/>
                                     </constraints>
-                                    <state key="normal" image="rightArrow"/>
+                                    <state key="normal" image="next_volume"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7x6-tZ-ULM">
                                     <rect key="frame" x="8" y="0.0" width="24" height="35"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="VMh-0l-7um"/>
                                     </constraints>
-                                    <state key="normal" image="leftArrow"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <state key="normal" image="pre_volume"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -150,7 +151,7 @@
     <resources>
         <image name="ic_nearby" width="14" height="23"/>
         <image name="ic_search" width="20" height="20"/>
-        <image name="leftArrow" width="39" height="71"/>
-        <image name="rightArrow" width="39" height="71"/>
+        <image name="next_volume" width="11" height="12"/>
+        <image name="pre_volume" width="11" height="13"/>
     </resources>
 </document>
