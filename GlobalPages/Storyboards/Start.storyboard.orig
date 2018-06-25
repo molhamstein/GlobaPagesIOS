@@ -1092,6 +1092,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Logo" width="118" height="127"/>
         <image name="checkBox" width="20" height="21"/>
         <image name="checkBoxActive" width="20" height="21"/>
         <image name="dropMenuArrow" width="15" height="8"/>

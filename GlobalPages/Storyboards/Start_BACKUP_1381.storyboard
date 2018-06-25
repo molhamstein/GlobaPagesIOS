@@ -63,7 +63,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splahs_icon" translatesAutoresizingMaskIntoConstraints="NO" id="YUR-Oc-moy">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="YUR-Oc-moy">
                                 <rect key="frame" x="122.66666666666669" y="276" width="130" height="260"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="260" id="L2j-Cs-awS"/>
@@ -166,7 +166,11 @@
                                                         <rect key="frame" x="0.0" y="100" width="337.66666666666669" height="100"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="sxf-Jh-ytL" userLabel="PSW Stack View">
+<<<<<<< HEAD
                                                                 <rect key="frame" x="20" y="21" width="297.66666666666669" height="58"/>
+=======
+                                                                <rect key="frame" x="20" y="33" width="297.66666666666669" height="58"/>
+>>>>>>> eceae0b0590d636290f3f2d23f0b6b4263442639
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GvO-lq-m6x" userLabel="Psw label">
                                                                         <rect key="frame" x="0.0" y="0.0" width="297.66666666666669" height="23"/>
@@ -183,7 +187,11 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnP-tT-DtH" userLabel="PSW line View">
+<<<<<<< HEAD
                                                                 <rect key="frame" x="20" y="78.666666666666686" width="297.66666666666669" height="1"/>
+=======
+                                                                <rect key="frame" x="20" y="91" width="297.66666666666669" height="1"/>
+>>>>>>> eceae0b0590d636290f3f2d23f0b6b4263442639
                                                                 <color key="backgroundColor" red="0.58424812559999995" green="0.58435159920000002" blue="0.58424162859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="85d-l5-xIV"/>
@@ -259,16 +267,27 @@
                                                 <rect key="frame" x="0.0" y="420" width="337.66666666666669" height="100"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FoQ-xm-45Y">
+<<<<<<< HEAD
                                                         <rect key="frame" x="67.333333333333314" y="0.66666666666668561" width="204" height="29"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcL-GE-JNj" userLabel="or">
                                                                 <rect key="frame" x="0.0" y="0.0" width="20.333333333333332" height="29"/>
+=======
+                                                        <rect key="frame" x="67.333333333333314" y="0.33333333333337123" width="204" height="29"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcL-GE-JNj" userLabel="or">
+                                                                <rect key="frame" x="0.0" y="0.33333333333337123" width="20.333333333333332" height="29"/>
+>>>>>>> eceae0b0590d636290f3f2d23f0b6b4263442639
                                                                 <fontDescription key="fontDescription" name="MullerRegular" family="Muller" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f71-6J-L8g" userLabel="Register">
+<<<<<<< HEAD
                                                                 <rect key="frame" x="20.333333333333343" y="0.0" width="67" height="29"/>
+=======
+                                                                <rect key="frame" x="20.333333333333343" y="0.33333333333337123" width="67" height="29"/>
+>>>>>>> eceae0b0590d636290f3f2d23f0b6b4263442639
                                                                 <fontDescription key="fontDescription" name="MullerBold" family="Muller" pointSize="17"/>
                                                                 <state key="normal" title="Register">
                                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -278,7 +297,11 @@
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" a new account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhI-Hu-Olf" userLabel="new account">
+<<<<<<< HEAD
                                                                 <rect key="frame" x="87.333333333333314" y="0.0" width="116.66666666666669" height="29"/>
+=======
+                                                                <rect key="frame" x="87.333333333333314" y="0.33333333333337123" width="116.66666666666669" height="29"/>
+>>>>>>> eceae0b0590d636290f3f2d23f0b6b4263442639
                                                                 <fontDescription key="fontDescription" name="MullerRegular" family="Muller" pointSize="17"/>
                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
@@ -416,16 +439,16 @@
                                                                         <rect key="frame" x="0.0" y="217.66666666666666" width="337.66666666666669" height="108.66666666666666"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="2jN-3r-3Bj" userLabel="Password Stack View">
-                                                                                <rect key="frame" x="20" y="6" width="297.66666666666669" height="58"/>
+                                                                                <rect key="frame" x="20" y="5.3333333333333712" width="297.66666666666669" height="58"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvW-0x-cVm" userLabel="Password Label">
-                                                                                        <rect key="frame" x="0.0" y="0.33333333333331439" width="297.66666666666669" height="23"/>
+                                                                                        <rect key="frame" x="0.0" y="0.33333333333337123" width="297.66666666666669" height="23"/>
                                                                                         <fontDescription key="fontDescription" name="Antipasto" family="Antipasto" pointSize="17"/>
                                                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="********" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ky0-p5-pdD" userLabel="password textfield">
-                                                                                        <rect key="frame" x="0.0" y="35.333333333333314" width="297.66666666666669" height="23"/>
+                                                                                        <rect key="frame" x="0.0" y="35.333333333333371" width="297.66666666666669" height="23"/>
                                                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <fontDescription key="fontDescription" name="Antipasto-ExtraBold" family="Antipasto" pointSize="20"/>
                                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light" returnKeyType="done" secureTextEntry="YES"/>
@@ -433,7 +456,7 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugT-Mw-GMw" userLabel="Psw Line View">
-                                                                                <rect key="frame" x="20" y="63.666666666666686" width="297.66666666666669" height="1"/>
+                                                                                <rect key="frame" x="20" y="62.666666666666686" width="297.66666666666669" height="1"/>
                                                                                 <color key="backgroundColor" red="0.58424812559999995" green="0.58435159920000002" blue="0.58424162859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="AL0-xA-MB2"/>
@@ -1092,13 +1115,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Logo" width="118" height="127"/>
         <image name="checkBox" width="20" height="21"/>
         <image name="checkBoxActive" width="20" height="21"/>
         <image name="dropMenuArrow" width="15" height="8"/>
         <image name="navBackIcon" width="16" height="14"/>
         <image name="signup_female" width="36" height="17"/>
         <image name="signup_male" width="63" height="15"/>
-        <image name="splahs_icon" width="300" height="402"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lrG-K8-s4P"/>
