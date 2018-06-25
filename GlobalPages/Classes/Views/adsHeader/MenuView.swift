@@ -15,7 +15,9 @@ protocol MenuViewDelegate {
 
 class MenuView: UICollectionReusableView {
     
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var filtterCollectionView: UICollectionView!
+    
     // MARK: - Properties
     var delegate: MenuViewDelegate?
     
@@ -35,6 +37,21 @@ class MenuView: UICollectionReusableView {
        
         
     }
+    @IBAction func tapSearchButton(_ sender: UIButton) {
+        ActionShowFilters.execute()
+    }
+    
+    @IBAction func tapMapButton(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func tapNextWeekButton(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func tapPreviosWeekButton(_ sender: UIButton) {
+    }
+    
 }
 
 // MARK: - IBActions
@@ -43,4 +60,6 @@ extension MenuView {
     @IBAction func tappedButton(_ sender: UIButton) {
         delegate?.reloadCollectionViewDataWithTeamIndex(sender.tag)
     }
+    
+    
 }

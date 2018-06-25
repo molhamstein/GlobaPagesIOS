@@ -51,6 +51,7 @@
 		14CC8CAB20C9BA67000319B0 /* ShadowLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC8CAA20C9BA66000319B0 /* ShadowLineView.swift */; };
 		14CC8CAF20C9C64A000319B0 /* AdsImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC8CAD20C9C649000319B0 /* AdsImageCell.swift */; };
 		14CC8CB020C9C64A000319B0 /* AdsImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14CC8CAE20C9C649000319B0 /* AdsImageCell.xib */; };
+		14D7F38820E1226000CF6E4B /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D7F38720E1225F00CF6E4B /* FiltersViewController.swift */; };
 		578685EC20C47FD30002C67B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578685EB20C47FD30002C67B /* AppDelegate.swift */; };
 		578685EE20C47FD30002C67B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578685ED20C47FD30002C67B /* HomeViewController.swift */; };
 		578685F120C47FD30002C67B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578685EF20C47FD30002C67B /* Main.storyboard */; };
@@ -147,6 +148,7 @@
 		14CC8CAA20C9BA66000319B0 /* ShadowLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowLineView.swift; sourceTree = "<group>"; };
 		14CC8CAD20C9C649000319B0 /* AdsImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsImageCell.swift; sourceTree = "<group>"; };
 		14CC8CAE20C9C649000319B0 /* AdsImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsImageCell.xib; sourceTree = "<group>"; };
+		14D7F38720E1225F00CF6E4B /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		578685E820C47FD30002C67B /* GlobalPages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalPages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		578685EB20C47FD30002C67B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		578685ED20C47FD30002C67B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				578685ED20C47FD30002C67B /* HomeViewController.swift */,
+				14D7F38720E1225F00CF6E4B /* FiltersViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 				14CC8CA620C9033E000319B0 /* BusinessGuidCell.swift in Sources */,
 				1463C44E20D845E100156E84 /* MenuView.swift in Sources */,
 				5786872520C481010002C67B /* DateHelper.swift in Sources */,
+				14D7F38820E1226000CF6E4B /* FiltersViewController.swift in Sources */,
 				14B1B88E20DEF17C00D86536 /* CustomLayoutAttributes.swift in Sources */,
 				14CC8C8820C8A03D000319B0 /* XUITextField.swift in Sources */,
 				578687C520C481800002C67B /* Category.swift in Sources */,

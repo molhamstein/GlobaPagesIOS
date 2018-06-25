@@ -11,18 +11,22 @@ import UIKit
 class HomeViewController: AbstractController {
 
     // nav bar view
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var navBarView: UIView!
     @IBOutlet weak var navBarLogo: UIButton!
     @IBOutlet weak var navBarTitleLabel: UILabel!
     @IBOutlet weak var notificationButton: SSBadgeButton!
     @IBOutlet weak var profileButton: SSBadgeButton!
     
+    var isFirstTimeToLoad = true
+    
+    
      // bussiness guid View
      weak var businessGuidView: UIView?
      weak var businessGuidCollectionView: UICollectionView?
     static var businessGuidCellId = "BusinessGuidCell"
     var businessGuides:[BusinessGuide] = []
-    
+    var gradiantColors:[[UIColor]] = [[AppColors.blueLight,AppColors.blueDark],[AppColors.pinkLight,AppColors.pinkDark],[AppColors.blueLight,AppColors.blueDark]]
     // date View
     @IBOutlet weak var dateView: UIView!
     
@@ -46,6 +50,18 @@ class HomeViewController: AbstractController {
 
     override func customizeView() {
         
+        navbarCustomization()
+        
+        collectionViewSetup()
+        
+        getBusinessGuides()
+        getAds()
+       
+    }
+    
+    func navbarCustomization(){
+        // nav bar customization
+        
         self.notificationButton.makeRounded()
         self.profileButton.makeRounded()
         self.notificationButton.dropShortShadow()
@@ -55,14 +71,31 @@ class HomeViewController: AbstractController {
         // setFonts
         self.navBarTitleLabel.font = AppFonts.xBig
         
+    }
+    
+    override func buildUp() {
+        if isFirstTimeToLoad {
+            self.perform(#selector(applyGradiant), with: nil, afterDelay: 0.1)
+            isFirstTimeToLoad = false
+        }
+    }
+    
+    
+    func applyGradiant(){
+        // set gradiant
+        self.headerView.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .horizontal)
+        
+    }
+    func collectionViewSetup(){
+        
         // adds Collection view layout
         let layout = CustomLayout()
         layout.delegate = self
         adsCollectionView.collectionViewLayout = layout
         setupCollectionViewLayout()
-//
+        //
         self.adsCollectionView.register(UINib(nibName: "menuView",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "menu")
-//
+        //
         // adds Collection view Cells
         let nib2 = UINib(nibName: HomeViewController.adsImageCellId, bundle: nil)
         self.adsCollectionView.register(nib2, forCellWithReuseIdentifier: HomeViewController.adsImageCellId)
@@ -70,12 +103,7 @@ class HomeViewController: AbstractController {
         let nib3 = UINib(nibName: HomeViewController.adsTitledCellId, bundle: nil)
         self.adsCollectionView.register(nib3, forCellWithReuseIdentifier: HomeViewController.adsTitledCellId)
         
-        getBusinessGuides()
-        getAds()
-   
-       
     }
-    
     
     func getBusinessGuides(){
         
@@ -134,6 +162,7 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         return 1
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView ==  businessGuidCollectionView{
@@ -151,11 +180,15 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
     }
     
     
+    
+     // load collecton view cells
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView ==  businessGuidCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.businessGuidCellId, for: indexPath) as! BusinessGuidCell
             cell.businessGuide = businessGuides[indexPath.item]
+            cell.gradiantColors = self.gradiantColors[indexPath.item]
             return cell
             
         }
@@ -183,7 +216,18 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
      
         return UICollectionViewCell()
     }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selected")
+        if collectionView == filtterCollectionView {
+            ActionShowFilters.execute()
+        }
+    }
 }
+
+// setup Cell and header Size
 
 extension HomeViewController:UICollectionViewDelegateFlowLayout{
     
@@ -204,6 +248,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
     }
     
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
         if collectionView == businessGuidCollectionView{
@@ -222,44 +267,14 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected")
-    }
-}
-
-
-//MARK: - PINTEREST LAYOUT DELEGATE
-extension HomeViewController : PinterestLayoutDelegate {
-    func collectionView(collectionView: UICollectionView, heightForItemAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
-        return getCellContentSize(indexPath: indexPath)
-    }
     
-    func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
-        return 0
-    }
-    
-    func getCellContentSize(indexPath:IndexPath) -> CGFloat{
-        var height:CGFloat = 0
-        if adds[indexPath.item].type == .image{
-            height += 100
-        }else{
-            
-            height += self.adds[indexPath.item].title.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))
-            height += 16
-        }
-        
-        height += (self.adds[indexPath.item].address.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
-        height += (self.adds[indexPath.item].info.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
-        height += (50)
-        return height
-    }
-
 }
 
 
 
 
 
+// setup CustomeLay out
 
  extension HomeViewController {
     
@@ -298,9 +313,11 @@ extension HomeViewController : PinterestLayoutDelegate {
     }
 }
 
+
+
+
 //MARK: - UICollectionViewDataSource
 extension HomeViewController {
-    
 
     
      func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -360,4 +377,35 @@ extension HomeViewController: MenuViewDelegate {
         
     }
 }
+
+
+
+//MARK: - PINTEREST LAYOUT DELEGATE
+extension HomeViewController : PinterestLayoutDelegate {
+    func collectionView(collectionView: UICollectionView, heightForItemAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
+        return getCellContentSize(indexPath: indexPath)
+    }
+    
+    func collectionView(collectionView: UICollectionView, heightForAnnotationAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
+        return 0
+    }
+    
+    func getCellContentSize(indexPath:IndexPath) -> CGFloat{
+        var height:CGFloat = 0
+        if adds[indexPath.item].type == .image{
+            height += 100
+        }else{
+            
+            height += self.adds[indexPath.item].title.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))
+            height += 16
+        }
+        
+        height += (self.adds[indexPath.item].address.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
+        height += (self.adds[indexPath.item].info.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
+        height += (50)
+        return height
+    }
+    
+}
+
 

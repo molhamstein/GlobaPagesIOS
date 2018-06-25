@@ -11,6 +11,7 @@ import UIKit
 class BusinessGuidCell: UICollectionViewCell {
 
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var businessTitleLabel: UILabel!
     @IBOutlet weak var businessInfoLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -24,17 +25,20 @@ class BusinessGuidCell: UICollectionViewCell {
                 return
             }
             
-            
             self.businessTitleLabel.text = businessGuide.title
             self.businessInfoLabel.text = businessGuide.info
             self.imageView.image = UIImage(named:businessGuide.image)
-            
         }
-        
         
     }
     
+    var gradiantColors:[UIColor] = []{
+        didSet{
+            containerView.applyGradient(colours: gradiantColors.reversed(), direction: .horizontal)
+        }
+    }
     
+ 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.businessInfoLabel.font = AppFonts.normal

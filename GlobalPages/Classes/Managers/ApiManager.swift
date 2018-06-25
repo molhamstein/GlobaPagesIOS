@@ -31,7 +31,7 @@ class ApiManager: NSObject {
         }
     }
     
-    let baseURL = AppConfig.useLiveAPI ? AppConfig.appBaseLiveURL : AppConfig.appBaseDevURL
+    let baseURL = "http://104.217.253.15:3000/api"
     let error_domain = "Rombaye"
     
     //MARK: Shared Instance

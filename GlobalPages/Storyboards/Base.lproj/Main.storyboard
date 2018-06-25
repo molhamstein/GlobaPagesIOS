@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMY-Ql-96F" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMY-Ql-96F">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="181"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_pattern" translatesAutoresizingMaskIntoConstraints="NO" id="VTp-20-E5t">
@@ -33,15 +33,6 @@
                                     <constraint firstItem="VTp-20-E5t" firstAttribute="top" secondItem="vMY-Ql-96F" secondAttribute="top" id="cZR-sR-cwK"/>
                                     <constraint firstAttribute="trailing" secondItem="VTp-20-E5t" secondAttribute="trailing" id="yj5-sf-HYF"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                        <color key="value" red="1" green="0.83137254901960778" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                        <color key="value" red="0.92941176470588238" green="0.71372549019607845" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalMode" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzZ-7A-Mqh">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
@@ -69,19 +60,29 @@
                                                 <rect key="frame" x="253" y="22.666666666666671" width="45" height="45"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="T5Z-Kw-Osm" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="width" constant="45" id="z7o-oz-oiG" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                    <constraint firstAttribute="height" constant="45" id="T5Z-Kw-Osm"/>
+                                                    <constraint firstAttribute="width" constant="45" id="z7o-oz-oiG"/>
                                                 </constraints>
                                                 <state key="normal" image="alarmIcon"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="22.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY6-WX-0hX" customClass="SSBadgeButton" customModule="GlobalPages" customModuleProvider="target">
                                                 <rect key="frame" x="314" y="23" width="45" height="45"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="LXZ-6r-c0S" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="width" constant="45" id="LYE-s2-LPE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                    <constraint firstAttribute="height" constant="45" id="LXZ-6r-c0S"/>
+                                                    <constraint firstAttribute="width" constant="45" id="LYE-s2-LPE"/>
                                                 </constraints>
                                                 <state key="normal" image="profileIcon"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="22.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="profileButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hP1-1q-VE7"/>
                                                 </connections>
@@ -221,6 +222,7 @@
                         <outlet property="adsView" destination="rvY-cr-NTQ" id="r6z-pq-8ia"/>
                         <outlet property="businessGuidCollectionView" destination="lHm-F3-CAy" id="G57-1Y-E2t"/>
                         <outlet property="businessGuidView" destination="Q7k-dd-iOc" id="QkA-48-C9Y"/>
+                        <outlet property="headerView" destination="vMY-Ql-96F" id="3ZM-LL-yD5"/>
                         <outlet property="navBarLogo" destination="DWO-aG-F8d" id="bnp-fU-u8t"/>
                         <outlet property="navBarTitleLabel" destination="veO-Ra-i0z" id="EBl-b7-zpj"/>
                         <outlet property="navBarView" destination="pwL-Tn-JK2" id="OBq-HA-bfC"/>
@@ -228,6 +230,7 @@
                         <outlet property="profileButton" destination="lY6-WX-0hX" id="SG5-Ee-gA5"/>
                         <segue destination="oA4-Fy-5Qo" kind="presentation" identifier="HomeLoginSegue" id="S9U-qp-FMS"/>
                         <segue destination="Ie8-ec-MON" kind="presentation" identifier="HomeProfileSegue" id="kbV-h1-kla"/>
+                        <segue destination="mEN-oz-kqx" kind="presentation" identifier="filterSegue" id="Qpz-Vz-NII"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -452,7 +455,7 @@
         <!--Filters-->
         <scene sceneID="ax9-Y9-0Qa">
             <objects>
-                <viewController id="HKc-j2-P4b" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FiltersViewController" id="HKc-j2-P4b" customClass="FiltersViewController" customModule="GlobalPages" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0kx-3G-wXn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -498,7 +501,7 @@
         <!--Navigation Controller-->
         <scene sceneID="v99-08-JOz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mEN-oz-kqx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FiltersNavController" automaticallyAdjustsScrollViewInsets="NO" id="mEN-oz-kqx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Yaa-b0-I3q">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>

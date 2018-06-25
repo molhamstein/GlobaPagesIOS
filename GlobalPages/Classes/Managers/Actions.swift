@@ -48,6 +48,7 @@ class ActionShowProfile: Action {
     }
 }
 
+
 class ActionRateUs {
     class func execute(hostViewController: UIViewController!) {
         if #available( iOS 10.3,*){
@@ -74,3 +75,12 @@ class ActionShareText {
 }
 
 
+
+
+
+class ActionShowFilters: Action {
+    override class func execute() {
+                let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: FiltersViewController.className)
+                UIApplication.pushOrPresentViewController(viewController: ViewController, animated: true)
+    }
+}

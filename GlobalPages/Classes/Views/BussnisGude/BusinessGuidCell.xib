@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="420" height="96"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCl-yP-ZEE" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCl-yP-ZEE">
                         <rect key="frame" x="0.0" y="0.0" width="420" height="96"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Businesses Guide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPu-ra-6cJ">
@@ -84,6 +84,7 @@
             <connections>
                 <outlet property="businessInfoLabel" destination="O9s-zs-hrk" id="jzr-JL-36n"/>
                 <outlet property="businessTitleLabel" destination="MPu-ra-6cJ" id="x1n-sZ-4d9"/>
+                <outlet property="containerView" destination="QCl-yP-ZEE" id="CcW-RJ-wGn"/>
                 <outlet property="imageView" destination="ist-lD-n06" id="qBa-j2-4d5"/>
             </connections>
             <point key="canvasLocation" x="112" y="56"/>

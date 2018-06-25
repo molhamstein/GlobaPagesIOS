@@ -33,6 +33,9 @@
                                         <constraint firstAttribute="width" constant="24" id="vy2-2d-ES7"/>
                                     </constraints>
                                     <state key="normal" image="next_volume"/>
+                                    <connections>
+                                        <action selector="tapNextWeekButton:" destination="eUA-Pv-khb" eventType="touchUpInside" id="GXc-rZ-rHi"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7x6-tZ-ULM">
                                     <rect key="frame" x="8" y="0.0" width="24" height="35"/>
@@ -41,6 +44,9 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <state key="normal" image="pre_volume"/>
+                                    <connections>
+                                        <action selector="tapPreviosWeekButton:" destination="eUA-Pv-khb" eventType="touchUpInside" id="2nR-sm-UYl"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,6 +77,9 @@
                                                 <constraint firstAttribute="width" constant="20" id="vRo-OA-cym"/>
                                             </constraints>
                                             <state key="normal" image="ic_search"/>
+                                            <connections>
+                                                <action selector="tapSearchButton:" destination="eUA-Pv-khb" eventType="touchUpInside" id="IX8-u2-DSt"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiS-O5-sq6">
                                             <rect key="frame" x="52" y="12.5" width="22" height="22"/>
@@ -79,6 +88,9 @@
                                                 <constraint firstAttribute="width" constant="22" id="WdR-Ly-PsJ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                             </constraints>
                                             <state key="normal" image="ic_nearby"/>
+                                            <connections>
+                                                <action selector="tapMapButton:" destination="eUA-Pv-khb" eventType="touchUpInside" id="XV0-mi-4hp"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -142,6 +154,7 @@
                 <constraint firstItem="7Gs-o4-qYc" firstAttribute="leading" secondItem="eUA-Pv-khb" secondAttribute="leading" id="PDk-Ry-9bF"/>
             </constraints>
             <connections>
+                <outlet property="dateLabel" destination="4Oo-Na-WZh" id="PqW-vk-Z8v"/>
                 <outlet property="filtterCollectionView" destination="BVX-r8-vd3" id="1JW-Uk-bmx"/>
             </connections>
             <point key="canvasLocation" x="4.5" y="-54.5"/>
