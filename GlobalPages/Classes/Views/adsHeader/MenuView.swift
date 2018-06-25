@@ -9,10 +9,22 @@
 import UIKit
 
 
-class HomeCollectionViewHeader: UICollectionReusableView {
+protocol MenuViewDelegate {
+    func reloadCollectionViewDataWithTeamIndex(_ index: Int)
+}
+
+class MenuView: UICollectionReusableView {
     
     @IBOutlet weak var filtterCollectionView: UICollectionView!
+    // MARK: - Properties
+    var delegate: MenuViewDelegate?
     
+    // MARK: - View Life Cycle
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        delegate = nil
+    }
    
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +34,13 @@ class HomeCollectionViewHeader: UICollectionReusableView {
         filtterCollectionView.register(headerNib, forCellWithReuseIdentifier: HomeViewController.filtterCellId)
        
         
+    }
+}
+
+// MARK: - IBActions
+extension MenuView {
+    
+    @IBAction func tappedButton(_ sender: UIButton) {
+        delegate?.reloadCollectionViewDataWithTeamIndex(sender.tag)
     }
 }
