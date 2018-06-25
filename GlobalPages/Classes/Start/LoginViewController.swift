@@ -28,6 +28,7 @@ class LoginViewController: AbstractController {
     
     // login view
     @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var lvTitleLabel: UILabel!
     @IBOutlet weak var lvEmailLabel: UILabel!
     @IBOutlet weak var lvEmailTextField: UITextField!
     @IBOutlet weak var lvPasswordLabel: UILabel!
@@ -80,6 +81,8 @@ class LoginViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        self.showNavBackButton = true
+        
 //        if let m = DataStore.shared.me {
 //             self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
 //        }

@@ -155,7 +155,7 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         self.navigationItem.hidesBackButton = true
         self.navigationItem.backBarButtonItem = nil
         // add navigation title logo
-        self.setNavBarTitleImage(type: .logoAndText)
+        //self.setNavBarTitleImage(type: .logoAndText)
         // customize view
         self.customizeView()
     }
