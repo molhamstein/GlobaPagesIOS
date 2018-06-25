@@ -28,10 +28,9 @@
                 </collectionView>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaI-Of-QuR">
                     <rect key="frame" x="0.0" y="0.0" width="640" height="381"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.32941176470588235" green="0.25882352941176467" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="4wB-Gj-8F1" secondAttribute="bottom" id="0GJ-Kf-Yj2"/>
                 <constraint firstAttribute="trailing" secondItem="BaI-Of-QuR" secondAttribute="trailing" id="8wE-AI-nRW"/>

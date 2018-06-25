@@ -30,30 +30,8 @@
 
 import UIKit
 
- class HeaderView: UICollectionReusableView {
+final class SectionFooterView: UICollectionReusableView {
 
   // MARK: - IBOutlets
-   
-  @IBOutlet weak var businessGuidCollectionView: UICollectionView!
-  @IBOutlet weak var overlayView: UIView!
-
-  // MARK: - Life Cycle
-  open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-    super.apply(layoutAttributes)
-
-    guard let customFlowLayoutAttributes = layoutAttributes as? CustomLayoutAttributes else {
-      return
-    }
-
-    overlayView?.alpha = customFlowLayoutAttributes.headerOverlayAlpha
-  }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        let nib = UINib(nibName: HomeViewController.businessGuidCellId, bundle: nil)
-        self.businessGuidCollectionView.register(nib, forCellWithReuseIdentifier: HomeViewController.businessGuidCellId)
-        
-    }
-    
-    
+  @IBOutlet weak var mark: UILabel!
 }

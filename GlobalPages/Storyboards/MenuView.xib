@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="homeCollectionViewHeaderID" id="eUA-Pv-khb" userLabel="I" customClass="HomeCollectionViewHeader" customModule="GlobalPages" customModuleProvider="target">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="menu" id="eUA-Pv-khb" userLabel="MenuView" customClass="MenuView" customModule="GlobalPages" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="415" height="83"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -49,10 +49,9 @@
                                 <constraint firstAttribute="bottom" secondItem="bfb-Jy-19M" secondAttribute="bottom" id="Aev-Tg-JGK" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 <constraint firstItem="4Oo-Na-WZh" firstAttribute="top" secondItem="Z6d-qC-XZy" secondAttribute="top" id="HVf-Af-XLK" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 <constraint firstItem="4Oo-Na-WZh" firstAttribute="leading" secondItem="7x6-tZ-ULM" secondAttribute="trailing" id="W3y-9v-PnE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                <constraint firstAttribute="height" constant="35" id="cEb-y7-X71" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstAttribute="height" constant="35" id="cEb-y7-X71"/>
                                 <constraint firstItem="bfb-Jy-19M" firstAttribute="top" secondItem="Z6d-qC-XZy" secondAttribute="top" id="d9A-Dv-144" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 <constraint firstItem="7x6-tZ-ULM" firstAttribute="leading" secondItem="Z6d-qC-XZy" secondAttribute="leading" constant="8" id="eQJ-Mv-YLN" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="mPw-dI-Xas"/>
                                 <constraint firstAttribute="bottom" secondItem="4Oo-Na-WZh" secondAttribute="bottom" id="mTk-rU-YUy" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 <constraint firstItem="bfb-Jy-19M" firstAttribute="leading" secondItem="4Oo-Na-WZh" secondAttribute="trailing" id="oAZ-MC-CfM" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 <constraint firstItem="7x6-tZ-ULM" firstAttribute="top" secondItem="Z6d-qC-XZy" secondAttribute="top" id="p5G-Dl-rA0" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
@@ -116,7 +115,7 @@
                             <constraints>
                                 <constraint firstItem="7dy-ho-uCb" firstAttribute="leading" secondItem="BVX-r8-vd3" secondAttribute="trailing" id="3qG-Jb-QwO"/>
                                 <constraint firstAttribute="bottom" secondItem="7dy-ho-uCb" secondAttribute="bottom" id="5oG-gP-eIE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                <constraint firstAttribute="height" constant="47.5" id="C2Y-Xt-z9y" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstAttribute="height" constant="47.5" id="C2Y-Xt-z9y"/>
                                 <constraint firstAttribute="bottom" secondItem="BVX-r8-vd3" secondAttribute="bottom" id="d95-U2-yMp"/>
                                 <constraint firstItem="BVX-r8-vd3" firstAttribute="leading" secondItem="N86-9z-mK8" secondAttribute="leading" id="ekU-Ag-ilt"/>
                                 <constraint firstAttribute="trailing" secondItem="7dy-ho-uCb" secondAttribute="trailing" id="lSl-c3-1n9" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>

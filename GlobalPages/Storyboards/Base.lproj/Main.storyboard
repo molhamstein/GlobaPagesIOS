@@ -139,15 +139,15 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvY-cr-NTQ">
-                                        <rect key="frame" x="0.0" y="210" width="375" height="524"/>
+                                        <rect key="frame" x="0.0" y="90" width="375" height="644"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qw6-rv-S15">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="524"/>
-                                                <color key="backgroundColor" red="0.96470588239999999" green="0.96862745100000003" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="w0X-a7-yWv">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="644"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BPA-nx-SWY">
                                                     <size key="itemSize" width="50" height="50"/>
                                                     <size key="headerReferenceSize" width="50" height="50"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="50" height="50"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
@@ -160,8 +160,12 @@
                                                         </view>
                                                     </collectionViewCell>
                                                 </cells>
-                                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="w7b-Ri-R0P" customClass="HomeCollectionViewHeader" customModule="GlobalPages" customModuleProvider="target">
+                                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="sectionHeader" id="CTh-dd-mGd">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionReusableView>
+                                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="sectionFooter" id="FGc-XT-afD">
+                                                    <rect key="frame" x="0.0" y="100" width="375" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </collectionReusableView>
                                                 <connections>
@@ -181,7 +185,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="rvY-cr-NTQ" firstAttribute="top" secondItem="Q7k-dd-iOc" secondAttribute="bottom" id="3Ku-O0-rgo"/>
                                     <constraint firstItem="rvY-cr-NTQ" firstAttribute="leading" secondItem="lzZ-7A-Mqh" secondAttribute="leading" id="6n0-Xo-6SW" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstAttribute="trailing" secondItem="rvY-cr-NTQ" secondAttribute="trailing" id="7Wr-xv-DPu" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstAttribute="bottom" secondItem="rvY-cr-NTQ" secondAttribute="bottom" id="99s-Q3-Af8" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
@@ -189,9 +192,15 @@
                                     <constraint firstItem="pwL-Tn-JK2" firstAttribute="top" secondItem="lzZ-7A-Mqh" secondAttribute="top" id="YFg-YZ-jJn" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstItem="Q7k-dd-iOc" firstAttribute="top" secondItem="pwL-Tn-JK2" secondAttribute="bottom" id="cl9-vk-Rrl" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstAttribute="trailing" secondItem="Q7k-dd-iOc" secondAttribute="trailing" id="oxc-yw-Rin" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                    <constraint firstItem="rvY-cr-NTQ" firstAttribute="top" secondItem="pwL-Tn-JK2" secondAttribute="bottom" id="sLF-gm-3Nb"/>
                                     <constraint firstAttribute="trailing" secondItem="pwL-Tn-JK2" secondAttribute="trailing" id="sr6-xP-Dcl" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstItem="Q7k-dd-iOc" firstAttribute="leading" secondItem="lzZ-7A-Mqh" secondAttribute="leading" id="yuk-qK-SWB" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="Q7k-dd-iOc"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -223,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334" y="-86"/>
+            <point key="canvasLocation" x="333.60000000000002" y="-86.453201970443359"/>
         </scene>
         <!--Settings-->
         <scene sceneID="wgi-Ir-3v1">

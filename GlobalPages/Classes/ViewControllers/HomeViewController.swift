@@ -18,8 +18,8 @@ class HomeViewController: AbstractController {
     @IBOutlet weak var profileButton: SSBadgeButton!
     
      // bussiness guid View
-    @IBOutlet weak var businessGuidView: UIView!
-    @IBOutlet weak var businessGuidCollectionView: UICollectionView!
+     weak var businessGuidView: UIView?
+     weak var businessGuidCollectionView: UICollectionView?
     static var businessGuidCellId = "BusinessGuidCell"
     var businessGuides:[BusinessGuide] = []
     
@@ -55,13 +55,14 @@ class HomeViewController: AbstractController {
         // setFonts
         self.navBarTitleLabel.font = AppFonts.xBig
         
-        // businessGuid CollectionView
-        let nib = UINib(nibName: HomeViewController.businessGuidCellId, bundle: nil)
-        self.businessGuidCollectionView.register(nib, forCellWithReuseIdentifier: HomeViewController.businessGuidCellId)
-        
-        // adds Collection view Header
-        self.adsCollectionView.register(UINib(nibName: "HomeCollectionViewHeader",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "homeCollectionViewHeaderID")
-        
+        // adds Collection view layout
+        let layout = CustomLayout()
+        layout.delegate = self
+        adsCollectionView.collectionViewLayout = layout
+        setupCollectionViewLayout()
+//
+        self.adsCollectionView.register(UINib(nibName: "menuView",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "menu")
+//
         // adds Collection view Cells
         let nib2 = UINib(nibName: HomeViewController.adsImageCellId, bundle: nil)
         self.adsCollectionView.register(nib2, forCellWithReuseIdentifier: HomeViewController.adsImageCellId)
@@ -71,14 +72,8 @@ class HomeViewController: AbstractController {
         
         getBusinessGuides()
         getAds()
-        
-//        self.adsCollectionView.collectionViewLayout.invalidateLayout()
-//        self.adsCollectionView.reloadData()
-//        
-        // adds Collection view layout
-        let layout = PinterestLayout()
-        layout.delegate = self
-        adsCollectionView.collectionViewLayout = layout
+   
+       
     }
     
     
@@ -90,7 +85,7 @@ class HomeViewController: AbstractController {
         
         businessGuides.append(BusinessGuide(title:"Businesses Guide",image:"ic_business_guide",info:"Search for businesses Nearby and find them on the map"))
         
-        self.businessGuidCollectionView.reloadData()
+        self.businessGuidCollectionView?.reloadData()
     }
     
 
@@ -121,6 +116,7 @@ class HomeViewController: AbstractController {
         self.adsCollectionView.reloadData()
   
     }
+    
     
     @IBAction func profileButtonAction(_ sender: AnyObject) {
         if DataStore.shared.isLoggedin {
@@ -194,7 +190,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if collectionView ==  businessGuidCollectionView{
-               return CGSize(width: self.view.frame.width * 0.7, height: self.businessGuidView.frame.height - 16)
+            return CGSize(width: self.view.frame.width * 0.7, height: self.businessGuidView!.frame.height - 16)
             
         }
         if collectionView == filtterCollectionView {
@@ -204,7 +200,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
          return CGSize(width: self.view.frame.width * 0.5 - 16, height: getCellContentSize(indexPath: indexPath))
         }
         
-        return CGSize(width: self.view.frame.width * 0.7, height: self.businessGuidView.frame.height - 16)
+        return CGSize(width: self.view.frame.width * 0.7, height: self.businessGuidView!.frame.height - 16)
     }
     
     
@@ -225,21 +221,6 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
             return 0
     }
     
-    
-    /// header View
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        if collectionView == adsCollectionView{
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "homeCollectionViewHeaderID", for: indexPath) as! HomeCollectionViewHeader
-            filtterCollectionView = headerView.filtterCollectionView
-            filtterCollectionView?.delegate = self
-            filtterCollectionView?.dataSource = self
-            return headerView
-        }
-        
-        return UICollectionReusableView()
-    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected")
@@ -272,12 +253,111 @@ extension HomeViewController : PinterestLayoutDelegate {
         height += (50)
         return height
     }
+
+}
+
+
+
+
+
+
+ extension HomeViewController {
     
-    func collectionView(collectionView: UICollectionView, sizeForSectionHeaderViewForSection section: Int) -> CGSize {
-        if collectionView == adsCollectionView {
-            print("sfsdf")
-            return CGSize(width: self.adsCollectionView.bounds.width, height: CGFloat(82.5 * ScreenSizeRatio.smallRatio))
-        }
-        return CGSize(width: 0, height: 0)
+    func setupCollectionViewLayout() {
+        guard let collectionView = adsCollectionView, let customLayout = adsCollectionView.collectionViewLayout as? CustomLayout else { return }
+
+        adsCollectionView.register(
+            UINib(nibName: "HeaderView", bundle: nil),
+            forSupplementaryViewOfKind: CustomLayout.Element.header.kind,
+            withReuseIdentifier: CustomLayout.Element.header.id
+        )
+
+        adsCollectionView.register(
+            UINib(nibName: "MenuView", bundle: nil),
+            forSupplementaryViewOfKind: CustomLayout.Element.menu.kind,
+            withReuseIdentifier: CustomLayout.Element.menu.id
+        )
+
+        customLayout.settings.itemSize = CGSize(width: self.view.frame.width, height: 200)
+        customLayout.settings.headerSize = CGSize(width: self.view.frame.width, height: 120)
+        customLayout.settings.menuSize = CGSize(width: self.view.frame.width, height: 87.5)
+        customLayout.settings.sectionsHeaderSize = CGSize(width: collectionView.frame.width, height: 0)
+        customLayout.settings.sectionsFooterSize = CGSize(width: collectionView.frame.width, height: 0)
+        customLayout.settings.isHeaderStretchy = false
+        customLayout.settings.isAlphaOnHeaderActive = true
+        customLayout.settings.headerOverlayMaxAlphaValue = CGFloat(0.6)
+        customLayout.settings.isMenuSticky = true
+        customLayout.settings.isSectionHeadersSticky = true
+        customLayout.settings.isParallaxOnCellsEnabled = true
+        customLayout.settings.maxParallaxOffset = 60
+        customLayout.settings.minimumInteritemSpacing = 0
+        customLayout.settings.minimumLineSpacing = 3
+
+        
+        adsCollectionView.collectionViewLayout  = customLayout
     }
 }
+
+//MARK: - UICollectionViewDataSource
+extension HomeViewController {
+    
+
+    
+     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CustomLayout.Element.sectionHeader.id, for: indexPath)
+
+            return supplementaryView
+
+        case UICollectionElementKindSectionFooter:
+            
+            let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CustomLayout.Element.sectionFooter.id, for: indexPath)
+            return supplementaryView
+            
+        case CustomLayout.Element.header.kind:
+            if collectionView == adsCollectionView {
+            let topHeaderView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: CustomLayout.Element.header.id,
+                for: indexPath
+            ) as! HeaderView
+            self.businessGuidCollectionView =  topHeaderView.businessGuidCollectionView
+                self.businessGuidCollectionView?.delegate  = self
+                self.businessGuidCollectionView?.dataSource = self
+                return topHeaderView
+                
+            }
+            return UICollectionReusableView()
+            
+        case CustomLayout.Element.menu.kind:
+            if collectionView == adsCollectionView {
+            let menuView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: CustomLayout.Element.menu.id,
+                for: indexPath
+            )
+            if let menuView = menuView as? MenuView {
+                menuView.delegate = self
+                self.filtterCollectionView = menuView.filtterCollectionView
+                self.filtterCollectionView?.delegate = self
+                self.filtterCollectionView?.dataSource = self
+            }
+            return menuView
+            
+        }
+        return UICollectionReusableView()
+        default:
+            return UICollectionReusableView()
+        }
+    }
+}
+
+// MARK: - MenuViewDelegate
+extension HomeViewController: MenuViewDelegate {
+    
+    func reloadCollectionViewDataWithTeamIndex(_ index: Int) {
+        
+    }
+}
+

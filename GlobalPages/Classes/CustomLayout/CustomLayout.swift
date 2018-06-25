@@ -62,7 +62,7 @@ final class CustomLayout: UICollectionViewLayout {
      Cell padding.
      */
     public var cellPadding: CGFloat = 8
-    
+     var pCache = [PinterestLayoutAttributes]()
     
   
   override public class var layoutAttributesClass: AnyClass {
@@ -134,7 +134,7 @@ final class CustomLayout: UICollectionViewLayout {
     guard let sectionsHeaderSize = settings.sectionsHeaderSize else {
       return .zero
     }
-    
+
     return sectionsHeaderSize
   }
   
@@ -142,10 +142,10 @@ final class CustomLayout: UICollectionViewLayout {
     guard let sectionsFooterSize = settings.sectionsFooterSize else {
       return .zero
     }
-    
+
     return sectionsFooterSize
   }
-  
+
     var contentOffset: CGPoint {
     return collectionView!.contentOffset
   }
@@ -187,28 +187,7 @@ extension CustomLayout {
     prepareElement(size: menuSize, type: .menu, attributes: menuAttributes)
     
     for section in 0 ..< collectionView.numberOfSections {
-      
-        
-        
-        if let headerSize = delegate.collectionView?(
-            collectionView: collectionView,
-            sizeForSectionHeaderViewForSection: section
-            ) {
-            let headerX = (contentWidth - headerSize.width) / 2
-            let headerFrame = CGRect(
-                origin: CGPoint(
-                    x: headerX,
-                    y: contentHeight
-                ),
-                size: headerSize
-            )
-          
-          
-            contentHeight = headerFrame.maxY
-        }
-        
-        
-        
+              
       let sectionHeaderAttributes = CustomLayoutAttributes(
         forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
         with: IndexPath(item: 0, section: section))
@@ -216,8 +195,8 @@ extension CustomLayout {
         size: sectionsHeaderSize,
         type: .sectionHeader,
         attributes: sectionHeaderAttributes)
-      
-        
+
+
         
         var yOffsets = [CGFloat](
             repeating: contentHeight,
@@ -256,15 +235,44 @@ extension CustomLayout {
         
         let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
      
+        let attributes2 = PinterestLayoutAttributes(
+            forCellWith: cellIndexPath
+        )
+        attributes2.frame = insetFrame
+        attributes2.imageHeight = imageHeight
+        pCache.append(attributes2)
         
+        contentHeight = max(contentHeight, frame.maxY)
+        yOffsets[column] = yOffsets[column] + cellHeight
         
         attributes.frame = insetFrame
         
-//attributes.zIndex = zIndex
-        contentHeight = attributes.frame.maxY
+        attributes.zIndex = zIndex
         cache[.cell]?[cellIndexPath] = attributes
         zIndex += 1
       }
+        
+        if let footerSize = delegate.collectionView?(
+            collectionView: collectionView,
+            sizeForSectionFooterViewForSection: section
+            ) {
+            let footerX = (contentWidth - footerSize.width) / 2
+            let footerFrame = CGRect(
+                origin: CGPoint(
+                    x: footerX,
+                    y: contentHeight
+                ),
+                size: footerSize
+            )
+            let footerAttributes = PinterestLayoutAttributes(
+                forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+                with: IndexPath(item: 0, section: section)
+            )
+            footerAttributes.frame = footerFrame
+            pCache.append(footerAttributes)
+            
+            contentHeight = footerFrame.maxY
+        }
       
       let sectionFooterAttributes = CustomLayoutAttributes(
         forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
@@ -328,10 +336,10 @@ extension CustomLayout {
     switch elementKind {
     case UICollectionElementKindSectionHeader:
       return cache[.sectionHeader]?[indexPath]
-      
+
     case UICollectionElementKindSectionFooter:
       return cache[.sectionFooter]?[indexPath]
-      
+
     case Element.header.kind:
       return cache[.header]?[indexPath]
       
@@ -345,6 +353,7 @@ extension CustomLayout {
   }
   
   override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+
     guard let collectionView = collectionView else { return nil }
     
     visibleLayoutAttributes.removeAll(keepingCapacity: true)
@@ -353,34 +362,33 @@ extension CustomLayout {
     let halfCellHeight = cellHeight * 0.5
     
     for (type, elementInfos) in cache {
-      for (indexPath, attributes) in elementInfos {
-        
-        attributes.parallax = .identity
-        attributes.transform = .identity
-        
-        updateSupplementaryViews(type, attributes: attributes, collectionView: collectionView, indexPath: indexPath)
-        if attributes.frame.intersects(rect) {
-          if type == .cell,
-            settings.isParallaxOnCellsEnabled {
-            updateCells(attributes, halfHeight: halfHeight, halfCellHeight: halfCellHeight)
-          }
-          visibleLayoutAttributes.append(attributes)
+        for (indexPath, attributes) in elementInfos {
+            
+            attributes.parallax = .identity
+            attributes.transform = .identity
+            
+            updateSupplementaryViews(type, attributes: attributes, collectionView: collectionView, indexPath: indexPath)
+            if attributes.frame.intersects(rect) {
+                if type == .cell,
+                    settings.isParallaxOnCellsEnabled {
+                    updateCells(attributes, halfHeight: halfHeight, halfCellHeight: halfCellHeight)
+                }
+                visibleLayoutAttributes.append(attributes)
+            }
         }
-      }
     }
     return visibleLayoutAttributes
-  }
+    }
   
     func updateSupplementaryViews(_ type: Element, attributes: CustomLayoutAttributes, collectionView: UICollectionView, indexPath: IndexPath) {
-    if type == .sectionHeader,
-      settings.isSectionHeadersSticky {
-      
+    if type == .sectionHeader,settings.isSectionHeadersSticky {
+
       let upperLimit = CGFloat(collectionView.numberOfItems(inSection: indexPath.section)) * (cellHeight + settings.minimumLineSpacing)
       let menuOffset = settings.isMenuSticky ? menuSize.height : 0
       attributes.transform =  CGAffineTransform(
         translationX: 0,
         y: min(upperLimit, max(0, contentOffset.y - attributes.initialOrigin.y + menuOffset)))
-      
+
     } else if type == .header,
       settings.isHeaderStretchy {
       
