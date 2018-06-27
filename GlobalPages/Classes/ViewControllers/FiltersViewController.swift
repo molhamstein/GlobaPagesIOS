@@ -63,6 +63,8 @@ class FiltersViewController: AbstractController {
         if !self.isInitialized {
             // colors
             self.applyButton.applyGradient(colours: [AppColors.yellowDark,AppColors.yellowLight], direction: .diagonal)
+            // shadowAppFonts
+            self.containerView.dropShadow()
         }
         self.isInitialized = true
         
@@ -100,6 +102,8 @@ class FiltersViewController: AbstractController {
         
         // style
         self.keyWordTextField.borderStyle = .none
+        
+        
         
         setupCollectionViews()
     }
