@@ -117,3 +117,6 @@
 "ABOUT_TITLE"                          = "من نحن";
 "TERMS_TITLE"                          = "شروط الاستخدام";
 
+// filters
+
+"FILTER_VIEW_TITLE"                    = "فلاتر";

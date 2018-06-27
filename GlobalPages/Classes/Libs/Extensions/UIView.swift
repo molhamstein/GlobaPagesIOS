@@ -89,7 +89,7 @@ extension UIView {
     
     /// set gradient to current view
     func applyGradient(colours: [UIColor], direction: GradientDirection) -> Void {
-        
+        if let lastLayer = self.layer.sublayers?[0] as? CAGradientLayer { return }
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.frame = self.bounds
         gradient.colors = colours.map { $0.cgColor }
@@ -251,7 +251,7 @@ extension UIView {
     
     
     func makeRounded(){
-        self.cornerRadius = self.frame.width / 2
+        self.cornerRadius = self.frame.height / 2
     }
 }
 

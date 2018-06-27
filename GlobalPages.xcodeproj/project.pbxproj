@@ -10,6 +10,9 @@
 		140544D920D7F1BD0042E70F /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140544D820D7F1BC0042E70F /* PinterestLayout.swift */; };
 		140544DB20D7F6E50042E70F /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140544DA20D7F6E50042E70F /* UICollectionViewCell.swift */; };
 		140544DD20D7F7240042E70F /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140544DC20D7F7240042E70F /* Ads.swift */; };
+		14160BE520E3C72C004CEA7D /* filterCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14160BE320E3C72C004CEA7D /* filterCell2.swift */; };
+		14160BE620E3C72C004CEA7D /* filterCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14160BE420E3C72C004CEA7D /* filterCell2.xib */; };
+		1462CF9720E1801300ED63A2 /* Pods_GlobalPages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1462CF9820E1801300ED63A2 /* Pods_GlobalPages.framework */; };
 		1463C44C20D845D100156E84 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1463C44B20D845D100156E84 /* MenuView.xib */; };
 		1463C44E20D845E100156E84 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1463C44D20D845E100156E84 /* MenuView.swift */; };
 		1463C45420D9253500156E84 /* AdsTitledCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1463C45220D9253500156E84 /* AdsTitledCell.swift */; };
@@ -100,13 +103,15 @@
 		5786884E20C4A5B10002C67B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786884D20C4A5B10002C67B /* Location.swift */; };
 		5786885320C4A8920002C67B /* CountryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5786885220C4A8920002C67B /* CountryPicker.m */; };
 		5786885A20C4AC6E0002C67B /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786885920C4AC6D0002C67B /* Media.swift */; };
-		F9638CC5901443B58F3D7408 /* Pods_GlobalPages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1E479995E2EE3F1F76D3B5 /* Pods_GlobalPages.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		140544D820D7F1BC0042E70F /* PinterestLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		140544DA20D7F6E50042E70F /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
 		140544DC20D7F7240042E70F /* Ads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
+		14160BE320E3C72C004CEA7D /* filterCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filterCell2.swift; sourceTree = "<group>"; };
+		14160BE420E3C72C004CEA7D /* filterCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = filterCell2.xib; sourceTree = "<group>"; };
+		1462CF9820E1801300ED63A2 /* Pods_GlobalPages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_GlobalPages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1463C44B20D845D100156E84 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 		1463C44D20D845E100156E84 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1463C45220D9253500156E84 /* AdsTitledCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsTitledCell.swift; sourceTree = "<group>"; };
@@ -205,7 +210,6 @@
 		5786885720C4AADB0002C67B /* GlobalPages-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GlobalPages-Bridging-Header.h"; sourceTree = "<group>"; };
 		5786885920C4AC6D0002C67B /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		8663B5FAE0E11BA602682EC6 /* Pods-GlobalPages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalPages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages.debug.xcconfig"; sourceTree = "<group>"; };
-		AA1E479995E2EE3F1F76D3B5 /* Pods_GlobalPages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GlobalPages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE1332543C84F59CE0F0ED5 /* Pods-GlobalPages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalPages.release.xcconfig"; path = "Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,7 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9638CC5901443B58F3D7408 /* Pods_GlobalPages.framework in Frameworks */,
+				1462CF9720E1801300ED63A2 /* Pods_GlobalPages.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +252,8 @@
 			children = (
 				14C9DC9820CA27580031685E /* filtterCell.xib */,
 				14C9DC9720CA27580031685E /* filtterCell.swift */,
+				14160BE320E3C72C004CEA7D /* filterCell2.swift */,
+				14160BE420E3C72C004CEA7D /* filterCell2.xib */,
 			);
 			path = filtter;
 			sourceTree = "<group>";
@@ -556,7 +562,7 @@
 		AAAC9A07675ED9F498F725E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA1E479995E2EE3F1F76D3B5 /* Pods_GlobalPages.framework */,
+				1462CF9820E1801300ED63A2 /* Pods_GlobalPages.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -646,6 +652,7 @@
 				5786881A20C483190002C67B /* OpenSansSemiBold.ttf in Resources */,
 				5786881520C483190002C67B /* DroidKufiBold.ttf in Resources */,
 				5786881C20C483190002C67B /* OpenSansRegular.ttf in Resources */,
+				14160BE620E3C72C004CEA7D /* filterCell2.xib in Resources */,
 				1463C44C20D845D100156E84 /* MenuView.xib in Resources */,
 				5786883220C483240002C67B /* ShoreCell.xib in Resources */,
 			);
@@ -749,6 +756,7 @@
 			files = (
 				578687C420C481800002C67B /* BaseModel.swift in Sources */,
 				5786860020C480910002C67B /* LoginViewController.swift in Sources */,
+				14160BE520E3C72C004CEA7D /* filterCell2.swift in Sources */,
 				14CC8C9520C8A03D000319B0 /* UIApplication.swift in Sources */,
 				14CC8C8920C8A03D000319B0 /* RoundedButton.swift in Sources */,
 				5786872620C481010002C67B /* LocationHelper.swift in Sources */,

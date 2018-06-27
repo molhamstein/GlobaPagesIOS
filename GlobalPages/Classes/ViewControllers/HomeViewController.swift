@@ -35,6 +35,9 @@ class HomeViewController: AbstractController {
     weak var filtterCollectionView: UICollectionView?
     static var filtterCellId = "filtterCell"
     
+    
+    var filters:[String] = ["Damascus","tessrewrewrwerewssst"]
+    
     // Ads View
     @IBOutlet weak var adsView: UIView!
     @IBOutlet weak var adsCollectionView: UICollectionView!
@@ -83,7 +86,7 @@ class HomeViewController: AbstractController {
     
     func applyGradiant(){
         // set gradiant
-        self.headerView.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .horizontal)
+        self.headerView.applyGradient(colours: [AppColors.yellowDark,AppColors.yellowLight], direction: .diagonal)
         
     }
     func collectionViewSetup(){
@@ -170,7 +173,7 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
             
         }
         if collectionView == filtterCollectionView {
-            return 2
+            return filters.count
             
         }
         if collectionView ==  adsCollectionView{
@@ -188,13 +191,13 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         if collectionView ==  businessGuidCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.businessGuidCellId, for: indexPath) as! BusinessGuidCell
             cell.businessGuide = businessGuides[indexPath.item]
-            cell.gradiantColors = self.gradiantColors[indexPath.item]
+            cell.setpView(colors:self.gradiantColors[indexPath.item])
             return cell
             
         }
         if collectionView == filtterCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.filtterCellId, for: indexPath) as! filtterCell
-            
+            cell.title = filters[indexPath.item]
             return cell
             
         }
@@ -220,7 +223,6 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected")
         if collectionView == filtterCollectionView {
             ActionShowFilters.execute()
         }
@@ -238,7 +240,10 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
             
         }
         if collectionView == filtterCollectionView {
-           return CGSize(width: 90 * ScreenSizeRatio.smallRatio, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+        
+           return CGSize(width: filters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 28, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            
+            
         }
         if collectionView ==  adsCollectionView{
          return CGSize(width: self.view.frame.width * 0.5 - 16, height: getCellContentSize(indexPath: indexPath))
@@ -298,13 +303,13 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
         customLayout.settings.menuSize = CGSize(width: self.view.frame.width, height: 87.5)
         customLayout.settings.sectionsHeaderSize = CGSize(width: collectionView.frame.width, height: 0)
         customLayout.settings.sectionsFooterSize = CGSize(width: collectionView.frame.width, height: 0)
-        customLayout.settings.isHeaderStretchy = false
+        customLayout.settings.isHeaderStretchy = true
         customLayout.settings.isAlphaOnHeaderActive = true
-        customLayout.settings.headerOverlayMaxAlphaValue = CGFloat(0.6)
-        customLayout.settings.isMenuSticky = true
-        customLayout.settings.isSectionHeadersSticky = true
-        customLayout.settings.isParallaxOnCellsEnabled = true
-        customLayout.settings.maxParallaxOffset = 60
+        customLayout.settings.headerOverlayMaxAlphaValue = CGFloat(0)
+        customLayout.settings.isMenuSticky = false
+        customLayout.settings.isSectionHeadersSticky = false
+        customLayout.settings.isParallaxOnCellsEnabled = false
+        customLayout.settings.maxParallaxOffset = 0
         customLayout.settings.minimumInteritemSpacing = 0
         customLayout.settings.minimumLineSpacing = 3
 

@@ -77,6 +77,8 @@ class LoginViewController: AbstractController {
     
     var isInitialized = false
     
+    var viewType:ViewType = .login
+    
     // MARK: Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +100,14 @@ class LoginViewController: AbstractController {
         
     }
     
+    
+    override func backButtonAction(_ sender: AnyObject) {
+        if viewType != .login{
+            changeView(firstView: viewType, secondView: .login)
+        }else{
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -267,23 +277,30 @@ class LoginViewController: AbstractController {
         /***  register btn in login view  ***/
         //   1 - hide login view
         //   2 - show signup view
+
+        changeView(firstView: .login, secondView: .signup)
         
-        hideView(withType: .login)
-        dispatch_main_after(0.2) {
-            self.showView(withType: .signup)
-        }
+//        hideView(withType: .login)
+//        dispatch_main_after(0.2) {
+//            self.showView(withType: .signup)
+//        }
     }
+    
+    
+    
     
     @IBAction func backToLoginBtnPressed(_ sender: AnyObject) {
         
         /***  register btn in login view  ***/
         //   1 - hide login view
         //   2 - show signup view
+        changeView(firstView: .signup, secondView: .login)
         
-        self.hideView(withType: .signup)
-        dispatch_main_after(0.4) {
-            self.showView(withType: .login)
-        }
+        
+//        self.hideView(withType: .signup)
+//        dispatch_main_after(0.4) {
+//            self.showView(withType: .login)
+//        }
     }
     
     @IBAction func signupBtnPressed(_ sender: Any) {
@@ -371,6 +388,18 @@ class LoginViewController: AbstractController {
     }
     
     
+    // hide first view and show second one
+    func changeView(firstView:ViewType,secondView:ViewType){
+        
+        hideView(withType: firstView)
+        dispatch_main_after(0.2) {
+            self.showView(withType: secondView)
+        }
+        
+    }
+    
+    
+    
     func validateFields () -> Bool {
         
         if !checkButton.isSelected {
@@ -455,21 +484,21 @@ class LoginViewController: AbstractController {
             UIView.animate(withDuration: 0.4, delay:0.0, options: UIViewAnimationOptions.curveLinear, animations: {
                 self.loginView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 0)
             }, completion: {(finished: Bool) in
-                
+               self.viewType = .login
             })
         case .signup :
             signupView.dropShadow()
             UIView.animate(withDuration: 0.4, delay:0.0, options: UIViewAnimationOptions.curveLinear, animations: {
                 self.signupView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 0)
             }, completion: {(finished: Bool) in
-                
+               self.viewType = .signup
             })
         case .countryV :
             signupView.dropShadow()
             UIView.animate(withDuration: 0.4, delay:0.0, options: UIViewAnimationOptions.curveLinear, animations: {
                 self.countryView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 0)
             }, completion: {(finished: Bool) in
-                
+               
             })
         case .socialLoginStep2 :
 //            socialInfoView.dropShadow()

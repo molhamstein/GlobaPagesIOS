@@ -20,7 +20,6 @@ class BusinessGuidCell: UICollectionViewCell {
     var businessGuide:BusinessGuide?{
         
         didSet{
-            
             guard let businessGuide = businessGuide else {
                 return
             }
@@ -32,19 +31,23 @@ class BusinessGuidCell: UICollectionViewCell {
         
     }
     
-    var gradiantColors:[UIColor] = []{
-        didSet{
-            containerView.applyGradient(colours: gradiantColors.reversed(), direction: .horizontal)
+    
+    
+    
+    func setpView(colors:[UIColor]){
+        dispatch_main_after(0.1) {
+            self.containerView.applyGradient(colours: colors.reversed(), direction: .diagonal)
         }
+        
     }
     
- 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.businessInfoLabel.font = AppFonts.normal
         self.businessTitleLabel.font = AppFonts.xBig
         
-        
     }
 
+   
+    
 }

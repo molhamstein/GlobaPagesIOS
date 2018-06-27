@@ -128,3 +128,15 @@
 
 "ABOUT_TITLE"                          = "About us";
 "TERMS_TITLE"                          = "Terms of Service";
+
+
+
+// filter
+"FILTER_VIEW_TITLE"                     = "Filters";
+"FILTER_KEY_WORD_TITLE"                 = "Search Keyword";
+"FILTER_CATEGORY_TITLE"                 = "Category";
+"FILTER_SUB_CATEGORY_TITLE"             = "Sub category";
+"FILTER_CITY_TITLE"                     = "City";
+"FILTER_AREA_TITLE"                     = "Area";
+"FILTER_APPLY_BUTTON_TITLE"             = "Apply";
+"FILTER_KEYWORD_TEXT_FIELD_PLACEHOLDER" = "KEYWORD";

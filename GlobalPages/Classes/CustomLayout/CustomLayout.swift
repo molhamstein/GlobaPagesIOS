@@ -398,7 +398,7 @@ extension CustomLayout {
       
       let scaleFactor = updatedHeight / headerSize.height
       let delta = (updatedHeight - headerSize.height) / 2
-      let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+      let scale = CGAffineTransform(scaleX: 1, y: 1)
       let translation = CGAffineTransform(translationX: 0, y: min(contentOffset.y, headerSize.height) + delta)
       attributes.transform = scale.concatenating(translation)
       if settings.isAlphaOnHeaderActive {

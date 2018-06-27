@@ -81,6 +81,7 @@ class ActionShareText {
 class ActionShowFilters: Action {
     override class func execute() {
                 let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: FiltersViewController.className)
-                UIApplication.pushOrPresentViewController(viewController: ViewController, animated: true)
+        let nav = UINavigationController(rootViewController: ViewController)
+                UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
     }
 }

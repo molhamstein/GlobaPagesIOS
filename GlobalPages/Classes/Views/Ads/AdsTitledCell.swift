@@ -47,17 +47,13 @@ class AdsTitledCell: UICollectionViewCell {
         self.addressLabel.font = UIFont.systemFont(ofSize: 17)
         self.titleLabel.font = UIFont.systemFont(ofSize: 17)
         
-        
-        
-        // colors
-       // self.tagView.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .horizontal)
-      //  self.lineView.backgroundColor = AppColors.yellowLight
-        //self.lineView2.backgroundColor = AppColors.yellowLight
-        
-        
-    
         self.roundedBorder(value: 5.0)
         self.addShadow()
+        
+ 
+        
+    
+        
     }
     
 }

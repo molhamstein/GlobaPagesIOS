@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell2" id="gTV-IL-0wX" customClass="filterCell2" customModule="GlobalPages" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="179" height="40"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="179" height="40"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7z-eg-ecx" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="179" height="40"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejS-SA-G4y">
+                                <rect key="frame" x="1" y="1" width="177" height="38"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESy-Wj-ZX0">
+                                        <rect key="frame" x="0.0" y="0.0" width="177" height="38"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ESy-Wj-ZX0" secondAttribute="bottom" id="RN3-eY-RQ3"/>
+                                    <constraint firstItem="ESy-Wj-ZX0" firstAttribute="top" secondItem="ejS-SA-G4y" secondAttribute="top" id="kGl-eb-irf"/>
+                                    <constraint firstAttribute="trailing" secondItem="ESy-Wj-ZX0" secondAttribute="trailing" id="mot-kt-mYi"/>
+                                    <constraint firstItem="ESy-Wj-ZX0" firstAttribute="leading" secondItem="ejS-SA-G4y" secondAttribute="leading" id="usx-0A-aKI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ejS-SA-G4y" secondAttribute="trailing" constant="1" id="8Gx-Ky-FaO"/>
+                            <constraint firstAttribute="bottom" secondItem="ejS-SA-G4y" secondAttribute="bottom" constant="1" id="ccH-uf-vxn"/>
+                            <constraint firstItem="ejS-SA-G4y" firstAttribute="leading" secondItem="x7z-eg-ecx" secondAttribute="leading" constant="1" id="rrL-Lw-A8w"/>
+                            <constraint firstItem="ejS-SA-G4y" firstAttribute="top" secondItem="x7z-eg-ecx" secondAttribute="top" constant="1" id="uZh-RU-3lG"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="diagonalMode" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="x7z-eg-ecx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="PeE-5Z-cFM"/>
+                <constraint firstAttribute="bottom" secondItem="x7z-eg-ecx" secondAttribute="bottom" id="pbo-ne-bKA"/>
+                <constraint firstItem="x7z-eg-ecx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vuh-e2-7xR"/>
+                <constraint firstAttribute="trailing" secondItem="x7z-eg-ecx" secondAttribute="trailing" id="xKm-X3-40D"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="179" height="40"/>
+            <connections>
+                <outlet property="containerView" destination="ejS-SA-G4y" id="Qh8-q9-lqC"/>
+                <outlet property="titleLabel" destination="ESy-Wj-ZX0" id="g2n-Op-QTR"/>
+            </connections>
+            <point key="canvasLocation" x="89.5" y="47"/>
+        </collectionViewCell>
+    </objects>
+</document>

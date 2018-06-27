@@ -73,4 +73,12 @@ extension String {
         label.sizeToFit()
         return label.frame.size.height
     }
+    
+    
+    /// Get label Width for string
+    func getLabelWidth(font:UIFont) ->CGFloat{
+        let fontAttributes = [NSFontAttributeName: AppFonts.normal]
+        let size = (self as NSString).size(attributes: fontAttributes)
+        return size.width
+    }
 }
