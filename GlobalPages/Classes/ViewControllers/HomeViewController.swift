@@ -24,19 +24,27 @@ class HomeViewController: AbstractController {
      // bussiness guid View
      weak var businessGuidView: UIView?
      weak var businessGuidCollectionView: UICollectionView?
+    
     static var businessGuidCellId = "BusinessGuidCell"
+    
     var businessGuides:[BusinessGuide] = []
+    
     var gradiantColors:[[UIColor]] = [[AppColors.blueLight,AppColors.blueDark],[AppColors.pinkLight,AppColors.pinkDark],[AppColors.blueLight,AppColors.blueDark]]
+   
+    
     // date View
     @IBOutlet weak var dateView: UIView!
     
     // filter View
     @IBOutlet weak var fillterView: UIView!
+    
+    
     weak var filtterCollectionView: UICollectionView?
+    
     static var filtterCellId = "filtterCell"
     
     
-    var filters:[String] = ["Damascus","tessrewrewrwerewssst"]
+    var filters:[String] = ["all Cities","all Ads"]
     
     // Ads View
     @IBOutlet weak var adsView: UIView!
@@ -81,7 +89,9 @@ class HomeViewController: AbstractController {
             self.perform(#selector(applyGradiant), with: nil, afterDelay: 0.1)
             isFirstTimeToLoad = false
         }
+        getFilters()
     }
+    
     
     
     func applyGradiant(){
@@ -105,6 +115,15 @@ class HomeViewController: AbstractController {
         
         let nib3 = UINib(nibName: HomeViewController.adsTitledCellId, bundle: nil)
         self.adsCollectionView.register(nib3, forCellWithReuseIdentifier: HomeViewController.adsTitledCellId)
+        
+    }
+    
+    func getFilters(){
+        
+        filters[0] = filter.selectedCity
+        filters[1] = filter.selectedCategory
+        filtterCollectionView?.reloadData()
+
         
     }
     
@@ -198,6 +217,8 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         if collectionView == filtterCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.filtterCellId, for: indexPath) as! filtterCell
             cell.title = filters[indexPath.item]
+            cell.tag = indexPath.item
+            cell.delegate = self
             return cell
             
         }
@@ -241,7 +262,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
         }
         if collectionView == filtterCollectionView {
         
-           return CGSize(width: filters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 28, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+           return CGSize(width: filters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
             
             
         }
@@ -306,7 +327,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
         customLayout.settings.isHeaderStretchy = true
         customLayout.settings.isAlphaOnHeaderActive = true
         customLayout.settings.headerOverlayMaxAlphaValue = CGFloat(0)
-        customLayout.settings.isMenuSticky = false
+        customLayout.settings.isMenuSticky = true
         customLayout.settings.isSectionHeadersSticky = false
         customLayout.settings.isParallaxOnCellsEnabled = false
         customLayout.settings.maxParallaxOffset = 0
@@ -409,6 +430,22 @@ extension HomeViewController : PinterestLayoutDelegate {
         height += (self.adds[indexPath.item].info.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
         height += (50)
         return height
+    }
+    
+}
+
+
+
+// filter cell Delegate
+extension HomeViewController:filterCellProtocol{
+    
+    func removeFilter(tag:Int) {
+        if tag == 1{
+            filter.clearCategory()
+        }else if tag == 0{
+            filter.clearCity()
+        }
+        getFilters()
     }
     
 }

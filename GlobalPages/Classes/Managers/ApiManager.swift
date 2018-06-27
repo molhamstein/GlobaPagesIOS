@@ -161,7 +161,7 @@ class ApiManager: NSObject {
     /// User login request
     func userLogin(email: String, password: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
         // url & parameters
-        let signInURL = "\(baseURL)/users/login?include=user"
+        let signInURL = "\(baseURL)/users/login"
         
         let parameters : [String : Any] = [
             "email": email,
@@ -169,6 +169,7 @@ class ApiManager: NSObject {
         ]
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {

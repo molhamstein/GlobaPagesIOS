@@ -23,15 +23,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="90" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Damascus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvl-O3-nQp">
-                                <rect key="frame" x="0.0" y="0.0" width="72" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="66" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Rn-P6-3EF">
-                                <rect key="frame" x="72" y="4" width="10" height="12"/>
+                                <rect key="frame" x="66" y="4" width="24" height="12"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="10" id="flo-Mx-u51"/>
+                                    <constraint firstAttribute="width" constant="24" id="flo-Mx-u51"/>
                                 </constraints>
                                 <state key="normal" image="remove_tag"/>
                                 <connections>
@@ -48,7 +48,7 @@
                             <constraint firstAttribute="bottom" secondItem="4Rn-P6-3EF" secondAttribute="bottom" constant="4" id="rTb-9b-O9l"/>
                             <constraint firstItem="4Rn-P6-3EF" firstAttribute="leading" secondItem="hvl-O3-nQp" secondAttribute="trailing" id="tAw-Ie-mGf"/>
                             <constraint firstItem="4Rn-P6-3EF" firstAttribute="top" secondItem="tTJ-X7-oxd" secondAttribute="top" constant="4" id="x2T-dK-7EE"/>
-                            <constraint firstAttribute="trailing" secondItem="4Rn-P6-3EF" secondAttribute="trailing" constant="8" id="xN1-3W-qAG"/>
+                            <constraint firstAttribute="trailing" secondItem="4Rn-P6-3EF" secondAttribute="trailing" id="xN1-3W-qAG"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">

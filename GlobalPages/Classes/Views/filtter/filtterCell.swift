@@ -8,10 +8,17 @@
 
 import UIKit
 
+
+protocol filterCellProtocol {
+    func removeFilter(tag:Int)
+}
+
 class filtterCell: UICollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     
+    
+    var delegate:filterCellProtocol?
     
     var title:String = ""{
         didSet{
@@ -35,7 +42,7 @@ class filtterCell: UICollectionViewCell {
     }
 
     @IBAction func clear(_ sender: UIButton) {
-        
+        delegate?.removeFilter(tag:self.tag)
         
     }
 }

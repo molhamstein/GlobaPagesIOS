@@ -14,6 +14,13 @@ class filterCell2: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     
     
+    override var isSelected: Bool {
+        didSet {
+            configureCell()
+        }
+    }
+    
+    
     var title:String = ""{
         
         didSet{

@@ -240,7 +240,7 @@ class LoginViewController: AbstractController {
                                 self.loginButton.isLoading = false
                                 self.dismiss(animated: true, completion: { })
                                 self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
-                                DataStore.shared.fetchBaseData()
+                              //  DataStore.shared.fetchBaseData()
                                 
                             } else {
                                 self.showMessage(message:(error?.type.errorMessage)!, type: .error)
