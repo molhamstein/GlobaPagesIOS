@@ -40,6 +40,12 @@ class FiltersViewController: AbstractController {
     @IBOutlet weak var areaTitleLabel: UILabel!
     @IBOutlet weak var areaCollectionView: UICollectionView!
     
+    
+    
+    @IBOutlet weak var hideAbleView1: UIView!
+    @IBOutlet weak var hideAbelView2: UIView!
+    
+    
     @IBOutlet weak var applyButton: UIButton!
     
     
@@ -53,7 +59,11 @@ class FiltersViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
+        if let keyword = filter.keyWord {
+            self.keyWordTextField.text = keyword
+        }
+        
     }
     
     
@@ -98,12 +108,16 @@ class FiltersViewController: AbstractController {
         self.cityTitleLabel.font = AppFonts.normal
         self.areaTitleLabel.font = AppFonts.normal
         self.applyButton.titleLabel?.font = AppFonts.normalBold
-    
+        
         
         // style
         self.keyWordTextField.borderStyle = .none
         
         
+        
+        
+        self.hideSubCategoryView()
+        self.HideAreaView()
         
         setupCollectionViews()
     }
@@ -142,7 +156,68 @@ class FiltersViewController: AbstractController {
     
     
     @IBAction func apply(_ sender: UIButton) {
+        if let keyword = keyWordTextField.text{
+            filter.keyWord = keyword
+        }else{
+            filter.keyWord = nil
+        }
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func getSubCategories(){
+        dispatch_main_after(0.1) {
+      //  UIView.animate(withDuration: 0, animations: {
+        
+            self.subCategoryView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+            self.hideAbleView1.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
+       // }){ (success) in
+            self.subCategoryView.isHidden = false
+            self.hideAbleView1.isHidden = true
+       // }
+        }
+    }
+    
+    func hideSubCategoryView(){
+        dispatch_main_after(0.1) {
+     //   UIView.animate(withDuration: 0, animations: {
+            self.subCategoryView.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
+            self.hideAbleView1.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+       // }){ (success) in
+            self.subCategoryView.isHidden = true
+            self.hideAbleView1.isHidden = false
+            //}
+            
+        }
+
+    }
+    
+    
+    func getAreas(){
+        dispatch_main_after(0.1) {
+     //   UIView.animate(withDuration: 0, animations: {
+            self.areaView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+            self.hideAbelView2.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
+       // }){ (success) in
+            self.areaView.isHidden = false
+            self.hideAbelView2.isHidden = true
+            // }
+            
+        }
+    }
+    
+    func HideAreaView(){
+        dispatch_main_after(0.1) {
+            //   UIView.animate(withDuration: 0, animations: {
+            self.areaView.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
+            self.hideAbelView2.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+            // }){ (success) in
+            self.areaView.isHidden = true
+            self.hideAbelView2.isHidden = false
+            //}
+        }
+     
+       
+        
     }
     
     
@@ -179,6 +254,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
                 if category == filters[indexPath.item]{
                     cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                    self.getSubCategories()
                 }else{
                     collectionView.deselectItem(at: indexPath, animated: true)
                     cell.isSelected = false
@@ -195,6 +271,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
                 if subCategory == filters[indexPath.item]{
                     cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                    self.getSubCategories()
                 }else{
                     cell.isSelected = false
                     collectionView.deselectItem(at: indexPath, animated: true)
@@ -211,6 +288,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
                 if city == filters[indexPath.item]{
                     cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                    self.getAreas()
                 }else{
                     cell.isSelected = false
                     collectionView.deselectItem(at: indexPath, animated: true)
@@ -228,6 +306,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
                 if area == filters[indexPath.item]{
                     cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                    self.getAreas()
                 }else{
                     cell.isSelected = false
                     collectionView.deselectItem(at: indexPath, animated: true)
@@ -262,17 +341,19 @@ extension FiltersViewController:UICollectionViewDelegateFlowLayout{
         if collectionView == categoryCollectionView {
             if let value = filter.category{
                 if value == filters[indexPath.item]{
-                    filter.category = nil
+                    filter.clearCategory()
                     cell.isSelected = false
                     collectionView.deselectItem(at: indexPath, animated: true)
+                    self.hideSubCategoryView()
                 }else{
-                  filter.category = filters[indexPath.item]
+                    filter.category = filters[indexPath.item]
                     cell.isSelected = true
-                    
+                    self.getSubCategories()
                 }
             }else{
                 filter.category = filters[indexPath.item]
                 cell.isSelected = true
+                self.getSubCategories()
             }
             
         }else if collectionView == subCategoryCollectionView{
@@ -284,24 +365,29 @@ extension FiltersViewController:UICollectionViewDelegateFlowLayout{
                 }else{
                     filter.subCategory = filters[indexPath.item]
                     cell.isSelected = true
+                    self.getSubCategories()
                 }
             }else{
                 filter.subCategory = filters[indexPath.item]
                 cell.isSelected = true
+                self.getSubCategories()
             }
         }else if collectionView == cityCollectionView{
             if let value = filter.city{
                 if value == filters[indexPath.item]{
-                    filter.city = nil
+                    filter.clearCity()
                     cell.isSelected = false
                     collectionView.deselectItem(at: indexPath, animated: true)
+                    self.HideAreaView()
                 }else{
                     filter.city = filters[indexPath.item]
                     cell.isSelected = true
+                    self.getAreas()
                 }
             }else{
                 filter.city = filters[indexPath.item]
                 cell.isSelected = true
+                self.getAreas()
             }
             
         }else if collectionView == areaCollectionView{
@@ -313,10 +399,12 @@ extension FiltersViewController:UICollectionViewDelegateFlowLayout{
                 }else{
                     filter.area = filters[indexPath.item]
                     cell.isSelected = true
+                    self.getAreas()
                 }
             }else{
                 filter.area = filters[indexPath.item]
                 cell.isSelected = true
+                self.getAreas()
             }
         }
         filter.getDictionry()

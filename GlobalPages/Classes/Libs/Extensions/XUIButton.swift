@@ -44,10 +44,15 @@ class XUIButton:UIButton{
     
     override func awakeFromNib() {
         super.awakeFromNib()
-            self.titleLabel?.font = AppFonts.xSmall
+            self.titleLabel?.font = AppFonts.normalBold
             let currentTitle = self.currentTitle
             self.setTitle(currentTitle?.localized, for: .normal)
-            self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        if AppConfig.currentLanguage == .english{
+            self.imageEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)
+            
+        }else{
+                self.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20)
+        }
     }
     
   

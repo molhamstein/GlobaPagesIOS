@@ -15,6 +15,8 @@ Repeated and generic actions to be excuted from any context of the app such as s
 class Action: NSObject {
     class func execute() {
     }
+    
+    
 }
 
 class ActionLogout:Action {
@@ -83,5 +85,14 @@ class ActionShowFilters: Action {
                 let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: FiltersViewController.className)
         let nav = UINavigationController(rootViewController: ViewController)
                 UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
+    }
+}
+
+
+class ActionShowAdsDescrption: Action {
+    override class func execute() {
+        let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: AdsDescriptionViewController.className)
+        let nav = UINavigationController(rootViewController: ViewController)
+        UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
     }
 }

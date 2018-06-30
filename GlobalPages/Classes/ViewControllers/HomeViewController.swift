@@ -247,6 +247,10 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         if collectionView == filtterCollectionView {
             ActionShowFilters.execute()
         }
+        
+        if collectionView == adsCollectionView {
+            ActionShowAdsDescrption.execute()
+        }
     }
 }
 

@@ -13,6 +13,9 @@
 		14160BE520E3C72C004CEA7D /* filterCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14160BE320E3C72C004CEA7D /* filterCell2.swift */; };
 		14160BE620E3C72C004CEA7D /* filterCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14160BE420E3C72C004CEA7D /* filterCell2.xib */; };
 		14160BE820E3D840004CEA7D /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14160BE720E3D840004CEA7D /* Filter.swift */; };
+		144BD89720E82B2F0068D561 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144BD89520E82B2F0068D561 /* ImageCell.swift */; };
+		144BD89820E82B2F0068D561 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144BD89620E82B2F0068D561 /* ImageCell.xib */; };
+		144BD89A20E82C430068D561 /* AdsDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144BD89920E82C430068D561 /* AdsDescriptionViewController.swift */; };
 		1462CF9720E1801300ED63A2 /* Pods_GlobalPages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1462CF9820E1801300ED63A2 /* Pods_GlobalPages.framework */; };
 		1463C44C20D845D100156E84 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1463C44B20D845D100156E84 /* MenuView.xib */; };
 		1463C44E20D845E100156E84 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1463C44D20D845E100156E84 /* MenuView.swift */; };
@@ -113,6 +116,9 @@
 		14160BE320E3C72C004CEA7D /* filterCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filterCell2.swift; sourceTree = "<group>"; };
 		14160BE420E3C72C004CEA7D /* filterCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = filterCell2.xib; sourceTree = "<group>"; };
 		14160BE720E3D840004CEA7D /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		144BD89520E82B2F0068D561 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		144BD89620E82B2F0068D561 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		144BD89920E82C430068D561 /* AdsDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsDescriptionViewController.swift; sourceTree = "<group>"; };
 		1462CF9820E1801300ED63A2 /* Pods_GlobalPages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_GlobalPages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1463C44B20D845D100156E84 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 		1463C44D20D845E100156E84 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -227,6 +233,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		144BD89420E82B0F0068D561 /* imageCell */ = {
+			isa = PBXGroup;
+			children = (
+				144BD89520E82B2F0068D561 /* ImageCell.swift */,
+				144BD89620E82B2F0068D561 /* ImageCell.xib */,
+			);
+			path = imageCell;
+			sourceTree = "<group>";
+		};
 		1463C44A20D8454E00156E84 /* adsHeader */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,6 +475,7 @@
 		578687C820C482560002C67B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				144BD89420E82B0F0068D561 /* imageCell */,
 				1463C44A20D8454E00156E84 /* adsHeader */,
 				14C9DC9B20CA277E0031685E /* filtter */,
 				14CC8CAC20C9C605000319B0 /* Ads */,
@@ -549,6 +565,7 @@
 			children = (
 				578685ED20C47FD30002C67B /* HomeViewController.swift */,
 				14D7F38720E1225F00CF6E4B /* FiltersViewController.swift */,
+				144BD89920E82C430068D561 /* AdsDescriptionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -646,6 +663,7 @@
 				5786883720C483240002C67B /* Start.storyboard in Resources */,
 				578687F320C482560002C67B /* ShopCollectionViewCell.xib in Resources */,
 				5786881720C483190002C67B /* Antipasto_regular.otf in Resources */,
+				144BD89820E82B2F0068D561 /* ImageCell.xib in Resources */,
 				14CC8CB020C9C64A000319B0 /* AdsImageCell.xib in Resources */,
 				578685F120C47FD30002C67B /* Main.storyboard in Resources */,
 				1463C45520D9253500156E84 /* AdsTitledCell.xib in Resources */,
@@ -766,6 +784,7 @@
 				14CC8C9C20C8A03E000319B0 /* Collection.swift in Sources */,
 				578687F920C482560002C67B /* VobbleNavigationBar.swift in Sources */,
 				14B1B89120DF88E000D86536 /* HeaderView.swift in Sources */,
+				144BD89A20E82C430068D561 /* AdsDescriptionViewController.swift in Sources */,
 				578687A020C481480002C67B /* DataStore.swift in Sources */,
 				14CC8CAF20C9C64A000319B0 /* AdsImageCell.swift in Sources */,
 				1463C45420D9253500156E84 /* AdsTitledCell.swift in Sources */,
@@ -786,6 +805,7 @@
 				140544DB20D7F6E50042E70F /* UICollectionViewCell.swift in Sources */,
 				14CC8C8620C8A03D000319B0 /* NSlayoutConstraint.swift in Sources */,
 				14C05AB520E01EDD0096C73C /* SectionHeaderView.swift in Sources */,
+				144BD89720E82B2F0068D561 /* ImageCell.swift in Sources */,
 				14CC8CA920C905FC000319B0 /* BusinessGuide.swift in Sources */,
 				14CC8CA120C8FD66000319B0 /* ShadowView.swift in Sources */,
 				5786879F20C481480002C67B /* ApiManager.swift in Sources */,
