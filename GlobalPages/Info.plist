@@ -86,6 +86,12 @@
 		<string>OpenSansRegular.ttf</string>
 		<string>OpenSansBold.ttf</string>
 		<string>OpenSansSemiBold.ttf</string>
+		<string>Cairo-Black.ttf</string>
+		<string>Cairo-Bold.ttf</string>
+		<string>Cairo-ExtraLight.ttf</string>
+		<string>Cairo-Light.ttf</string>
+		<string>Cairo-Regular.ttf</string>
+		<string>CairoSemiBold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

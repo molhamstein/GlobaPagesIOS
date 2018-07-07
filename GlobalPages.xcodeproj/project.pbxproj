@@ -21,6 +21,12 @@
 		1463C44E20D845E100156E84 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1463C44D20D845E100156E84 /* MenuView.swift */; };
 		1463C45420D9253500156E84 /* AdsTitledCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1463C45220D9253500156E84 /* AdsTitledCell.swift */; };
 		1463C45520D9253500156E84 /* AdsTitledCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1463C45320D9253500156E84 /* AdsTitledCell.xib */; };
+		1481AF5120F154E9003A1F10 /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F820ED4B9F0064286D /* Cairo-Black.ttf */; };
+		1481AF5220F154E9003A1F10 /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F720ED4B9F0064286D /* Cairo-Bold.ttf */; };
+		1481AF5320F154E9003A1F10 /* Cairo-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F920ED4BA00064286D /* Cairo-ExtraLight.ttf */; };
+		1481AF5420F154E9003A1F10 /* Cairo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39FA20ED4BA00064286D /* Cairo-Light.ttf */; };
+		1481AF5520F154E9003A1F10 /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F620ED4B9F0064286D /* Cairo-Regular.ttf */; };
+		1481AF5620F154E9003A1F10 /* CairoSemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F520ED4B9E0064286D /* CairoSemiBold.ttf */; };
 		14B1B88C20DEF17C00D86536 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88920DEF17B00D86536 /* CustomLayout.swift */; };
 		14B1B88D20DEF17C00D86536 /* CustomLayoutSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */; };
 		14B1B88E20DEF17C00D86536 /* CustomLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */; };
@@ -124,6 +130,12 @@
 		1463C44D20D845E100156E84 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1463C45220D9253500156E84 /* AdsTitledCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsTitledCell.swift; sourceTree = "<group>"; };
 		1463C45320D9253500156E84 /* AdsTitledCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsTitledCell.xib; sourceTree = "<group>"; };
+		146B39F520ED4B9E0064286D /* CairoSemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CairoSemiBold.ttf; sourceTree = "<group>"; };
+		146B39F620ED4B9F0064286D /* Cairo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Regular.ttf"; sourceTree = "<group>"; };
+		146B39F720ED4B9F0064286D /* Cairo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Bold.ttf"; sourceTree = "<group>"; };
+		146B39F820ED4B9F0064286D /* Cairo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Black.ttf"; sourceTree = "<group>"; };
+		146B39F920ED4BA00064286D /* Cairo-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-ExtraLight.ttf"; sourceTree = "<group>"; };
+		146B39FA20ED4BA00064286D /* Cairo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Light.ttf"; sourceTree = "<group>"; };
 		14B1B88920DEF17B00D86536 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
 		14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutSettings.swift; sourceTree = "<group>"; };
 		14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutAttributes.swift; sourceTree = "<group>"; };
@@ -250,6 +262,19 @@
 				1463C44D20D845E100156E84 /* MenuView.swift */,
 			);
 			path = adsHeader;
+			sourceTree = "<group>";
+		};
+		146B39F420ED4B8D0064286D /* Cairo */ = {
+			isa = PBXGroup;
+			children = (
+				146B39F820ED4B9F0064286D /* Cairo-Black.ttf */,
+				146B39F720ED4B9F0064286D /* Cairo-Bold.ttf */,
+				146B39F920ED4BA00064286D /* Cairo-ExtraLight.ttf */,
+				146B39FA20ED4BA00064286D /* Cairo-Light.ttf */,
+				146B39F620ED4B9F0064286D /* Cairo-Regular.ttf */,
+				146B39F520ED4B9E0064286D /* CairoSemiBold.ttf */,
+			);
+			path = Cairo;
 			sourceTree = "<group>";
 		};
 		14B1B88820DEF16C00D86536 /* CustomLayout */ = {
@@ -535,6 +560,7 @@
 		5786880820C483190002C67B /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				146B39F420ED4B8D0064286D /* Cairo */,
 				5786880920C483190002C67B /* MullerBold.otf */,
 				5786880A20C483190002C67B /* DroidKufiBold.ttf */,
 				5786880B20C483190002C67B /* DroidKufiRegular.ttf */,
@@ -650,6 +676,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1481AF5120F154E9003A1F10 /* Cairo-Black.ttf in Resources */,
+				1481AF5220F154E9003A1F10 /* Cairo-Bold.ttf in Resources */,
+				1481AF5320F154E9003A1F10 /* Cairo-ExtraLight.ttf in Resources */,
+				1481AF5420F154E9003A1F10 /* Cairo-Light.ttf in Resources */,
+				1481AF5520F154E9003A1F10 /* Cairo-Regular.ttf in Resources */,
+				1481AF5620F154E9003A1F10 /* CairoSemiBold.ttf in Resources */,
 				578685F620C47FD30002C67B /* LaunchScreen.storyboard in Resources */,
 				5786881820C483190002C67B /* Antipasto_extrabold.otf in Resources */,
 				578687F820C482560002C67B /* VobbleNavigationBar.xib in Resources */,

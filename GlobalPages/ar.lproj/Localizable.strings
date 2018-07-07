@@ -119,4 +119,19 @@
 
 // filters
 
-"FILTER_VIEW_TITLE"                    = "فلاتر";
+"FILTER_VIEW_TITLE"                     = "فلاتر";
+"FILTER_KEY_WORD_TITLE"                 = "كلمة البحث";
+"FILTER_CATEGORY_TITLE"                 = "اصناف";
+"FILTER_SUB_CATEGORY_TITLE"             = "اصناف فرعية";
+"FILTER_CITY_TITLE"                     = "المدينة";
+"FILTER_AREA_TITLE"                     = "المنطقة";
+"FILTER_APPLY_BUTTON_TITLE"             = "تطبيق";
+"FILTER_KEYWORD_TEXT_FIELD_PLACEHOLDER" = "كلمة";
+
+
+// ads description
+"ADS_DESC_DATE_LABEL"                   = "التاريخ";
+"ADS_DESC_CITY_LABEL"                   = "المدينة";
+"ADS_DESC_AREA_LABEL"                   = "المنطقة";
+"ADS_DESC_CONTACT_BUTTON"               = "اتصال";
+"ADS_DESC_DESCRIPTION"                  = "التفاصيل";

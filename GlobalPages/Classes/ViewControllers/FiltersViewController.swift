@@ -319,7 +319,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
             cell.title = filters[indexPath.item]
             
         }
-        
+       // cell.setupView()
         return cell
     }
     

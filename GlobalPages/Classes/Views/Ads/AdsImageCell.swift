@@ -42,9 +42,9 @@ class AdsImageCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // fonts
-        self.tagLabel.font = UIFont.systemFont(ofSize: 12)
-        self.titleLabel.font = UIFont.systemFont(ofSize: 17)
-        self.addressLabel.font = UIFont.systemFont(ofSize: 17)
+        self.tagLabel.font =  AppFonts.small
+        self.titleLabel.font = AppFonts.normalBold
+        self.addressLabel.font = AppFonts.normal
      
         self.roundedBorder(value: 5.0)
         self.addShadow()

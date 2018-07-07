@@ -45,6 +45,9 @@ class filtterCell: UICollectionViewCell {
         delegate?.removeFilter(tag:self.tag)
         
     }
+    
+    
+  
 }
 
 

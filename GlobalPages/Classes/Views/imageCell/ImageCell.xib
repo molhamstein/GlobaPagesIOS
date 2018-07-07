@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,16 +20,17 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AI_Image" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-Lj-Uaf">
                         <rect key="frame" x="0.0" y="0.0" width="253" height="126"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </imageView>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Sa3-Lj-Uaf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EgF-sv-fAq"/>
                 <constraint firstAttribute="bottom" secondItem="Sa3-Lj-Uaf" secondAttribute="bottom" id="LgT-KO-FoV"/>
                 <constraint firstItem="Sa3-Lj-Uaf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Npf-io-kQP"/>
                 <constraint firstAttribute="trailing" secondItem="Sa3-Lj-Uaf" secondAttribute="trailing" id="qRi-8M-ddc"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="253" height="126"/>
             <connections>
                 <outlet property="iamgeView" destination="Sa3-Lj-Uaf" id="auL-b7-gyL"/>

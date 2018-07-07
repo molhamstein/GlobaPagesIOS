@@ -11,11 +11,11 @@ import UIKit
 struct AppFonts {
     // MARK: fonts names
     private static let fontNameBoldEN = "Antipasto-ExtraBold"
-    private static let fontNameBoldAR = "DroidArabicKufi-Bold"
+    private static let fontNameBoldAR = "Cairo-Bold"
     private static let fontNameSemiBoldEN = "Antipasto-ExtraBold"
-    private static let fontNameSemiBoldAR = "DroidArabicKufi"
+    private static let fontNameSemiBoldAR = "Cairo-SemiBold"
     private static let fontNameRegularEN = "Antipasto"
-    private static let fontNameRegularAR = "DroidArabicKufi"
+    private static let fontNameRegularAR = "Cairo-Regular"
     
     // MARK: font sizes
     private static let sizeXBig:Double = 26
