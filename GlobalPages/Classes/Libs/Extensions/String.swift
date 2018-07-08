@@ -43,7 +43,20 @@ extension String {
         var filtered:String!
         let inputString:NSArray = self.components(separatedBy: charcter) as NSArray
         filtered = inputString.componentsJoined(by: "")
-        return  self == filtered
+        
+        if self != filtered{
+            return false
+        }
+        
+        if self.length < 12{
+            return false
+        }
+        
+        if !(self.starts(with: "00963") || self.starts(with: "+963") ) {
+            return false
+        }
+        
+        return  true
         
     }
     

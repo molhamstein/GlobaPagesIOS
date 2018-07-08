@@ -37,7 +37,7 @@
 
 // login screen
 "LOGIN_EMAIL_TITLE"                     = "EMAIL";
-"LOGIN_EMAIL_PLACEHOLDER"               = "vobblemail@gmail.com";
+"LOGIN_EMAIL_PLACEHOLDER"               = "Email@gmail.com";
 "LOGIN_PSW_TITLE"                       = "PASSWORD";
 "LOGIN_PSW_PLACEHOLDER"                 = "********";
 "LOGIN_FORGOT_PSW"                      = "Forgot Password?";
@@ -48,15 +48,17 @@
 
 // Signup screen
 "SIGNUP_EMAIL_TITLE"                     = "EMAIL";
-"SIGNUP_EMAIL_PLACEHOLDER"               = "vobblemail@gmail.com";
+"SIGNUP_EMAIL_PLACEHOLDER"               = "Email@gmail.com";
+"SIGNUP_NUMBER_TITLE"                    = "MOBILE";
+"SIGNUP_NUMBER_PLACEHOLDER"              = "00963 9XX XXX XXX";
 "SIGNUP_NAME_TITLE"                      = "USERNAME";
-"SIGNUP_NAME_PLACEHOLDER"                = "Vobbler";
+"SIGNUP_NAME_PLACEHOLDER"                = "Full Name";
 "SIGNUP_PSW_TITLE"                       = "PASSWORD";
 "SIGNUP_PSW_PLACEHOLDER"                 = "********";
 "SIGNUP_SIGNUP_BTN"                      = "Signup";
 "SIGNUP_LOGIN_BTN"                       = "Login";
 "SIGNUP_LOGIN_BTN_PREFIX"                = "Have an account";
-"SIGNUP_COUNTRY_PLACEHOLDER"             = "Select your country";
+"SIGNUP_BIRTHDATE_PLACEHOLDER"             = "Select your Birthdate";
 "SIGNUP_ACCESSEPT"                       = "Accept";
 "SIGNUP_PRIVACY"                         = "Privacy Policy";
 "SIGNUP_TERMS"                           = "Terms Of Service";
@@ -64,7 +66,7 @@
 
 // Start screen
 "START_EMAIL_TITLE"                     = "ENTER EMAIL";
-"START_EMAIL_PLACEHOLDER"               = "vobblemail@gmail.com";
+"START_EMAIL_PLACEHOLDER"               = "Email@gmail.com";
 "START_PASSWORD_TITLE"                  = "ENTER PASSWORD";
 "START_PASSWORD_PLACEHOLDER"            = "********";
 "START_FORGET_PASSWORD"                 = "Forget password?";
@@ -96,7 +98,8 @@
 "SINGUP_VALIDATION_PASSWORD_LENGHTH"    = "Password should be 6 characters long at least";
 "SINGUP_VALIDATION_VERIF_CODE"          = "Please enter your verification code";
 "SINGUP_VALIDATION_TERMS"               = "You need to agree to the terms and conditions before signup";
-"SINGUP_VALIDATION_CHOOSE_COUNTRY"      = "Please select your country";
+"SINGUP_VALIDATION_CHOOSE_BIRTHDATE"    = "Please select your Birthdate";
+"SINGUP_VALIDATION_MOBILE_FORMAT"       = "Please enter a valid international mobile number";
 
 
 "SINGUP_EMAIL_TITLE"                    = "ENTER EMAIL";

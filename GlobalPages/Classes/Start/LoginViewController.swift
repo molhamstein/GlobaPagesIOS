@@ -45,6 +45,8 @@ class LoginViewController: AbstractController {
     @IBOutlet weak var signupView: UIView!
     @IBOutlet weak var svEmailLabel: UILabel!
     @IBOutlet weak var svEmailTextField: UITextField!
+    @IBOutlet weak var svNumberLabel: UILabel!
+    @IBOutlet weak var svNumberTextField: UITextField!
     @IBOutlet weak var svUserNamelabel: UILabel!
     @IBOutlet weak var svUserNameTextField: UITextField!
     @IBOutlet weak var svPasswordLabel: UILabel!
@@ -66,14 +68,16 @@ class LoginViewController: AbstractController {
     @IBOutlet weak var svLoginButton: UIButton!
     // country
     @IBOutlet weak var countryView: UIView!
-    
+    @IBOutlet weak var birthDatePicker: UIDatePicker!
     
     // Data
     var tempUserInfoHolder: AppUser = AppUser()
     var password: String = ""
     var isMale: Bool = true
-    var countryName: String = ""
-    var countryCode: String?
+    var birthdate: Date?
+    
+    //var countryName: String = ""
+    //var countryCode: String?
     
     var isInitialized = false
     
@@ -96,7 +100,6 @@ class LoginViewController: AbstractController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         
     }
     
@@ -152,6 +155,8 @@ class LoginViewController: AbstractController {
         //signup
         svEmailLabel.font = AppFonts.big
         svEmailTextField.font = AppFonts.xBigBold
+        svNumberLabel.font = AppFonts.big
+        svNumberTextField.font = AppFonts.xBigBold
         svPasswordLabel.font = AppFonts.big
         svPasswordTextField.font = AppFonts.xBigBold
         svUserNamelabel.font = AppFonts.big
@@ -177,6 +182,8 @@ class LoginViewController: AbstractController {
         
         svEmailLabel.text = "SIGNUP_EMAIL_TITLE".localized
         svEmailTextField.placeholder = "SIGNUP_EMAIL_PLACEHOLDER".localized
+        svNumberLabel.text = "SIGNUP_NUMBER_TITLE".localized
+        svNumberTextField.placeholder = "SIGNUP_NUMBER_PLACEHOLDER".localized
         svUserNamelabel.text = "SIGNUP_NAME_TITLE".localized
         svUserNameTextField.placeholder = "SIGNUP_NAME_PLACEHOLDER".localized
         svPasswordLabel.text = "SIGNUP_PSW_TITLE".localized
@@ -190,7 +197,9 @@ class LoginViewController: AbstractController {
         svLoginButton.setTitle("SIGNUP_LOGIN_BTN".localized, for: .normal)
         signupButton.setTitle("SIGNUP_SIGNUP_BTN".localized, for: .normal)
         svLoginPrefixLabel.text = "SIGNUP_LOGIN_BTN_PREFIX".localized
-        selectCountryButton.setTitle("SIGNUP_COUNTRY_PLACEHOLDER".localized, for: .normal)
+        selectCountryButton.setTitle("SIGNUP_BIRTHDATE_PLACEHOLDER".localized, for: .normal)
+        
+        birthDatePicker.addTarget(self, action: #selector(birthdateChanged(_:)), for: .valueChanged)
         
 //        loginButton.setTitle("START_NORMAL_LOGIN".localized, for: .normal)
 //        loginButton.setTitle("START_NORMAL_LOGIN".localized, for: .highlighted)
@@ -286,9 +295,6 @@ class LoginViewController: AbstractController {
 //        }
     }
     
-    
-    
-    
     @IBAction func backToLoginBtnPressed(_ sender: AnyObject) {
         
         /***  register btn in login view  ***/
@@ -343,13 +349,13 @@ class LoginViewController: AbstractController {
     
     @IBAction func pickCountryPressed(_ sender: Any) {
         hideView(withType: .countryV)
-        selectCountryButton.setTitle(countryName, for: .normal)
+        //selectCountryButton.setTitle(countryName, for: .normal)
         //btnSocialInfoSelectCountry.setTitle(countryName, for: .normal)
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         hideView(withType: .countryV)
-        selectCountryButton.setTitle(countryName, for: .normal)
+        //selectCountryButton.setTitle(countryName, for: .normal)
         //btnSocialInfoSelectCountry.setTitle(countryName, for: .normal)
     }
     
@@ -387,7 +393,6 @@ class LoginViewController: AbstractController {
         }
     }
     
-    
     // hide first view and show second one
     func changeView(firstView:ViewType,secondView:ViewType){
         
@@ -395,10 +400,7 @@ class LoginViewController: AbstractController {
         dispatch_main_after(0.2) {
             self.showView(withType: secondView)
         }
-        
     }
-    
-    
     
     func validateFields () -> Bool {
         
@@ -432,6 +434,14 @@ class LoginViewController: AbstractController {
         }
         
         // validate password
+        if let phoneNumber = svNumberTextField.text, !phoneNumber.isEmpty, phoneNumber.isPhoneNumber {
+            tempUserInfoHolder.mobileNumber = svNumberTextField.text
+        } else {
+            showMessage(message:"SINGUP_VALIDATION_MOBILE_FORMAT".localized, type: .warning)
+            return false
+        }
+        
+        // validate password
         if let psw = svPasswordTextField.text, !psw.isEmpty {
         } else {
             showMessage(message:"SINGUP_VALIDATION_PASSWORD".localized, type: .warning)
@@ -445,12 +455,32 @@ class LoginViewController: AbstractController {
             return false
         }
         
-        if let countryIsoCode = countryCode {
-            tempUserInfoHolder.countryISOCode = countryIsoCode
+        if let birthdate = birthdate {
+            
+            // make sure selected date is valid
+            // picked birthadate should be earlier than 12 years from now
+            let calendar = NSCalendar.current
+            let date2yearsOld = calendar.date(byAdding: .year, value: -12, to: Date())
+            let date100yearsOld = calendar.date(byAdding: .year, value: 100, to: Date())
+            
+            if date2yearsOld!.compare(birthdate) == .orderedAscending {
+                showMessage(message:"SINGUP_VALIDATION_DATE".localized, type: .warning)
+                return false
+            }
+            
+            if birthdate.compare(date100yearsOld!) == .orderedDescending {
+                showMessage(message:"SINGUP_VALIDATION_DATE".localized, type: .warning)
+                return false
+            }
+            
+            // date is valid
+            tempUserInfoHolder.birthdate = birthdate
         } else {
-            showMessage(message:"SINGUP_VALIDATION_CHOOSE_COUNTRY".localized, type: .warning)
+            showMessage(message:"SINGUP_VALIDATION_CHOOSE_BIRTHDATE".localized, type: .warning)
             return false
         }
+        
+        
 
         
         return true
@@ -540,7 +570,6 @@ class LoginViewController: AbstractController {
             break
         }
     }
-    
 }
 
 extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{
@@ -572,5 +601,11 @@ extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         
     }
-    
+}
+
+extension LoginViewController{
+
+    func birthdateChanged(_ sender: UIDatePicker) {
+        self.birthdate = sender.date
+    }
 }

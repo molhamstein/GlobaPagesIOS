@@ -115,43 +115,7 @@ class SocialManager: NSObject{
     
     /// Instagram login request
     func instagramLogin(controller: UIViewController, completionBlock: @escaping (_ user: AppUser?, _ success: Bool, _ error: ServerError?) -> Void) {
-//        typealias JSONDictionary = [String:Any]
-//        // set instagram client ID and redirect URI
-//        let auth: NSMutableDictionary = ["client_id": AppConfig.instagramClienID, SimpleAuthRedirectURIKey: AppConfig.instagramRedirectURI]
-//        SimpleAuth.configuration()["instagram"] = auth
-//        // instagram authorization
-//        SimpleAuth.authorize("instagram", options: [:]) { (result: Any?, error: Error?) -> Void in
-//            // check errors
-//            if (error == nil) {
-//                let dict = result as! [String : AnyObject]
-//                if let instagramId = dict["uid"] as? String, let instagramToken = dict["credentials"]?["token"] as? String {
-//                    let instaUserInfo = dict["user_info"] as! [String : AnyObject]
-//                    let username = instaUserInfo["username"] as? String
-//                    let image = instaUserInfo["image"] as? String
-//                    let userInfoHolder = AppUser()
-//                    userInfoHolder.userName = username
-//                    userInfoHolder.profilePic = image
-//                    userInfoHolder.loginType = .instagram
-//                    userInfoHolder.socialId = instagramId
-//                    userInfoHolder.socialToken = instagramToken
-//                    userInfoHolder.gender = .male
-//                    userInfoHolder.countryISOCode = "CH"
-//                    // send instagram ID and token to start login process
-//                    ApiManager.shared.userInstagramLogin(user: userInfoHolder) { (isSuccess, error, user) in
-//                        // login success
-//                        if (isSuccess) {
-//                            completionBlock(user, true , nil)
-//                        } else {
-//                            completionBlock(nil, false , error)
-//                        }
-//                    }
-//                } else {
-//                    completionBlock(nil, false , ServerError.socialLoginError)
-//                }
-//            } else {
-//                completionBlock(nil, false , ServerError.socialLoginError)
-//            }
-//        }
+
     }
     
     func googleLoginResult(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!, completionBlock: @escaping (_ user: AppUser?, _ success: Bool, _ error: ServerError?) -> Void) {
@@ -159,13 +123,12 @@ class SocialManager: NSObject{
         if (error == nil) {
             let userDataHolder = AppUser()
             userDataHolder.userName = user.profile.name
-            userDataHolder.socialToken = user.authentication.idToken
-            userDataHolder.socialId = user.userID
+            //userDataHolder.socialToken = user.authentication.idToken
+            //userDataHolder.socialId = user.userID
             userDataHolder.email = user.profile.email
             userDataHolder.profilePic = user.profile.imageURL(withDimension: 200).absoluteString
             userDataHolder.gender = .male
             userDataHolder.loginType = .google
-            userDataHolder.countryISOCode = "CH"
             
             ApiManager.shared.userInstagramLogin(user: userDataHolder) { (isSuccess, error, user) in
                 // login success

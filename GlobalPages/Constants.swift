@@ -72,8 +72,8 @@ enum ScreenSize {
 
 enum ScreenSizeRatio{
     
-    static let smallRatio = CGFloat(UIScreen.main.bounds.width / 750 ) * 2.0
-    static let largRatio =  CGFloat(UIScreen.main.bounds.width / 750 )
+    static let smallRatio = CGFloat(1.0)//CGFloat(UIScreen.main.bounds.width / 750 ) * 2.0
+    static let largRatio =  CGFloat(1.0)//CGFloat(UIScreen.main.bounds.width / 750 )
 }
 
 // MARK: media Type

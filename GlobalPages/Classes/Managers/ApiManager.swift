@@ -32,7 +32,7 @@ class ApiManager: NSObject {
     }
     
     let baseURL = "http://104.217.253.15:3000/api"
-    let error_domain = "Rombaye"
+    let error_domain = "GlobalPages"
     
     //MARK: Shared Instance
     static let shared: ApiManager = ApiManager()
@@ -124,8 +124,8 @@ class ApiManager: NSObject {
         // url & parameters
         let signInURL = "\(baseURL)/users/loginInstegram"
         let parameters : [String : Any] = [
-            "socialId": user.socialId!,
-            "token": user.socialToken!,
+            //"socialId": user.socialId!,
+            //"token": user.socialToken!,
             "gender": user.gender!.rawValue,
             "image": user.profilePic!,
             "name": user.userName!
@@ -210,12 +210,12 @@ class ApiManager: NSObject {
         
         var parameters : [String : String] = [
             "username": user.userName!,
+            "phoneNumber": user.mobileNumber!,
             "gender": user.gender?.rawValue ?? "male",
-            "ISOCode" : user.countryISOCode!,
+            "birthDate" : DateHelper.getISOStringFromDate(user.birthdate!)!,
             "email": user.email!,
             "password": password,
-            "typeLogIn": "registration",
-            "image": " "
+            "image": ""
         ]
         
         // build request
@@ -255,7 +255,6 @@ class ApiManager: NSObject {
         var parameters : [String : String] = [
             "username": user.userName!,
             "gender": user.gender?.rawValue ?? "male",
-            "ISOCode" : user.countryISOCode!,
             "typeLogIn": (user.loginType?.rawValue)!
         ]
         

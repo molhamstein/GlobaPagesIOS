@@ -48,6 +48,8 @@
 
 "SIGNUP_EMAIL_TITLE"                     = "البريد الاالكتروني";
 "SIGNUP_EMAIL_PLACEHOLDER"               = "vobblemail@gmail.com";
+"SIGNUP_NUMBER_TITLE"                    = "رقم الموبايل";
+"SIGNUP_NUMBER_PLACEHOLDER"              = "00963 9XX XXX XXX";
 "SIGNUP_NAME_TITLE"                      = "اسم المستخدم";
 "SIGNUP_NAME_PLACEHOLDER"                = "Vobbler";
 "SIGNUP_PSW_TITLE"                       = "كلمة السر";
@@ -55,7 +57,7 @@
 "SIGNUP_SIGNUP_BTN"                      = "تسجيل الحساب";
 "SIGNUP_LOGIN_BTN"                       = "تسجيل الدخول";
 "SIGNUP_LOGIN_BTN_PREFIX"                = "لديك حساب؟";
-"SIGNUP_COUNTRY_PLACEHOLDER"             = "اختر بلدك";
+"SIGNUP_BIRTHDATE_PLACEHOLDER"             = "حدد تاريخ ميلادك";
 "SIGNUP_ACCESSEPT"                       = "أوافق على";
 "SIGNUP_PRIVACY"                         = "سياسه الخصوصية";
 "SIGNUP_TERMS"                           = "شروط الاستخدام";
@@ -95,7 +97,8 @@
 "SINGUP_VALIDATION_PASSWORD_LENGHTH"    = "كلمة المرور يجب ان تكون من ٦ محارف على الاقل";
 "SINGUP_VALIDATION_VERIF_CODE"          = "رجاء قم بادخال رمز التحقق";
 "SINGUP_VALIDATION_TERMS"               = "يجب ان توافق على شروط الاستخدام قبل التمكن من متابعة تسجيل الدخول";
-"SINGUP_VALIDATION_CHOOSE_COUNTRY"      = "الرجاء تحديد بلدك";
+"SINGUP_VALIDATION_CHOOSE_BIRTHDATE"      = "الرجاء تحديد تاريخ ميلادك ";
+"SINGUP_VALIDATION_MOBILE_FORMAT"       = "الرجاء ادخال رقم موبايل صحيح بالصيغه الدولية";
 
 "SINGUP_SOCIAL_WELCOM"                  = "اهلا بك %@ \n الرجاء ملئ المعلومات التاليه لاستكمال التسجيل";
 "SINGUP_EMAIL_TITLE"                    = "أدخل البريد الالكتروني";
