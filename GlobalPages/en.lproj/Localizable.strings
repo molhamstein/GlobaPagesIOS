@@ -143,3 +143,12 @@
 "FILTER_AREA_TITLE"                     = "Area";
 "FILTER_APPLY_BUTTON_TITLE"             = "Apply";
 "FILTER_KEYWORD_TEXT_FIELD_PLACEHOLDER" = "KEYWORD";
+
+
+// ads description
+
+"ADS_DESC_DATE_LABEL"                   = "Added in";
+"ADS_DESC_CITY_LABEL"                   = "City";
+"ADS_DESC_AREA_LABEL"                   = "Area";
+"ADS_DESC_CONTACT_BUTTON"               = "Contact";
+"ADS_DESC_DESCRIPTION"                  = "Description";

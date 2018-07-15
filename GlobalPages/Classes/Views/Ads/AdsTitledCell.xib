@@ -59,10 +59,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEK-e7-qFM" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
-                                <rect key="frame" x="129" y="0.0" width="90" height="20"/>
+                                <rect key="frame" x="117" y="0.0" width="90" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iag-gR-n2A">
-                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -72,6 +72,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="0xz-Mr-ZW8"/>
                                     <constraint firstAttribute="width" constant="90" id="8yT-58-fhO"/>
+                                    <constraint firstAttribute="trailing" secondItem="Iag-gR-n2A" secondAttribute="trailing" constant="10" id="Jca-za-jf3"/>
                                     <constraint firstItem="Iag-gR-n2A" firstAttribute="top" secondItem="ZEK-e7-qFM" secondAttribute="top" id="ky8-Sa-NNY"/>
                                     <constraint firstItem="Iag-gR-n2A" firstAttribute="leading" secondItem="ZEK-e7-qFM" secondAttribute="leading" id="sO6-3P-D4S"/>
                                     <constraint firstAttribute="bottom" secondItem="Iag-gR-n2A" secondAttribute="bottom" id="zdP-xC-lAd"/>
@@ -95,7 +96,7 @@
                             <constraint firstItem="u2x-vF-dby" firstAttribute="leading" secondItem="4rQ-Vq-j1c" secondAttribute="leading" constant="8" id="EyP-aQ-75p"/>
                             <constraint firstItem="ZEK-e7-qFM" firstAttribute="centerY" secondItem="4rQ-Vq-j1c" secondAttribute="centerY" id="Hgy-Bz-0OG"/>
                             <constraint firstItem="u2x-vF-dby" firstAttribute="centerY" secondItem="4rQ-Vq-j1c" secondAttribute="centerY" id="f1b-9U-Xhz"/>
-                            <constraint firstAttribute="trailing" secondItem="ZEK-e7-qFM" secondAttribute="trailing" constant="-22" id="fhv-7T-qeA"/>
+                            <constraint firstAttribute="trailing" secondItem="ZEK-e7-qFM" secondAttribute="trailing" constant="-10" id="fhv-7T-qeA"/>
                             <constraint firstAttribute="height" constant="20" id="v7r-dR-MA0"/>
                         </constraints>
                     </view>

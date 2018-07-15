@@ -61,7 +61,7 @@ class HomeViewController: AbstractController {
 
     override func customizeView() {
         
-        navbarCustomization()
+        
         
         collectionViewSetup()
         
@@ -89,10 +89,16 @@ class HomeViewController: AbstractController {
             self.perform(#selector(applyGradiant), with: nil, afterDelay: 0.1)
             isFirstTimeToLoad = false
         }
+        
         getFilters()
     }
     
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navbarCustomization()
+    }
     
     func applyGradiant(){
         // set gradiant
