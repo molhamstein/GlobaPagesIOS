@@ -29,6 +29,32 @@ class AdsDescriptionViewController: AbstractController {
     
     
     
+    @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
+    @IBOutlet weak var subCategoryWidthConstraint: XNSLayoutConstraint!
+    
+    var tagViewWidth:CGFloat = 0{
+        
+        didSet{
+            let newWidth = min(self.view.frame.width,tagViewWidth)
+            tagViewWidthConstraint.setNewConstant(newWidth)
+            UIView.animate(withDuration: 0.1, animations: {
+                self.view.layoutSubviews()
+            }, completion: nil)
+        }
+        
+    }
+    
+    var subTagViewWidth:CGFloat = 0{
+        
+        didSet{
+            let newWidth = min(self.view.frame.width,subTagViewWidth)
+            subCategoryWidthConstraint.setNewConstant(newWidth)
+            UIView.animate(withDuration: 0.1, animations: {
+                self.view.layoutSubviews()
+            }, completion: nil)
+        }
+        
+    }
     
     
     var cellID = "ImageCell"
@@ -52,7 +78,7 @@ class AdsDescriptionViewController: AbstractController {
         self.dateTitleLabel.font = AppFonts.smallBold
         self.dateLabel.font = AppFonts.normalBold
         self.categoryLable.font = AppFonts.normalBold
-        self.subCategoryLabel.font = AppFonts.normalBold
+        self.subCategoryLabel.font = AppFonts.smallBold
         self.titleLabel.font = AppFonts.normalBold
         self.cityTitleLable.font = AppFonts.smallBold
         self.cityLabel.font = AppFonts.normalBold
@@ -60,9 +86,13 @@ class AdsDescriptionViewController: AbstractController {
         self.contactButton.titleLabel?.font = AppFonts.normalBold
         self.contactBottomButton.titleLabel?.font  = AppFonts.normalBold
         self.descriptionTextView.font = AppFonts.normalBold
-        
+        self.descriptinTitleLabel.font = AppFonts.normalBold
         // page Controller
         self.pageController.numberOfPages = 3
+        
+        
+        // change nav bar tint color for back button
+        self.navigationController?.navigationBar.tintColor = .white
         
     }
     
@@ -72,6 +102,10 @@ class AdsDescriptionViewController: AbstractController {
             $0.transform = CGAffineTransform(scaleX: 2, y: 2)
             $0.alpha  = 0.5
         }
+        
+        
+        self.tagViewWidth = (self.categoryLable.text?.getLabelWidth(font: AppFonts.normalBold))! + CGFloat(54)
+        self.subTagViewWidth = (self.subCategoryLabel.text?.getLabelWidth(font: AppFonts.smallBold))! + CGFloat(32)
     }
     
     

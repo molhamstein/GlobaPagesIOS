@@ -891,10 +891,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="338" height="280"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrz-Qb-47M" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="-10" y="16" width="135" height="28"/>
+                                                <rect key="frame" x="-16" y="16" width="150" height="28"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real State" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eZ-vT-A89">
-                                                        <rect key="frame" x="10" y="0.0" width="93" height="28"/>
+                                                        <rect key="frame" x="16" y="0.0" width="118" height="28"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -902,12 +902,12 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="0eZ-vT-A89" firstAttribute="leading" secondItem="hrz-Qb-47M" secondAttribute="leading" constant="10" id="EBu-ab-Ej6" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                    <constraint firstItem="0eZ-vT-A89" firstAttribute="leading" secondItem="hrz-Qb-47M" secondAttribute="leading" constant="16" id="EBu-ab-Ej6"/>
                                                     <constraint firstAttribute="height" constant="28" id="VtW-4n-hA0" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="trailing" secondItem="0eZ-vT-A89" secondAttribute="trailing" constant="32" id="XEQ-t6-Ngv" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="bottom" secondItem="0eZ-vT-A89" secondAttribute="bottom" id="jOJ-qW-GAU" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0eZ-vT-A89" secondAttribute="trailing" constant="16" id="XEQ-t6-Ngv" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                    <constraint firstAttribute="bottom" secondItem="0eZ-vT-A89" secondAttribute="bottom" id="jOJ-qW-GAU"/>
                                                     <constraint firstItem="0eZ-vT-A89" firstAttribute="top" secondItem="hrz-Qb-47M" secondAttribute="top" id="oe8-K2-S9a" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="width" constant="135" id="tCi-c4-fYQ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                    <constraint firstAttribute="width" constant="150" id="tCi-c4-fYQ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -923,10 +923,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5j3-Nh-pGa" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="-8" y="52" width="112.66666666666667" height="22"/>
+                                                <rect key="frame" x="-16" y="46" width="127" height="26"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akR-aa-ADE">
-                                                        <rect key="frame" x="10" y="0.0" width="102.66666666666667" height="22"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hoses for sale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akR-aa-ADE">
+                                                        <rect key="frame" x="10" y="0.0" width="117" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -937,13 +937,13 @@
                                                     <constraint firstItem="akR-aa-ADE" firstAttribute="leading" secondItem="5j3-Nh-pGa" secondAttribute="leading" constant="10" id="3Te-f0-MbK" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                     <constraint firstAttribute="trailing" secondItem="akR-aa-ADE" secondAttribute="trailing" id="3wA-Th-6oU" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                     <constraint firstAttribute="bottom" secondItem="akR-aa-ADE" secondAttribute="bottom" id="6lJ-Sj-8f3" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="height" constant="22" id="D8J-QI-Aqb" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                    <constraint firstAttribute="height" constant="26" id="D8J-QI-Aqb" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                     <constraint firstItem="akR-aa-ADE" firstAttribute="top" secondItem="5j3-Nh-pGa" secondAttribute="top" id="LyI-ES-hEQ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                                    <constraint firstAttribute="width" constant="112" id="hKx-Rd-RQo" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                    <constraint firstAttribute="width" constant="127" id="hKx-Rd-RQo" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="11"/>
+                                                        <real key="value" value="13"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
                                                         <color key="value" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -955,7 +955,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADS_DESC_DATE_LABEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czt-hu-Gfy" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="162.33333333333337" y="54.333333333333343" width="159.66666666666663" height="17"/>
+                                                <rect key="frame" x="162.33333333333337" y="50.666666666666657" width="159.66666666666663" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -984,11 +984,8 @@
                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/12/2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFV-Ze-s9T">
-                                                <rect key="frame" x="242" y="75.333333333333343" width="84" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="84" id="3MP-PG-qA8" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                                </constraints>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="12/12/2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFV-Ze-s9T">
+                                                <rect key="frame" x="242" y="71.666666666666657" width="84" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -997,8 +994,8 @@
                                                 <rect key="frame" x="46" y="226.66666666666669" width="276" height="22"/>
                                                 <state key="normal" title="ADS_DESC_CONTACT_BUTTON" image="ic_call"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appartment for sale in Al-Mazzeh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wU9-hK-LN9">
-                                                <rect key="frame" x="16" y="91.333333333333314" width="194" height="40.666666666666657"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Appartment for sale in Al-Mazzeh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wU9-hK-LN9">
+                                                <rect key="frame" x="16" y="111.66666666666669" width="194" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1012,10 +1009,10 @@
                                             <constraint firstItem="dwo-TS-Ivn" firstAttribute="leading" secondItem="Doh-jI-o52" secondAttribute="leading" constant="16" id="KgG-nA-g6G" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                             <constraint firstAttribute="trailing" secondItem="sUc-rm-iyV" secondAttribute="trailing" constant="16" id="L5I-3u-4R9" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                             <constraint firstAttribute="trailing" secondItem="yFV-Ze-s9T" secondAttribute="trailing" constant="12" id="LkJ-UW-nfE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstItem="5j3-Nh-pGa" firstAttribute="leading" secondItem="Doh-jI-o52" secondAttribute="leading" constant="-8" id="NFG-yt-OML" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                            <constraint firstItem="5j3-Nh-pGa" firstAttribute="leading" secondItem="Doh-jI-o52" secondAttribute="leading" constant="-16" id="NFG-yt-OML"/>
                                             <constraint firstItem="e0g-N7-6rJ" firstAttribute="top" secondItem="wU9-hK-LN9" secondAttribute="bottom" constant="16" id="Ost-2D-sPo" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstItem="5j3-Nh-pGa" firstAttribute="top" secondItem="hrz-Qb-47M" secondAttribute="bottom" constant="8" id="PZp-Tk-tYG" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstItem="hrz-Qb-47M" firstAttribute="leading" secondItem="Doh-jI-o52" secondAttribute="leading" constant="-10" id="PlD-CP-NJU" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                            <constraint firstItem="5j3-Nh-pGa" firstAttribute="top" secondItem="hrz-Qb-47M" secondAttribute="bottom" constant="2" id="PZp-Tk-tYG" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                            <constraint firstItem="hrz-Qb-47M" firstAttribute="leading" secondItem="Doh-jI-o52" secondAttribute="leading" constant="-16" id="PlD-CP-NJU" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                             <constraint firstItem="e0g-N7-6rJ" firstAttribute="leading" secondItem="Doh-jI-o52" secondAttribute="leading" constant="16" id="Ppi-Sa-3UZ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                             <constraint firstItem="aZT-rT-9cK" firstAttribute="leading" secondItem="Doh-jI-o52" secondAttribute="leading" constant="16" id="Q5E-AZ-fsF" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                             <constraint firstItem="aZT-rT-9cK" firstAttribute="top" secondItem="e0g-N7-6rJ" secondAttribute="bottom" constant="4" id="QHS-Qm-vrZ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
@@ -1033,7 +1030,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ht-In-8Vc">
                                         <rect key="frame" x="0.0" y="280" width="337.66666666666669" height="329"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADS_DESC_DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpr-1m-BDx">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADS_DESC_DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpr-1m-BDx" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="16" width="200" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -1133,6 +1130,8 @@
                         <outlet property="imageCollectionView" destination="5d5-lO-7uM" id="Tqv-GW-JvQ"/>
                         <outlet property="pageController" destination="tWt-qZ-pOz" id="E74-lA-Kag"/>
                         <outlet property="subCategoryLabel" destination="akR-aa-ADE" id="yjR-K5-Ua6"/>
+                        <outlet property="subCategoryWidthConstraint" destination="hKx-Rd-RQo" id="4gC-ui-iHN"/>
+                        <outlet property="tagViewWidthConstraint" destination="tCi-c4-fYQ" id="7Op-eh-bxE"/>
                         <outlet property="titleLabel" destination="wU9-hK-LN9" id="Arb-4V-TUH"/>
                     </connections>
                 </viewController>

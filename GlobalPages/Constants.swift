@@ -48,7 +48,8 @@ struct AppConfig {
                      NSFontAttributeName : AppFonts.xBig]
         UINavigationBar.appearance().titleTextAttributes = attrs
         // set background color
-        UINavigationBar.appearance().barTintColor = AppColors.blueXDark
+        UINavigationBar.appearance().barTintColor = .black//AppColors.blueXDark
+        UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
