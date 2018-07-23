@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,35 +16,106 @@
             <rect key="frame" x="0.0" y="0.0" width="640" height="381"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4wB-Gj-8F1">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fav-hh-gfI">
                     <rect key="frame" x="0.0" y="0.0" width="640" height="381"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="32" id="md3-Y3-GX6">
-                        <size key="itemSize" width="50" height="50"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                    <cells/>
-                </collectionView>
-                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaI-Of-QuR">
-                    <rect key="frame" x="0.0" y="0.0" width="640" height="381"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="4wB-Gj-8F1">
+                            <rect key="frame" x="0.0" y="0.0" width="640" height="228.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="32" id="md3-Y3-GX6">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <cells/>
+                        </collectionView>
+                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaI-Of-QuR">
+                            <rect key="frame" x="0.0" y="0.0" width="640" height="381"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtL-NE-axq">
+                            <rect key="frame" x="0.0" y="228.5" width="640" height="152.5"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zRM-m7-bFZ">
+                                    <rect key="frame" x="12" y="16" width="616" height="120.5"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reB-kx-BBe">
+                                            <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
+                                            <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="Bussiness Guide">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="showBussinessGuides:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="8Lz-Wf-aoc"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRz-et-HAy">
+                                            <rect key="frame" x="209.5" y="0.0" width="197" height="120.5"/>
+                                            <color key="backgroundColor" red="0.24313725489999999" green="0.65098039220000004" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="Find Nearby">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="showNearBy:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="nDy-Qc-S8n"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CG0-aP-ZTD">
+                                            <rect key="frame" x="418.5" y="0.0" width="197.5" height="120.5"/>
+                                            <color key="backgroundColor" red="0.85073267490000004" green="0.0" blue="0.019810459209999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="On Duty Pharmacy">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="showPharmacies:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="m5w-fK-laK"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="zRM-m7-bFZ" firstAttribute="leading" secondItem="dtL-NE-axq" secondAttribute="leading" constant="12" id="Icw-Mv-Pa5"/>
+                                <constraint firstItem="zRM-m7-bFZ" firstAttribute="top" secondItem="dtL-NE-axq" secondAttribute="top" constant="16" id="Ncv-lq-qDO"/>
+                                <constraint firstAttribute="trailing" secondItem="zRM-m7-bFZ" secondAttribute="trailing" constant="12" id="gIJ-RU-A9b"/>
+                                <constraint firstAttribute="bottom" secondItem="zRM-m7-bFZ" secondAttribute="bottom" constant="16" id="ksz-cY-ufJ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="BaI-Of-QuR" firstAttribute="top" secondItem="fav-hh-gfI" secondAttribute="top" id="3aE-z0-g6u"/>
+                        <constraint firstItem="dtL-NE-axq" firstAttribute="leading" secondItem="fav-hh-gfI" secondAttribute="leading" id="DVP-uX-m3V"/>
+                        <constraint firstAttribute="bottom" secondItem="BaI-Of-QuR" secondAttribute="bottom" id="KC2-zR-wSD"/>
+                        <constraint firstItem="dtL-NE-axq" firstAttribute="top" secondItem="4wB-Gj-8F1" secondAttribute="bottom" id="LWh-bD-r9a"/>
+                        <constraint firstItem="dtL-NE-axq" firstAttribute="height" secondItem="fav-hh-gfI" secondAttribute="height" multiplier="0.4" id="LcI-xp-GYu"/>
+                        <constraint firstAttribute="trailing" secondItem="dtL-NE-axq" secondAttribute="trailing" id="Lzj-8f-oTf"/>
+                        <constraint firstItem="4wB-Gj-8F1" firstAttribute="top" secondItem="fav-hh-gfI" secondAttribute="top" id="MU1-5V-4Tm"/>
+                        <constraint firstAttribute="bottom" secondItem="dtL-NE-axq" secondAttribute="bottom" id="RQe-LY-p2E"/>
+                        <constraint firstItem="BaI-Of-QuR" firstAttribute="leading" secondItem="fav-hh-gfI" secondAttribute="leading" id="XuK-Sz-LCU"/>
+                        <constraint firstAttribute="trailing" secondItem="BaI-Of-QuR" secondAttribute="trailing" id="fvJ-nz-R2b"/>
+                        <constraint firstItem="4wB-Gj-8F1" firstAttribute="leading" secondItem="fav-hh-gfI" secondAttribute="leading" id="xWr-pI-F1h"/>
+                        <constraint firstAttribute="trailing" secondItem="4wB-Gj-8F1" secondAttribute="trailing" id="zcp-35-y6a"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="BaI-Of-QuR"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="4wB-Gj-8F1" secondAttribute="bottom" id="0GJ-Kf-Yj2"/>
-                <constraint firstAttribute="trailing" secondItem="BaI-Of-QuR" secondAttribute="trailing" id="8wE-AI-nRW"/>
-                <constraint firstItem="4wB-Gj-8F1" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="cO9-eS-l92"/>
-                <constraint firstItem="BaI-Of-QuR" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="cfq-sn-MAM"/>
-                <constraint firstItem="4wB-Gj-8F1" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="dZ7-yr-df7"/>
-                <constraint firstAttribute="bottom" secondItem="BaI-Of-QuR" secondAttribute="bottom" id="pTg-Xe-72h"/>
-                <constraint firstItem="BaI-Of-QuR" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="xK8-IW-xnD"/>
-                <constraint firstAttribute="trailing" secondItem="4wB-Gj-8F1" secondAttribute="trailing" id="yfM-9Z-lXm"/>
+                <constraint firstItem="fav-hh-gfI" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="8iB-tX-V2p"/>
+                <constraint firstAttribute="bottom" secondItem="fav-hh-gfI" secondAttribute="bottom" id="e2w-Ca-nO2"/>
+                <constraint firstItem="fav-hh-gfI" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="vmX-mv-dZh"/>
+                <constraint firstAttribute="trailing" secondItem="fav-hh-gfI" secondAttribute="trailing" id="yuM-VO-C61"/>
             </constraints>
             <connections>
                 <outlet property="businessGuidCollectionView" destination="4wB-Gj-8F1" id="65o-ta-x3d"/>
+                <outlet property="bussinessGuideButton" destination="reB-kx-BBe" id="haC-ET-yFP"/>
+                <outlet property="finNearByButton" destination="nRz-et-HAy" id="b2F-wR-al0"/>
                 <outlet property="overlayView" destination="BaI-Of-QuR" id="oIn-Xy-rTd"/>
+                <outlet property="pharmacyButton" destination="CG0-aP-ZTD" id="Rfc-cs-OnA"/>
             </connections>
             <point key="canvasLocation" x="-84" y="-64.5"/>
         </collectionReusableView>

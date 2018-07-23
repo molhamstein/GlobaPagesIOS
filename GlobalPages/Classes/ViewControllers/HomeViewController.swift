@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class HomeViewController: AbstractController {
 
@@ -19,7 +20,6 @@ class HomeViewController: AbstractController {
     @IBOutlet weak var profileButton: SSBadgeButton!
     
     var isFirstTimeToLoad = true
-    
     
      // bussiness guid View
      weak var businessGuidView: UIView?
@@ -60,11 +60,8 @@ class HomeViewController: AbstractController {
     }
 
     override func customizeView() {
-        
-        
-        
+    
         collectionViewSetup()
-        
         getBusinessGuides()
         getAds()
        
@@ -330,7 +327,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
         )
 
         customLayout.settings.itemSize = CGSize(width: self.view.frame.width, height: 200)
-        customLayout.settings.headerSize = CGSize(width: self.view.frame.width, height: 120)
+        customLayout.settings.headerSize = CGSize(width: self.view.frame.width, height: self.view.frame.height * 0.26)
         customLayout.settings.menuSize = CGSize(width: self.view.frame.width, height: 87.5)
         customLayout.settings.sectionsHeaderSize = CGSize(width: collectionView.frame.width, height: 0)
         customLayout.settings.sectionsFooterSize = CGSize(width: collectionView.frame.width, height: 0)
@@ -360,7 +357,7 @@ extension HomeViewController {
         switch kind {
         case UICollectionElementKindSectionHeader:
             let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CustomLayout.Element.sectionHeader.id, for: indexPath)
-
+            
             return supplementaryView
 
         case UICollectionElementKindSectionFooter:
@@ -378,6 +375,7 @@ extension HomeViewController {
             self.businessGuidCollectionView =  topHeaderView.businessGuidCollectionView
                 self.businessGuidCollectionView?.delegate  = self
                 self.businessGuidCollectionView?.dataSource = self
+                topHeaderView.delegate = self
                 return topHeaderView
                 
             }
@@ -461,3 +459,35 @@ extension HomeViewController:filterCellProtocol{
 }
 
 
+
+
+// header View Delegate
+
+extension HomeViewController:HeaderViewDelegate{
+    
+    func bussinessGuiedeCliked() {
+       // self.performSegue(withIdentifier: "bussinessGuideSegue", sender: nil)
+        self.showMapView(controllerType: .bussinessGuide)
+    }
+    
+    
+    func findNearByClicked() {
+        self.showMapView(controllerType: .nearBy)
+        //self.performSegue(withIdentifier: "nearBySege", sender: nil)
+    }
+    
+    func onDutyPharmacyClicked() {
+        self.showMapView(controllerType: .pharmacy)
+//        self.performSegue(withIdentifier: "pharmacySegue", sender: nil)
+    }
+    
+    func showMapView(controllerType:ControllerType){
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "BussinessGuideViewController") as! BussinessGuideViewController
+        vc.controllerType = controllerType
+        let nav = UINavigationController(rootViewController: vc)
+        
+        self.present(nav, animated: true, completion: nil)
+        
+    }
+    
+}

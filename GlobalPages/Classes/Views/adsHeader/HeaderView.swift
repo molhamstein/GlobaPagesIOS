@@ -30,13 +30,30 @@
 
 import UIKit
 
+
+protocol HeaderViewDelegate {
+    func bussinessGuiedeCliked()
+    func findNearByClicked()
+    func onDutyPharmacyClicked()
+}
+
+
+
  class HeaderView: UICollectionReusableView {
 
   // MARK: - IBOutlets
    
   @IBOutlet weak var businessGuidCollectionView: UICollectionView!
   @IBOutlet weak var overlayView: UIView!
-
+    
+    // buttons
+    @IBOutlet weak var bussinessGuideButton: UIButton!
+    @IBOutlet weak var finNearByButton: UIButton!
+    @IBOutlet weak var pharmacyButton: UIButton!
+    
+    // delegate
+    var delegate:HeaderViewDelegate?
+    
   // MARK: - Life Cycle
   open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
     super.apply(layoutAttributes)
@@ -53,7 +70,47 @@ import UIKit
         let nib = UINib(nibName: HomeViewController.businessGuidCellId, bundle: nil)
         self.businessGuidCollectionView.register(nib, forCellWithReuseIdentifier: HomeViewController.businessGuidCellId)
         
+        
+        
+        // customize
+        
+        self.bussinessGuideButton.titleLabel?.font = AppFonts.smallBold
+        self.finNearByButton.titleLabel?.font = AppFonts.smallBold
+        self.pharmacyButton.titleLabel?.font = AppFonts.smallBold
+        
+         // colors
+        
+        self.bussinessGuideButton.backgroundColor = AppColors.skyBlue
+        self.finNearByButton.backgroundColor = AppColors.lightGreen
+        self.pharmacyButton.backgroundColor = AppColors.lightPink
+        
+        
+        // drop shadow
+        
+        self.bussinessGuideButton.dropShadow()
+        self.finNearByButton.dropShadow()
+        self.pharmacyButton.dropShadow()
+        
+        // corner raduice
+        
+        self.bussinessGuideButton.cornerRadius = 5
+        self.finNearByButton.cornerRadius = 5
+        self.pharmacyButton.cornerRadius = 5
+        
     }
     
+    
+    @IBAction func showBussinessGuides(_ sender: UIButton) {
+        delegate?.bussinessGuiedeCliked()
+    }
+    
+    
+    @IBAction func showNearBy(_ sender: UIButton) {
+        delegate?.findNearByClicked()
+    }
+    
+    @IBAction func showPharmacies(_ sender: UIButton) {
+        delegate?.onDutyPharmacyClicked()
+    }
     
 }

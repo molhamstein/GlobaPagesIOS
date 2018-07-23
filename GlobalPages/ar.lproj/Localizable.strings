@@ -138,3 +138,10 @@
 "ADS_DESC_AREA_LABEL"                   = "المنطقة";
 "ADS_DESC_CONTACT_BUTTON"               = "اتصال";
 "ADS_DESC_DESCRIPTION"                  = "التفاصيل";
+
+
+// Bussiness Guide
+
+"BUSSINESS_GUIDE_TITLE"                 = "دليل الاعمال";
+"NEAR_BY_TITLE"                         = "البحث حولي";
+"ON_DUTY_PHARMACY_TITLE"                = "الصيدليات المناوبات";

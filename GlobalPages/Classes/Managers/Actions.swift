@@ -77,6 +77,15 @@ class ActionShareText {
 }
 
 
+class ActionShowNearByFilters: Action {
+    override class func execute() {
+        let filterNavigationController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NearByFilterViewController") as! NearByFilterViewController
+        filterNavigationController.modalTransitionStyle = .crossDissolve
+        filterNavigationController.modalPresentationStyle = .overCurrentContext
+        UIApplication.visibleViewController()?.present(UINavigationController(rootViewController:   filterNavigationController), animated: true, completion: nil)
+    }
+}
+
 
 
 
