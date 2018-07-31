@@ -59,7 +59,7 @@ class FiltersViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        containerView.isHidden = true
         if let keyword = filter.keyWord {
             self.keyWordTextField.text = keyword
         }
@@ -69,20 +69,19 @@ class FiltersViewController: AbstractController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if !self.isInitialized {
             // colors
             self.applyButton.applyGradient(colours: [AppColors.yellowDark,AppColors.yellowLight], direction: .diagonal)
-            // shadowAppFonts
-            self.containerView.dropShadow()
         }
         self.isInitialized = true
-        
     }
     
+    
     override func buildUp() {
-        self.containerView.animateIn(mode: .animateInFromBottom, delay: 0.4)
-        
+        containerView.isHidden = false
+        self.containerView.animateIn(mode: .animateInFromBottom, delay: 0.3)
+        // shadowAppFonts
+        self.containerView.dropShadow()
     }
 
     override func customizeView() {
@@ -101,20 +100,28 @@ class FiltersViewController: AbstractController {
         
         
         // fonts
-        self.searchKeyWordTitleLabel.font = AppFonts.normal
-        self.keyWordTextField.font = AppFonts.normal
-        self.categoryTitleLabel.font = AppFonts.normal
-        self.subCategoryTitleLabel.font = AppFonts.normal
-        self.cityTitleLabel.font = AppFonts.normal
-        self.areaTitleLabel.font = AppFonts.normal
-        self.applyButton.titleLabel?.font = AppFonts.normalBold
+        self.searchKeyWordTitleLabel.font = AppFonts.normalBold
+        self.keyWordTextField.font = AppFonts.bigBold
+        self.categoryTitleLabel.font = AppFonts.normalBold
+        self.subCategoryTitleLabel.font = AppFonts.normalBold
+        self.cityTitleLabel.font = AppFonts.normalBold
+        self.areaTitleLabel.font = AppFonts.normalBold
+        self.applyButton.titleLabel?.font = AppFonts.bigBold
+        
+        self.searchKeyWordTitleLabel.textColor = AppColors.grayDark
+        self.categoryTitleLabel.textColor = AppColors.grayDark
+        self.subCategoryTitleLabel.textColor = AppColors.grayDark
+        self.cityTitleLabel.textColor = AppColors.grayDark
+        self.areaTitleLabel.textColor = AppColors.grayDark
+      
+        
         
         
         // style
         self.keyWordTextField.borderStyle = .none
         
         
-        
+        self.applyButton.dropShadow()
         
         self.hideSubCategoryView()
         self.HideAreaView()
@@ -165,62 +172,57 @@ class FiltersViewController: AbstractController {
     }
     
     func getSubCategories(){
-        dispatch_main_after(0.1) {
-      //  UIView.animate(withDuration: 0, animations: {
         
-            self.subCategoryView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
-            self.hideAbleView1.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
-       // }){ (success) in
+        UIView.animate(withDuration: 0.2, animations: {
+        
+//            self.subCategoryView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+//            self.hideAbleView1.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
             self.subCategoryView.isHidden = false
             self.hideAbleView1.isHidden = true
-       // }
+        }){ (success) in
+            
         }
+        
     }
     
     func hideSubCategoryView(){
-        dispatch_main_after(0.1) {
-     //   UIView.animate(withDuration: 0, animations: {
-            self.subCategoryView.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
-            self.hideAbleView1.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
-       // }){ (success) in
+        
+        UIView.animate(withDuration: 0.2, animations: {
+//            self.subCategoryView.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
+//            self.hideAbleView1.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
             self.subCategoryView.isHidden = true
             self.hideAbleView1.isHidden = false
-            //}
+        }){ (success) in
             
-        }
+            }
 
     }
     
     
     func getAreas(){
-        dispatch_main_after(0.1) {
-     //   UIView.animate(withDuration: 0, animations: {
-            self.areaView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
-            self.hideAbelView2.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
-       // }){ (success) in
+        
+        UIView.animate(withDuration: 0.2, animations: {
+//            self.areaView.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+//            self.hideAbelView2.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
             self.areaView.isHidden = false
             self.hideAbelView2.isHidden = true
-            // }
+        }){ (success) in
             
-        }
+             }
+            
     }
     
     func HideAreaView(){
-        dispatch_main_after(0.1) {
-            //   UIView.animate(withDuration: 0, animations: {
-            self.areaView.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
-            self.hideAbelView2.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
-            // }){ (success) in
-            self.areaView.isHidden = true
-            self.hideAbelView2.isHidden = false
-            //}
-        }
-     
-       
         
-    }
-    
-    
+               UIView.animate(withDuration: 0.2, animations: {
+//            self.areaView.transform = CGAffineTransform.identity.scaledBy(x: 0, y: 0)
+//            self.hideAbelView2.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                self.areaView.isHidden = true
+                self.hideAbelView2.isHidden = false
+             }){ (success) in
+          
+            }
+        }
 }
 
 
@@ -248,8 +250,9 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
+     
         if collectionView == categoryCollectionView {
+               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
             if let category = filter.category{
                 if category == filters[indexPath.item]{
                     cell.isSelected = true
@@ -264,9 +267,10 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
                 cell.isSelected = false
             }
             cell.title = filters[indexPath.item]
-           
+            cell.setupView(type:.normal)
+           return cell
         }else if collectionView == subCategoryCollectionView{
-            
+               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
             if let subCategory = filter.subCategory{
                 if subCategory == filters[indexPath.item]{
                     cell.isSelected = true
@@ -276,14 +280,17 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
                     cell.isSelected = false
                     collectionView.deselectItem(at: indexPath, animated: true)
                 }
+                
             }else{
                 cell.isSelected = false
                 collectionView.deselectItem(at: indexPath, animated: true)
             }
 
             cell.title = filters[indexPath.item]
-          
+            cell.setupView(type:.normal)
+          return cell
         }else if collectionView == cityCollectionView{
+               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
             if let city = filter.city{
                 if city == filters[indexPath.item]{
                     cell.isSelected = true
@@ -299,9 +306,10 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
             }
 
             cell.title = filters[indexPath.item]
-           
+            cell.setupView(type:.normal)
+           return cell
         }else if collectionView == areaCollectionView{
-            
+               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
             if let area = filter.area{
                 if area == filters[indexPath.item]{
                     cell.isSelected = true
@@ -317,10 +325,11 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
             }
 
             cell.title = filters[indexPath.item]
-            
+            cell.setupView(type:.normal)
+            return cell
         }
-       // cell.setupView()
-        return cell
+        
+        return UICollectionViewCell()
     }
     
 
@@ -330,7 +339,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
 extension FiltersViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: filters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 32, height: self.categoryCollectionView.frame.height - 16)
+        return CGSize(width: filters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 32, height: self.categoryCollectionView.frame.height - 24)
     }
     
     

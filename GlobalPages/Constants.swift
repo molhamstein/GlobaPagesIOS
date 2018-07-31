@@ -45,7 +45,7 @@ struct AppConfig {
     static func setNavigationStyle() {
         // set text title attributes
         let attrs = [NSForegroundColorAttributeName : AppColors.grayXDark,
-                     NSFontAttributeName : AppFonts.xBig]
+                     NSFontAttributeName : AppFonts.xBigBold]
         UINavigationBar.appearance().titleTextAttributes = attrs
         // set background color
         UINavigationBar.appearance().barTintColor = .black//AppColors.blueXDark
@@ -61,6 +61,7 @@ struct AppConfig {
 extension Notification.Name {
     static let notificationLocationChanged = Notification.Name("NotificationLocationChanged")
     static let notificationUserChanged = Notification.Name("NotificationUserChanged")
+    static let notificationShow3NearByChanged = Notification.Name("NotificationShow3NearByChanged")
 }
 
 // MARK: Screen size

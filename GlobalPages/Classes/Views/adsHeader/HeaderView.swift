@@ -71,34 +71,28 @@ protocol HeaderViewDelegate {
         self.businessGuidCollectionView.register(nib, forCellWithReuseIdentifier: HomeViewController.businessGuidCellId)
         
         
-        
         // customize
-        
         self.bussinessGuideButton.titleLabel?.font = AppFonts.smallBold
         self.finNearByButton.titleLabel?.font = AppFonts.smallBold
         self.pharmacyButton.titleLabel?.font = AppFonts.smallBold
         
          // colors
-        
         self.bussinessGuideButton.backgroundColor = AppColors.skyBlue
         self.finNearByButton.backgroundColor = AppColors.lightGreen
         self.pharmacyButton.backgroundColor = AppColors.lightPink
-        
-        
-        // drop shadow
-        
-        self.bussinessGuideButton.dropShadow()
-        self.finNearByButton.dropShadow()
-        self.pharmacyButton.dropShadow()
-        
+
+    }
+    
+    func customizeCell(){
         // corner raduice
-        
         self.bussinessGuideButton.cornerRadius = 5
         self.finNearByButton.cornerRadius = 5
         self.pharmacyButton.cornerRadius = 5
-        
+        // shadow
+        self.bussinessGuideButton.dropShadow()
+        self.finNearByButton.dropShadow()
+        self.pharmacyButton.dropShadow()
     }
-    
     
     @IBAction func showBussinessGuides(_ sender: UIButton) {
         delegate?.bussinessGuiedeCliked()

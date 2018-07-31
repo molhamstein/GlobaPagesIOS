@@ -59,8 +59,10 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     
     // MARK: Navigation Bar
     func setNavBarTitle(title : String) {
+        
         self.navigationItem.titleView = nil
         self.navigationItem.title = title
+        
     }
     
     func setNavBarTitleImage(type:titleImageView) {
@@ -74,7 +76,7 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     var navBackButton : UIBarButtonItem  {
         let _navBackButton   = UIButton()
         _navBackButton.setBackgroundImage(UIImage(named: "navBackIcon"), for: .normal)
-        _navBackButton.frame = CGRect(x: 0, y: 0, width: 20, height: 17)
+        _navBackButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         _navBackButton.addTarget(self, action: #selector(backButtonAction(_:)), for: .touchUpInside)
         return UIBarButtonItem(customView: _navBackButton)
     }

@@ -54,7 +54,10 @@
                                 <rect key="frame" x="94" y="0.0" width="90" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mly-pc-vI1">
-                                        <rect key="frame" x="0.0" y="0.0" width="68" height="20"/>
+                                        <rect key="frame" x="68" y="0.0" width="0.0" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" id="dtQ-jk-ZMd" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -62,8 +65,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="mly-pc-vI1" firstAttribute="leading" secondItem="OeV-CF-tg2" secondAttribute="leading" id="4UZ-9O-FtQ"/>
-                                    <constraint firstAttribute="width" constant="90" id="5mT-dc-BGE"/>
+                                    <constraint firstAttribute="width" constant="90" id="5mT-dc-BGE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstAttribute="height" constant="20" id="8MQ-qq-r2E"/>
                                     <constraint firstItem="mly-pc-vI1" firstAttribute="top" secondItem="OeV-CF-tg2" secondAttribute="top" id="cdb-HM-Cpg"/>
                                     <constraint firstAttribute="bottom" secondItem="mly-pc-vI1" secondAttribute="bottom" id="hhb-3D-s7v"/>
@@ -144,7 +146,9 @@
                 <outlet property="lineView" destination="deS-ei-Ukl" id="scc-9A-Rpv"/>
                 <outlet property="lineView2" destination="ai0-p9-Ylq" id="Pev-DZ-yTB"/>
                 <outlet property="tagLabel" destination="mly-pc-vI1" id="byx-v1-FJp"/>
+                <outlet property="tagLabelWidthConstraint" destination="dtQ-jk-ZMd" id="DaD-pc-4fd"/>
                 <outlet property="tagView" destination="OeV-CF-tg2" id="VAA-9C-4SI"/>
+                <outlet property="tagViewWidthConstraint" destination="5mT-dc-BGE" id="FEv-tH-sHW"/>
                 <outlet property="titleLabel" destination="KBy-qF-wY3" id="3EF-hR-2EF"/>
                 <outlet property="topView" destination="ZXJ-pO-jaN" id="EFd-0J-wGJ"/>
             </connections>

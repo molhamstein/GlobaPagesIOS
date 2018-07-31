@@ -20,15 +20,26 @@ class AdsImageCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var lineView2: UIView!
+    @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
+    
+    @IBOutlet weak var tagLabelWidthConstraint: XNSLayoutConstraint!
+    
+    var tagLabelWidht:CGFloat = 0 {
+        didSet{
+            tagLabelWidthConstraint.setNewConstant(tagLabelWidht)
+            tagViewWidthConstraint.setNewConstant(tagLabelWidht + 32)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.layoutSubviews()
+            }, completion: nil)
+        }
+    }
+    
     
     
     var add:Ads?{
         
         didSet{
-            
-            guard let add = add else {
-                return
-            }
+            guard let add = add else {return}
             self.imageView.image = UIImage(named: add.image)
             self.tagLabel.text = add.tag
             self.titleLabel.text = add.title
@@ -48,8 +59,13 @@ class AdsImageCell: UICollectionViewCell {
      
         self.roundedBorder(value: 5.0)
         self.addShadow()
-
-      
+    }
+    
+    func resizeTagView(){
+        if let width = tagLabel.text?.getLabelWidth(font: AppFonts.small){
+            tagLabelWidht = width
+            
+        }
     }
     
 }

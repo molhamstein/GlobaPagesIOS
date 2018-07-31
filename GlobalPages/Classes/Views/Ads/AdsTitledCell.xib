@@ -20,20 +20,20 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Damascus Al-Mazeh Villas" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBA-L8-9WU">
-                        <rect key="frame" x="8" y="190.5" width="181" height="14.5"/>
+                        <rect key="frame" x="8" y="198.5" width="181" height="14.5"/>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bp-NP-2sC">
-                        <rect key="frame" x="8" y="8" width="181" height="162.5"/>
+                        <rect key="frame" x="8" y="16" width="181" height="162.5"/>
                         <string key="text">Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas</string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxP-4O-dQV">
-                        <rect key="frame" x="8" y="213.5" width="125" height="1"/>
+                        <rect key="frame" x="8" y="221.5" width="125" height="1"/>
                         <color key="backgroundColor" red="1" green="0.84705882352941175" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="125" id="3WF-bb-HbZ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
@@ -41,14 +41,14 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXh-B1-4Bu">
-                        <rect key="frame" x="8" y="222.5" width="181" height="20.5"/>
+                        <rect key="frame" x="8" y="230.5" width="181" height="20.5"/>
                         <string key="text">Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas</string>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rQ-Vq-j1c">
-                        <rect key="frame" x="0.0" y="170.5" width="197" height="20"/>
+                        <rect key="frame" x="0.0" y="178.5" width="197" height="20"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2x-vF-dby">
                                 <rect key="frame" x="8" y="9" width="125" height="1"/>
@@ -62,7 +62,10 @@
                                 <rect key="frame" x="117" y="0.0" width="90" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iag-gR-n2A">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
+                                        <rect key="frame" x="80" y="0.0" width="0.0" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" id="tk9-eY-CEJ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -71,10 +74,9 @@
                                 <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="0xz-Mr-ZW8"/>
-                                    <constraint firstAttribute="width" constant="90" id="8yT-58-fhO"/>
+                                    <constraint firstAttribute="width" constant="90" id="8yT-58-fhO" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstAttribute="trailing" secondItem="Iag-gR-n2A" secondAttribute="trailing" constant="10" id="Jca-za-jf3"/>
                                     <constraint firstItem="Iag-gR-n2A" firstAttribute="top" secondItem="ZEK-e7-qFM" secondAttribute="top" id="ky8-Sa-NNY"/>
-                                    <constraint firstItem="Iag-gR-n2A" firstAttribute="leading" secondItem="ZEK-e7-qFM" secondAttribute="leading" id="sO6-3P-D4S"/>
                                     <constraint firstAttribute="bottom" secondItem="Iag-gR-n2A" secondAttribute="bottom" id="zdP-xC-lAd"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -115,7 +117,7 @@
                 <constraint firstItem="8bp-NP-2sC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="bl1-Kx-xbU"/>
                 <constraint firstAttribute="trailing" secondItem="ZBA-L8-9WU" secondAttribute="trailing" constant="8" id="cty-ZC-TXx"/>
                 <constraint firstItem="4rQ-Vq-j1c" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gFc-5s-2C6"/>
-                <constraint firstItem="8bp-NP-2sC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="gJh-6m-acj"/>
+                <constraint firstItem="8bp-NP-2sC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="gJh-6m-acj"/>
                 <constraint firstItem="ZBA-L8-9WU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="kiO-Ky-1vJ"/>
                 <constraint firstItem="ZBA-L8-9WU" firstAttribute="top" secondItem="4rQ-Vq-j1c" secondAttribute="bottom" id="lys-jK-MeX"/>
                 <constraint firstItem="fxP-4O-dQV" firstAttribute="top" secondItem="ZBA-L8-9WU" secondAttribute="bottom" constant="8" id="wVc-ZH-moh"/>
@@ -134,7 +136,9 @@
                 <outlet property="lineView" destination="fxP-4O-dQV" id="mZj-hi-X9G"/>
                 <outlet property="lineView2" destination="u2x-vF-dby" id="bgo-X5-vMw"/>
                 <outlet property="tagLabel" destination="Iag-gR-n2A" id="IeN-qx-xcp"/>
+                <outlet property="tagLabelWidthConstraint" destination="tk9-eY-CEJ" id="hC7-LZ-JLf"/>
                 <outlet property="tagView" destination="ZEK-e7-qFM" id="exQ-0w-BHb"/>
+                <outlet property="tagViewWidthConstraint" destination="8yT-58-fhO" id="K9r-HG-05q"/>
                 <outlet property="titleLabel" destination="8bp-NP-2sC" id="DoK-8f-DuG"/>
             </connections>
             <point key="canvasLocation" x="106.5" y="257.5"/>

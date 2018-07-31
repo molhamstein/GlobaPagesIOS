@@ -24,7 +24,7 @@ class BusinessGuidCell: UICollectionViewCell {
                 return
             }
             
-            self.businessTitleLabel.text = businessGuide.title
+           
             self.businessInfoLabel.text = businessGuide.info
             self.imageView.image = UIImage(named:businessGuide.image)
         }
@@ -43,8 +43,8 @@ class BusinessGuidCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.businessInfoLabel.font = AppFonts.normal
-        self.businessTitleLabel.font = AppFonts.xBig
+        self.businessInfoLabel.font = AppFonts.xBigBold
+        //self.businessTitleLabel.font = AppFonts.xBig
         
     }
 

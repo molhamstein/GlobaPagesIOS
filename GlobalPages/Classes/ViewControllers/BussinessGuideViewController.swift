@@ -109,57 +109,40 @@ class BussinessGuideViewController: AbstractController {
         super.viewDidLoad()
         self.showNavBackButton = true
         
-        let CLLCoordType = CLLocationCoordinate2D(latitude: lat,
-                                                  longitude: long);
-        let anno = MKPointAnnotation();
-        anno.coordinate = CLLCoordType;
-        mapView.addAnnotation(anno);
-        
-        let CLLCoordType2 = CLLocationCoordinate2D(latitude: lat1,
-                                                  longitude: long1);
-        let anno2 = MKPointAnnotation();
-        anno2.coordinate = CLLCoordType2;
-        mapView.addAnnotation(anno2);
-        
-        let location = CLLocation(latitude: lat, longitude: long)
-        let center = CLLocationCoordinate2D(latitude:location.coordinate.latitude , longitude:location.coordinate.longitude)
-        let region = MKCoordinateRegionMake(center, MKCoordinateSpan(latitudeDelta: 0.025, longitudeDelta: 0.025))
-        mapView.setRegion(region, animated: true)
-        
-        setAnnotaion(location: location)
-        
-        let location2 = CLLocation(latitude: lat1, longitude: long1)
-        setAnnotaion(location: location2)
+        customizeMap()
 
         
-        mapView.delegate = self
-        
     }
+    
+    
+    func customizeMap(){
+  
+        mapView.delegate = self
+        // my location Settings
+        mapView.showsUserLocation = true
+        NotificationCenter.default.addObserver(self, selector: #selector(setMyLocation), name: .notificationLocationChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(show3NearBy), name: .notificationShow3NearByChanged, object: nil)
+        
+        LocationHelper.shared.startUpdateLocation()
+    }
+    
     
     override func customizeView() {
         super.customizeView()
         self.setNavBarTitle(title: controllerType.title)
-        
-        
         bussinessGuideCollectionView.backgroundColor = .clear
-        
         bussinessGuideCollectionView?.register(UINib(nibName: bussinessGuideListCellId, bundle: nil), forCellWithReuseIdentifier: bussinessGuideListCellId)
-        
         let headerNib = UINib(nibName: HomeViewController.filtterCellId, bundle: nil)
         filtterCollectionView.register(headerNib, forCellWithReuseIdentifier: HomeViewController.filtterCellId)
-        
         
         // fonts
         self.tagLabel.font = AppFonts.smallBold
         self.bussinessGuideTitleLabel.font = AppFonts.normal
         self.bussinessGuideCategoryLabel.font = AppFonts.small
-        
         // color
         self.bussinessGuideCategoryLabel.textColor = .black
         self.bussinessGuideCategoryLabel.textColor = AppColors.grayLight
-        
         self.bottomView.isHidden = true
-        
         // set view by controller type
         self.filtersBarView.isHidden = controllerType.filterBarViewIsHidden
         
@@ -168,11 +151,8 @@ class BussinessGuideViewController: AbstractController {
     
     override func buildUp() {
         super.buildUp()
-        
         getFilters()
-        
     }
-    
     
     override func viewDidLayoutSubviews() {
         // filter bar shadow
@@ -189,12 +169,9 @@ class BussinessGuideViewController: AbstractController {
 
     
     func getFilters(){
-        
         filters[0] = filter.selectedCity
         filters[1] = filter.selectedCategory
         filtterCollectionView.reloadData()
-        
-        
     }
     
     override func backButtonAction(_ sender: AnyObject) {
@@ -207,7 +184,6 @@ class BussinessGuideViewController: AbstractController {
         self.isListView = sender.isSelected
     }
     
-    
     func switchToListMode(){
         bottomView.animateIn(mode: .animateOutToBottom, delay: 0.2)
         bottomView.isHidden = true
@@ -218,50 +194,70 @@ class BussinessGuideViewController: AbstractController {
     
     
     func switchToMapViewMode(){
-//        bottomView.animateIn(mode: .animateOutToBottom, delay: 0.2)
-//        bottomView.isHidden = true
         bussinessGuideCollectionView.animateIn(mode: .animateOutToLeft, delay: 0.2)
         bussinessGuideCollectionView.isHidden = true
         overLayView.isHidden = true
     }
     
     
+    func setMyLocation(){
+        let location = CLLocation(latitude: LocationHelper.shared.myLocation.lat!, longitude: LocationHelper.shared.myLocation.long!)
+        let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
+        self.mapView.setRegion(viewRegion, animated: true)
+    }
+    
+    
     // add pin to the mapView
+    func centerMapOnLocation(location: CLLocation) {
+        self.view.endEditing(true)
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
+        setAnnotaion(location: location)
+    }
     func setAnnotaion(location:CLLocation){
-        mapView.removeAnnotations(mapView.annotations)
+      //  mapView.removeAnnotations(mapView.annotations)
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         self.mapView.addAnnotation(annotation)
     }
     
+    // show 3 nearby in nearby mode
+    func show3NearBy(){
+        let loc1 = CLLocation(latitude: LocationHelper.shared.myLocation.lat! - 0.01 ,longitude: LocationHelper.shared.myLocation.long! - 0.01)
+        setAnnotaion(location: loc1)
+        let loc2 = CLLocation(latitude: LocationHelper.shared.myLocation.lat! + 0.01 ,longitude: LocationHelper.shared.myLocation.long! - 0.01)
+        setAnnotaion(location: loc2)
+        let loc3 = CLLocation(latitude: LocationHelper.shared.myLocation.lat! - 0.01 ,longitude: LocationHelper.shared.myLocation.long! + 0.01)
+        setAnnotaion(location: loc3)
+    }
+    
+    
+     // show filters
+    
+    @IBAction func search(_ sender: UIButton) {
+        controllerType.showFilters()
+    }
+    
 }
-
 
 extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionViewDataSource{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView ==  bussinessGuideCollectionView{
             return 10
-            
         }
         if collectionView == filtterCollectionView {
             return filters.count
-            
         }
-  
         return 0
     }
     
-    
-    
     // load collecton view cells
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView ==  bussinessGuideCollectionView{
@@ -283,7 +279,14 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        controllerType.showFilters()
+        
+        if collectionView == self.filtterCollectionView{
+            controllerType.showFilters()
+        }
+        
+        if collectionView == self.bussinessGuideCollectionView {
+            self.performSegue(withIdentifier: "BussinessGuidSegue", sender: nil)
+        }
     }
 }
 
@@ -338,61 +341,49 @@ extension BussinessGuideViewController:filterCellProtocol{
 extension BussinessGuideViewController: MKMapViewDelegate {
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             let identifier = "MyPin"
-            if annotation is MKUserLocation {
+            if annotation.isKind(of: MKUserLocation.self) {
                 var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-                
-                if annotationView == nil {
+               
                     annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                    annotationView?.canShowCallout = true
-                    annotationView?.image = UIImage(named: "pin_black")
+                    annotationView?.image = UIImage(named: "my_pin")
                     annotationView?.canShowCallout = false
-                    // annotationView?.contentMode = .scaleAspectFill
-                    
-                    // if you want a disclosure button, you'd might do something like:
-                    
                     let detailButton = UIButton(type: .detailDisclosure)
                     annotationView?.rightCalloutAccessoryView = detailButton
-                } else {
-                    annotationView?.annotation = annotation
-                }
+                    annotationView?.tag = 1
                 return annotationView
-            }
-
+            }else{
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
 
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView?.canShowCallout = true
                 annotationView?.image = UIImage(named: "pin_black")
                 annotationView?.canShowCallout = false
-               // annotationView?.contentMode = .scaleAspectFill
-
-                // if you want a disclosure button, you'd might do something like:
-                
                  let detailButton = UIButton(type: .detailDisclosure)
                  annotationView?.rightCalloutAccessoryView = detailButton
             } else {
                 annotationView?.annotation = annotation
             }
-
-            return annotationView
+                return annotationView
+            }
         }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if view.tag == 1 {
+            return
+        }
         view.image = UIImage(named : "pin_yellow")
         self.bottomView.isHidden = false
         self.bottomView.animateIn(mode: .animateInFromBottom, delay: 0.2)
         
     }
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if view.tag == 1 {
+            return
+        }
         view.image = UIImage(named : "pin_black")
         self.bottomView.animateIn(mode: .animateOutToBottom, delay: 0.2)
         self.bottomView.isHidden = true
     }
-    
-    
 
-    
-  
     
 }
 

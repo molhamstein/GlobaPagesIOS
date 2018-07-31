@@ -75,7 +75,6 @@ class HomeViewController: AbstractController {
         self.notificationButton.dropShortShadow()
         self.profileButton.dropShortShadow()
         self.notificationButton.badge = "2"
-        
         // setFonts
         self.navBarTitleLabel.font = AppFonts.xBig
         
@@ -86,11 +85,8 @@ class HomeViewController: AbstractController {
             self.perform(#selector(applyGradiant), with: nil, afterDelay: 0.1)
             isFirstTimeToLoad = false
         }
-        
         getFilters()
     }
-    
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -132,11 +128,11 @@ class HomeViewController: AbstractController {
     
     func getBusinessGuides(){
         
-        businessGuides.append(BusinessGuide(title:"Businesses Guide",image:"ic_business_guide",info:"Search for businesses Nearby and find them on the map"))
+        businessGuides.append(BusinessGuide(title:"Businesses Guide",image:"AI_Image",info:"Appartment for sale"))
         
-        businessGuides.append(BusinessGuide(title:"On Duty Pharmacy",image:"ic_business_guide",info:"Find Open Pharmacies Nearby"))
+        businessGuides.append(BusinessGuide(title:"On Duty Pharmacy",image:"AI_Image",info:"Appartment for sale"))
         
-        businessGuides.append(BusinessGuide(title:"Businesses Guide",image:"ic_business_guide",info:"Search for businesses Nearby and find them on the map"))
+        businessGuides.append(BusinessGuide(title:"Businesses Guide",image:"AI_Image",info:"Appartment for sale"))
         
         self.businessGuidCollectionView?.reloadData()
     }
@@ -162,7 +158,7 @@ class HomeViewController: AbstractController {
         
         adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus  Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
         
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh VillasDamascus Al-Mazzeh VillasDamascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
+        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate dsfsdfs ", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh VillasDamascus Al-Mazzeh VillasDamascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
         
         adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al- Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
         self.adsCollectionView.collectionViewLayout.invalidateLayout()
@@ -192,7 +188,6 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         
         if collectionView ==  businessGuidCollectionView{
             return businessGuides.count
-            
         }
         if collectionView == filtterCollectionView {
             return filters.count
@@ -204,16 +199,14 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         return 0
     }
     
-    
-    
      // load collecton view cells
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView ==  businessGuidCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.businessGuidCellId, for: indexPath) as! BusinessGuidCell
             cell.businessGuide = businessGuides[indexPath.item]
-            cell.setpView(colors:self.gradiantColors[indexPath.item])
+          //  cell.setpView(colors:self.gradiantColors[indexPath.item])
+            
             return cell
             
         }
@@ -230,17 +223,15 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
             if add.type == .image{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.adsImageCellId, for: indexPath) as! AdsImageCell
             cell.add = self.adds[indexPath.item]
-            return cell
-                
+                cell.resizeTagView()
+                return cell
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.adsTitledCellId, for: indexPath) as! AdsTitledCell
                 cell.add = self.adds[indexPath.item]
+                cell.resizeTagView()
                 return cell
-                
-                
             }
         }
-     
         return UICollectionViewCell()
     }
     
@@ -250,7 +241,6 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         if collectionView == filtterCollectionView {
             ActionShowFilters.execute()
         }
-        
         if collectionView == adsCollectionView {
             ActionShowAdsDescrption.execute()
         }
@@ -262,64 +252,38 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
 extension HomeViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         if collectionView ==  businessGuidCollectionView{
             return CGSize(width: self.view.frame.width * 0.7, height: self.businessGuidView!.frame.height - 16)
-            
         }
         if collectionView == filtterCollectionView {
-        
            return CGSize(width: filters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
-            
-            
         }
         if collectionView ==  adsCollectionView{
          return CGSize(width: self.view.frame.width * 0.5 - 16, height: getCellContentSize(indexPath: indexPath))
         }
-        
         return CGSize(width: self.view.frame.width * 0.7, height: self.businessGuidView!.frame.height - 16)
     }
     
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        
-        if collectionView == businessGuidCollectionView{
-            return 32
-            
-        }
-        if collectionView == filtterCollectionView{
-            return 8
-            
-        }
-        if collectionView == adsCollectionView{
-            return 8
-            
-        }
-            return 0
+        if collectionView == businessGuidCollectionView{return 32}
+        if collectionView == filtterCollectionView{return 8}
+        if collectionView == adsCollectionView{return 8}
+        return 0
     }
-    
-    
-    
 }
-
-
-
-
 
 // setup CustomeLay out
 
  extension HomeViewController {
-    
     func setupCollectionViewLayout() {
         guard let collectionView = adsCollectionView, let customLayout = adsCollectionView.collectionViewLayout as? CustomLayout else { return }
-
         adsCollectionView.register(
             UINib(nibName: "HeaderView", bundle: nil),
             forSupplementaryViewOfKind: CustomLayout.Element.header.kind,
             withReuseIdentifier: CustomLayout.Element.header.id
         )
-
         adsCollectionView.register(
             UINib(nibName: "MenuView", bundle: nil),
             forSupplementaryViewOfKind: CustomLayout.Element.menu.kind,
@@ -333,15 +297,13 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
         customLayout.settings.sectionsFooterSize = CGSize(width: collectionView.frame.width, height: 0)
         customLayout.settings.isHeaderStretchy = true
         customLayout.settings.isAlphaOnHeaderActive = true
-        customLayout.settings.headerOverlayMaxAlphaValue = CGFloat(0)
+        customLayout.settings.headerOverlayMaxAlphaValue = CGFloat(1)
         customLayout.settings.isMenuSticky = true
         customLayout.settings.isSectionHeadersSticky = false
         customLayout.settings.isParallaxOnCellsEnabled = false
         customLayout.settings.maxParallaxOffset = 0
         customLayout.settings.minimumInteritemSpacing = 0
         customLayout.settings.minimumLineSpacing = 3
-
-        
         adsCollectionView.collectionViewLayout  = customLayout
     }
 }
@@ -351,8 +313,6 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
 
 //MARK: - UICollectionViewDataSource
 extension HomeViewController {
-
-    
      func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
@@ -375,6 +335,7 @@ extension HomeViewController {
             self.businessGuidCollectionView =  topHeaderView.businessGuidCollectionView
                 self.businessGuidCollectionView?.delegate  = self
                 self.businessGuidCollectionView?.dataSource = self
+                topHeaderView.customizeCell()
                 topHeaderView.delegate = self
                 return topHeaderView
                 
@@ -436,7 +397,7 @@ extension HomeViewController : PinterestLayoutDelegate {
         
         height += (self.adds[indexPath.item].address.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
         height += (self.adds[indexPath.item].info.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
-        height += (50)
+        height += (32)
         return height
     }
     

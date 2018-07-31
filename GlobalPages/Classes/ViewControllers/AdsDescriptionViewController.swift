@@ -26,6 +26,9 @@ class AdsDescriptionViewController: AbstractController {
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var tagView: GradientView!
+    @IBOutlet weak var categoryView: GradientView!
     
     
     
@@ -82,11 +85,21 @@ class AdsDescriptionViewController: AbstractController {
         self.titleLabel.font = AppFonts.normalBold
         self.cityTitleLable.font = AppFonts.smallBold
         self.cityLabel.font = AppFonts.normalBold
-        self.areaLabel.font = AppFonts.smallBold
+        self.areaLabel.font = AppFonts.normal
         self.contactButton.titleLabel?.font = AppFonts.normalBold
         self.contactBottomButton.titleLabel?.font  = AppFonts.normalBold
         self.descriptionTextView.font = AppFonts.normalBold
         self.descriptinTitleLabel.font = AppFonts.normalBold
+        
+        //colors
+        self.headerView.backgroundColor = AppColors.grayXDark
+        
+         //shadow
+        self.contactBottomButton.dropShadow()
+        self.containerView.dropShadow()
+        self.tagView.dropShadow()
+        self.categoryView.dropShadow()
+        
         // page Controller
         self.pageController.numberOfPages = 3
         

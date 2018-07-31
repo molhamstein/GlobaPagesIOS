@@ -17,11 +17,8 @@ public class filter{
     public static var city:String?
     public static var area:String?
     
-    
     static func getDictionry()-> [String:Any]{
-        
         var parameters:[String:Any] = [:]
-        
         parameters["city"] = city
         parameters["category"] = category
         parameters["keyWord"] = keyWord
@@ -31,7 +28,6 @@ public class filter{
         return parameters
     }
     
-    
     static func clear(){
         self.keyWord = nil
         self.category = nil
@@ -39,7 +35,6 @@ public class filter{
         self.subCategory = nil
         self.area = nil
     }
-    
    public static var selectedCategory:String{
         if let value = filter.subCategory{
             return value
@@ -61,17 +56,14 @@ public class filter{
         
     }
     
-    
     public static func clearCategory(){
         filter.category = nil
         filter.subCategory = nil
     }
     
-    
     public static func clearCity(){
         filter.city = nil
         filter.area = nil
     }
-    
-    
+
 }

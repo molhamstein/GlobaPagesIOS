@@ -20,11 +20,22 @@ class AdsTitledCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var lineView2: UIView!
+    @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
+    @IBOutlet weak var tagLabelWidthConstraint: XNSLayoutConstraint!
+    
+    var tagLabelWidht:CGFloat = 0 {
+        didSet{
+            tagLabelWidthConstraint.setNewConstant(tagLabelWidht)
+            tagViewWidthConstraint.setNewConstant(tagLabelWidht + 32)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.layoutSubviews()
+            }, completion: nil)
+        }
+    }
+    
     
     var add:Ads?{
-        
         didSet{
-            
             guard let add = add else {
                 return
             }
@@ -47,16 +58,18 @@ class AdsTitledCell: UICollectionViewCell {
         self.tagLabel.font =  AppFonts.small
         self.titleLabel.font = AppFonts.normalBold
         self.addressLabel.font = AppFonts.normal
-        
-        
         self.roundedBorder(value: 5.0)
         self.addShadow()
-        
- 
-        
-    
-        
     }
+    
+    
+    func resizeTagView(){
+        if let width = tagLabel.text?.getLabelWidth(font: AppFonts.small){
+            tagLabelWidht = width
+            
+        }
+    }
+    
     
 }
 

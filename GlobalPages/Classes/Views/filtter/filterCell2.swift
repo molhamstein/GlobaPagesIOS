@@ -8,10 +8,35 @@
 
 import UIKit
 
+
+enum FilterType{
+    case normal
+    case map
+    var backGroundColor:UIColor{
+        switch self {
+        case .normal:
+            return UIColor.white
+        case .map:
+            return UIColor.clear
+        }
+    }
+    
+    
+    var textColor:UIColor{
+        switch self {
+        case .normal:
+            return UIColor.black
+        case .map:
+            return UIColor.white
+        }
+    }
+}
+
 class filterCell2: UICollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var backGroundView: UIView!
     
     
     override var isSelected: Bool {
@@ -32,22 +57,28 @@ class filterCell2: UICollectionViewCell {
         super.awakeFromNib()
         titleLabel.font = AppFonts.normal
         titleLabel.sizeToFit()
-        self.perform(#selector(setupView), with: nil, afterDelay: 0.3)
+//        self.perform(#selector(setupView), with: nil, afterDelay: 0.3)
     }
 
     
-    func setupView(){
-        self.makerounded()
-        self.addShadow()
-        self.containerView.makeRounded()
+    func setupView(type:FilterType){
+        dispatch_main_after(0) {
+            self.makerounded()
+            self.addShadow()
+            self.containerView.makeRounded()
+            self.backGroundView.makeRounded()
+            self.backGroundView.setGradientBorder(width: 1, colors: [AppColors.yellowDark,AppColors.yellowLight])
+            
+        }
+        self.backGroundView.backgroundColor = type.backGroundColor
+        self.titleLabel.textColor = type.textColor
     }
-    
     
     func configureCell(){
         if isSelected{
-            self.containerView.backgroundColor = .clear
+            self.containerView.isHidden = false
         }else{
-            self.containerView.backgroundColor = .white
+            self.containerView.isHidden = true
         }
     }
 }

@@ -30,10 +30,6 @@
                             </collectionViewFlowLayout>
                             <cells/>
                         </collectionView>
-                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaI-Of-QuR">
-                            <rect key="frame" x="0.0" y="0.0" width="640" height="381"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtL-NE-axq">
                             <rect key="frame" x="0.0" y="228.5" width="640" height="152.5"/>
                             <subviews>
@@ -73,7 +69,7 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="zRM-m7-bFZ" firstAttribute="leading" secondItem="dtL-NE-axq" secondAttribute="leading" constant="12" id="Icw-Mv-Pa5"/>
                                 <constraint firstItem="zRM-m7-bFZ" firstAttribute="top" secondItem="dtL-NE-axq" secondAttribute="top" constant="16" id="Ncv-lq-qDO"/>
@@ -82,26 +78,22 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="BaI-Of-QuR" firstAttribute="top" secondItem="fav-hh-gfI" secondAttribute="top" id="3aE-z0-g6u"/>
                         <constraint firstItem="dtL-NE-axq" firstAttribute="leading" secondItem="fav-hh-gfI" secondAttribute="leading" id="DVP-uX-m3V"/>
-                        <constraint firstAttribute="bottom" secondItem="BaI-Of-QuR" secondAttribute="bottom" id="KC2-zR-wSD"/>
                         <constraint firstItem="dtL-NE-axq" firstAttribute="top" secondItem="4wB-Gj-8F1" secondAttribute="bottom" id="LWh-bD-r9a"/>
                         <constraint firstItem="dtL-NE-axq" firstAttribute="height" secondItem="fav-hh-gfI" secondAttribute="height" multiplier="0.4" id="LcI-xp-GYu"/>
                         <constraint firstAttribute="trailing" secondItem="dtL-NE-axq" secondAttribute="trailing" id="Lzj-8f-oTf"/>
                         <constraint firstItem="4wB-Gj-8F1" firstAttribute="top" secondItem="fav-hh-gfI" secondAttribute="top" id="MU1-5V-4Tm"/>
                         <constraint firstAttribute="bottom" secondItem="dtL-NE-axq" secondAttribute="bottom" id="RQe-LY-p2E"/>
-                        <constraint firstItem="BaI-Of-QuR" firstAttribute="leading" secondItem="fav-hh-gfI" secondAttribute="leading" id="XuK-Sz-LCU"/>
-                        <constraint firstAttribute="trailing" secondItem="BaI-Of-QuR" secondAttribute="trailing" id="fvJ-nz-R2b"/>
                         <constraint firstItem="4wB-Gj-8F1" firstAttribute="leading" secondItem="fav-hh-gfI" secondAttribute="leading" id="xWr-pI-F1h"/>
                         <constraint firstAttribute="trailing" secondItem="4wB-Gj-8F1" secondAttribute="trailing" id="zcp-35-y6a"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="subviews">
-                            <exclude reference="BaI-Of-QuR"/>
-                        </mask>
-                    </variation>
+                </view>
+                <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BaI-Of-QuR">
+                    <rect key="frame" x="0.0" y="0.0" width="640" height="381"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </subviews>
             <constraints>

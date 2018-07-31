@@ -19,43 +19,47 @@
                 <rect key="frame" x="0.0" y="0.0" width="179" height="40"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7z-eg-ecx" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7z-eg-ecx">
                         <rect key="frame" x="0.0" y="0.0" width="179" height="40"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejS-SA-G4y">
-                                <rect key="frame" x="1" y="1" width="177" height="38"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESy-Wj-ZX0">
-                                        <rect key="frame" x="0.0" y="0.0" width="177" height="38"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejS-SA-G4y" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="179" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="ESy-Wj-ZX0" secondAttribute="bottom" id="RN3-eY-RQ3"/>
-                                    <constraint firstItem="ESy-Wj-ZX0" firstAttribute="top" secondItem="ejS-SA-G4y" secondAttribute="top" id="kGl-eb-irf"/>
-                                    <constraint firstAttribute="trailing" secondItem="ESy-Wj-ZX0" secondAttribute="trailing" id="mot-kt-mYi"/>
-                                    <constraint firstItem="ESy-Wj-ZX0" firstAttribute="leading" secondItem="ejS-SA-G4y" secondAttribute="leading" id="usx-0A-aKI"/>
-                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="diagonalMode" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESy-Wj-ZX0">
+                                <rect key="frame" x="0.0" y="0.0" width="179" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ejS-SA-G4y" secondAttribute="trailing" constant="1" id="8Gx-Ky-FaO"/>
-                            <constraint firstAttribute="bottom" secondItem="ejS-SA-G4y" secondAttribute="bottom" constant="1" id="ccH-uf-vxn"/>
-                            <constraint firstItem="ejS-SA-G4y" firstAttribute="leading" secondItem="x7z-eg-ecx" secondAttribute="leading" constant="1" id="rrL-Lw-A8w"/>
-                            <constraint firstItem="ejS-SA-G4y" firstAttribute="top" secondItem="x7z-eg-ecx" secondAttribute="top" constant="1" id="uZh-RU-3lG"/>
+                            <constraint firstAttribute="trailing" secondItem="ejS-SA-G4y" secondAttribute="trailing" id="8Gx-Ky-FaO"/>
+                            <constraint firstItem="ESy-Wj-ZX0" firstAttribute="top" secondItem="x7z-eg-ecx" secondAttribute="top" id="aEv-aB-9al"/>
+                            <constraint firstAttribute="bottom" secondItem="ejS-SA-G4y" secondAttribute="bottom" id="ccH-uf-vxn"/>
+                            <constraint firstAttribute="trailing" secondItem="ESy-Wj-ZX0" secondAttribute="trailing" id="dkG-ht-52H"/>
+                            <constraint firstItem="ejS-SA-G4y" firstAttribute="leading" secondItem="x7z-eg-ecx" secondAttribute="leading" id="rrL-Lw-A8w"/>
+                            <constraint firstItem="ejS-SA-G4y" firstAttribute="top" secondItem="x7z-eg-ecx" secondAttribute="top" id="uZh-RU-3lG"/>
+                            <constraint firstAttribute="bottom" secondItem="ESy-Wj-ZX0" secondAttribute="bottom" id="yhs-9y-JBZ"/>
+                            <constraint firstItem="ESy-Wj-ZX0" firstAttribute="leading" secondItem="x7z-eg-ecx" secondAttribute="leading" id="zNm-5L-3hk"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                <color key="value" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="diagonalMode" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
@@ -69,6 +73,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="179" height="40"/>
             <connections>
+                <outlet property="backGroundView" destination="x7z-eg-ecx" id="BEL-yF-wmo"/>
                 <outlet property="containerView" destination="ejS-SA-G4y" id="Qh8-q9-lqC"/>
                 <outlet property="titleLabel" destination="ESy-Wj-ZX0" id="g2n-Op-QTR"/>
             </connections>
