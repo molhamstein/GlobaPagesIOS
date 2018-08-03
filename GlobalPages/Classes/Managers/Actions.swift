@@ -15,7 +15,10 @@ Repeated and generic actions to be excuted from any context of the app such as s
 class Action: NSObject {
     class func execute() {
     }
-    
+    class func execute(type:categoryFilterType){
+        
+    }
+
     
 }
 
@@ -81,8 +84,9 @@ class ActionShowNearByFilters: Action {
     override class func execute() {
         let filterNavigationController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NearByFilterViewController") as! NearByFilterViewController
         filterNavigationController.modalTransitionStyle = .crossDissolve
-        filterNavigationController.modalPresentationStyle = .overCurrentContext
-        UIApplication.visibleViewController()?.present(UINavigationController(rootViewController:   filterNavigationController), animated: true, completion: nil)
+        filterNavigationController.modalPresentationStyle = .overFullScreen
+        //UINavigationController(rootViewController:   filterNavigationController)
+        UIApplication.visibleViewController()?.present(filterNavigationController, animated: true, completion: nil)
     }
 }
 
@@ -90,8 +94,9 @@ class ActionShowNearByFilters: Action {
 
 
 class ActionShowFilters: Action {
-    override class func execute() {
-                let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: FiltersViewController.className)
+    override class func execute(type:categoryFilterType) {
+                let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: FiltersViewController.className) as! FiltersViewController
+        ViewController.categoryfiltertype = type
         let nav = UINavigationController(rootViewController: ViewController)
                 UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
     }

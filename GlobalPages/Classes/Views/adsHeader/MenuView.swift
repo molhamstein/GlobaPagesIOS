@@ -38,7 +38,7 @@ class MenuView: UICollectionReusableView {
         
     }
     @IBAction func tapSearchButton(_ sender: UIButton) {
-        ActionShowFilters.execute()
+        ActionShowFilters.execute(type:.Home)
     }
     
     @IBAction func tapMapButton(_ sender: UIButton) {

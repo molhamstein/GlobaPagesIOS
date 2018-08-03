@@ -326,7 +326,7 @@ class ApiManager: NSObject {
             }
         }
     }
-    
+    //businessCategories
     
     func userVerify(code: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
         
@@ -645,7 +645,81 @@ class ApiManager: NSObject {
             }
         }
     }
-
+    
+    
+    
+    /// Api
+    // get categories filter
+    //businessCategories
+    func businessCategories(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[categoriesFilter]) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/businessCategories"
+        
+        // build request
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError, [])
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let filters = array.map{categoriesFilter(json:$0)}
+                        completionBlock(true , nil, filters)
+                    }else{
+                        completionBlock(true , nil, [])
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, [])
+                } else {
+                    completionBlock(false, ServerError.connectionError, [])
+                }
+            }
+        }
+    }
+    
+//postCategories
+    
+    func postCategories(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[categoriesFilter]) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/postCategories"
+        
+        // build request
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError, [])
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let filters = array.map{categoriesFilter(json:$0)}
+                        completionBlock(true , nil, filters)
+                    }else{
+                        completionBlock(true , nil, [])
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, [])
+                } else {
+                    completionBlock(false, ServerError.connectionError, [])
+                }
+            }
+        }
+    }
     
 }
 

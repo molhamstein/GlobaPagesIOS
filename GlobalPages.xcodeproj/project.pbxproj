@@ -30,6 +30,7 @@
 		1481AF5420F154E9003A1F10 /* Cairo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39FA20ED4BA00064286D /* Cairo-Light.ttf */; };
 		1481AF5520F154E9003A1F10 /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F620ED4B9F0064286D /* Cairo-Regular.ttf */; };
 		1481AF5620F154E9003A1F10 /* CairoSemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F520ED4B9E0064286D /* CairoSemiBold.ttf */; };
+		148E77EC2114E0A500683027 /* businessCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E77EB2114E0A500683027 /* businessCategories.swift */; };
 		14B1B88C20DEF17C00D86536 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88920DEF17B00D86536 /* CustomLayout.swift */; };
 		14B1B88D20DEF17C00D86536 /* CustomLayoutSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */; };
 		14B1B88E20DEF17C00D86536 /* CustomLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */; };
@@ -67,6 +68,7 @@
 		14CC8CAB20C9BA67000319B0 /* ShadowLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC8CAA20C9BA66000319B0 /* ShadowLineView.swift */; };
 		14CC8CAF20C9C64A000319B0 /* AdsImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CC8CAD20C9C649000319B0 /* AdsImageCell.swift */; };
 		14CC8CB020C9C64A000319B0 /* AdsImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14CC8CAE20C9C649000319B0 /* AdsImageCell.xib */; };
+		14D2866A2111DB0C0082F3BA /* BussinessDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D286692111DB0C0082F3BA /* BussinessDescriptionViewController.swift */; };
 		14D7F38820E1226000CF6E4B /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D7F38720E1225F00CF6E4B /* FiltersViewController.swift */; };
 		14DAFCA92103B0BC00899872 /* BussinessGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DAFCA82103B0BC00899872 /* BussinessGuideViewController.swift */; };
 		578685EC20C47FD30002C67B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578685EB20C47FD30002C67B /* AppDelegate.swift */; };
@@ -143,6 +145,7 @@
 		146B39F820ED4B9F0064286D /* Cairo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Black.ttf"; sourceTree = "<group>"; };
 		146B39F920ED4BA00064286D /* Cairo-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-ExtraLight.ttf"; sourceTree = "<group>"; };
 		146B39FA20ED4BA00064286D /* Cairo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Light.ttf"; sourceTree = "<group>"; };
+		148E77EB2114E0A500683027 /* businessCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = businessCategories.swift; sourceTree = "<group>"; };
 		14B1B88920DEF17B00D86536 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
 		14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutSettings.swift; sourceTree = "<group>"; };
 		14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutAttributes.swift; sourceTree = "<group>"; };
@@ -180,6 +183,7 @@
 		14CC8CAA20C9BA66000319B0 /* ShadowLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowLineView.swift; sourceTree = "<group>"; };
 		14CC8CAD20C9C649000319B0 /* AdsImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsImageCell.swift; sourceTree = "<group>"; };
 		14CC8CAE20C9C649000319B0 /* AdsImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsImageCell.xib; sourceTree = "<group>"; };
+		14D286692111DB0C0082F3BA /* BussinessDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BussinessDescriptionViewController.swift; sourceTree = "<group>"; };
 		14D7F38720E1225F00CF6E4B /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		14DAFCA82103B0BC00899872 /* BussinessGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BussinessGuideViewController.swift; sourceTree = "<group>"; };
 		578685E820C47FD30002C67B /* GlobalPages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalPages.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -503,6 +507,7 @@
 				578687B520C481800002C67B /* ReportType.swift */,
 				14CC8CA820C905FC000319B0 /* BusinessGuide.swift */,
 				140544DC20D7F7240042E70F /* Ads.swift */,
+				148E77EB2114E0A500683027 /* businessCategories.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -604,6 +609,7 @@
 				144BD89920E82C430068D561 /* AdsDescriptionViewController.swift */,
 				14DAFCA82103B0BC00899872 /* BussinessGuideViewController.swift */,
 				1442435521064CE300F479B2 /* NearByFilterViewController.swift */,
+				14D286692111DB0C0082F3BA /* BussinessDescriptionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -849,6 +855,7 @@
 				5786860420C480A60002C67B /* ResetPasswordViewController.swift in Sources */,
 				5786885320C4A8920002C67B /* CountryPicker.m in Sources */,
 				140544DB20D7F6E50042E70F /* UICollectionViewCell.swift in Sources */,
+				148E77EC2114E0A500683027 /* businessCategories.swift in Sources */,
 				14CC8C8620C8A03D000319B0 /* NSlayoutConstraint.swift in Sources */,
 				14C05AB520E01EDD0096C73C /* SectionHeaderView.swift in Sources */,
 				144BD89720E82B2F0068D561 /* ImageCell.swift in Sources */,
@@ -869,6 +876,7 @@
 				5786872520C481010002C67B /* DateHelper.swift in Sources */,
 				14D7F38820E1226000CF6E4B /* FiltersViewController.swift in Sources */,
 				14160BE820E3D840004CEA7D /* Filter.swift in Sources */,
+				14D2866A2111DB0C0082F3BA /* BussinessDescriptionViewController.swift in Sources */,
 				14B1B88E20DEF17C00D86536 /* CustomLayoutAttributes.swift in Sources */,
 				1442435621064CE300F479B2 /* NearByFilterViewController.swift in Sources */,
 				14CC8C8820C8A03D000319B0 /* XUITextField.swift in Sources */,

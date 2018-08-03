@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol filterCellProtocol {
-    func removeFilter(tag:Int)
+    func removeFilter(filter:categoriesFilter)
 }
 
 class filtterCell: UICollectionViewCell {
@@ -19,6 +19,17 @@ class filtterCell: UICollectionViewCell {
     
     
     var delegate:filterCellProtocol?
+    
+    var filter:categoriesFilter?{
+        didSet{
+            guard let filter = filter else{return}
+            if let Ftitle = filter.title{
+                self.title = Ftitle
+            }
+        }
+    }
+    
+    var filtervalue:filterValues?
     
     var title:String = ""{
         didSet{
@@ -38,12 +49,10 @@ class filtterCell: UICollectionViewCell {
     func setupView(){
         self.makerounded()
         self.addShadow()
-     
     }
 
     @IBAction func clear(_ sender: UIButton) {
-        delegate?.removeFilter(tag:self.tag)
-        
+        delegate?.removeFilter(filter: self.filter!)
     }
     
     

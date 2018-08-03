@@ -14,14 +14,14 @@ class XUILabel:UILabel{
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        if self.tag == -1{
-            self.font = AppFonts.xSmall
-        }else if self.tag > -1{
-            self.font = AppFonts.normal
-        }else{
-            self.font = UIFont.systemFont(ofSize: 10)
-        }
-        
+//        if self.tag == -1{
+//            self.font = AppFonts.xSmall
+//        }else if self.tag > -1{
+//            self.font = AppFonts.normal
+//        }else{
+//            self.font = UIFont.systemFont(ofSize: 10)
+//        }
+//        
         
             self.text = self.text?.localized
        

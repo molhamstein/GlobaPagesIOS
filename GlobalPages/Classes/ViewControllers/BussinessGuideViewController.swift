@@ -35,7 +35,7 @@ enum ControllerType{
         case .bussinessGuide:
             return false
         case .nearBy:
-            return false
+            return true
         case .pharmacy:
             return true
         }
@@ -46,7 +46,7 @@ enum ControllerType{
         
         switch self {
         case .bussinessGuide:
-            ActionShowFilters.execute()
+            ActionShowFilters.execute(type: .Category)
         case .nearBy:
             ActionShowNearByFilters.execute()
         default:
@@ -83,7 +83,7 @@ class BussinessGuideViewController: AbstractController {
     
     var bussinessGuideListCellId = "BussinessGuidListCell"
     static var filtterCellId = "filtterCell"
-    var filters:[String] = ["all Cities","all Ads"]
+    var filters:[categoriesFilter] = []
     
     
      //  <wpt lat="33.523644063907177326200326206162571907" lon="36.294101366357040205912198871374130249">
@@ -111,7 +111,10 @@ class BussinessGuideViewController: AbstractController {
         
         customizeMap()
 
-        
+        if controllerType == .nearBy{
+            controllerType.showFilters()
+            
+        }
     }
     
     
@@ -169,10 +172,33 @@ class BussinessGuideViewController: AbstractController {
 
     
     func getFilters(){
-        filters[0] = filter.selectedCity
-        filters[1] = filter.selectedCategory
-        filtterCollectionView.reloadData()
+        filters.removeAll()
+        if let city = Filter.bussinesGuid.city{
+            filters.append(city)
+            if let area = Filter.bussinesGuid.area{
+                filters.append(area)
+            }
+        }else{
+            let cat = categoriesFilter()
+            cat.titleAr = "كل المدن"
+            cat.titleEn = "all cities"
+            filters.append(cat)
+        }
+        
+        if let cat = Filter.bussinesGuid.category{
+            filters.append(cat)
+            if let subCat = Filter.bussinesGuid.subCategory{
+                filters.append(subCat)
+            }
+        }else{
+            let cat = categoriesFilter()
+            cat.titleAr = "كل الاعلانات"
+            cat.titleEn = "all Ads"
+            filters.append(cat)
+        }
+        filtterCollectionView?.reloadData()
     }
+    
     
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
@@ -204,6 +230,7 @@ class BussinessGuideViewController: AbstractController {
         let location = CLLocation(latitude: LocationHelper.shared.myLocation.lat!, longitude: LocationHelper.shared.myLocation.long!)
         let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
         self.mapView.setRegion(viewRegion, animated: true)
+        show3NearBy()
     }
     
     
@@ -269,7 +296,7 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
         }
         if collectionView == filtterCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.filtterCellId, for: indexPath) as! filtterCell
-            cell.title = filters[indexPath.item]
+            cell.filter = filters[indexPath.item]
             cell.tag = indexPath.item
             cell.delegate = self
             return cell
@@ -299,7 +326,7 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
             return CGSize(width: self.bussinessGuideCollectionView.bounds.width, height: 72)
         }
         if collectionView == filtterCollectionView {
-            return CGSize(width: filters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
         }
         
         
@@ -324,15 +351,11 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
 
 // filter cell Delegate
 extension BussinessGuideViewController:filterCellProtocol{
-    
-    func removeFilter(tag:Int) {
-        if tag == 1{
-            filter.clearCategory()
-        }else if tag == 0{
-            filter.clearCity()
-        }
+    func removeFilter(filter: categoriesFilter) {
+        filter.filtervalue?.removeFilter(fltr: Filter.bussinesGuid)
         getFilters()
     }
+
     
 }
 

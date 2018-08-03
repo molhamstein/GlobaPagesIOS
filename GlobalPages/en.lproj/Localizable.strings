@@ -160,3 +160,11 @@
 "ON_DUTY_PHARMACY_TITLE"                = "On Duty Pharmacies";
 
 
+// bussiness guide description
+"ADS_DESC_SUB_CATEGORY_LABEL"         = "Sub Category";
+"ADS_DESC_CATEGORY_LABEL"             = "Category";
+"ADS_DESC_SERVICES_PRODUCTS"          = "Products";
+
+// Near by filters
+"NEAR_BY_FILTERS_INFO"                                      = "select what you are looking for and we will find you top 3 nearby ones!";
+

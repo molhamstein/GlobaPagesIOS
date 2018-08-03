@@ -38,6 +38,7 @@ class filterCell2: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var backGroundView: UIView!
     
+    var filtervalue:filterValues?
     
     override var isSelected: Bool {
         didSet {
@@ -45,6 +46,14 @@ class filterCell2: UICollectionViewCell {
         }
     }
     
+    var filter:categoriesFilter?{
+        didSet{
+            guard let filter = filter else{return}
+            if let Ftitle = filter.title{
+                self.title = Ftitle
+            }
+        }
+    }
     
     var title:String = ""{
         

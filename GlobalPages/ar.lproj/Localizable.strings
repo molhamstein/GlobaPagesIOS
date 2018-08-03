@@ -145,3 +145,11 @@
 "BUSSINESS_GUIDE_TITLE"                 = "دليل الاعمال";
 "NEAR_BY_TITLE"                         = "البحث حولي";
 "ON_DUTY_PHARMACY_TITLE"                = "الصيدليات المناوبات";
+
+// bussiness guid description
+"ADS_DESC_SUB_CATEGORY_LABEL"         = "اصناف فرعية";
+"ADS_DESC_CATEGORY_LABEL"             = "اصناف";
+"ADS_DESC_SERVICES_PRODUCTS"          = "المنتجات";
+
+// Near by filters
+"NEAR_BY_FILTERS_INFO"                = "select what you are looking for and we will find you top 3 nearby ones!";

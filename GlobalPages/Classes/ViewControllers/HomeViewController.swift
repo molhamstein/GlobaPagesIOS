@@ -44,7 +44,9 @@ class HomeViewController: AbstractController {
     static var filtterCellId = "filtterCell"
     
     
-    var filters:[String] = ["all Cities","all Ads"]
+    var categoryfiltertype:categoryFilterType = .Home
+    
+    var filters:[categoriesFilter] = []
     
     // Ads View
     @IBOutlet weak var adsView: UIView!
@@ -118,12 +120,31 @@ class HomeViewController: AbstractController {
     }
     
     func getFilters(){
+        filters.removeAll()
+        if let city = categoryfiltertype.filter.city{
+            filters.append(city)
+            if let area = categoryfiltertype.filter.area{
+                filters.append(area)
+            }
+        }else{
+            let cat = categoriesFilter()
+            cat.titleAr = "كل المدن"
+            cat.titleEn = "all cities"
+             filters.append(cat)
+        }
         
-        filters[0] = filter.selectedCity
-        filters[1] = filter.selectedCategory
+        if let cat = categoryfiltertype.filter.category{
+            filters.append(cat)
+            if let subCat = categoryfiltertype.filter.subCategory{
+                filters.append(subCat)
+            }
+        }else{
+            let cat = categoriesFilter()
+            cat.titleAr = "كل الاعلانات"
+            cat.titleEn = "all Ads"
+            filters.append(cat)
+        }
         filtterCollectionView?.reloadData()
-
-        
     }
     
     func getBusinessGuides(){
@@ -212,7 +233,7 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         }
         if collectionView == filtterCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.filtterCellId, for: indexPath) as! filtterCell
-            cell.title = filters[indexPath.item]
+            cell.filter = filters[indexPath.item]
             cell.tag = indexPath.item
             cell.delegate = self
             return cell
@@ -239,7 +260,7 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == filtterCollectionView {
-            ActionShowFilters.execute()
+            ActionShowFilters.execute(type: .Home)
         }
         if collectionView == adsCollectionView {
             ActionShowAdsDescrption.execute()
@@ -256,7 +277,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
             return CGSize(width: self.view.frame.width * 0.7, height: self.businessGuidView!.frame.height - 16)
         }
         if collectionView == filtterCollectionView {
-           return CGSize(width: filters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+           return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
         }
         if collectionView ==  adsCollectionView{
          return CGSize(width: self.view.frame.width * 0.5 - 16, height: getCellContentSize(indexPath: indexPath))
@@ -403,23 +424,13 @@ extension HomeViewController : PinterestLayoutDelegate {
     
 }
 
-
-
 // filter cell Delegate
 extension HomeViewController:filterCellProtocol{
-    
-    func removeFilter(tag:Int) {
-        if tag == 1{
-            filter.clearCategory()
-        }else if tag == 0{
-            filter.clearCity()
-        }
+    func removeFilter(filter: categoriesFilter) {
+        filter.filtervalue?.removeFilter(fltr: Filter.home)
         getFilters()
     }
-    
 }
-
-
 
 
 // header View Delegate
