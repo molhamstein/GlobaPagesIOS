@@ -107,6 +107,7 @@ class FiltersViewController: AbstractController {
             self.applyButton.applyGradient(colours: [AppColors.yellowDark,AppColors.yellowLight], direction: .diagonal)
         }
         self.isInitialized = true
+        self.showNavBackButton = true
     }
     
     
@@ -115,10 +116,11 @@ class FiltersViewController: AbstractController {
         self.containerView.animateIn(mode: .animateInFromBottom, delay: 0.3)
         // shadowAppFonts
         self.containerView.dropShadow()
+        
     }
 
     override func customizeView() {
-        self.showNavBackButton = true
+        
         
         // set text
         self.setNavBarTitle(title: "FILTER_VIEW_TITLE".localized)

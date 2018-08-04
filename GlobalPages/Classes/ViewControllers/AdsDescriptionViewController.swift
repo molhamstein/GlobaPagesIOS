@@ -65,7 +65,7 @@ class AdsDescriptionViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.showNavBackButton = true
+
         
         let nib = UINib(nibName: cellID, bundle: nil)
         imageCollectionView.register(nib, forCellWithReuseIdentifier: cellID)
@@ -116,7 +116,7 @@ class AdsDescriptionViewController: AbstractController {
             $0.alpha  = 0.5
         }
         
-        
+        self.showNavBackButton = true
         self.tagViewWidth = (self.categoryLable.text?.getLabelWidth(font: AppFonts.normalBold))! + CGFloat(54)
         self.subTagViewWidth = (self.subCategoryLabel.text?.getLabelWidth(font: AppFonts.smallBold))! + CGFloat(32)
     }

@@ -87,7 +87,7 @@ class LoginViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        self.showNavBackButton = true
+        
         
 //        if let m = DataStore.shared.me {
 //             self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
@@ -100,7 +100,7 @@ class LoginViewController: AbstractController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+        self.showNavBackButton = true
     }
     
     

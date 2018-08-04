@@ -107,7 +107,7 @@ class BussinessGuideViewController: AbstractController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.showNavBackButton = true
+        
         
         customizeMap()
 
@@ -168,6 +168,8 @@ class BussinessGuideViewController: AbstractController {
         self.tagView.layer.cornerRadius = 12
         // gradiant
         self.tagView.applyGradient(colours: [AppColors.yellowDark,AppColors.yellowLight], direction: .diagonal)
+        
+        self.showNavBackButton = true
     }
 
     

@@ -67,7 +67,7 @@ class BussinessDescriptionViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.showNavBackButton = true
+        
         
         let nib = UINib(nibName: cellID, bundle: nil)
         imageCollectionView.register(nib, forCellWithReuseIdentifier: cellID)
@@ -114,7 +114,7 @@ class BussinessDescriptionViewController: AbstractController {
             $0.transform = CGAffineTransform(scaleX: 2, y: 2)
             $0.alpha  = 0.5
         }
-
+        self.showNavBackButton = true
     }
     
     
