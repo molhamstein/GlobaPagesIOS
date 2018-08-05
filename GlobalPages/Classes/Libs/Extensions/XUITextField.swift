@@ -19,15 +19,15 @@ class XUITextField:UITextField{
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        if tag > 0{
-            self.appStyle()
-        }
+        
+        self.appStyle()
+        
         self.placeholder = self.placeholder?.localized
-        if tag > 1{
-            self.font = AppFonts.normal
-        }else{
-            self.font = AppFonts.xSmall
-        }
+//        if tag > 1{
+//            self.font = AppFonts.normal
+//        }else{
+//            self.font = AppFonts.xSmall
+//        }
         
     }
 

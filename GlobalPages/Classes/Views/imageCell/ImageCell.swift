@@ -8,10 +8,18 @@
 
 import UIKit
 
+protocol ImageCellDelegete {
+    func deleteImage()
+}
+
+
 class ImageCell: UICollectionViewCell {
 
     @IBOutlet weak var iamgeView: UIImageView!
     
+    @IBOutlet weak var deleteButton: UIButton!
+    
+    var delegate:ImageCellDelegete?
     
     var image:UIImage?{
         
@@ -27,5 +35,14 @@ class ImageCell: UICollectionViewCell {
         super.awakeFromNib()
         
     }
+    
+    
+    func editMode(){
+        self.deleteButton.isHidden = false
+        self.cornerRadius = 5
+    }
 
+    @IBAction func remove(_ sender: UIButton) {
+        delegate?.deleteImage()
+    }
 }

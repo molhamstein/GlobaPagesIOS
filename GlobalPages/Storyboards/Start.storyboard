@@ -969,6 +969,11 @@ ZGVhbHMgYXJyb3VuZA
                                     <constraint firstItem="vRn-iW-AIp" firstAttribute="centerX" secondItem="hnH-Y7-82r" secondAttribute="centerX" id="y5K-Ft-Ru0"/>
                                     <constraint firstItem="s8a-qH-E1g" firstAttribute="centerX" secondItem="hnH-Y7-82r" secondAttribute="centerX" id="zTw-cp-Nkx"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="8vQ-L0-qBe"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -108,7 +108,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBy-qF-wY3">
-                        <rect key="frame" x="8" y="141" width="146" height="319"/>
+                        <rect key="frame" x="8" y="141" width="146" height="198.5"/>
                         <string key="text">Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas</string>
                         <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
                         <nil key="textColor"/>
