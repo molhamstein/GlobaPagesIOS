@@ -14,6 +14,7 @@ enum ViewType {
     case signup
     case countryV
     case socialLoginStep2
+    case signupSuccess
 }
 
 class LoginViewController: AbstractController {
@@ -70,6 +71,13 @@ class LoginViewController: AbstractController {
     @IBOutlet weak var countryView: UIView!
     @IBOutlet weak var birthDatePicker: UIDatePicker!
     
+    // signup success
+    @IBOutlet weak var signupSucessView: UIView!
+    @IBOutlet weak var signupSucessTitleLabel: UILabel!
+    @IBOutlet weak var signupSucessSubtitleLabel: UILabel!
+    @IBOutlet weak var signupSucessGoHomeButton: UIButton!
+    @IBOutlet weak var signupSucessRegisterBusinessButton: VobbleButton!
+    
     // Data
     var tempUserInfoHolder: AppUser = AppUser()
     var password: String = ""
@@ -87,8 +95,6 @@ class LoginViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
-        
 //        if let m = DataStore.shared.me {
 //             self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
 //        }
@@ -120,9 +126,11 @@ class LoginViewController: AbstractController {
             self.signupView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.signupView.frame.height)
             self.loginView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.loginView.frame.height)
             self.countryView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.countryView.frame.height)
+            self.signupSucessView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.signupSucessView.frame.height)
                         
             dispatch_main_after(0.7) {
                 self.showView(withType: .login)
+                //self.showView(withType: .signupSuccess)
             }
         }
         //lvEmailLabel.font = AppFonts.big
@@ -135,6 +143,7 @@ class LoginViewController: AbstractController {
             self.mainView.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
             self.loginButton.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
             self.signupButton.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
+            self.signupSucessRegisterBusinessButton.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
         }
         self.isInitialized = true
     }
@@ -169,6 +178,11 @@ class LoginViewController: AbstractController {
         svLoginButton.titleLabel?.font = AppFonts.normalBold
         svLoginPrefixLabel.font = AppFonts.normal
         selectCountryButton.titleLabel?.font = AppFonts.big
+        // signup sucess
+        signupSucessTitleLabel.font = AppFonts.bigBold
+        signupSucessSubtitleLabel.font = AppFonts.normal
+        signupSucessRegisterBusinessButton.titleLabel?.font = AppFonts.normalBold
+        signupSucessGoHomeButton.titleLabel?.font = AppFonts.normal
         
         lvEmailLabel.text = "LOGIN_EMAIL_TITLE".localized
         lvEmailTextField.placeholder = "LOGIN_EMAIL_PLACEHOLDER".localized
@@ -198,6 +212,11 @@ class LoginViewController: AbstractController {
         signupButton.setTitle("SIGNUP_SIGNUP_BTN".localized, for: .normal)
         svLoginPrefixLabel.text = "SIGNUP_LOGIN_BTN_PREFIX".localized
         selectCountryButton.setTitle("SIGNUP_BIRTHDATE_PLACEHOLDER".localized, for: .normal)
+        
+        signupSucessTitleLabel.text = "Welcome to GlobalPages".localized
+        signupSucessSubtitleLabel.text = "SIGNUP_SUCCESS_SUBTITLE".localized
+        signupSucessRegisterBusinessButton.setTitle("SIGNUP_SUCCESS_REGISTER_BUSINESS".localized, for: .normal)
+        signupSucessGoHomeButton.setTitle("SIGNUP_SUCCESS_GO_HOME".localized, for: .normal)
         
         birthDatePicker.addTarget(self, action: #selector(birthdateChanged(_:)), for: .valueChanged)
         
@@ -326,8 +345,9 @@ class LoginViewController: AbstractController {
                         // login success
                         if (isSuccess) {
                         
-                            self.loginButton.isLoading = false
-                            self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
+                            self.signupButton.isLoading = false
+                            self.hideView(withType: .signup)
+                            self.showView(withType: .signupSuccess)
                         
                         } else {
                             self.showMessage(message:(error?.type.errorMessage)!, type: .error)
@@ -343,8 +363,18 @@ class LoginViewController: AbstractController {
         }
     }
     
+    @IBAction func goBackToHome(_ sender: Any) {
+        //self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
+        //self.popOrDismissViewControllerAnimated(animated: true)
+        self.navigationController?.dismiss(animated: true, completion: {})
+    }
+    
     @IBAction func CancelBtnPressed(_ sender: Any) {
         hideView(withType: .countryV)
+    }
+    
+    @IBAction func registerBusinessPressed(_ sender: Any) {
+        //hideView(withType: .countryV)
     }
     
     @IBAction func pickCountryPressed(_ sender: Any) {
@@ -530,6 +560,12 @@ class LoginViewController: AbstractController {
             }, completion: {(finished: Bool) in
                
             })
+        case .signupSuccess :
+            UIView.animate(withDuration: 0.1, delay:0.0, options: UIViewAnimationOptions.curveLinear, animations: {
+                self.signupSucessView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 0)
+            }, completion: {(finished: Bool) in
+                self.viewType = .signupSuccess
+            })
         case .socialLoginStep2 :
 //            socialInfoView.dropShadow()
 //            UIView.animate(withDuration: 0.4, delay:0.0, options: UIViewAnimationOptions.curveLinear, animations: {
@@ -567,6 +603,8 @@ class LoginViewController: AbstractController {
 //            }, completion: {(finished: Bool) in
 //
 //            })
+            break
+        default:
             break
         }
     }

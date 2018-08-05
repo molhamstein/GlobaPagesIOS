@@ -63,6 +63,10 @@
 "SIGNUP_PRIVACY"                         = "Privacy Policy";
 "SIGNUP_TERMS"                           = "Terms Of Service";
 "SIGNUP_AND"                             = " and ";
+"SIGNUP_SUCCESS_TITLE"                   = "Welcome to GlobalPages";
+"SIGNUP_SUCCESS_SUBTITLE"                = "you can also Register your business to benifet from the advertising capabilities";
+"SIGNUP_SUCCESS_GO_HOME"                 = "Go to Home";
+"SIGNUP_SUCCESS_REGISTER_BUSINESS"       = "Register My Business";
 
 // Start screen
 "START_EMAIL_TITLE"                     = "ENTER EMAIL";

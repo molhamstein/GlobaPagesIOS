@@ -62,6 +62,11 @@
 "SIGNUP_PRIVACY"                         = "سياسه الخصوصية";
 "SIGNUP_TERMS"                           = "شروط الاستخدام";
 "SIGNUP_AND"                             = " و ";
+"SIGNUP_SUCCESS_TITLE"                   = "أهلا بك";
+"SIGNUP_SUCCESS_SUBTITLE"                = "يمكنك ايضا ان تقوم بتسجيل عملك الخاص معنا لتستفيد من اعلاناتنا";
+"SIGNUP_SUCCESS_GO_HOME"                 = "العودة الى الرئيسية";
+"SIGNUP_SUCCESS_REGISTER_BUSINESS"       = "اضافة عملك";
+
 
 // Start screen
 "START_EMAIL_TITLE"                     = "أدخل البريد الالكتروني";
