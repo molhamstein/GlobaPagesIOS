@@ -411,11 +411,9 @@ extension HomeViewController : PinterestLayoutDelegate {
         if adds[indexPath.item].type == .image{
             height += 100
         }else{
-            
             height += self.adds[indexPath.item].title.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))
             height += 16
         }
-        
         height += (self.adds[indexPath.item].address.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
         height += (self.adds[indexPath.item].info.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
         height += (32)

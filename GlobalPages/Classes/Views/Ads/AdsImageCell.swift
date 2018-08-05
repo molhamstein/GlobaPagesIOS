@@ -44,7 +44,6 @@ class AdsImageCell: UICollectionViewCell {
             self.tagLabel.text = add.tag
             self.titleLabel.text = add.title
             self.addressLabel.text = add.address
-            
         }
         
         

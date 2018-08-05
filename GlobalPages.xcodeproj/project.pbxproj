@@ -19,6 +19,7 @@
 		144BD89A20E82C430068D561 /* AdsDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144BD89920E82C430068D561 /* AdsDescriptionViewController.swift */; };
 		145CF7D52105003600126046 /* BussinessGuidListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145CF7D32105003600126046 /* BussinessGuidListCell.swift */; };
 		145CF7D62105003600126046 /* BussinessGuidListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145CF7D42105003600126046 /* BussinessGuidListCell.xib */; };
+		145FCE79211649A200E42AE7 /* NewBussinesesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145FCE78211649A200E42AE7 /* NewBussinesesViewController.swift */; };
 		1462CF9720E1801300ED63A2 /* Pods_GlobalPages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1462CF9820E1801300ED63A2 /* Pods_GlobalPages.framework */; };
 		1463C44C20D845D100156E84 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1463C44B20D845D100156E84 /* MenuView.xib */; };
 		1463C44E20D845E100156E84 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1463C44D20D845E100156E84 /* MenuView.swift */; };
@@ -71,6 +72,9 @@
 		14D2866A2111DB0C0082F3BA /* BussinessDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D286692111DB0C0082F3BA /* BussinessDescriptionViewController.swift */; };
 		14D7F38820E1226000CF6E4B /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D7F38720E1225F00CF6E4B /* FiltersViewController.swift */; };
 		14DAFCA92103B0BC00899872 /* BussinessGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DAFCA82103B0BC00899872 /* BussinessGuideViewController.swift */; };
+		14FF478F21162F1500E6A44C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF478E21162F1500E6A44C /* ProfileViewController.swift */; };
+		14FF47912116338800E6A44C /* NewAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF47902116338800E6A44C /* NewAdViewController.swift */; };
+		14FF479321163ABA00E6A44C /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF479221163ABA00E6A44C /* UITextView.swift */; };
 		578685EC20C47FD30002C67B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578685EB20C47FD30002C67B /* AppDelegate.swift */; };
 		578685EE20C47FD30002C67B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578685ED20C47FD30002C67B /* HomeViewController.swift */; };
 		578685F120C47FD30002C67B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578685EF20C47FD30002C67B /* Main.storyboard */; };
@@ -134,6 +138,7 @@
 		144BD89920E82C430068D561 /* AdsDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsDescriptionViewController.swift; sourceTree = "<group>"; };
 		145CF7D32105003600126046 /* BussinessGuidListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BussinessGuidListCell.swift; sourceTree = "<group>"; };
 		145CF7D42105003600126046 /* BussinessGuidListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BussinessGuidListCell.xib; sourceTree = "<group>"; };
+		145FCE78211649A200E42AE7 /* NewBussinesesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBussinesesViewController.swift; sourceTree = "<group>"; };
 		1462CF9820E1801300ED63A2 /* Pods_GlobalPages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_GlobalPages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1463C44B20D845D100156E84 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 		1463C44D20D845E100156E84 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -186,6 +191,9 @@
 		14D286692111DB0C0082F3BA /* BussinessDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BussinessDescriptionViewController.swift; sourceTree = "<group>"; };
 		14D7F38720E1225F00CF6E4B /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		14DAFCA82103B0BC00899872 /* BussinessGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BussinessGuideViewController.swift; sourceTree = "<group>"; };
+		14FF478E21162F1500E6A44C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		14FF47902116338800E6A44C /* NewAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAdViewController.swift; sourceTree = "<group>"; };
+		14FF479221163ABA00E6A44C /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		578685E820C47FD30002C67B /* GlobalPages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalPages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		578685EB20C47FD30002C67B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		578685ED20C47FD30002C67B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -442,6 +450,7 @@
 				14CC8C7220C8A038000319B0 /* XUIButton.swift */,
 				14CC8C7A20C8A03B000319B0 /* XUILabel.swift */,
 				14CC8C6E20C8A037000319B0 /* XUITextField.swift */,
+				14FF479221163ABA00E6A44C /* UITextView.swift */,
 				5786861520C481000002C67B /* PassthroughView.m */,
 				140544D820D7F1BC0042E70F /* PinterestLayout.swift */,
 				140544DA20D7F6E50042E70F /* UICollectionViewCell.swift */,
@@ -610,6 +619,9 @@
 				14DAFCA82103B0BC00899872 /* BussinessGuideViewController.swift */,
 				1442435521064CE300F479B2 /* NearByFilterViewController.swift */,
 				14D286692111DB0C0082F3BA /* BussinessDescriptionViewController.swift */,
+				14FF478E21162F1500E6A44C /* ProfileViewController.swift */,
+				14FF47902116338800E6A44C /* NewAdViewController.swift */,
+				145FCE78211649A200E42AE7 /* NewBussinesesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -830,6 +842,7 @@
 				5786860020C480910002C67B /* LoginViewController.swift in Sources */,
 				14160BE520E3C72C004CEA7D /* filterCell2.swift in Sources */,
 				14CC8C9520C8A03D000319B0 /* UIApplication.swift in Sources */,
+				14FF479321163ABA00E6A44C /* UITextView.swift in Sources */,
 				14CC8C8920C8A03D000319B0 /* RoundedButton.swift in Sources */,
 				5786872620C481010002C67B /* LocationHelper.swift in Sources */,
 				14CC8C9C20C8A03E000319B0 /* Collection.swift in Sources */,
@@ -844,6 +857,7 @@
 				14C05AB320E01EC80096C73C /* SectionFooterView.swift in Sources */,
 				578687C720C481800002C67B /* ReportType.swift in Sources */,
 				5786860220C4809E0002C67B /* StartViewController.swift in Sources */,
+				145FCE79211649A200E42AE7 /* NewBussinesesViewController.swift in Sources */,
 				14CC8C9120C8A03D000319B0 /* UITabBarItem.swift in Sources */,
 				14CC8C8420C8A03D000319B0 /* UIBarItemButton.swift in Sources */,
 				14CC8C9420C8A03D000319B0 /* XUILabel.swift in Sources */,
@@ -860,6 +874,7 @@
 				14C05AB520E01EDD0096C73C /* SectionHeaderView.swift in Sources */,
 				144BD89720E82B2F0068D561 /* ImageCell.swift in Sources */,
 				14CC8CA920C905FC000319B0 /* BusinessGuide.swift in Sources */,
+				14FF47912116338800E6A44C /* NewAdViewController.swift in Sources */,
 				14CC8CA120C8FD66000319B0 /* ShadowView.swift in Sources */,
 				5786879F20C481480002C67B /* ApiManager.swift in Sources */,
 				5786872720C481010002C67B /* UIImage+Gif.swift in Sources */,
@@ -881,6 +896,7 @@
 				1442435621064CE300F479B2 /* NearByFilterViewController.swift in Sources */,
 				14CC8C8820C8A03D000319B0 /* XUITextField.swift in Sources */,
 				578687C520C481800002C67B /* Category.swift in Sources */,
+				14FF478F21162F1500E6A44C /* ProfileViewController.swift in Sources */,
 				5786879820C481010002C67B /* VobbleButton.swift in Sources */,
 				578685EE20C47FD30002C67B /* HomeViewController.swift in Sources */,
 				578687EC20C482560002C67B /* AbstractNibView.swift in Sources */,
