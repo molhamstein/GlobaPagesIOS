@@ -101,6 +101,73 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnH-Y7-82r" userLabel="Main View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRn-iW-AIp">
+                                        <rect key="frame" x="-0.66666666666665719" y="73" width="375.33333333333326" height="739"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Umg-Kt-eIL">
+                                                <rect key="frame" x="167" y="143.33333333333334" width="41.666666666666657" height="20.333333333333343"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.24705882352941178" green="0.27058823529411763" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_reg_business" translatesAutoresizingMaskIntoConstraints="NO" id="qS3-r5-umn">
+                                                <rect key="frame" x="112.66666666666669" y="183.66666666666669" width="150" height="150"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="150" id="K2J-pz-nlA"/>
+                                                    <constraint firstAttribute="height" constant="150" id="c9q-Rv-nWP"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brt-md-HSR">
+                                                <rect key="frame" x="50" y="363.66666666666669" width="275.33333333333331" height="20.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.2470588235" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzc-Px-XRm" customClass="VobbleButton" customModule="GlobalPages" customModuleProvider="target">
+                                                <rect key="frame" x="84.666666666666686" y="575" width="206" height="44"/>
+                                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="Ci0-PY-ufV"/>
+                                                    <constraint firstAttribute="width" constant="206" id="rcX-v3-t7k"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Antipasto-ExtraBold" family="Antipasto" pointSize="17"/>
+                                                <state key="normal" title="Login">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="Shadow" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="gradient" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="registerBusinessPressed:" destination="5hf-2z-PY5" eventType="touchUpInside" id="ad0-9M-j4n"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUK-wC-93B">
+                                                <rect key="frame" x="164.66666666666666" y="659" width="46" height="30"/>
+                                                <state key="normal" title="Button">
+                                                    <color key="titleColor" red="0.2470588235" green="0.27058823529999998" blue="0.2784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="goBackToHome:" destination="5hf-2z-PY5" eventType="touchUpInside" id="NBT-C6-6sF"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="WUK-wC-93B" firstAttribute="top" secondItem="Hzc-Px-XRm" secondAttribute="bottom" constant="40" id="1Cu-ar-g1R"/>
+                                            <constraint firstItem="brt-md-HSR" firstAttribute="leading" secondItem="vRn-iW-AIp" secondAttribute="leading" constant="50" id="31j-a7-4fX"/>
+                                            <constraint firstItem="Hzc-Px-XRm" firstAttribute="centerX" secondItem="vRn-iW-AIp" secondAttribute="centerX" id="3lU-d1-vek"/>
+                                            <constraint firstItem="brt-md-HSR" firstAttribute="centerX" secondItem="vRn-iW-AIp" secondAttribute="centerX" id="BNY-dH-ltV"/>
+                                            <constraint firstAttribute="bottom" secondItem="WUK-wC-93B" secondAttribute="bottom" constant="50" id="DOa-Se-ymS"/>
+                                            <constraint firstItem="brt-md-HSR" firstAttribute="top" secondItem="qS3-r5-umn" secondAttribute="bottom" constant="30" id="H7y-ne-ncr"/>
+                                            <constraint firstItem="WUK-wC-93B" firstAttribute="centerX" secondItem="vRn-iW-AIp" secondAttribute="centerX" id="NxI-G1-N9n"/>
+                                            <constraint firstItem="Umg-Kt-eIL" firstAttribute="centerX" secondItem="vRn-iW-AIp" secondAttribute="centerX" id="SlM-d9-eIo"/>
+                                            <constraint firstItem="qS3-r5-umn" firstAttribute="centerY" secondItem="vRn-iW-AIp" secondAttribute="centerY" multiplier="0.7" id="UyG-gN-nDN"/>
+                                            <constraint firstAttribute="trailing" secondItem="brt-md-HSR" secondAttribute="trailing" constant="50" id="dal-oC-xGx"/>
+                                            <constraint firstItem="qS3-r5-umn" firstAttribute="top" secondItem="Umg-Kt-eIL" secondAttribute="bottom" constant="20" id="hNa-iR-5YX"/>
+                                            <constraint firstItem="qS3-r5-umn" firstAttribute="centerX" secondItem="vRn-iW-AIp" secondAttribute="centerX" id="tCN-4x-4tw"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJU-ES-Qrr">
                                         <rect key="frame" x="19" y="73" width="337.66666666666669" height="739"/>
                                         <subviews>
@@ -729,16 +796,16 @@ ZGVhbHMgYXJyb3VuZA
                                                                         <rect key="frame" x="0.0" y="138" width="337.66666666666669" height="137.66666666666663"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="id2-bd-yau">
-                                                                                <rect key="frame" x="75.333333333333329" y="0.66666666666662877" width="187.66666666666669" height="29"/>
+                                                                                <rect key="frame" x="75.333333333333329" y="0.33333333333325754" width="187.66666666666669" height="29"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8v-lQ-m9i">
-                                                                                        <rect key="frame" x="0.0" y="0.33333333333337123" width="142.66666666666666" height="29"/>
+                                                                                        <rect key="frame" x="0.0" y="0.33333333333325754" width="142.66666666666666" height="29"/>
                                                                                         <fontDescription key="fontDescription" name="MullerRegular" family="Muller" pointSize="17"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2W3-ex-H5e">
-                                                                                        <rect key="frame" x="142.66666666666666" y="0.33333333333337123" width="45" height="29"/>
+                                                                                        <rect key="frame" x="142.66666666666666" y="0.33333333333325754" width="45" height="29"/>
                                                                                         <fontDescription key="fontDescription" name="MullerBold" family="Muller" pointSize="17"/>
                                                                                         <state key="normal" title="Login">
                                                                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -885,17 +952,21 @@ ZGVhbHMgYXJyb3VuZA
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="vRn-iW-AIp" firstAttribute="width" secondItem="hnH-Y7-82r" secondAttribute="width" id="0d6-aX-qfP"/>
                                     <constraint firstAttribute="bottom" secondItem="s8a-qH-E1g" secondAttribute="bottom" id="GFI-i2-a1n"/>
                                     <constraint firstItem="ZJU-ES-Qrr" firstAttribute="centerX" secondItem="hnH-Y7-82r" secondAttribute="centerX" id="MEY-Es-5nk"/>
                                     <constraint firstAttribute="bottom" secondItem="ZJU-ES-Qrr" secondAttribute="bottom" id="SCC-4Z-xqw"/>
                                     <constraint firstItem="s8a-qH-E1g" firstAttribute="height" secondItem="hnH-Y7-82r" secondAttribute="height" multiplier="0.91" id="Se8-Hb-Iy7"/>
                                     <constraint firstAttribute="bottom" secondItem="8vQ-L0-qBe" secondAttribute="bottom" id="d4R-XT-bXE"/>
                                     <constraint firstItem="s8a-qH-E1g" firstAttribute="width" secondItem="hnH-Y7-82r" secondAttribute="width" multiplier="0.9" id="dld-ga-FHD"/>
+                                    <constraint firstItem="vRn-iW-AIp" firstAttribute="height" secondItem="hnH-Y7-82r" secondAttribute="height" multiplier="0.91" id="eF7-qc-Jii"/>
                                     <constraint firstAttribute="trailing" secondItem="8vQ-L0-qBe" secondAttribute="trailing" id="gD5-d4-ymm"/>
                                     <constraint firstItem="8vQ-L0-qBe" firstAttribute="leading" secondItem="hnH-Y7-82r" secondAttribute="leading" id="jWI-uR-jeY"/>
                                     <constraint firstItem="8vQ-L0-qBe" firstAttribute="top" secondItem="hnH-Y7-82r" secondAttribute="top" id="jjc-Gp-kOX"/>
+                                    <constraint firstAttribute="bottom" secondItem="vRn-iW-AIp" secondAttribute="bottom" id="k8F-E5-ivP"/>
                                     <constraint firstItem="ZJU-ES-Qrr" firstAttribute="height" secondItem="hnH-Y7-82r" secondAttribute="height" multiplier="0.91" id="lTV-ZJ-uyT"/>
                                     <constraint firstItem="ZJU-ES-Qrr" firstAttribute="width" secondItem="hnH-Y7-82r" secondAttribute="width" multiplier="0.9" id="xnO-16-yKi"/>
+                                    <constraint firstItem="vRn-iW-AIp" firstAttribute="centerX" secondItem="hnH-Y7-82r" secondAttribute="centerX" id="y5K-Ft-Ru0"/>
                                     <constraint firstItem="s8a-qH-E1g" firstAttribute="centerX" secondItem="hnH-Y7-82r" secondAttribute="centerX" id="zTw-cp-Nkx"/>
                                 </constraints>
                                 <variation key="default">
@@ -939,6 +1010,11 @@ ZGVhbHMgYXJyb3VuZA
                         <outlet property="registerButton" destination="f71-6J-L8g" id="rsU-95-MFn"/>
                         <outlet property="selectCountryButton" destination="Qst-MH-DF5" id="VGz-eM-MjM"/>
                         <outlet property="signupButton" destination="x1o-9G-gWi" id="EK2-UX-OPW"/>
+                        <outlet property="signupSucessGoHomeButton" destination="WUK-wC-93B" id="jrd-PN-4IX"/>
+                        <outlet property="signupSucessRegisterBusinessButton" destination="Hzc-Px-XRm" id="EOs-z6-DfE"/>
+                        <outlet property="signupSucessSubtitleLabel" destination="brt-md-HSR" id="Ec3-9I-8UD"/>
+                        <outlet property="signupSucessTitleLabel" destination="Umg-Kt-eIL" id="srC-og-BEa"/>
+                        <outlet property="signupSucessView" destination="vRn-iW-AIp" id="bqS-s4-sCn"/>
                         <outlet property="signupView" destination="s8a-qH-E1g" id="hhv-TY-B7J"/>
                         <outlet property="svEmailLabel" destination="uZM-Ok-LxC" id="wV7-MQ-NMk"/>
                         <outlet property="svEmailTextField" destination="NNK-i1-mFQ" id="nwM-ph-zv2"/>
@@ -954,11 +1030,20 @@ ZGVhbHMgYXJyb3VuZA
                         <outlet property="termsOrLabel" destination="tqN-Io-00U" id="zwB-YV-4kp"/>
                         <outlet property="termsPrefixLabel" destination="TAQ-sb-CCy" id="Wqe-DW-Uav"/>
                         <segue destination="uvO-8I-ZUa" kind="show" identifier="loginHomeSegue" id="rhd-YC-Rxc"/>
+                        <segue destination="pId-ME-g2Y" kind="show" identifier="loginAddBusinessSegue" id="6uN-ta-yiE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EXa-8E-Ias" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="969.53125" y="242.57812499999997"/>
+        </scene>
+        <!--NewBussinesesViewControllerID-->
+        <scene sceneID="UQS-yg-gaD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="NewBussinesesViewControllerID" id="pId-ME-g2Y" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6tA-lE-Jos" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1905" y="-267"/>
         </scene>
         <!--Reset Password View Controller-->
         <scene sceneID="lyQ-d7-Q4u">
@@ -1155,6 +1240,7 @@ ZGVhbHMgYXJyb3VuZA
         <image name="checkBox" width="20" height="21"/>
         <image name="checkBoxActive" width="20" height="21"/>
         <image name="dropMenuArrow" width="15" height="8"/>
+        <image name="ic_reg_business" width="150" height="143"/>
         <image name="navBackIcon" width="16" height="14"/>
         <image name="signup_female" width="36" height="17"/>
         <image name="signup_male" width="63" height="15"/>

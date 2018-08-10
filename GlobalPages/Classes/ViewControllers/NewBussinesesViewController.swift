@@ -59,7 +59,7 @@ class NewBussinesesViewController: AbstractController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.showNavBackButton = true
+        //self.showNavBackButton = true
     }
     
     override func customizeView() {
@@ -110,7 +110,13 @@ class NewBussinesesViewController: AbstractController {
     }
     
     override func backButtonAction(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+        self.popOrDismissViewControllerAnimated(animated: true)
+    }
+    
+    @IBAction func addBusinessAction(_ sender: AnyObject) {
+        //self.popOrDismissViewControllerAnimated(animated: true)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -170,8 +176,6 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
         }
         return UICollectionViewCell()
     }
-    
-    
 
 }
 

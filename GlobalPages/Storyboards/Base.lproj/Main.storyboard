@@ -63,7 +63,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="xeN-9g-buw" kind="show" id="cpk-3u-qOS"/>
+                                                    <segue destination="xeN-9g-buw" kind="show" identifier="HomeProfileSegue" id="cpk-3u-qOS"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lY6-WX-0hX" customClass="SSBadgeButton" customModule="GlobalPages" customModuleProvider="target">
@@ -231,7 +231,7 @@
                         <outlet property="notificationButton" destination="7yl-3T-Swd" id="jPE-CF-HeZ"/>
                         <outlet property="profileButton" destination="lY6-WX-0hX" id="SG5-Ee-gA5"/>
                         <segue destination="oA4-Fy-5Qo" kind="presentation" identifier="HomeLoginSegue" id="S9U-qp-FMS"/>
-                        <segue destination="Ie8-ec-MON" kind="presentation" identifier="HomeProfileSegue" id="kbV-h1-kla"/>
+                        <segue destination="Ie8-ec-MON" kind="presentation" identifier="" id="kbV-h1-kla"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -2500,8 +2500,8 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCb-TA-9rE">
                                                                 <rect key="frame" x="-0.66666666666665719" y="0.0" width="343.33333333333326" height="316"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nour_araar_2009@yahoo.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqR-4C-cCI">
-                                                                        <rect key="frame" x="16" y="157.33333333333331" width="192" height="17"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GlobalPages@yahoo.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqR-4C-cCI">
+                                                                        <rect key="frame" x="16" y="157.33333333333331" width="164" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -2663,8 +2663,8 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nour Araar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXo-ng-O95">
-                                                                        <rect key="frame" x="16" y="110" width="71" height="17"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Global Pages user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXo-ng-O95">
+                                                                        <rect key="frame" x="15.999999999999993" y="110" width="116.66666666666666" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -2948,7 +2948,7 @@
         <!--Add New Bussiness-->
         <scene sceneID="WB0-OZ-pVF">
             <objects>
-                <viewController id="JB4-5N-kS9" customClass="NewBussinesesViewController" customModule="GlobalPages" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewBussinesesViewControllerID" id="JB4-5N-kS9" customClass="NewBussinesesViewController" customModule="GlobalPages" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2bL-VC-GiU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3390,6 +3390,9 @@
                                                                 <real key="value" value="20"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="addBusinessAction:" destination="JB4-5N-kS9" eventType="touchUpInside" id="b8U-Ni-V4j"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
