@@ -796,16 +796,16 @@ ZGVhbHMgYXJyb3VuZA
                                                                         <rect key="frame" x="0.0" y="138" width="337.66666666666669" height="137.66666666666663"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="id2-bd-yau">
-                                                                                <rect key="frame" x="75.333333333333329" y="0.66666666666662877" width="187.66666666666669" height="29"/>
+                                                                                <rect key="frame" x="75.333333333333329" y="0.33333333333325754" width="187.66666666666669" height="29"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8v-lQ-m9i">
-                                                                                        <rect key="frame" x="0.0" y="0.33333333333337123" width="142.66666666666666" height="29"/>
+                                                                                        <rect key="frame" x="0.0" y="0.33333333333325754" width="142.66666666666666" height="29"/>
                                                                                         <fontDescription key="fontDescription" name="MullerRegular" family="Muller" pointSize="17"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2W3-ex-H5e">
-                                                                                        <rect key="frame" x="142.66666666666666" y="0.33333333333337123" width="45" height="29"/>
+                                                                                        <rect key="frame" x="142.66666666666666" y="0.33333333333325754" width="45" height="29"/>
                                                                                         <fontDescription key="fontDescription" name="MullerBold" family="Muller" pointSize="17"/>
                                                                                         <state key="normal" title="Login">
                                                                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1030,11 +1030,20 @@ ZGVhbHMgYXJyb3VuZA
                         <outlet property="termsOrLabel" destination="tqN-Io-00U" id="zwB-YV-4kp"/>
                         <outlet property="termsPrefixLabel" destination="TAQ-sb-CCy" id="Wqe-DW-Uav"/>
                         <segue destination="uvO-8I-ZUa" kind="show" identifier="loginHomeSegue" id="rhd-YC-Rxc"/>
+                        <segue destination="pId-ME-g2Y" kind="show" identifier="loginAddBusinessSegue" id="6uN-ta-yiE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EXa-8E-Ias" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="969.53125" y="242.57812499999997"/>
+        </scene>
+        <!--NewBussinesesViewControllerID-->
+        <scene sceneID="UQS-yg-gaD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="NewBussinesesViewControllerID" id="pId-ME-g2Y" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6tA-lE-Jos" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1905" y="-267"/>
         </scene>
         <!--Reset Password View Controller-->
         <scene sceneID="lyQ-d7-Q4u">

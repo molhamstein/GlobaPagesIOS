@@ -106,7 +106,7 @@ class LoginViewController: AbstractController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.showNavBackButton = true
+        //self.showNavBackButton = true
     }
     
     
@@ -129,8 +129,8 @@ class LoginViewController: AbstractController {
             self.signupSucessView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.signupSucessView.frame.height)
                         
             dispatch_main_after(0.7) {
-                self.showView(withType: .login)
-                //self.showView(withType: .signupSuccess)
+                //self.showView(withType: .login)
+                self.showView(withType: .signupSuccess)
             }
         }
         //lvEmailLabel.font = AppFonts.big
@@ -374,7 +374,7 @@ class LoginViewController: AbstractController {
     }
     
     @IBAction func registerBusinessPressed(_ sender: Any) {
-        //hideView(withType: .countryV)
+        self.performSegue(withIdentifier: "loginAddBusinessSegue", sender: self)
     }
     
     @IBAction func pickCountryPressed(_ sender: Any) {
