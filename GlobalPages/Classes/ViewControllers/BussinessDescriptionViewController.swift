@@ -30,12 +30,16 @@ class BussinessDescriptionViewController: AbstractController {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var subCategoryTitleLabel: XUILabel!
     @IBOutlet weak var subCategoryLabel: UILabel!
+    @IBOutlet weak var productsCollectionView: UICollectionView!
     
     
     
     
     @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
     @IBOutlet weak var subCategoryWidthConstraint: XNSLayoutConstraint!
+    
+    var bussiness:Bussiness?
+    var products:[Product] = []
     
     var tagViewWidth:CGFloat = 0{
         
@@ -63,20 +67,26 @@ class BussinessDescriptionViewController: AbstractController {
     
     
     var cellID = "ImageCell"
+    var productCellId = "ProductCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+    }
+    
+    override func customizeView() {
         
         let nib = UINib(nibName: cellID, bundle: nil)
         imageCollectionView.register(nib, forCellWithReuseIdentifier: cellID)
         
+        productsCollectionView.register(UINib(nibName: productCellId, bundle: nil), forCellWithReuseIdentifier: productCellId)
+        
+        productsCollectionView.delegate = self
+        productsCollectionView.dataSource = self
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
-    }
-    
-    override func customizeView() {
+        
         // fonts
         self.bussiniesTitleLabel.font = AppFonts.xBigBold
         self.bussinessCategoryLabel.font = AppFonts.xBigBold
@@ -105,6 +115,21 @@ class BussinessDescriptionViewController: AbstractController {
         
         // change nav bar tint color for back button
         self.navigationController?.navigationBar.tintColor = .white
+        
+        
+        guard let bussiness = self.bussiness else{return}
+        
+        // set data
+        self.bussiniesTitleLabel.text = bussiness.title
+        self.bussinessCategoryLabel.text = bussiness.category?.title
+        self.categoryLabel.text = bussiness.category?.title
+        self.subCategoryLabel.text = bussiness.subCategory?.title
+//        self.cityLabel.text =
+//        self.areaLabel.font = AppFonts.normalBold
+        self.descriptionTextView.text = bussiness.description
+        if let value = self.bussiness?.products{
+            self.products = value
+        }
         
     }
     
@@ -138,15 +163,29 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == productsCollectionView{
+            return products.count
+        }
+        if collectionView == imageCollectionView {
+            return 3
+        }
         return 3
     }
     
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == imageCollectionView{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ImageCell
         print(cell.frame.height)
         return cell
+        }
+        if collectionView == productsCollectionView{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellId, for: indexPath) as! ProductCell
+            cell.product = self.products[indexPath.item]
+            return cell
+        }
+        return UICollectionViewCell()
     }
     
 }
@@ -154,9 +193,17 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
 extension BussinessDescriptionViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == imageCollectionView{
         let itemWidth = collectionView.bounds.width
         let itemHeight = collectionView.bounds.height
-        return CGSize(width: itemWidth, height: itemHeight + 64)
+            return CGSize(width: itemWidth, height: itemHeight + 64)
+        }
+        if collectionView == productsCollectionView {
+            let itemWidth = collectionView.bounds.width
+            let itemHeight = collectionView.bounds.height
+            return CGSize(width: itemWidth * 0.75, height: itemHeight - 16)
+        }
+        return CGSize(width: 0, height: 0)
     }
     
     

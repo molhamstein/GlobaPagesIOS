@@ -9,32 +9,27 @@
 import UIKit
 import SwiftyJSON
 
-class categoriesFilter: BaseModel {
+public class City: BaseModel {
     // MARK: Keys
     private let kCategoryName: String = "name"
-    private let kCategoryTitleAr: String = "titleAr"
-    private let kCategoryTitleEn: String = "titleEn"
+    private let kCategoryTitleAr: String = "nameAr"
+    private let kCategoryTitleEn: String = "nameEn"
     private let kCategoryDate: String = "creationDate"
     private let kCategoryID: String = "id"
     private let kCategoryParent: String = "parentCategoryId"
-    private let klocationsKey: String = "locations"
-    private let KcityIdKey:String = "cityId"
+    private let KLocationsKey:String = "locations"
     // MARK: Properties
-    
+    public var name:String?
     public var titleAr:String?
     public var titleEn:String?
-    public var nameAr:String?
-    public var nameEn:String?
     public var creationDate:String?
     public var Fid:String?
     public var parentCategoryId:String?
-    public var locations:[categoriesFilter] = []
-    public var cityId:String?
+    public var locations:[City]?
     
     public var filtervalue:filterValues?
     
     public var title:String?{
-        
         if AppConfig.currentLanguage == .arabic{
             return titleAr
         }
@@ -43,25 +38,16 @@ class categoriesFilter: BaseModel {
         }
         return titleAr
     }
-    
-
-    
     // MARK: Initializers
     override init() {
         super.init()
     }
     
-    required init(json: JSON) {
+    required public init(json: JSON) {
         super.init(json: json)
-        if let value = json["nameAr"].string {
-            nameAr = value
-            titleAr = value
+        if let value = json[kCategoryName].string {
+            name = value
         }
-        if let value = json["nameEn"].string {
-            nameEn = value
-            titleEn = value
-        }
-        
         if let value = json[kCategoryTitleAr].string {
             titleAr = value
         }
@@ -82,25 +68,16 @@ class categoriesFilter: BaseModel {
             parentCategoryId = value
         }
         
-        if let array = json[klocationsKey].array {
-            print(array)
-            locations = array.map{categoriesFilter(json:$0)
-                
-            }
+        if let array = json[KLocationsKey].array{
+            locations = array.map{City(json:$0)}
         }
-        if let value = json[KcityIdKey].string{
-            cityId = value
-        }
+        
     }
     
-    override func dictionaryRepresentation() -> [String : Any] {
+    override public func dictionaryRepresentation() -> [String : Any] {
         var dictionary = super.dictionaryRepresentation()
-     
-        if let value = nameAr{
-            dictionary["nameAr"] = value
-        }
-        if let value = nameEn{
-            dictionary["nameEn"] = value
+        if let value = name {
+            dictionary[kCategoryName] = value
         }
         if let value = titleAr {
             dictionary[kCategoryTitleAr] = value
@@ -118,13 +95,11 @@ class categoriesFilter: BaseModel {
             dictionary[kCategoryParent] = value
         }
         
-        
-            dictionary[klocationsKey] = locations.map{$0.dictionaryRepresentation()}
-        
-        if let value = cityId {
-            dictionary[KcityIdKey] = value
+        if let array = locations{
+            dictionary[KLocationsKey] = array.map{$0.dictionaryRepresentation()}
         }
         return dictionary
     }
 }
+
 

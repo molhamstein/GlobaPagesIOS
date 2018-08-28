@@ -178,8 +178,9 @@ class ApiManager: NSObject {
                 } else {
                     // parse response to data model >> user object
                     let user = AppUser(json: jsonResponse["user"])
-                    DataStore.shared.token = jsonResponse["id"].string
                     DataStore.shared.me = user
+                    DataStore.shared.token = jsonResponse["id"].string
+                    DataStore.shared.me?.objectId = jsonResponse["userId"].string
                     DataStore.shared.onUserLogin()
                     completionBlock(true , nil, user)
                 }
@@ -208,7 +209,7 @@ class ApiManager: NSObject {
         
         let signUpURL = "\(baseURL)/users"
         
-        var parameters : [String : String] = [
+        let parameters : [String : String] = [
             "username": user.userName!,
             "phoneNumber": user.mobileNumber!,
             "gender": user.gender?.rawValue ?? "male",
@@ -229,6 +230,8 @@ class ApiManager: NSObject {
                     // parse response to data model >> user object
                     let user = AppUser(json: jsonResponse["user"])
                     DataStore.shared.me = user
+                    DataStore.shared.token = jsonResponse["id"].string
+                    DataStore.shared.me?.objectId = jsonResponse["userId"].string
                     DataStore.shared.onUserLogin()
                     completionBlock(true , nil, user)
                 }
@@ -462,25 +465,25 @@ class ApiManager: NSObject {
     }
     
     // MARK: Categories
-    func requestCategories(completionBlock: @escaping (_ categories: Array<Category>?, _ error: NSError?) -> Void) {
-        let categoriesListURL = "\(baseURL)categories"
-        Alamofire.request(categoriesListURL).responseJSON { (responseObject) -> Void in
-            if responseObject.result.isSuccess {
-                let resJson = JSON(responseObject.result.value!)
-                if let data = resJson["data"].array
-                {
-                    let categories: [Category] = data.map{Category(json: $0)}
-                    //save to cache
-                    DataStore.shared.categories = categories
-                    completionBlock(categories, nil)
-                }
-            }
-            if responseObject.result.isFailure {
-                let error : NSError = responseObject.result.error! as NSError
-                completionBlock(nil, error)
-            }
-        }
-    }
+//    func requestCategories(completionBlock: @escaping (_ categories: Array<Category>?, _ error: NSError?) -> Void) {
+//        let categoriesListURL = "\(baseURL)categories"
+//        Alamofire.request(categoriesListURL).responseJSON { (responseObject) -> Void in
+//            if responseObject.result.isSuccess {
+//                let resJson = JSON(responseObject.result.value!)
+//                if let data = resJson["data"].array
+//                {
+//                    let categories: [Category] = data.map{Category(json: $0)}
+//                    //save to cache
+//                    DataStore.shared.categories = categories
+//                    completionBlock(categories, nil)
+//                }
+//            }
+//            if responseObject.result.isFailure {
+//                let error : NSError = responseObject.result.error! as NSError
+//                completionBlock(nil, error)
+//            }
+//        }
+//    }
     
 
     func requesReportTypes(completionBlock: @escaping (_ items: Array<ReportType>?, _ error: NSError?) -> Void) {
@@ -609,6 +612,56 @@ class ApiManager: NSObject {
         })
     }
     
+    
+    
+    // MARK: Upload images
+    func uploadImages(images:[UIImage],mediaType: AppMediaType = .image, completionBlock: @escaping (_ urls: [Media], _ errorMessage: String?) -> Void) {
+        
+        let mediaURL = "\(baseURL)/attachments/images/upload"
+        let payload : Payload = /*@escaping*/{ multipartFormData in
+            
+            for image in images {
+                    if let compressedImg = UIImageJPEGRepresentation(image, 0) {
+                            multipartFormData.append(compressedImg, withName: "file", fileName: "file", mimeType: "image/png")
+                }
+            }
+            
+        }
+        
+        Alamofire.upload(multipartFormData: payload, to: mediaURL, method: .post, headers: headers,
+                         encodingCompletion: { encodingResult in
+                            
+                            switch encodingResult {
+                            case .success(let upload, _, _):
+                                upload.responseJSON { responseObject in
+                                    
+                                    if responseObject.result.isSuccess {
+                                        
+                                        let resJson = JSON(responseObject.result.value!)
+                                        if let resArray = resJson.array {
+                                            var files: [Media] = []
+                                            for  i in 0 ..< resArray.count {
+                                                let media = Media(json:resArray[i])
+                                                media.type = mediaType
+                                                files.append(media)
+                                            }
+                                            completionBlock(files, nil)
+                                        }
+                                    } else { // failure
+                                        
+                                        if let code = responseObject.response?.statusCode, code >= 400 {
+                                            completionBlock([], ServerError.unknownError.type.errorMessage)
+                                        } else {
+                                            completionBlock([], ServerError.connectionError.type.errorMessage)
+                                        }
+                                    }
+                                }
+                            case .failure(let encodingError):
+                                completionBlock([], ServerError.connectionError.type.errorMessage)
+                            }
+        })
+    }
+    
     // MARK: notifications
     func sendPushNotification(msg: String, targetUser: AppUser, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         // url & parameters
@@ -685,12 +738,12 @@ class ApiManager: NSObject {
         }
     }
     
-//postCategories
     
-    func postCategories(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[categoriesFilter]) -> Void) {
+    //cities
+    func getCities(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[categoriesFilter]) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/postCategories"
-        
+        let signUpURL = "\(baseURL)/cities"
+    
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -721,6 +774,151 @@ class ApiManager: NSObject {
         }
     }
     
+//postCategories
+    
+    func postCategories(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[categoriesFilter]) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/postCategories"
+        // build request
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError, [])
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let filters = array.map{categoriesFilter(json:$0)}
+                        DataStore.shared.categories = filters
+                        completionBlock(true , nil, filters)
+                    }else{
+                        completionBlock(true , nil, [])
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, [])
+                } else {
+                    completionBlock(false, ServerError.connectionError, [])
+                }
+            }
+        }
+    }
+    
+    // volumes
+    func getVolumes(limit:Int = 1,skip:Int ,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:Volume?) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/volumes?filter[limit]=\(limit)&filter[skip]=\(skip)"
+        // build request
+         DataStore.shared.volume = nil
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let volumes = array.map{Volume(json:$0)}
+                        DataStore.shared.volume = volumes.first
+                         completionBlock(true , nil, volumes.first)
+                    }else{
+                        completionBlock(true , nil, nil)
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError,nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError,nil)
+                }
+            }
+        }
+    }
+    
+    
+    // posts
+    func getPosts(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Post]) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/posts"
+        DataStore.shared.posts = []
+        // build request
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError, [])
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let filters = array.map{Post(json:$0)}
+                        DataStore.shared.posts = filters
+                        completionBlock(true , nil, filters)
+                    }else{
+                        completionBlock(true , nil, [])
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, [])
+                } else {
+                    completionBlock(false, ServerError.connectionError, [])
+                }
+            }
+        }
+    }
+    
+    
+    
+    // businesses
+    func getBusinesses(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/businesses"
+        
+        // build request
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError, [])
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let filters = array.map{Bussiness(json:$0)}
+                        completionBlock(true , nil, filters)
+                    }else{
+                        completionBlock(true , nil, [])
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, [])
+                } else {
+                    completionBlock(false, ServerError.connectionError, [])
+                }
+            }
+        }
+    }
 }
 
 

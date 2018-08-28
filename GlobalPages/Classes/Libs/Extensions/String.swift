@@ -90,7 +90,7 @@ extension String {
     
     /// Get label Width for string
     func getLabelWidth(font:UIFont) ->CGFloat{
-        let fontAttributes = [NSFontAttributeName: AppFonts.normal]
+        let fontAttributes = [NSFontAttributeName: font]
         let size = (self as NSString).size(attributes: fontAttributes)
         return size.width
     }

@@ -16,20 +16,18 @@ class XNSLayoutConstraint: NSLayoutConstraint {
         self.constant = self.constant  * CGFloat(ratio)
     }
     
-    
-    func setNewConstant(_ newconstant:CGFloat){
-        
-        self.constant = newconstant
-        
-    }
 }
 
 
 extension NSLayoutConstraint{
 
-    open override func awakeFromNib() {
-        let ratio = ScreenSizeRatio.smallRatio
-        self.constant = self.constant * CGFloat(ratio)
+//    open override func awakeFromNib() {
+//        let ratio = ScreenSizeRatio.smallRatio
+//        self.constant = self.constant * CGFloat(ratio)
+//    }
+    
+    func setNewConstant(_ newconstant:CGFloat){
+        self.constant = newconstant
     }
     
 }

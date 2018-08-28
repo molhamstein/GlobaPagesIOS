@@ -18,29 +18,28 @@ class HomeViewController: AbstractController {
     @IBOutlet weak var navBarTitleLabel: UILabel!
     @IBOutlet weak var notificationButton: SSBadgeButton!
     @IBOutlet weak var profileButton: SSBadgeButton!
-    
-    var isFirstTimeToLoad = true
-    
-     // bussiness guid View
-     weak var businessGuidView: UIView?
-     weak var businessGuidCollectionView: UICollectionView?
-    
-    static var businessGuidCellId = "BusinessGuidCell"
-    
-    var businessGuides:[BusinessGuide] = []
-    
-    var gradiantColors:[[UIColor]] = [[AppColors.blueLight,AppColors.blueDark],[AppColors.pinkLight,AppColors.pinkDark],[AppColors.blueLight,AppColors.blueDark]]
-   
-    
     // date View
     @IBOutlet weak var dateView: UIView!
     
     // filter View
     @IBOutlet weak var fillterView: UIView!
-    
-    
     weak var filtterCollectionView: UICollectionView?
+    // Ads View
+    @IBOutlet weak var adsView: UIView!
+    @IBOutlet weak var adsCollectionView: UICollectionView!
+    var isFirstTimeToLoad = true
     
+     // bussiness guid View
+    weak var businessGuidView: UIView?
+    weak var businessGuidCollectionView: UICollectionView?
+    weak var volumeTitle:UILabel?
+    static var businessGuidCellId = "BusinessGuidCell"
+    
+    var businessGuides:[BusinessGuide] = []
+    
+    var gradiantColors:[[UIColor]] = [[AppColors.blueLight,AppColors.blueDark],[AppColors.pinkLight,AppColors.pinkDark],[AppColors.blueLight,AppColors.blueDark]]
+    
+
     static var filtterCellId = "filtterCell"
     
     
@@ -48,30 +47,31 @@ class HomeViewController: AbstractController {
     
     var filters:[categoriesFilter] = []
     
-    // Ads View
-    @IBOutlet weak var adsView: UIView!
-    @IBOutlet weak var adsCollectionView: UICollectionView!
+
     static var adsImageCellId = "AdsImageCell"
     static var adsTitledCellId = "AdsTitledCell"
+
+    var posts:[Post] = []
     
-    var adds:[Ads] = []
+    var currentVolume:Int?{
+        didSet{
+            getVolume()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
     }
 
     override func customizeView() {
-    
+        getFeaturedPosts()
         collectionViewSetup()
-        getBusinessGuides()
-        getAds()
-       
     }
     
     func navbarCustomization(){
         // nav bar customization
-        
         self.notificationButton.makeRounded()
         self.profileButton.makeRounded()
         self.notificationButton.dropShortShadow()
@@ -79,7 +79,6 @@ class HomeViewController: AbstractController {
         self.notificationButton.badge = "2"
         // setFonts
         self.navBarTitleLabel.font = AppFonts.xBig
-        
     }
     
     override func buildUp() {
@@ -106,17 +105,14 @@ class HomeViewController: AbstractController {
         let layout = CustomLayout()
         layout.delegate = self
         adsCollectionView.collectionViewLayout = layout
+       
         setupCollectionViewLayout()
-        //
-        self.adsCollectionView.register(UINib(nibName: "menuView",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "menu")
-        //
-        // adds Collection view Cells
-        let nib2 = UINib(nibName: HomeViewController.adsImageCellId, bundle: nil)
-        self.adsCollectionView.register(nib2, forCellWithReuseIdentifier: HomeViewController.adsImageCellId)
-        
-        let nib3 = UINib(nibName: HomeViewController.adsTitledCellId, bundle: nil)
-        self.adsCollectionView.register(nib3, forCellWithReuseIdentifier: HomeViewController.adsTitledCellId)
-        
+        adsCollectionView.dataSource = self
+        adsCollectionView.delegate = self
+        if let value = DataStore.shared.volume?.posts{
+            self.posts = value
+        }
+        self.currentVolume = 0
     }
     
     func getFilters(){
@@ -147,46 +143,37 @@ class HomeViewController: AbstractController {
         filtterCollectionView?.reloadData()
     }
     
-    func getBusinessGuides(){
-        
-        businessGuides.append(BusinessGuide(title:"Businesses Guide",image:"AI_Image",info:"Appartment for sale"))
-        
-        businessGuides.append(BusinessGuide(title:"On Duty Pharmacy",image:"AI_Image",info:"Appartment for sale"))
-        
-        businessGuides.append(BusinessGuide(title:"Businesses Guide",image:"AI_Image",info:"Appartment for sale"))
-        
-        self.businessGuidCollectionView?.reloadData()
+    func getFeaturedPosts(){
+        ApiManager.shared.getPosts { (success, error, result) in
+            if success{self.businessGuidCollectionView?.reloadData()}
+            if error != nil{ }
+        }
     }
     
+    func getVolume(){
+        self.showActivityLoader(true)
+        ApiManager.shared.getVolumes(skip: currentVolume ?? 0) { (success, error, result) in
+            self.showActivityLoader(false)
+            if success{
+                self.posts = []
+                if let res = result?.posts{
+                    self.posts = res
+                }
+                self.adsCollectionView.collectionViewLayout.invalidateLayout()
+                self.adsCollectionView.reloadData()
 
-    func getAds(){
-        
-        adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-        adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "Damascus  Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate dsfsdfs ", address: "Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh VillasDamascus Al-Mazzeh VillasDamascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .image))
-        
-        adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "Damascus Al-Mazzeh Villas Damascus Al- Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas", type: .titled))
-        self.adsCollectionView.collectionViewLayout.invalidateLayout()
-        self.adsCollectionView.reloadData()
-  
+                if let title = DataStore.shared.volume?.title{
+                    self.volumeTitle?.text = title
+                }
+            }
+            
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
     }
-    
     
     @IBAction func profileButtonAction(_ sender: AnyObject) {
         if DataStore.shared.isLoggedin {
@@ -208,26 +195,39 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView ==  businessGuidCollectionView{
-            return businessGuides.count
+            return DataStore.shared.featuredPosts.count
         }
         if collectionView == filtterCollectionView {
             return filters.count
-            
         }
         if collectionView ==  adsCollectionView{
-            return adds.count
+            return self.posts.count
         }
         return 0
     }
     
      // load collecton view cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        if collectionView ==  adsCollectionView{
+             let post = self.posts[indexPath.item]
+                if post.type == .image{
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.adsImageCellId, for: indexPath) as! AdsImageCell
+                    cell.post = post
+                    cell.resizeTagView()
+                    return cell
+                }else{
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.adsTitledCellId, for: indexPath) as! AdsTitledCell
+                    cell.post = post
+                    cell.resizeTagView()
+                    return cell
+                }
+            
+        }
+
         if collectionView ==  businessGuidCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.businessGuidCellId, for: indexPath) as! BusinessGuidCell
-            cell.businessGuide = businessGuides[indexPath.item]
+            cell.post = DataStore.shared.featuredPosts[indexPath.item]
           //  cell.setpView(colors:self.gradiantColors[indexPath.item])
-            
             return cell
             
         }
@@ -239,31 +239,23 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
             return cell
             
         }
-        if collectionView ==  adsCollectionView{
-            let add = self.adds[indexPath.item]
-            if add.type == .image{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.adsImageCellId, for: indexPath) as! AdsImageCell
-            cell.add = self.adds[indexPath.item]
-                cell.resizeTagView()
-                return cell
-            }else{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.adsTitledCellId, for: indexPath) as! AdsTitledCell
-                cell.add = self.adds[indexPath.item]
-                cell.resizeTagView()
-                return cell
-            }
-        }
         return UICollectionViewCell()
     }
     
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == businessGuidCollectionView {
+            let post = DataStore.shared.featuredPosts[indexPath.item]
+            ActionShowAdsDescrption.execute(post:post)
+        }
+        
         if collectionView == filtterCollectionView {
             ActionShowFilters.execute(type: .Home)
         }
         if collectionView == adsCollectionView {
-            ActionShowAdsDescrption.execute()
+            let post = self.posts[indexPath.item]
+            ActionShowAdsDescrption.execute(post:post)
         }
     }
 }
@@ -299,6 +291,15 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
 
  extension HomeViewController {
     func setupCollectionViewLayout() {
+        //
+//        self.adsCollectionView.register(UINib(nibName: "menuView",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "menu")
+        //
+        // adds Collection view Cells
+        let nib2 = UINib(nibName: HomeViewController.adsImageCellId, bundle: nil)
+        self.adsCollectionView.register(nib2, forCellWithReuseIdentifier: HomeViewController.adsImageCellId)
+        
+        let nib3 = UINib(nibName: HomeViewController.adsTitledCellId, bundle: nil)
+        self.adsCollectionView.register(nib3, forCellWithReuseIdentifier: HomeViewController.adsTitledCellId)
         guard let collectionView = adsCollectionView, let customLayout = adsCollectionView.collectionViewLayout as? CustomLayout else { return }
         adsCollectionView.register(
             UINib(nibName: "HeaderView", bundle: nil),
@@ -329,9 +330,6 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
     }
 }
 
-
-
-
 //MARK: - UICollectionViewDataSource
 extension HomeViewController {
      func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -354,8 +352,8 @@ extension HomeViewController {
                 for: indexPath
             ) as! HeaderView
             self.businessGuidCollectionView =  topHeaderView.businessGuidCollectionView
-                self.businessGuidCollectionView?.delegate  = self
-                self.businessGuidCollectionView?.dataSource = self
+                topHeaderView.businessGuidCollectionView?.delegate  = self
+                topHeaderView.businessGuidCollectionView?.dataSource = self
                 topHeaderView.customizeCell()
                 topHeaderView.delegate = self
                 return topHeaderView
@@ -373,11 +371,11 @@ extension HomeViewController {
             if let menuView = menuView as? MenuView {
                 menuView.delegate = self
                 self.filtterCollectionView = menuView.filtterCollectionView
-                self.filtterCollectionView?.delegate = self
-                self.filtterCollectionView?.dataSource = self
+                menuView.filtterCollectionView?.delegate = self
+                menuView.filtterCollectionView?.dataSource = self
+                self.volumeTitle = menuView.dateLabel
             }
             return menuView
-            
         }
         return UICollectionReusableView()
         default:
@@ -388,8 +386,22 @@ extension HomeViewController {
 
 // MARK: - MenuViewDelegate
 extension HomeViewController: MenuViewDelegate {
-    
+ 
     func reloadCollectionViewDataWithTeamIndex(_ index: Int) {
+    }
+    
+    func nextVolume() {
+    
+        currentVolume = currentVolume! + 1
+    }
+    
+    func preVolume(){
+        if let value = currentVolume , value > 0 {
+            currentVolume = currentVolume! - 1
+        }
+    }
+    
+    func showMap() {
         
     }
 }
@@ -408,15 +420,29 @@ extension HomeViewController : PinterestLayoutDelegate {
     
     func getCellContentSize(indexPath:IndexPath) -> CGFloat{
         var height:CGFloat = 0
-        if adds[indexPath.item].type == .image{
-            height += 100
-        }else{
-            height += self.adds[indexPath.item].title.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))
+        let post = self.posts[indexPath.item]
+        
+        if post.type == .image{
+            height += 100 // image heigh
+            height += 10 // half of the tag view
+            height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // city label height
+            height += 8
+            height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // area label height
+            height += 18 // line view + 8 + 8
+            height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // title label height
             height += 16
         }
-        height += (self.adds[indexPath.item].address.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
-        height += (self.adds[indexPath.item].info.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
-        height += (32)
+        else{
+            height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // title label height
+            height += 20 // tag view height
+            height += (post.description?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // description label Height
+            height += 18 // line view + 8 + 8
+            height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // city label height
+            height += 8 // padding
+            height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // area label height
+            height += 16 // extra
+    
+        }
         return height
     }
     

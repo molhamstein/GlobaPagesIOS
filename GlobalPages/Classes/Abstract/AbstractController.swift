@@ -99,6 +99,16 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         return UIBarButtonItem(customView: _navProfileButton)
     }
     
+    
+    /// Navigation bar profile button
+    var navEditButton : UIBarButtonItem {
+        let _navProfileButton = UIButton()
+        _navProfileButton.setBackgroundImage(UIImage(named: "ic_edit"), for: .normal)
+        _navProfileButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+         _navProfileButton.addTarget(self, action: #selector(editButtonAction(_:)), for: .touchUpInside)
+        return UIBarButtonItem(customView: _navProfileButton)
+    }
+    
     /// Enable back button on left side of navigation bar
     var showNavBackButton: Bool = false {
         didSet {
@@ -128,6 +138,19 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         didSet {
             if (showNavProfileButton) {
                 self.navigationItem.rightBarButtonItem = navProfileButton
+            } else {
+                self.navigationItem.rightBarButtonItem = nil
+                self.navigationItem.rightBarButtonItems = nil
+            }
+        }
+    }
+    
+    
+    /// Enable edit button
+    var showNavEditButton: Bool = false {
+        didSet {
+            if (showNavEditButton) {
+                self.navigationItem.rightBarButtonItem = navEditButton
             } else {
                 self.navigationItem.rightBarButtonItem = nil
                 self.navigationItem.rightBarButtonItems = nil
@@ -165,6 +188,7 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // build up view
+         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64)
         self.buildUp()
     }
     
@@ -180,6 +204,9 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     
     // Build up view elements
     func buildUp() {
+    }
+    
+    func editButtonAction(_ sender:AnyObject){
     }
     
     func backButtonAction(_ sender: AnyObject) {

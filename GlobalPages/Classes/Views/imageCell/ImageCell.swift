@@ -22,15 +22,28 @@ class ImageCell: UICollectionViewCell {
     var delegate:ImageCellDelegete?
     
     var image:UIImage?{
-        
         didSet{
             guard let image = image else {
                 return
             }
             iamgeView.image = image
         }
+    }
+    
+    
+    var media:Media?{
+        
+        didSet{
+            guard let media = media else {
+                return
+            }
+            let url = media.fileUrl
+            iamgeView.setImageForURL(url ?? "", placeholder: #imageLiteral(resourceName: "AI_Image"))
+            
+        }
         
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

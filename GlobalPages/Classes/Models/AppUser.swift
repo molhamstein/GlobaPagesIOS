@@ -52,7 +52,7 @@ class AppUser: BaseModel, NSCopying {
     private let kUserStateKey = "status"
     private let kUserTokenKey = "token"
     private let kUserImage = "image"
-
+    private let KPostsKey = "postCategoriesIds"
     
     // MARK: Properties
     public var objectId: String?
@@ -65,8 +65,15 @@ class AppUser: BaseModel, NSCopying {
     public var loginType: LoginType?
     public var status: Status?
     public var token: String?
+    public var posts:[String]?
     
     
+    public var postsCount:Int?{
+        if posts != nil{
+            return posts?.count
+        }
+        return 0
+    }
     // MARK: User initializer
     public override init(){
         super.init()
@@ -93,6 +100,9 @@ class AppUser: BaseModel, NSCopying {
         }
         if let phoneNum = json["phoneNumber"].string {
             mobileNumber = phoneNum
+        }
+        if let array = json["postCategoriesIds"].array{
+            posts = array.map{$0.string!}
         }
         token = json[kUserTokenKey].string
     }

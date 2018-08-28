@@ -29,11 +29,9 @@ class AdsDescriptionViewController: AbstractController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var tagView: GradientView!
     @IBOutlet weak var categoryView: GradientView!
-    
-    
-    
     @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
     @IBOutlet weak var subCategoryWidthConstraint: XNSLayoutConstraint!
+    
     
     var tagViewWidth:CGFloat = 0{
         
@@ -59,23 +57,35 @@ class AdsDescriptionViewController: AbstractController {
         
     }
     
-    
+    var images:[Media] = []
     var cellID = "ImageCell"
+    
+    var post:Post?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        
-        let nib = UINib(nibName: cellID, bundle: nil)
-        imageCollectionView.register(nib, forCellWithReuseIdentifier: cellID)
-    
-        imageCollectionView.delegate = self
-        imageCollectionView.dataSource = self
+        guard let post = post  else {
+            backButtonAction(self)
+            return
+        }
+        if let value = post.creationDate{dateLabel.text = value}
+        if let value = post.description{descriptionTextView.text = value}
+//        if let value = post. areaLabel.text
+        if let value = post.title{titleLabel.text = value}
+        if let value = post.subCategory?.title{subCategoryLabel.text = value}
+        if let value = post.category?.title{categoryLable.text = value}
+        if let value = post.media {images = value}
+        if let city = post.city , let value = city.title{ self.cityLabel.text = value}
+        if let city = post.location , let value = city.title{ self.areaLabel.text = value}
     }
     
     override func customizeView() {
         
+        let nib = UINib(nibName: cellID, bundle: nil)
+        imageCollectionView.register(nib, forCellWithReuseIdentifier: cellID)
+        imageCollectionView.delegate = self
+        imageCollectionView.dataSource = self
         
         // fonts
         self.dateTitleLabel.font = AppFonts.smallBold
@@ -101,7 +111,7 @@ class AdsDescriptionViewController: AbstractController {
         self.categoryView.dropShadow()
         
         // page Controller
-        self.pageController.numberOfPages = 3
+        self.pageController.numberOfPages = images.count
         
         
         // change nav bar tint color for back button
@@ -142,14 +152,14 @@ extension AdsDescriptionViewController:UICollectionViewDataSource,UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return images.count
     }
 
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ImageCell
-        print(cell.frame.height)
+        cell.media = images[indexPath.item]
         return cell
     }
     

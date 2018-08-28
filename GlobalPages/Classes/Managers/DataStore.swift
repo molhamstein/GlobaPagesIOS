@@ -25,17 +25,26 @@ class DataStore :NSObject {
     private let CACHE_KEY_SHOPITEM = "SHOPITEM"
     private let CACHE_KEY_INVENTORY = "INVENTORY_ITEMS"
     private let CACHE_KEY_REPORT_TYPES = "REPORT_TYPES"
+    private let CACHE_KEY_AD_CATEGORY = "ADCategory"
+    private let CACHE_KEY_AD_SUB_CATEGORY = "ADSUBCategory"
+    private let CACHE_KEY_CITY = "cities"
+    private let CACHE_KEY_AREA = "area"
     private let CACHE_KEY_USER = "user"
     private let CACHE_KEY_TOKEN = "token"
     private let CACHE_KEY_MY_BOTTLES = "myBottles"
     private let CACHE_KEY_MY_REPLIES = "myReplies"
+    private let CACHE_KEY_POSTS = "posts"
+    private let CACHE_KEY_Volume = "volume"
     //MARK: Temp data holders
     //keep reference to the written value in another private property just to prevent reading from cache each time you use this var
     private var _me:AppUser?
-    private var _categories: [Category] = []
     private var _reportTypes: [ReportType] = [ReportType]()
-    
-    
+    private var _volume:Volume?
+    private var _posts:[Post] = [Post]()
+    private var _categories:[categoriesFilter] = [categoriesFilter]()
+    private var _subcategories:[categoriesFilter] = [categoriesFilter]()
+    private var _cities:[categoriesFilter] = [categoriesFilter]()
+    private var _areas:[categoriesFilter] = [categoriesFilter]()
     private var _token: String?
     
     // user loggedin flag
@@ -47,16 +56,56 @@ class DataStore :NSObject {
     }
 
     // Data in cache
-    public var categories: [Category] {
+    public var categories: [categoriesFilter] {
         set {
             _categories = newValue
-            saveBaseModelArray(array: _categories, withKey: CACHE_KEY_CATEGORIES)
+            saveBaseModelArray(array: _categories, withKey: CACHE_KEY_AD_CATEGORY)
         }
         get {
             if(_categories.isEmpty){
-                _categories = loadBaseModelArrayForKey(key: CACHE_KEY_CATEGORIES)
+                _categories = loadBaseModelArrayForKey(key: CACHE_KEY_AD_CATEGORY)
             }
             return _categories
+        }
+    }
+    
+    public var subCategories: [categoriesFilter] {
+        set {
+            _subcategories = newValue
+            saveBaseModelArray(array: _subcategories, withKey: CACHE_KEY_AD_SUB_CATEGORY)
+        }
+        get {
+            if(_subcategories.isEmpty){
+                _subcategories = loadBaseModelArrayForKey(key: CACHE_KEY_AD_SUB_CATEGORY)
+            }
+            return _subcategories
+        }
+    }
+    
+    public var cities: [categoriesFilter] {
+        set {
+            _cities = newValue
+            saveBaseModelArray(array: _cities, withKey: CACHE_KEY_CITY)
+        }
+        get {
+            if(_cities.isEmpty){
+                _cities = loadBaseModelArrayForKey(key: CACHE_KEY_CITY)
+            }
+            return _cities
+        }
+    }
+    
+    
+    public var areas: [categoriesFilter] {
+        set {
+            _areas = newValue
+            saveBaseModelArray(array: _areas, withKey: CACHE_KEY_AREA)
+        }
+        get {
+            if(_areas.isEmpty){
+                _areas = loadBaseModelArrayForKey(key: CACHE_KEY_AREA)
+            }
+            return _areas
         }
     }
     
@@ -85,6 +134,37 @@ class DataStore :NSObject {
             }
             return _me
         }
+    }
+    
+    public var volume:Volume?{
+        set {
+            _volume = newValue
+            saveBaseModelObject(object: _volume, withKey: CACHE_KEY_Volume)
+        }
+        get {
+            if (_volume == nil) {
+                _volume = loadBaseModelObjectForKey(key: CACHE_KEY_Volume)
+            }
+            return _volume
+        }
+    }
+    
+    public var posts: [Post] {
+        set {
+            _posts = newValue
+            saveBaseModelArray(array: _posts, withKey: CACHE_KEY_POSTS)
+        }
+        get {
+            if(_posts.isEmpty){
+                _posts = loadBaseModelArrayForKey(key: CACHE_KEY_POSTS)
+            }
+            return _posts
+        }
+    }
+    
+    
+    public var featuredPosts:[Post]{
+        return posts.filter{ $0.isFeatured == false }
     }
     
     public var token:String? {
@@ -180,7 +260,7 @@ class DataStore :NSObject {
     }
     
     public func fetchBaseData() {
-        ApiManager.shared.requestCategories { (categories, error) in }
+//        ApiManager.shared.requestCategories { (categories, error) in }
         ApiManager.shared.requesReportTypes { (reports, error) in}
     }
     
@@ -188,7 +268,7 @@ class DataStore :NSObject {
         clearCache()
         me = nil
         token = nil
-        categories = [Category]()
+        categories = [categoriesFilter]()
         //shopItems = [ShopItem]()
         //OneSignal.deleteTags(["user_id","user_name"])
     }

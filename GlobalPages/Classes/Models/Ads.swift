@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum AdsType{
+public enum AdsType{
     
 case image
 case titled

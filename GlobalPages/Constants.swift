@@ -48,8 +48,8 @@ struct AppConfig {
                      NSFontAttributeName : AppFonts.xBigBold]
         UINavigationBar.appearance().titleTextAttributes = attrs
         // set background color
-        UINavigationBar.appearance().barTintColor = .black//AppColors.blueXDark
-        UINavigationBar.appearance().tintColor = .black
+        UINavigationBar.appearance().barTintColor = .white//AppColors.blueXDark
+        UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
@@ -79,7 +79,7 @@ enum ScreenSizeRatio{
 }
 
 // MARK: media Type
-enum AppMediaType :String{
+public enum AppMediaType :String{
     case video = "video/*"
     case image = "image/*"
     case audio = "audio/*"

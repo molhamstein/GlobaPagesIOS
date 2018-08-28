@@ -11,6 +11,9 @@ import UIKit
 
 protocol MenuViewDelegate {
     func reloadCollectionViewDataWithTeamIndex(_ index: Int)
+    func nextVolume()
+    func preVolume()
+    func showMap()
 }
 
 class MenuView: UICollectionReusableView {
@@ -42,14 +45,15 @@ class MenuView: UICollectionReusableView {
     }
     
     @IBAction func tapMapButton(_ sender: UIButton) {
-        
+        delegate?.showMap()
     }
     
     @IBAction func tapNextWeekButton(_ sender: UIButton) {
-        
+        delegate?.nextVolume()
     }
     
     @IBAction func tapPreviosWeekButton(_ sender: UIButton) {
+        delegate?.preVolume()
     }
     
 }

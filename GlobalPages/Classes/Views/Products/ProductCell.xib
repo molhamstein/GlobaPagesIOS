@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCell" id="gTV-IL-0wX" customClass="ProductCell" customModule="GlobalPages" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="276" height="79"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="276" height="79"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5B9-rd-R7O">
+                        <rect key="frame" x="0.0" y="0.0" width="276" height="79"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shawrma" translatesAutoresizingMaskIntoConstraints="NO" id="9pl-dz-19K">
+                                <rect key="frame" x="8" y="8" width="63" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9pl-dz-19K" secondAttribute="height" multiplier="1:1" id="icQ-Un-LYB"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCd-5p-UWZ">
+                                <rect key="frame" x="87" y="8" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A17-em-xdJ">
+                                <rect key="frame" x="87" y="37" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXQ-v5-Aii">
+                                <rect key="frame" x="247" y="8" width="21" height="22"/>
+                                <state key="normal" image="ic_edit"/>
+                                <connections>
+                                    <action selector="edit:" destination="gTV-IL-0wX" eventType="touchUpInside" id="CDa-dw-wuH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="9pl-dz-19K" secondAttribute="bottom" constant="8" id="4Lt-ft-5YA"/>
+                            <constraint firstItem="lCd-5p-UWZ" firstAttribute="leading" secondItem="9pl-dz-19K" secondAttribute="trailing" constant="16" id="73c-7l-Rk0"/>
+                            <constraint firstAttribute="trailing" secondItem="CXQ-v5-Aii" secondAttribute="trailing" constant="8" id="E4H-Ie-HFL"/>
+                            <constraint firstItem="A17-em-xdJ" firstAttribute="leading" secondItem="9pl-dz-19K" secondAttribute="trailing" constant="16" id="Oor-X5-M0P"/>
+                            <constraint firstItem="9pl-dz-19K" firstAttribute="top" secondItem="5B9-rd-R7O" secondAttribute="top" constant="8" id="ebF-lK-Eze"/>
+                            <constraint firstItem="A17-em-xdJ" firstAttribute="top" secondItem="lCd-5p-UWZ" secondAttribute="bottom" constant="8" id="hBk-1d-SZw"/>
+                            <constraint firstItem="9pl-dz-19K" firstAttribute="leading" secondItem="5B9-rd-R7O" secondAttribute="leading" constant="8" id="uTK-66-trR"/>
+                            <constraint firstItem="CXQ-v5-Aii" firstAttribute="top" secondItem="5B9-rd-R7O" secondAttribute="top" constant="8" id="xR2-cE-Bx0"/>
+                            <constraint firstItem="lCd-5p-UWZ" firstAttribute="top" secondItem="5B9-rd-R7O" secondAttribute="top" constant="8" id="zdz-FL-S69"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="5B9-rd-R7O" secondAttribute="bottom" id="1GG-ZX-elf"/>
+                <constraint firstItem="5B9-rd-R7O" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Bap-LH-wor"/>
+                <constraint firstAttribute="trailing" secondItem="5B9-rd-R7O" secondAttribute="trailing" id="RSX-Ch-w0p"/>
+                <constraint firstItem="5B9-rd-R7O" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Wbb-gC-adG"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="276" height="79"/>
+            <connections>
+                <outlet property="editButton" destination="CXQ-v5-Aii" id="eay-kq-7de"/>
+                <outlet property="imageView" destination="9pl-dz-19K" id="99f-BZ-o5R"/>
+                <outlet property="subTitleLabel" destination="A17-em-xdJ" id="Yho-1A-GZ2"/>
+                <outlet property="titleLabel" destination="lCd-5p-UWZ" id="Ba5-dd-DM3"/>
+            </connections>
+            <point key="canvasLocation" x="-88" y="66.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_edit" width="21" height="21"/>
+        <image name="shawrma" width="81" height="67"/>
+    </resources>
+</document>

@@ -27,20 +27,24 @@ class ProfileViewController: AbstractController {
     let categoryCellId = "filterCell2"
     let adImagedCellId = "AdsImageCell"
     let adTitledCellId = "AdsTitledCell"
-    let bussinesCellId = ""
+    let bussinesCellId = "BussinessGuidListCell"
     
-    var adds:[Ads] = []
+    var posts:[Post] = []
     var filters:[String] = ["Real States","Jobs","Cars","Restaurants"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setNavBarTitle(title: "My Profile")
         // Do any additional setup after loading the view.
+        fillUserData()
+        fetchUserData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.showNavBackButton = true
+       //
+        self.showNavEditButton = true
     }
     
     override func customizeView() {
@@ -70,6 +74,9 @@ class ProfileViewController: AbstractController {
         let titledNib = UINib(nibName: adTitledCellId, bundle: nil)
         self.myAdsCollectionView.register(titledNib, forCellWithReuseIdentifier: adTitledCellId)
         
+        
+        self.myBussinessCollectionView.register(UINib(nibName: bussinesCellId, bundle: nil), forCellWithReuseIdentifier: bussinesCellId)
+        
         self.categoryCollectionView.delegate = self
         self.categoryCollectionView.dataSource = self
         self.myAdsCollectionView.delegate = self
@@ -86,30 +93,32 @@ class ProfileViewController: AbstractController {
     }
     
     
+    func fillUserData(){
+        guard let user = DataStore.shared.me else {return}
+        if let username = user.userName {self.usernameLabel.text = username}
+        if let email = user.email{self.emailLabel.text = email}
+//        if let birdate = user.birthdate{self.da}
+        if let count = user.postsCount {self.adsCountLabel.text = "\(count)"}
+        
+    }
+    
+    func fetchUserData(){
+        
+        self.showActivityLoader(true)
+        ApiManager.shared.getMe { (success, error, user) in
+            self.showActivityLoader(false)
+            if success{
+                self.fillUserData()
+            }
+            if error != nil{
+                
+            }
+        }
+        
+    }
     
     func getAds(){
         
-        adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "", type: .titled))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "", type: .image))
-        
-        adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "", type: .titled))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate", address: "", type: .image))
-        
-        adds.append(Ads(title: "Damascus Al-Mazzeh Villas", image: "AI_Image", info: "Villa for sale in Saburah", tag: "Real Estate dsfsdfs ", address: "", type: .image))
-        
-        adds.append(Ads(title:"Villa for sale in Saburah", image: "AI_Image", info: "Damascus Al-Mazzeh Villas", tag: "Real Estate", address: "", type: .titled))
         self.myAdsCollectionView.collectionViewLayout.invalidateLayout()
         self.myAdsCollectionView.reloadData()
         
@@ -128,7 +137,11 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             return filters.count
         }
         if collectionView == myAdsCollectionView {
-            return adds.count
+            return posts.count
+        }
+        
+        if collectionView == myBussinessCollectionView {
+         return 2
         }
         return 0
     }
@@ -144,23 +157,28 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             return cell
         }
         if collectionView == myAdsCollectionView{
-            let ad = adds[indexPath.item]
-            if ad.type == .image{
+            let post = posts[indexPath.item]
+            if post.type == .image{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: adImagedCellId, for: indexPath) as! AdsImageCell
-            cell.add = adds[indexPath.item]
+                cell.post = post
                 cell.resizeTagView()
                 return cell
                 
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: adTitledCellId, for: indexPath) as! AdsTitledCell
-                cell.add = adds[indexPath.item]
+                cell.post = post
                 cell.resizeTagView()
                 return cell
             }
 
         }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
-        return cell
+        if collectionView == myBussinessCollectionView{
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: bussinesCellId, for: indexPath) as! BussinessGuidListCell
+            cell.profileMode()
+            return cell
+        }
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -169,7 +187,11 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             cell.isSelected = true
             cell.configureCell()
         }
-        
+        if collectionView == myBussinessCollectionView{
+            
+         let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "BussinessDescriptionViewController") as! BussinessDescriptionViewController
+         self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -178,20 +200,36 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             cell.isSelected = false
             cell.configureCell()
         }
+        
+        if collectionView == myBussinessCollectionView{
+            
+            
+        }
     }
 
     
     func getCellContentSize(indexPath:IndexPath) -> CGFloat{
         var height:CGFloat = 0
-        if adds[indexPath.item].type == .image{
-            height += 100
-        }else{
-            height += self.adds[indexPath.item].title.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))
-            height += 16
+        let post = posts[indexPath.item]
+        if post.type == .image{
+            height += 100 // image heigh
+            height += 10 // half of the tag view
+            height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))) ?? 0 // city label height
+            height += 8
+            height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))) ?? 0 // area label height
+            height += 18 // line view + 8 + 8
+            height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))) ?? 0 // title label height
         }
-        height += (self.adds[indexPath.item].address.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
-        height += (self.adds[indexPath.item].info.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17)))
-        height += (32)
+        else{
+            height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))) ?? 0 // title label height
+            height += 20 // tag view height
+            height += (post.description?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))) ?? 0 // description label Height
+            height += 18 // line view + 8 + 8
+            height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))) ?? 0 // city label height
+            height += 8 // padding
+            height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: UIFont.systemFont(ofSize: 17))) ?? 0 // area label height
+        }
+
         return height
     }
 
@@ -208,7 +246,12 @@ extension ProfileViewController:UICollectionViewDelegateFlowLayout{
         
         if collectionView == myAdsCollectionView{
             let height = myAdsCollectionView.bounds.height - 16
-            return CGSize(width: self.view.frame.width * 0.5 - 32, height: height)//getCellContentSize(indexPath: indexPath))
+            return CGSize(width: self.view.frame.width * 0.5 , height: height)//getCellContentSize(indexPath: indexPath))
+        }
+        if collectionView == myBussinessCollectionView{
+            let height:CGFloat = 72//self.myBussinessCollectionView.bounds.height - 24
+            let width = self.myBussinessCollectionView.bounds.width * 0.7
+            return CGSize(width: width, height: height)
         }
         return CGSize(width: 0, height: 0)
     }

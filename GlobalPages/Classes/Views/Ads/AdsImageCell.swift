@@ -18,7 +18,8 @@ class AdsImageCell: UICollectionViewCell {
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var areaLabel: UILabel!
     @IBOutlet weak var lineView2: UIView!
     @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
     
@@ -36,14 +37,25 @@ class AdsImageCell: UICollectionViewCell {
     
     
     
-    var add:Ads?{
+    var post:Post?{
         
         didSet{
-            guard let add = add else {return}
-            self.imageView.image = UIImage(named: add.image)
-            self.tagLabel.text = add.tag
-            self.titleLabel.text = add.title
-            self.addressLabel.text = add.address
+            guard let post = post else {return}
+            if let image = post.media?.first , let url = image.fileUrl{
+                self.imageView.setImageForURL(url, placeholder: nil)
+            }
+            if let category = post.category{
+                self.tagLabel.text = category.title
+            }
+            if let title = post.title{
+                self.titleLabel.text = title
+            }
+            if let city = post.city , let value = city.title{
+                self.cityLabel.text = value
+            }
+            if let city = post.location , let value = city.title{
+                self.areaLabel.text = value
+            }
         }
         
         
@@ -54,8 +66,9 @@ class AdsImageCell: UICollectionViewCell {
         // fonts
         self.tagLabel.font =  AppFonts.small
         self.titleLabel.font = AppFonts.normalBold
-        self.addressLabel.font = AppFonts.normal
-     
+        self.cityLabel.font = AppFonts.normal
+        self.areaLabel.font = AppFonts.normal
+        
         self.roundedBorder(value: 5.0)
         self.addShadow()
     }
@@ -63,7 +76,6 @@ class AdsImageCell: UICollectionViewCell {
     func resizeTagView(){
         if let width = tagLabel.text?.getLabelWidth(font: AppFonts.small){
             tagLabelWidht = width
-            
         }
     }
     

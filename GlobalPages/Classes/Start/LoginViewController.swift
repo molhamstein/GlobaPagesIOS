@@ -129,8 +129,8 @@ class LoginViewController: AbstractController {
             self.signupSucessView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.signupSucessView.frame.height)
                         
             dispatch_main_after(0.7) {
-                //self.showView(withType: .login)
-                self.showView(withType: .signupSuccess)
+                self.showView(withType: .login)
+               // self.showView(withType: .signupSuccess)
             }
         }
         //lvEmailLabel.font = AppFonts.big

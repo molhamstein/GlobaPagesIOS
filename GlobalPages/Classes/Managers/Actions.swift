@@ -13,13 +13,9 @@ import StoreKit
 Repeated and generic actions to be excuted from any context of the app such as show alert
  */
 class Action: NSObject {
-    class func execute() {
-    }
-    class func execute(type:categoryFilterType){
-        
-    }
-
-    
+    class func execute() {}
+    class func execute(type:categoryFilterType){}
+    class func execute(post:Post){}
 }
 
 class ActionLogout:Action {
@@ -104,8 +100,9 @@ class ActionShowFilters: Action {
 
 
 class ActionShowAdsDescrption: Action {
-    override class func execute() {
-        let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: AdsDescriptionViewController.className)
+    override class func execute(post:Post) {
+        let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: AdsDescriptionViewController.className) as! AdsDescriptionViewController
+        ViewController.post = post
         let nav = UINavigationController(rootViewController: ViewController)
         UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
     }

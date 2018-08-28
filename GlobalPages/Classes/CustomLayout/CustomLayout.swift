@@ -1,4 +1,4 @@
-/**
+ /**
  * Copyright (c) 2017 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -155,8 +155,7 @@ final class CustomLayout: UICollectionViewLayout {
 extension CustomLayout {
   
   override public func prepare() {
-    guard let collectionView = collectionView,
-      cache.isEmpty else {
+    guard let collectionView = collectionView else {
         return
     }
     
@@ -293,6 +292,7 @@ extension CustomLayout {
     return true
   }
   
+    
     func prepareCache() {
     cache.removeAll(keepingCapacity: true)
     cache[.header] = [IndexPath: CustomLayoutAttributes]()

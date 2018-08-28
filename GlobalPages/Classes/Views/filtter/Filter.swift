@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum filterValues {
+public enum filterValues {
     case category
     case subCategory
     case city

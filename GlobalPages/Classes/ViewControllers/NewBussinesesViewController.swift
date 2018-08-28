@@ -40,26 +40,52 @@ class NewBussinesesViewController: AbstractController {
     @IBOutlet weak var hideAbleView1: UIView!
     @IBOutlet weak var hideAbelView2: UIView!
     @IBOutlet weak var addButton: XUIButton!
+    @IBOutlet weak var subCategoryHeightConstraint: NSLayoutConstraint!
     
+    var subCategoryViewHeight:CGFloat = 0{
+        didSet{
+            subCategoryHeightConstraint.setNewConstant(subCategoryViewHeight)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutSubviews()
+            }, completion: nil)
+        }
+    }
     
     let cellId = "filterCell2"
     let imageCellId = "ImageCell"
-    var images:[UIImage] = [#imageLiteral(resourceName: "AI_Image"),#imageLiteral(resourceName: "profile_image")]
+    var images:[UIImage] = []
     
-    var filters:[String] = ["Restaurants","Medicine","Pharmacy"]
-    var subfilters:[String] = ["Eye","Shawrma","Fast Food"]
+    var categoryfiltertype:categoryFilterType?
+    
+    var filters:[categoriesFilter] = []
+    
+    var selectedCategory:categoriesFilter?
+    
+    var categoryfilters:[categoriesFilter]{
+        return filters.filter{$0.parentCategoryId == nil}
+    }
+    
+    var subCategoryFilters:[categoriesFilter]{
+        if let cat = selectedCategory{
+            return filters.filter({$0.parentCategoryId == cat.Fid})
+        }
+        return []
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.subCategoryViewHeight = 0
         self.setNavBarTitle(title: "Add New Bussiness")
-        
+        getBussinessFilters()
+        self.subCategoryView.isHidden = true
+    
     }
     
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //self.showNavBackButton = true
+        self.showNavBackButton = true
     }
     
     override func customizeView() {
@@ -95,6 +121,40 @@ class NewBussinesesViewController: AbstractController {
         setupCollectionViews()
     }
     
+    
+    func getBussinessFilters(){
+        self.showActivityLoader(true)
+        ApiManager.shared.businessCategories { (success, error, result) in
+            self.showActivityLoader(false)
+            if success{
+                self.filters = result
+                self.adCategoryCollectionView.reloadData()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+    }
+    
+    func getSubCategories(){
+        subCategoryCollectionView.reloadData()
+        subCategoryCollectionView.collectionViewLayout.invalidateLayout()
+        subCategoryCollectionView.layoutSubviews()
+        UIView.animate(withDuration: 0.2, animations: {
+            self.subCategoryView.isHidden = false
+           // self.hideAbleView1.isHidden = true
+        }){ (success) in}
+    }
+    
+    func hideSubCategoryView(){
+        UIView.animate(withDuration: 0.2, animations: {
+            self.subCategoryView.isHidden = true
+            //self.hideAbleView1.isHidden = false
+        }){ (success) in}
+    }
+    
     func setupCollectionViews(){
         
         let nib = UINib(nibName: cellId, bundle: nil)
@@ -109,14 +169,26 @@ class NewBussinesesViewController: AbstractController {
         
     }
     
+    func uploadImages(){
+        self.showActivityLoader(true)
+        ApiManager.shared.uploadImages(images: self.images) { (urls, error) in
+            self.showActivityLoader(false)
+            for url in urls {
+                print(url.fileUrl)
+            }
+        }
+        
+    }
+    
     override func backButtonAction(_ sender: AnyObject) {
-        //self.dismiss(animated: true, completion: nil)
-        self.popOrDismissViewControllerAnimated(animated: true)
+        self.dismiss(animated: true, completion: nil)
+//        self.popOrDismissViewControllerAnimated(animated: true)
     }
     
     @IBAction func addBusinessAction(_ sender: AnyObject) {
         //self.popOrDismissViewControllerAnimated(animated: true)
-        self.navigationController?.dismiss(animated: true, completion: nil)
+        uploadImages()
+        //self.navigationController?.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -134,14 +206,12 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
         }
         
         if collectionView == self.adCategoryCollectionView{
-            return filters.count
+            return categoryfilters.count
         }
         
         if collectionView == self.subCategoryCollectionView{
-            return subfilters.count
+            return subCategoryFilters.count
         }
-        
-        
         return 0
     }
     
@@ -160,7 +230,7 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
         
         if collectionView == adCategoryCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! filterCell2
-            cell.title = filters[indexPath.item]
+            cell.filter = categoryfilters[indexPath.item]
             collectionView.deselectItem(at: indexPath, animated: true)
             cell.isSelected = false
             cell.setupView(type: .normal)
@@ -168,7 +238,7 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
         }
         if collectionView == subCategoryCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! filterCell2
-            cell.title = subfilters[indexPath.item]
+            cell.filter = subCategoryFilters[indexPath.item]
             collectionView.deselectItem(at: indexPath, animated: true)
             cell.isSelected = false
             cell.setupView(type: .normal)
@@ -189,13 +259,13 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
         
         if collectionView == adCategoryCollectionView{
             let height = self.adCategoryCollectionView.bounds.height - 24
-            let width = filters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 32
+            let width = (categoryfilters[indexPath.item].title?.getLabelWidth(font: AppFonts.normal))! + 32
             return CGSize(width: width, height: height)
         }
         
         if collectionView == subCategoryCollectionView{
             let height = self.subCategoryCollectionView.bounds.height - 24
-            let width = subfilters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 32
+            let width = (subCategoryFilters[indexPath.item].title?.getLabelWidth(font: AppFonts.normal))! + 32
             return CGSize(width: width, height: height)
         }
         return CGSize(width: 0, height: 0)

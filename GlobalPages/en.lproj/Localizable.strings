@@ -172,3 +172,6 @@
 // Near by filters
 "NEAR_BY_FILTERS_INFO"                                      = "select what you are looking for and we will find you top 3 nearby ones!";
 
+// New Ad
+"AD_NEW_TITLE_TEXT_FIELD_PLACEHOLDER" = "House for sale";
+"AD_NEW_DESCRIPTION_PLCAEHOLDER"      = "About your Ad";

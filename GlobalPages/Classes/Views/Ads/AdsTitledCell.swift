@@ -18,7 +18,8 @@ class AdsTitledCell: UICollectionViewCell {
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var areaLabel: UILabel!
     @IBOutlet weak var lineView2: UIView!
     @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
     @IBOutlet weak var tagLabelWidthConstraint: XNSLayoutConstraint!
@@ -34,20 +35,27 @@ class AdsTitledCell: UICollectionViewCell {
     }
     
     
-    var add:Ads?{
+    var post:Post?{
         didSet{
-            guard let add = add else {
+            guard let post = post else {
                 return
             }
-            
-            self.titleLabel.text = add.title
-            self.tagLabel.text = add.tag
-            self.descriptionLabel.text = add.info
-            self.addressLabel.text = add.address
-            
+            if let title = post.title{
+                self.titleLabel.text = title
+            }
+            if let category = post.category{
+                self.tagLabel.text = category.title
+            }
+            if let description = post.description{
+                self.descriptionLabel.text = description
+            }
+            if let city = post.city , let value = city.title{
+                self.cityLabel.text = value
+            }
+            if let city = post.location , let value = city.title{
+                self.areaLabel.text = value
+            }
         }
-        
-        
     }
     
     override func awakeFromNib() {
@@ -57,7 +65,9 @@ class AdsTitledCell: UICollectionViewCell {
         self.descriptionLabel.font = AppFonts.normalBold
         self.tagLabel.font =  AppFonts.small
         self.titleLabel.font = AppFonts.normalBold
-        self.addressLabel.font = AppFonts.normal
+        self.cityLabel.font = AppFonts.normal
+        self.areaLabel.font = AppFonts.normal
+        
         self.roundedBorder(value: 5.0)
         self.addShadow()
     }
@@ -66,7 +76,6 @@ class AdsTitledCell: UICollectionViewCell {
     func resizeTagView(){
         if let width = tagLabel.text?.getLabelWidth(font: AppFonts.small){
             tagLabelWidht = width
-            
         }
     }
     

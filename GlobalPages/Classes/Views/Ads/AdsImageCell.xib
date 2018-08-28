@@ -94,23 +94,28 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deS-ei-Ukl">
-                        <rect key="frame" x="8" y="132.5" width="125" height="1"/>
+                        <rect key="frame" x="8" y="126" width="125" height="1"/>
                         <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Ool-lD-R7x"/>
                             <constraint firstAttribute="width" constant="125" id="VkF-3a-RZJ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Damascus Al-Mazeh Villas" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmX-kG-iUI">
-                        <rect key="frame" x="8" y="110" width="146" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmX-kG-iUI">
+                        <rect key="frame" x="8" y="110" width="146" height="0.0"/>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBy-qF-wY3">
-                        <rect key="frame" x="8" y="141" width="146" height="198.5"/>
-                        <string key="text">Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas Damascus Al-Mazzeh Villas</string>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBy-qF-wY3">
+                        <rect key="frame" x="8" y="134.5" width="146" height="0.0"/>
                         <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qbz-s0-lgq">
+                        <rect key="frame" x="8" y="118" width="146" height="0.0"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -123,16 +128,19 @@
                 <constraint firstItem="KBy-qF-wY3" firstAttribute="top" secondItem="deS-ei-Ukl" secondAttribute="bottom" constant="8" id="9HI-YN-Fgf"/>
                 <constraint firstAttribute="trailing" secondItem="KBy-qF-wY3" secondAttribute="trailing" constant="8" id="Ehf-1i-eyN"/>
                 <constraint firstAttribute="trailing" secondItem="ZXJ-pO-jaN" secondAttribute="trailing" id="HYj-yU-nGo"/>
+                <constraint firstAttribute="trailing" secondItem="Qbz-s0-lgq" secondAttribute="trailing" constant="8" id="KBx-82-hYa"/>
                 <constraint firstAttribute="trailing" secondItem="k2x-X2-xd6" secondAttribute="trailing" id="RXY-BG-T2C"/>
                 <constraint firstItem="ZXJ-pO-jaN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SbG-QI-fib"/>
                 <constraint firstItem="GmX-kG-iUI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ax8-tn-xVa"/>
                 <constraint firstItem="KBy-qF-wY3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dDp-d2-gO9"/>
                 <constraint firstItem="deS-ei-Ukl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dro-yH-tma"/>
-                <constraint firstItem="deS-ei-Ukl" firstAttribute="top" secondItem="GmX-kG-iUI" secondAttribute="bottom" constant="8" id="gmC-M0-zH0"/>
                 <constraint firstItem="k2x-X2-xd6" firstAttribute="top" secondItem="ZXJ-pO-jaN" secondAttribute="bottom" constant="-10" id="kd3-pr-pav"/>
                 <constraint firstAttribute="trailing" secondItem="GmX-kG-iUI" secondAttribute="trailing" constant="8" id="mBT-jY-c7a"/>
                 <constraint firstAttribute="trailing" secondItem="mly-pc-vI1" secondAttribute="trailing" id="pyf-V7-Qn0"/>
+                <constraint firstItem="Qbz-s0-lgq" firstAttribute="top" secondItem="GmX-kG-iUI" secondAttribute="bottom" constant="8" id="uzN-Fd-J3c"/>
+                <constraint firstItem="Qbz-s0-lgq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="wc4-Ol-QXW"/>
                 <constraint firstItem="ZXJ-pO-jaN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xeN-xw-EmW"/>
+                <constraint firstItem="deS-ei-Ukl" firstAttribute="top" secondItem="Qbz-s0-lgq" secondAttribute="bottom" constant="8" id="zdx-YQ-g6H"/>
             </constraints>
             <size key="customSize" width="162" height="579"/>
             <userDefinedRuntimeAttributes>
@@ -141,7 +149,8 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="addressLabel" destination="GmX-kG-iUI" id="LyQ-dS-LsT"/>
+                <outlet property="areaLabel" destination="Qbz-s0-lgq" id="Q76-V6-R73"/>
+                <outlet property="cityLabel" destination="GmX-kG-iUI" id="R1X-VI-nsZ"/>
                 <outlet property="imageView" destination="m6t-dg-Fcz" id="Sy6-gc-AQZ"/>
                 <outlet property="lineView" destination="deS-ei-Ukl" id="scc-9A-Rpv"/>
                 <outlet property="lineView2" destination="ai0-p9-Ylq" id="Pev-DZ-yTB"/>

@@ -21,8 +21,19 @@ class BussinessGuidListCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nextButton: UIButton!
     
+    @IBOutlet weak var tagView: GradientView!
     
-    
+    var bussiness:Bussiness?{
+        didSet{
+            guard let bussiness = bussiness else{
+                return
+            }
+            if let value = bussiness.category?.title{self.tagLabel.text = value}
+            if let value = bussiness.title{self.bussinessGuideTitleLabel.text = value}
+            if let value = bussiness.description{self.bussinessGuideCategoryLabel.text = value }
+            if let image = bussiness.logo{self.imageView.setImageForURL(image, placeholder: nil)}
+        }
+    }
     
     var delegate:BussinessGuidListCellDelegate?
     
@@ -35,6 +46,8 @@ class BussinessGuidListCell: UICollectionViewCell {
         // color
         self.bussinessGuideCategoryLabel.textColor = .black
         self.bussinessGuideCategoryLabel.textColor = AppColors.grayLight
+        
+       // self.addShadow()
     }
 
     
@@ -43,6 +56,12 @@ class BussinessGuidListCell: UICollectionViewCell {
     @IBAction func detailsButtonClicked(_ sender: UIButton) {
     }
     
+    
+    func profileMode(){
+        self.tagView.isHidden = true
+        self.nextButton.isHidden = true
+        self.addShadow()
+    }
 }
 
 

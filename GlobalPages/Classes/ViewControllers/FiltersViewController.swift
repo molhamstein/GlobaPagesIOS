@@ -82,6 +82,15 @@ class FiltersViewController: AbstractController {
     }
     
     
+    var cities:[categoriesFilter] = []
+    var selectedCity:categoriesFilter?
+    var areas:[categoriesFilter] {
+        if let city = selectedCity{
+           return city.locations
+        }
+        return []
+    }
+    
     
     var isInitialized = false
     
@@ -96,6 +105,7 @@ class FiltersViewController: AbstractController {
         }else{
             getBussinessFilters()
         }
+        getCityFilters()
         
     }
     
@@ -202,6 +212,8 @@ class FiltersViewController: AbstractController {
     
     func getSubCategories(){
         subCategoryCollectionView.reloadData()
+        subCategoryCollectionView.collectionViewLayout.invalidateLayout()
+        subCategoryCollectionView.layoutSubviews()
         UIView.animate(withDuration: 0.2, animations: {
             self.subCategoryView.isHidden = false
             self.hideAbleView1.isHidden = true
@@ -217,7 +229,9 @@ class FiltersViewController: AbstractController {
     
     
     func getAreas(){
-        
+        areaCollectionView.reloadData()
+        areaCollectionView.collectionViewLayout.invalidateLayout()
+        areaCollectionView.layoutSubviews()
         UIView.animate(withDuration: 0.2, animations: {
             self.areaView.isHidden = false
             self.hideAbelView2.isHidden = true
@@ -239,12 +253,29 @@ class FiltersViewController: AbstractController {
             if success{
                     self.filters = result
                     self.categoryCollectionView.reloadData()
+                    self.categoryCollectionView.collectionViewLayout.invalidateLayout()
                 }
                 if error != nil{
                     if let msg = error?.errorName{
                         self.showMessage(message: msg, type: .error)
                     }
                 }
+        }
+    }
+    
+    func getCityFilters(){
+        self.showActivityLoader(true)
+        ApiManager.shared.getCities { (success, error, result) in
+            self.showActivityLoader(false)
+            if success{
+                self.cities = result
+                self.cityCollectionView.reloadData()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
         }
     }
     
@@ -256,6 +287,7 @@ class FiltersViewController: AbstractController {
             if success{
                 self.filters = result
                 self.categoryCollectionView.reloadData()
+                self.categoryCollectionView.collectionViewLayout.invalidateLayout()
             }
             if error != nil{
                 if let msg = error?.errorName{
@@ -264,6 +296,8 @@ class FiltersViewController: AbstractController {
             }
         }
     }
+    
+ 
 }
 
 
@@ -280,9 +314,9 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
         }else if collectionView == subCategoryCollectionView{
             return subCategoryFilters.count
         }else if collectionView == cityCollectionView{
-            return filters.count
+            return cities.count
         }else if collectionView == areaCollectionView{
-            return filters.count
+            return areas.count
         }
         return 0
     }
@@ -334,7 +368,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
         }else if collectionView == cityCollectionView{
                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
             if let city = categoryfiltertype?.filter.city{
-                if city.Fid == filters[indexPath.item].Fid{
+                if city.Fid == cities[indexPath.item].Fid{
                     cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
                     self.getAreas()
@@ -347,17 +381,17 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
                 collectionView.deselectItem(at: indexPath, animated: true)
             }
 
-            cell.filter = filters[indexPath.item]
+            cell.filter = cities[indexPath.item]
             cell.filter?.filtervalue = filterValues.city
             cell.setupView(type:.normal)
            return cell
         }else if collectionView == areaCollectionView{
                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
             if let area = categoryfiltertype?.filter.area{
-                if area.Fid == filters[indexPath.item].Fid{
+                if area.Fid == areas[indexPath.item].Fid{
                     cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
-                    self.getAreas()
+//                    self.getAreas()
                 }else{
                     cell.isSelected = false
                     collectionView.deselectItem(at: indexPath, animated: true)
@@ -367,7 +401,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
                 collectionView.deselectItem(at: indexPath, animated: true)
             }
 
-            cell.filter = filters[indexPath.item]
+            cell.filter = areas[indexPath.item]
             cell.filter?.filtervalue = filterValues.area
             cell.setupView(type:.normal)
             return cell
@@ -390,10 +424,10 @@ extension FiltersViewController:UICollectionViewDelegateFlowLayout{
             return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.subCategoryCollectionView.frame.height - 24)
         }
         if collectionView == cityCollectionView{
-            return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.cityCollectionView.frame.height - 24)
+            return CGSize(width: cities[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.cityCollectionView.frame.height - 24)
         }
         if collectionView == areaCollectionView{
-            return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.areaCollectionView.frame.height - 24)
+            return CGSize(width: areas[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.areaCollectionView.frame.height - 24)
         }
         
            return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.areaCollectionView.frame.height - 24)
@@ -435,46 +469,47 @@ extension FiltersViewController:UICollectionViewDelegateFlowLayout{
                 }else{
                     categoryfiltertype?.filter.subCategory = subCategoryFilters[indexPath.item]
                     cell.isSelected = true
-                    self.getSubCategories()
+//                    self.getSubCategories()
                 }
             }else{
                 categoryfiltertype?.filter.subCategory = subCategoryFilters[indexPath.item]
                 cell.isSelected = true
-                self.getSubCategories()
+//                self.getSubCategories()
             }
         }else if collectionView == cityCollectionView{
             if let value = categoryfiltertype?.filter.city{
-                if value.Fid == filters[indexPath.item].Fid{
+                if value.Fid == cities[indexPath.item].Fid{
                    categoryfiltertype?.filter.clearCity()
                     cell.isSelected = false
+                    selectedCity = nil
                     collectionView.deselectItem(at: indexPath, animated: true)
                     self.HideAreaView()
                 }else{
-                    categoryfiltertype?.filter.city = filters[indexPath.item]
+                    categoryfiltertype?.filter.city = cities[indexPath.item]
                     cell.isSelected = true
+                    selectedCity = categoryfiltertype?.filter.city
                     self.getAreas()
                 }
             }else{
-                categoryfiltertype?.filter.city = filters[indexPath.item]
+                categoryfiltertype?.filter.city = cities[indexPath.item]
                 cell.isSelected = true
+                selectedCity = categoryfiltertype?.filter.city
                 self.getAreas()
             }
             
         }else if collectionView == areaCollectionView{
             if let value = categoryfiltertype?.filter.area{
-                if value.Fid == filters[indexPath.item].Fid{
+                if value.Fid == areas[indexPath.item].Fid{
                     categoryfiltertype?.filter.area = nil
                     cell.isSelected = false
                     collectionView.deselectItem(at: indexPath, animated: true)
                 }else{
-                    categoryfiltertype?.filter.area = filters[indexPath.item]
+                    categoryfiltertype?.filter.area = areas[indexPath.item]
                     cell.isSelected = true
-                    self.getAreas()
                 }
             }else{
-                categoryfiltertype?.filter.area = filters[indexPath.item]
+                categoryfiltertype?.filter.area = areas[indexPath.item]
                 cell.isSelected = true
-                self.getAreas()
             }
         }
         categoryfiltertype?.filter.getDictionry()
@@ -482,22 +517,31 @@ extension FiltersViewController:UICollectionViewDelegateFlowLayout{
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+        
         
         if collectionView == categoryCollectionView {
+            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
             categoryfiltertype?.filter.category = nil
             selectedCategory = nil
             cell.isSelected = false
+            cell.configureCell()
         }else if collectionView == subCategoryCollectionView{
+            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
             categoryfiltertype?.filter.subCategory = nil
             cell.isSelected = false
+            cell.configureCell()
         }else if collectionView == cityCollectionView{
+            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
             categoryfiltertype?.filter.city = nil
+            selectedCity = nil
             cell.isSelected = false
+            cell.configureCell()
         }else if collectionView == areaCollectionView{
+            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
            categoryfiltertype?.filter.area = nil
             cell.isSelected = false
+            cell.configureCell()
         }
-        cell.configureCell()
+        
     }
 }

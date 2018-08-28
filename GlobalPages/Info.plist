@@ -26,6 +26,13 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>104.217.253.15</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
 			<key>akamaihd.net</key>
 			<dict>
 				<key>NSExceptionRequiresForwardSecrecy</key>

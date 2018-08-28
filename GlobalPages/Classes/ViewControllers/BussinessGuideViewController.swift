@@ -26,8 +26,6 @@ enum ControllerType{
         case .pharmacy:
             return "ON_DUTY_PHARMACY_TITLE".localized
         }
-        
-        
     }
     
     var filterBarViewIsHidden:Bool {
@@ -41,9 +39,7 @@ enum ControllerType{
         }
     }
     
-    
     func showFilters(){
-        
         switch self {
         case .bussinessGuide:
             ActionShowFilters.execute(type: .Category)
@@ -52,12 +48,9 @@ enum ControllerType{
         default:
             return
         }
-        
     }
 
-    
 }
-
 
 
 class BussinessGuideViewController: AbstractController {
@@ -84,18 +77,14 @@ class BussinessGuideViewController: AbstractController {
     var bussinessGuideListCellId = "BussinessGuidListCell"
     static var filtterCellId = "filtterCell"
     var filters:[categoriesFilter] = []
-    
+    var bussiness:[Bussiness] = []
     
      //  <wpt lat="33.523644063907177326200326206162571907" lon="36.294101366357040205912198871374130249">
     
     var pointAnnotation:MKPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
-    var lat  = 33.5236
-    var long = 36.2941
-    var lat1 = 33.5536
-    var long1 = 36.3011
+    
     var isListView:Bool = false{
-        
         didSet{
             if isListView{
                 switchToListMode()
@@ -108,13 +97,12 @@ class BussinessGuideViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         customizeMap()
 
         if controllerType == .nearBy{
             controllerType.showFilters()
-            
         }
+        getBussiness()
     }
     
     
@@ -154,6 +142,7 @@ class BussinessGuideViewController: AbstractController {
     
     override func buildUp() {
         super.buildUp()
+        
         getFilters()
     }
     
@@ -168,10 +157,26 @@ class BussinessGuideViewController: AbstractController {
         self.tagView.layer.cornerRadius = 12
         // gradiant
         self.tagView.applyGradient(colours: [AppColors.yellowDark,AppColors.yellowLight], direction: .diagonal)
-        
         self.showNavBackButton = true
     }
-
+    
+    func getBussiness(){
+        self.showActivityLoader(true)
+        
+        ApiManager.shared.getBusinesses { (success, error, result) in
+            self.showActivityLoader(false)
+            if success{
+                self.bussiness = result
+                self.bussinessGuideCollectionView.reloadData()
+                self.setBussinessOnMap()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+    }
     
     func getFilters(){
         filters.removeAll()
@@ -221,36 +226,6 @@ class BussinessGuideViewController: AbstractController {
     }
     
     
-    func switchToMapViewMode(){
-        bussinessGuideCollectionView.animateIn(mode: .animateOutToLeft, delay: 0.2)
-        bussinessGuideCollectionView.isHidden = true
-        overLayView.isHidden = true
-    }
-    
-    
-    func setMyLocation(){
-        let location = CLLocation(latitude: LocationHelper.shared.myLocation.lat!, longitude: LocationHelper.shared.myLocation.long!)
-        let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
-        self.mapView.setRegion(viewRegion, animated: true)
-        show3NearBy()
-    }
-    
-    
-    // add pin to the mapView
-    func centerMapOnLocation(location: CLLocation) {
-        self.view.endEditing(true)
-        let regionRadius: CLLocationDistance = 1000
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
-        setAnnotaion(location: location)
-    }
-    func setAnnotaion(location:CLLocation){
-      //  mapView.removeAnnotations(mapView.annotations)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        self.mapView.addAnnotation(annotation)
-    }
-    
     // show 3 nearby in nearby mode
     func show3NearBy(){
         let loc1 = CLLocation(latitude: LocationHelper.shared.myLocation.lat! - 0.01 ,longitude: LocationHelper.shared.myLocation.long! - 0.01)
@@ -278,7 +253,7 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView ==  bussinessGuideCollectionView{
-            return 10
+            return bussiness.count
         }
         if collectionView == filtterCollectionView {
             return filters.count
@@ -291,8 +266,7 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
         
         if collectionView ==  bussinessGuideCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: bussinessGuideListCellId, for: indexPath) as! BussinessGuidListCell
-//            cell.businessGuide = businessGuides[indexPath.item]
-//            cell.setpView(colors:self.gradiantColors[indexPath.item])
+            cell.bussiness = bussiness[indexPath.item]
             return cell
             
         }
@@ -314,7 +288,10 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
         }
         
         if collectionView == self.bussinessGuideCollectionView {
-            self.performSegue(withIdentifier: "BussinessGuidSegue", sender: nil)
+            let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "BussinessDescriptionViewController") as! BussinessDescriptionViewController
+            vc.bussiness = self.bussiness[indexPath.item]
+            let nav = UINavigationController(rootViewController: vc)
+            self.present(nav, animated: true, completion: nil)
         }
     }
 }
@@ -358,7 +335,6 @@ extension BussinessGuideViewController:filterCellProtocol{
         getFilters()
     }
 
-    
 }
 
 
@@ -412,7 +388,49 @@ extension BussinessGuideViewController: MKMapViewDelegate {
     
 }
 
+// maps function
+extension BussinessGuideViewController{
+    func switchToMapViewMode(){
+        bussinessGuideCollectionView.animateIn(mode: .animateOutToLeft, delay: 0.2)
+        bussinessGuideCollectionView.isHidden = true
+        overLayView.isHidden = true
+    }
 
+    func setMyLocation(){
+        let location = CLLocation(latitude: LocationHelper.shared.myLocation.lat!, longitude: LocationHelper.shared.myLocation.long!)
+        let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
+        self.mapView.setRegion(viewRegion, animated: true)
+//        show3NearBy()
+    }
+    
+    
+    // add pin to the mapView
+    func centerMapOnLocation(location: CLLocation) {
+        self.view.endEditing(true)
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
+        setAnnotaion(location: location)
+    }
+    func setAnnotaion(location:CLLocation){
+        //  mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        self.mapView.addAnnotation(annotation)
+    }
+    
+    func setBussinessOnMap(){
+        
+        for bussines in bussiness{
+            if let strlat = bussines.lat,let lat = Double(strlat)  , let strlong = bussines.long , let long = Double(strlong){
+                let loc1 = CLLocation(latitude: lat ,longitude: long)
+                setAnnotaion(location: loc1)
+            }
+        }
+        
+    }
+    
+}
 
 class CustomPointAnnotation: MKPointAnnotation {
     var pinCustomImageName:String!

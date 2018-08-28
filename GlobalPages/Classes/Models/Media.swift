@@ -9,13 +9,13 @@
 import Foundation
 import SwiftyJSON
 
-class Media: BaseModel {
+public class Media: BaseModel {
     
     
     // MARK: Keys
     private let kType: String = "type"
     private let kThumb: String = "thumbnail"
-    private let kFile: String = "file"
+    private let kFile: String = "url"
     
     // MARK: Properties
     //public var name : String?
@@ -29,7 +29,7 @@ class Media: BaseModel {
         super.init()
     }
     
-    required init(json: JSON) {
+    required public init(json: JSON) {
         super.init(json: json)
         
         if let n = json[kFile].string {
@@ -38,6 +38,7 @@ class Media: BaseModel {
         if let t = json[kThumb].string {
             self.thumbUrl = t
         }
+        
     }
     
     public override func dictionaryRepresentation() -> [String: Any] {

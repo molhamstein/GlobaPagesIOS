@@ -43,7 +43,7 @@ class NewAdViewController: AbstractController {
     
     let cellId = "filterCell2"
     let imageCellId = "ImageCell"
-    var images:[UIImage] = [#imageLiteral(resourceName: "AI_Image"),#imageLiteral(resourceName: "profile_image")]
+    var images:[UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,9 +108,8 @@ extension NewAdViewController:UICollectionViewDataSource,UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == imageCollectionView{
-            return images.count
+            return images.count  + 1
         }
-        
         return 0
     }
     
@@ -134,7 +133,9 @@ extension NewAdViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == imageCollectionView{
-            return CGSize(width: 75, height: 75)
+            let height = self.imageCollectionView.frame.height - 16
+            
+            return CGSize(width: height, height: height)
         }
         return CGSize(width: 0, height: 0)
     }

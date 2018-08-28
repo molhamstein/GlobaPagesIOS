@@ -17,7 +17,7 @@ public class BaseModel {
 
     // MARK: Properties
     
-    public var id: Int = -1
+    public var id: String = ""
     
     init() {
     }
@@ -37,7 +37,7 @@ public class BaseModel {
      - returns: An initalized instance of the class.
      */
     public required init(json: JSON) {
-        if let identefier = json[kBaseModelIdKey].int {
+        if let identefier = json[kBaseModelIdKey].string {
             id = identefier
         }
     }
@@ -53,12 +53,12 @@ public class BaseModel {
     }
     
     //MARK: arrays utils
-    func findObjectById<T:BaseModel>(arr:[T] , id: Int) -> T? {
+    func findObjectById<T:BaseModel>(arr:[T] , id: String) -> T? {
         let object = arr.filter{$0.id == id}.first
         return object
     }
     
-    func removeObjectById<T:BaseModel>(arr:[T] , id: Int) -> [T] {
+    func removeObjectById<T:BaseModel>(arr:[T] , id: String) -> [T] {
         var result = arr
         if let index = arr.index(where: {$0.id == id}) {
             result.remove(at: index)
