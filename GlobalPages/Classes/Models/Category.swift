@@ -17,6 +17,7 @@ public class Category: BaseModel {
     public var titleEn : String?
     public var creationDate : String?
     public var parentCategoryId: String?
+    public var Fid:String?
     public var subCategories : Array<Category>?
 //    public var id : String?
 
@@ -52,6 +53,9 @@ public class Category: BaseModel {
         }
         if let array = json["subCategories"].array{
             subCategories = array.map{Category(json:$0)}
+        }
+        if let value = json["id"].string {
+            Fid = value
         }
     }
     

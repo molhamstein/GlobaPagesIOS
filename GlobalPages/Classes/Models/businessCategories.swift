@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class categoriesFilter: BaseModel {
+public class categoriesFilter: BaseModel {
     // MARK: Keys
     private let kCategoryName: String = "name"
     private let kCategoryTitleAr: String = "titleAr"
@@ -51,7 +51,7 @@ class categoriesFilter: BaseModel {
         super.init()
     }
     
-    required init(json: JSON) {
+    required public init(json: JSON) {
         super.init(json: json)
         if let value = json["nameAr"].string {
             nameAr = value
@@ -93,7 +93,7 @@ class categoriesFilter: BaseModel {
         }
     }
     
-    override func dictionaryRepresentation() -> [String : Any] {
+    override public func dictionaryRepresentation() -> [String : Any] {
         var dictionary = super.dictionaryRepresentation()
      
         if let value = nameAr{
@@ -118,8 +118,7 @@ class categoriesFilter: BaseModel {
             dictionary[kCategoryParent] = value
         }
         
-        
-            dictionary[klocationsKey] = locations.map{$0.dictionaryRepresentation()}
+        dictionary[klocationsKey] = locations.map{$0.dictionaryRepresentation()}
         
         if let value = cityId {
             dictionary[KcityIdKey] = value

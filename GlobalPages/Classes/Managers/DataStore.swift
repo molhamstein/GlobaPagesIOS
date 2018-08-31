@@ -41,10 +41,10 @@ class DataStore :NSObject {
     private var _reportTypes: [ReportType] = [ReportType]()
     private var _volume:Volume?
     private var _posts:[Post] = [Post]()
-    private var _categories:[categoriesFilter] = [categoriesFilter]()
-    private var _subcategories:[categoriesFilter] = [categoriesFilter]()
-    private var _cities:[categoriesFilter] = [categoriesFilter]()
-    private var _areas:[categoriesFilter] = [categoriesFilter]()
+    private var _categories:[Category] = [Category]()
+    private var _subcategories:[Category] = [Category]()
+    private var _cities:[City] = [City]()
+    private var _areas:[City] = [City]()
     private var _token: String?
     
     // user loggedin flag
@@ -56,7 +56,7 @@ class DataStore :NSObject {
     }
 
     // Data in cache
-    public var categories: [categoriesFilter] {
+    public var categories: [Category] {
         set {
             _categories = newValue
             saveBaseModelArray(array: _categories, withKey: CACHE_KEY_AD_CATEGORY)
@@ -69,7 +69,7 @@ class DataStore :NSObject {
         }
     }
     
-    public var subCategories: [categoriesFilter] {
+    public var subCategories: [Category] {
         set {
             _subcategories = newValue
             saveBaseModelArray(array: _subcategories, withKey: CACHE_KEY_AD_SUB_CATEGORY)
@@ -82,7 +82,7 @@ class DataStore :NSObject {
         }
     }
     
-    public var cities: [categoriesFilter] {
+    public var cities: [City] {
         set {
             _cities = newValue
             saveBaseModelArray(array: _cities, withKey: CACHE_KEY_CITY)
@@ -96,7 +96,7 @@ class DataStore :NSObject {
     }
     
     
-    public var areas: [categoriesFilter] {
+    public var areas: [City] {
         set {
             _areas = newValue
             saveBaseModelArray(array: _areas, withKey: CACHE_KEY_AREA)
@@ -268,7 +268,7 @@ class DataStore :NSObject {
         clearCache()
         me = nil
         token = nil
-        categories = [categoriesFilter]()
+//        categories = [Category]()
         //shopItems = [ShopItem]()
         //OneSignal.deleteTags(["user_id","user_name"])
     }

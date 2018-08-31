@@ -48,7 +48,7 @@ public class BaseModel {
     */
     public func dictionaryRepresentation() -> [String: Any] {
         var dictionary: [String: Any] = [:]
-        dictionary[kBaseModelIdKey] = id
+//        dictionary[kBaseModelIdKey] = id
         return dictionary
     }
     

@@ -30,6 +30,8 @@ class ProfileViewController: AbstractController {
     let bussinesCellId = "BussinessGuidListCell"
     
     var posts:[Post] = []
+    var bussiness:[Bussiness] = []
+    
     var filters:[String] = ["Real States","Jobs","Cars","Restaurants"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +88,7 @@ class ProfileViewController: AbstractController {
         self.myBussinessCollectionView.dataSource = self
         
         getAds()
+        getBussiness()
     }
     
     override func backButtonAction(_ sender: AnyObject) {
@@ -107,21 +110,37 @@ class ProfileViewController: AbstractController {
         self.showActivityLoader(true)
         ApiManager.shared.getMe { (success, error, user) in
             self.showActivityLoader(false)
-            if success{
-                self.fillUserData()
-            }
-            if error != nil{
-                
-            }
+            if success{ self.fillUserData() }
+            if error != nil{}
         }
-        
     }
     
     func getAds(){
-        
-        self.myAdsCollectionView.collectionViewLayout.invalidateLayout()
-        self.myAdsCollectionView.reloadData()
-        
+        guard let ownerId = DataStore.shared.me?.objectId else { return }
+        self.showActivityLoader(true)
+        ApiManager.shared.getUserPosts(ownerId: ownerId) { (success, error, result) in
+            self.showActivityLoader(false)
+            if success{
+                self.posts = result
+                self.myAdsCollectionView.collectionViewLayout.invalidateLayout()
+                self.myAdsCollectionView.reloadData()
+            }
+            if error != nil{}
+        }
+    }
+    
+    func getBussiness(){
+        guard let ownerId = DataStore.shared.me?.objectId else { return }
+        self.showActivityLoader(true)
+        ApiManager.shared.getUserBussiness(ownerId: ownerId) { (success, error, result) in
+            self.showActivityLoader(false)
+            if success{
+                self.bussiness = result
+                self.myBussinessCollectionView.collectionViewLayout.invalidateLayout()
+                self.myBussinessCollectionView.reloadData()
+            }
+            if error != nil{}
+        }
     }
 }
 
@@ -141,7 +160,7 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
         }
         
         if collectionView == myBussinessCollectionView {
-         return 2
+         return bussiness.count
         }
         return 0
     }
@@ -175,6 +194,7 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
         if collectionView == myBussinessCollectionView{
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: bussinesCellId, for: indexPath) as! BussinessGuidListCell
+            cell.bussiness = bussiness[indexPath.item]
             cell.profileMode()
             return cell
         }
@@ -186,6 +206,12 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
             cell.isSelected = true
             cell.configureCell()
+        }
+        if collectionView == myAdsCollectionView{
+            let post = self.posts[indexPath.item]
+            let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewAdViewController") as! NewAdViewController
+            vc.tempPost = post
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         if collectionView == myBussinessCollectionView{
             

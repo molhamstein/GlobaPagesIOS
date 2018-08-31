@@ -75,7 +75,7 @@ class NearByFilterViewController: AbstractController {
     
     func getBussinessFilters(){
         self.showActivityLoader(true)
-        ApiManager.shared.businessCategories { (success, error, result) in
+        ApiManager.shared.businessCategories { (success, error, result ,cats) in
             self.showActivityLoader(false)
             if success{
                 self.filters = result
