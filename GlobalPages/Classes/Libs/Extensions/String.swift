@@ -94,4 +94,14 @@ extension String {
         let size = (self as NSString).size(attributes: fontAttributes)
         return size.width
     }
+    
+    
+    // check if string contained in another string
+    func contains(find: String) -> Bool{
+        return self.range(of:find) != nil
+    }
+    
+    func containsIgnoringCase(find: String) -> Bool{
+        return self.range(of: find, options: NSString.CompareOptions.caseInsensitive) != nil
+    }
 }

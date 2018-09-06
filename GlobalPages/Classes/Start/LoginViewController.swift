@@ -409,7 +409,6 @@ class LoginViewController: AbstractController {
         maleLabel.alpha = 1
         femaleLabel.alpha = 0.5
         femaleButton.alpha = 0.5
-        
         isMale = true
     }
     

@@ -17,12 +17,14 @@ public enum filterValues {
         switch self{
         case .category:
             fltr.category = nil
+            fltr.subCategory = nil
         case .subCategory:
             fltr.subCategory = nil
         case .area:
             fltr.area = nil
         case .city :
             fltr.city = nil
+            fltr.area = nil
         }
     }
 }

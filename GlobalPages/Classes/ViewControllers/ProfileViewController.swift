@@ -23,6 +23,11 @@ class ProfileViewController: AbstractController {
     @IBOutlet weak var myAdsCollectionView: UICollectionView!
     @IBOutlet weak var myBussinessTitleLabel: XUILabel!
     @IBOutlet weak var myBussinessCollectionView: UICollectionView!
+    @IBOutlet weak var birthDateButton: UIButton!
+    @IBOutlet weak var maleButton: UIButton!
+    @IBOutlet weak var maleLabel: UILabel!
+    @IBOutlet weak var femaleButton: UIButton!
+    @IBOutlet weak var femaleLabel: UILabel!
     
     let categoryCellId = "filterCell2"
     let adImagedCellId = "AdsImageCell"
@@ -33,6 +38,23 @@ class ProfileViewController: AbstractController {
     var bussiness:[Bussiness] = []
     
     var filters:[String] = ["Real States","Jobs","Cars","Restaurants"]
+    
+    var isMale:Bool = false {
+        didSet{
+            if isMale{
+                maleButton.alpha = 1.0
+                maleLabel.alpha = 1.0
+                femaleLabel.alpha = 0.5
+                femaleButton.alpha = 0.5
+            }else{
+                maleButton.alpha = 0.5
+                maleLabel.alpha = 0.5
+                femaleLabel.alpha = 1.0
+                femaleButton.alpha = 1.0
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +67,6 @@ class ProfileViewController: AbstractController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.showNavBackButton = true
-       //
         self.showNavEditButton = true
     }
     
@@ -53,14 +74,17 @@ class ProfileViewController: AbstractController {
         super.customizeView()
         //fonts
         self.usernameTitleLabel.font = AppFonts.normal
-        self.usernameLabel.font = AppFonts.bigBold
+        self.usernameLabel.font = AppFonts.xBigBold
         self.emailTitleLabel.font = AppFonts.normal
-        self.emailLabel.font = AppFonts.bigBold
+        self.emailLabel.font = AppFonts.xBigBold
         self.adsCountTitleLabel.font = AppFonts.normal
-        self.adsCountLabel.font = AppFonts.bigBold
+        self.adsCountLabel.font = AppFonts.xBigBold
         self.categoriesTitleLabel.font = AppFonts.bigBold
         self.myAdsTitleLabel.font = AppFonts.bigBold
         self.myBussinessTitleLabel.font = AppFonts.bigBold
+        self.birthDateButton.titleLabel?.font = AppFonts.xBigBold
+        self.maleLabel.font = AppFonts.normalBold
+        self.femaleLabel.font = AppFonts.normalBold
         
         setupCollectionViews()
     }
@@ -100,8 +124,10 @@ class ProfileViewController: AbstractController {
         guard let user = DataStore.shared.me else {return}
         if let username = user.userName {self.usernameLabel.text = username}
         if let email = user.email{self.emailLabel.text = email}
-//        if let birdate = user.birthdate{self.da}
+        if let image = user.profilePic { self.imageView.setImageForURL(image, placeholder: #imageLiteral(resourceName: "image_placeholder"))}
+        if let birthDate = user.birthdate { birthDateButton.setTitle(DateHelper.getISOStringFromDate(birthDate), for: .normal)  }
         if let count = user.postsCount {self.adsCountLabel.text = "\(count)"}
+        if let gender = user.gender{isMale = gender.rawValue == "male" ? true : false}
         
     }
     
@@ -142,6 +168,8 @@ class ProfileViewController: AbstractController {
             if error != nil{}
         }
     }
+    
+
 }
 
 

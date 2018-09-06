@@ -30,6 +30,7 @@
 		146AF2472121F4B000FE2919 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AF2462121F4AF00FE2919 /* UIImageView.swift */; };
 		146AF24B2123633600FE2919 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AF2492123633600FE2919 /* ProductCell.swift */; };
 		146AF24C2123633600FE2919 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146AF24A2123633600FE2919 /* ProductCell.xib */; };
+		1477053B2141AE26002A160B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477053A2141AE26002A160B /* EditProfileViewController.swift */; };
 		1481AF5120F154E9003A1F10 /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F820ED4B9F0064286D /* Cairo-Black.ttf */; };
 		1481AF5220F154E9003A1F10 /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F720ED4B9F0064286D /* Cairo-Bold.ttf */; };
 		1481AF5320F154E9003A1F10 /* Cairo-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F920ED4BA00064286D /* Cairo-ExtraLight.ttf */; };
@@ -165,6 +166,7 @@
 		146B39F820ED4B9F0064286D /* Cairo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Black.ttf"; sourceTree = "<group>"; };
 		146B39F920ED4BA00064286D /* Cairo-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-ExtraLight.ttf"; sourceTree = "<group>"; };
 		146B39FA20ED4BA00064286D /* Cairo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Light.ttf"; sourceTree = "<group>"; };
+		1477053A2141AE26002A160B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		148E77EB2114E0A500683027 /* businessCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = businessCategories.swift; sourceTree = "<group>"; };
 		14B1B88920DEF17B00D86536 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
 		14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutSettings.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 				14FF47902116338800E6A44C /* NewAdViewController.swift */,
 				145FCE78211649A200E42AE7 /* NewBussinesesViewController.swift */,
 				14DEE798211DE92A00561AA3 /* NewProductViewController.swift */,
+				1477053A2141AE26002A160B /* EditProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -925,6 +928,7 @@
 				1463C44E20D845E100156E84 /* MenuView.swift in Sources */,
 				14DEE7A7211E10BC00561AA3 /* City.swift in Sources */,
 				5786872520C481010002C67B /* DateHelper.swift in Sources */,
+				1477053B2141AE26002A160B /* EditProfileViewController.swift in Sources */,
 				14D7F38820E1226000CF6E4B /* FiltersViewController.swift in Sources */,
 				14160BE820E3D840004CEA7D /* Filter.swift in Sources */,
 				14D2866A2111DB0C0082F3BA /* BussinessDescriptionViewController.swift in Sources */,

@@ -51,7 +51,28 @@ class HomeViewController: AbstractController {
     static var adsImageCellId = "AdsImageCell"
     static var adsTitledCellId = "AdsTitledCell"
 
-    var posts:[Post] = []
+    var posts:[Post] {
+        if let res = DataStore.shared.volume?.posts{
+            var temp = res
+            if let keyword = categoryfiltertype.filter.keyWord , !keyword.isEmpty{
+                temp = temp.filter({($0.title?.lowercased().contains(find: keyword.lowercased()))!})
+            }
+            if let city = categoryfiltertype.filter.city{
+                temp = temp.filter({$0.city?.Fid == city.Fid})
+            }
+            if let area = categoryfiltertype.filter.area{
+                temp = temp.filter({$0.location?.Fid == area.Fid})
+            }
+            if let cat = categoryfiltertype.filter.category{
+                temp = temp.filter({$0.category?.Fid == cat.Fid})
+            }
+            if let subCat = categoryfiltertype.filter.subCategory{
+                temp = temp.filter({$0.subCategory?.Fid == subCat.Fid})
+            }
+            return temp
+        }
+        return []
+    }
     
     var currentVolume:Int?{
         didSet{
@@ -61,8 +82,6 @@ class HomeViewController: AbstractController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
 
     override func customizeView() {
@@ -109,9 +128,6 @@ class HomeViewController: AbstractController {
         setupCollectionViewLayout()
         adsCollectionView.dataSource = self
         adsCollectionView.delegate = self
-        if let value = DataStore.shared.volume?.posts{
-            self.posts = value
-        }
         self.currentVolume = 0
     }
     
@@ -141,6 +157,9 @@ class HomeViewController: AbstractController {
             filters.append(cat)
         }
         filtterCollectionView?.reloadData()
+        self.adsCollectionView.collectionViewLayout.invalidateLayout()
+        self.adsCollectionView.reloadData()
+        
     }
     
     func getFeaturedPosts(){
@@ -155,13 +174,8 @@ class HomeViewController: AbstractController {
         ApiManager.shared.getVolumes(skip: currentVolume ?? 0) { (success, error, result) in
             self.showActivityLoader(false)
             if success{
-                self.posts = []
-                if let res = result?.posts{
-                    self.posts = res
-                }
                 self.adsCollectionView.collectionViewLayout.invalidateLayout()
                 self.adsCollectionView.reloadData()
-
                 if let title = DataStore.shared.volume?.title{
                     self.volumeTitle?.text = title
                 }
@@ -291,9 +305,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
 
  extension HomeViewController {
     func setupCollectionViewLayout() {
-        //
-//        self.adsCollectionView.register(UINib(nibName: "menuView",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "menu")
-        //
+
         // adds Collection view Cells
         let nib2 = UINib(nibName: HomeViewController.adsImageCellId, bundle: nil)
         self.adsCollectionView.register(nib2, forCellWithReuseIdentifier: HomeViewController.adsImageCellId)
