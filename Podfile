@@ -8,7 +8,8 @@ target 'GlobalPages' do
   # Pods for GlobalPages
 
 pod 'Alamofire', '~> 4.0'
-pod 'SDWebImage/WebP'
+#pod 'SDWebImage/WebP'
+pod 'Kingfisher'
 pod 'SwiftyJSON'
 pod 'FBSDKLoginKit', '~> 4.24.0', :inhibit_warnings => true
 pod 'FBSDKCoreKit', '~> 4.24.0', :inhibit_warnings => true

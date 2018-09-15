@@ -41,6 +41,28 @@ class NewAdViewController: AbstractController {
     @IBOutlet weak var addButton: XUIButton!
     
     
+    enum viewType {
+        case editMode
+        case addMode
+        
+        var title:String{
+            switch self {
+            case .editMode:
+                return "Edit Ad".localized
+            case .addMode:
+                return "Add new Ad".localized
+            }
+        }
+        var addButtonTitle:String{
+            switch self {
+            case .editMode:
+                return "Update".localized
+            case .addMode:
+                return "Add".localized
+            }
+        }
+    }
+    
     let cellId = "filterCell2"
     let imageCellId = "ImageCell"
     var images:[UIImage] = []
@@ -51,6 +73,8 @@ class NewAdViewController: AbstractController {
     var selectedArea:City?
     var cityId = ""
     var locationId = ""
+    
+    var mode:viewType = .addMode
     
     var categoryfilters:[Category]{
         return DataStore.shared.categories.filter { $0.parentCategoryId == nil }
@@ -75,34 +99,39 @@ class NewAdViewController: AbstractController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNavBarTitle(title: "Add New Ad".localized)
-        
-        
         if let post = tempPost{
             fillPostData(post: post)
+            mode = .editMode
         }
         else{
             tempPost = Post()
         }
+        self.setNavBarTitle(title: mode.title)
     }
     
     func fillPostData(post:Post){
-        if let title = post.title{ self.adTitleLabel.text = title}
-        if let desc  = post.description { self.descriptionTextView.text = desc}
+        if let title = post.title{ self.adtitleTextField.text = title}
+        if let desc  = post.description {self.descriptionTextView.placeholder = ""; self.descriptionTextView.text = desc ; }
         if let array = post.media{
+            var count = 0
             for mediaObj in array{
                 let imageView = UIImageView()
                 if let url = mediaObj.fileUrl{
-                    imageView.sd_setShowActivityIndicatorView(true)
-                    imageView.sd_setIndicatorStyle(.gray)
-                    imageView.sd_setImage(with: URL(string:url), completed: { (image, error, cach, url) in
+                 
+                    imageView.kf.setImage(with: URL(string: "http://\(url)"), completionHandler: {
+                        (image, error, cacheType, imageUrl) in
                         if let img = image{
                             self.images.append(img)
                         }
+                        count += 1
+                        if count == array.count{
+                        self.imageCollectionView.reloadData()
+                        }
                     })
+                    
                 }
             }
-            imageCollectionView.reloadData()
+            
         }
         
         selectedCategory = post.category
@@ -141,6 +170,8 @@ class NewAdViewController: AbstractController {
         self.adtitleTextField.placeholder    = "AD_NEW_TITLE_TEXT_FIELD_PLACEHOLDER".localized
         self.descriptionTextView.placeholder = "AD_NEW_DESCRIPTION_PLCAEHOLDER".localized
         
+        self.addButton.setTitle(mode.addButtonTitle, for: .normal)
+        
         setupCollectionViews()
         getBussinessFilters()
         getCityFilters()
@@ -163,14 +194,7 @@ class NewAdViewController: AbstractController {
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
-    /*
-     var indexPaths: [NSIndexPath] = []
-     for i in 0..<subCategoryFilters {
-     indexPaths.append(NSIndexPath(item: i, section: 0))
-     }
-     areaCollectionView.reloadItems(at: indexPaths as [IndexPath])
-     areaCollectionView.collectionViewLayout.invalidateLayout()
-     */
+ 
     
     // categories and filters
     func getSubCategories(){
@@ -284,6 +308,7 @@ class NewAdViewController: AbstractController {
         
         if let cat = selectedCity {
             cityId = cat.Fid!
+            
         }else{
             self.showMessage(message: "please select a city to your add".localized, type: .error)
             return false
@@ -309,10 +334,12 @@ class NewAdViewController: AbstractController {
     
     
     func atempToAddPost(){
+        
         self.showActivityLoader(true)
             ApiManager.shared.uploadImages(images: images, completionBlock: { (result, error) in
                     self.tempPost?.media = result
-                    self.addPost()
+                if self.mode == .addMode{self.addPost()}
+                else { self.editPost()}
             })
     }
     
@@ -324,6 +351,18 @@ class NewAdViewController: AbstractController {
             }
             if error != nil{}
         }
+    }
+    
+    func editPost(){
+        
+        ApiManager.shared.editPost(post: tempPost!, cityId: cityId, locationId: locationId) { (success, error) in
+            self.showActivityLoader(false)
+            if success{
+                self.showMessage(message: "Done".localized, type: .success)
+            }
+            if error != nil{}
+        }
+
         
     }
     
@@ -578,57 +617,12 @@ extension NewAdViewController:UICollectionViewDelegateFlowLayout{
 
 
 // image handleras
-extension NewAdViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+extension NewAdViewController{
     
-    
-    func takePhoto() {
-        
-        let alertController  = UIAlertController(title: "Choose source", message: "", preferredStyle: .actionSheet)
-        
-        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: openCamera))
-        
-        alertController.addAction(UIAlertAction(title: "Gallery", style: .default, handler: openGallery))
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
+    override func setImage(image: UIImage) {
+        images.append(image)
+        self.imageCollectionView.reloadData()
     }
-    
-    
-    func openCamera(action: UIAlertAction){
-        
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
-            imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        
-    }
-    
-    func openGallery(action: UIAlertAction){
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
-            imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        
-    }
-    
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!){
-        
-        if let updatedImage = image.updateImageOrientionUpSide() {
-            images.append(updatedImage)
-            imageCollectionView.reloadData()
-        } else {
-            images.append(image)
-            self.imageCollectionView.reloadData()
-        }
-        self.dismiss(animated: true, completion: nil);
-    }
-    
     
     
 }

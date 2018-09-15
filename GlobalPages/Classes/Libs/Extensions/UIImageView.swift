@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import SDWebImage
+import Kingfisher
 
 extension UIImageView {
     
     func setImageForURL(_ url: String, placeholder: UIImage?) {
         self.image = placeholder
-        self.sd_setShowActivityIndicatorView(true)
-        self.sd_setIndicatorStyle(.gray)
-        self.sd_setImage(with: URL(string: url))
+        self.kf.indicatorType = .activity
+        self.kf.setImage(with: URL(string: "http://\(url)")!, placeholder: image)
     }
+    
 }

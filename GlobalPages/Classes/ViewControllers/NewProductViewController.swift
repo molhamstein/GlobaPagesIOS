@@ -17,8 +17,9 @@ class NewProductViewController: AbstractController {
     @IBOutlet weak var nameTextField: XUITextField!
     @IBOutlet weak var descritionTitleLabel: XUILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
-    
     @IBOutlet weak var applyButton: XUIButton!
+    
+    var tempProduct:Product?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +45,26 @@ class NewProductViewController: AbstractController {
     
     
     @IBAction func chooseImage(_ sender: UIButton) {
-        
+            takePhoto()
     }
     
+    
+    func vlaidate()->Bool{
+        
+        if let name = nameTextField.text , !name.isEmpty{
+            tempProduct?.name = name
+        }else{
+            self.showMessage(message: "Please Enter a name".localized, type: .error)
+            return false
+        }
+        
+//        if let desc = descriptionTextView.text , !desc.isEmpty{
+//
+//        }
+        
+        
+        return true
+    }
   
 
 }

@@ -24,6 +24,19 @@ struct DateHelper {
         return dateFormater.string(from: date)
     }
     
+    
+    static func getBirthFormatedStringFromDate(_ date: Date) -> String? {
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "dd MMM yyyy"
+        return dateFormater.string(from: date)
+    }
+    
+    static func getBirthDateFromString(_ dateStr: String) -> Date? {
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "dd MMM yyyy"
+        return dateFormater.date(from: dateStr)
+    }
+    
     /// Get iso date string from date object
     static func getISOStringFromTimestamp(_ timestamp: Double) -> String? {
         let timestampDate = NSDate(timeIntervalSince1970: Double(timestamp as NSNumber)/1000)

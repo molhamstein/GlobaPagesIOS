@@ -60,8 +60,7 @@ class ProfileViewController: AbstractController {
         
         self.setNavBarTitle(title: "My Profile")
         // Do any additional setup after loading the view.
-        fillUserData()
-        fetchUserData()
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -114,6 +113,11 @@ class ProfileViewController: AbstractController {
         getAds()
         getBussiness()
     }
+    override func buildUp() {
+        super.buildUp()
+        fillUserData()
+        fetchUserData()
+    }
     
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
@@ -125,7 +129,7 @@ class ProfileViewController: AbstractController {
         if let username = user.userName {self.usernameLabel.text = username}
         if let email = user.email{self.emailLabel.text = email}
         if let image = user.profilePic { self.imageView.setImageForURL(image, placeholder: #imageLiteral(resourceName: "image_placeholder"))}
-        if let birthDate = user.birthdate { birthDateButton.setTitle(DateHelper.getISOStringFromDate(birthDate), for: .normal)  }
+        if let birthDate = user.birthdate { birthDateButton.setTitle(DateHelper.getBirthFormatedStringFromDate(birthDate), for: .normal)  }
         if let count = user.postsCount {self.adsCountLabel.text = "\(count)"}
         if let gender = user.gender{isMale = gender.rawValue == "male" ? true : false}
         
@@ -169,6 +173,11 @@ class ProfileViewController: AbstractController {
         }
     }
     
+    
+    override func editButtonAction(_ sender: AnyObject) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
 }
 
@@ -244,6 +253,8 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
         if collectionView == myBussinessCollectionView{
             
          let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "BussinessDescriptionViewController") as! BussinessDescriptionViewController
+            vc.bussiness = bussiness[indexPath.item]
+            vc.editMode = true
          self.navigationController?.pushViewController(vc, animated: true)
         }
     }

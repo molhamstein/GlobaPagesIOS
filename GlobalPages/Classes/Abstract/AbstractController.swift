@@ -307,4 +307,60 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     }
 }
 
+extension AbstractController :UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    
+    
+    func takePhoto() {
+        
+        let alertController  = UIAlertController(title: "Choose source", message: "", preferredStyle: .actionSheet)
+        
+        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: openCamera))
+        
+        alertController.addAction(UIAlertAction(title: "Gallery", style: .default, handler: openGallery))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func openCamera(action: UIAlertAction){
+        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func openGallery(action: UIAlertAction){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!){
+        
+        if let updatedImage = image.updateImageOrientionUpSide() {
+          setImage(image: updatedImage)
+        } else {
+        setImage(image: image)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func setImage(image:UIImage){
+        
+    }
+    
+    
+    
+}
+
 

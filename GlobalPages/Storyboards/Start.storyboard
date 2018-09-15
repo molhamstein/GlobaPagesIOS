@@ -51,6 +51,38 @@
             </objects>
             <point key="canvasLocation" x="1800" y="955"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="eao-o9-Bf7">
+            <objects>
+                <viewController id="tdI-lx-MXb" customClass="ViewController" customModule="GlobalPages" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BgW-P6-ken"/>
+                        <viewControllerLayoutGuide type="bottom" id="jXt-V4-7ZN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Xz-mh-s4E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lHq-bd-rIX">
+                                <rect key="frame" x="16" y="44" width="343" height="734"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lHq-bd-rIX" firstAttribute="trailing" secondItem="5Xz-mh-s4E" secondAttribute="trailingMargin" id="RSW-vC-Bls"/>
+                            <constraint firstItem="lHq-bd-rIX" firstAttribute="top" secondItem="BgW-P6-ken" secondAttribute="bottom" id="SOi-gR-kA6"/>
+                            <constraint firstItem="lHq-bd-rIX" firstAttribute="leading" secondItem="5Xz-mh-s4E" secondAttribute="leadingMargin" id="jmP-hZ-R6Q"/>
+                            <constraint firstItem="jXt-V4-7ZN" firstAttribute="top" secondItem="lHq-bd-rIX" secondAttribute="bottom" id="z5H-es-P58"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="lHq-bd-rIX" id="Brq-IY-DeS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xbe-Sc-WqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1439" y="460"/>
+        </scene>
         <!--Start View Controller-->
         <scene sceneID="CeT-ZI-G2Y">
             <objects>
@@ -799,16 +831,16 @@ ZGVhbHMgYXJyb3VuZA
                                                                         <rect key="frame" x="0.0" y="138" width="337.66666666666669" height="137.66666666666663"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="id2-bd-yau">
-                                                                                <rect key="frame" x="75.333333333333329" y="1" width="187.66666666666669" height="29"/>
+                                                                                <rect key="frame" x="75.333333333333329" y="0.33333333333325754" width="187.66666666666669" height="29"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an account? " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8v-lQ-m9i">
-                                                                                        <rect key="frame" x="0.0" y="0.33333333333337123" width="142.66666666666666" height="29"/>
+                                                                                        <rect key="frame" x="0.0" y="0.33333333333325754" width="142.66666666666666" height="29"/>
                                                                                         <fontDescription key="fontDescription" name="MullerRegular" family="Muller" pointSize="17"/>
                                                                                         <nil key="textColor"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2W3-ex-H5e">
-                                                                                        <rect key="frame" x="142.66666666666666" y="0.33333333333337123" width="45" height="29"/>
+                                                                                        <rect key="frame" x="142.66666666666666" y="0.33333333333325754" width="45" height="29"/>
                                                                                         <fontDescription key="fontDescription" name="MullerBold" family="Muller" pointSize="17"/>
                                                                                         <state key="normal" title="Login">
                                                                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>

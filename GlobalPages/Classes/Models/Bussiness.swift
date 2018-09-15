@@ -12,6 +12,58 @@ import Foundation
 import SwiftyJSON
 /* For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
+class Points:BaseModel{
+    var lat:String?
+    var long:String?
+    override init() {
+        super.init()
+    }
+    
+    required public init(json: JSON) {
+        super.init(json: json)
+        lat = json["lat"].string
+        long = json["lng"].string
+    }
+    
+    override public func dictionaryRepresentation() -> [String:Any] {
+        var dictionary = super.dictionaryRepresentation()
+
+        dictionary["lat"] = self.lat
+        dictionary["lng"] = self.long
+        return dictionary
+    }
+}
+
+
+public enum Day:Int{
+    case saturday = 6
+    case sunday = 0
+    case monday = 1
+    case tuesday = 2
+    case wednsday = 3
+    case thursday = 4
+    case fridy = 5
+    
+    var name:String{
+        switch self {
+        case .saturday:
+            return "Saturday".localized
+        case .sunday :
+            return "Sunday".localized
+        case .monday :
+            return "Monday".localized
+        case .tuesday :
+            return "Tuesday".localized
+        case .wednsday :
+            return "Wednsday".localized
+        case .thursday :
+            return "Thursday".localized
+        case .fridy :
+            return "Friday".localized
+        }
+    }
+}
+
 public class Bussiness:BaseModel {
     
 	public var nameEn : String?
@@ -34,6 +86,9 @@ public class Bussiness:BaseModel {
 	public var owner : Owner?
 	public var category : Category?
 	public var subCategory : Category?
+    public var city : City?
+    public var location : City?
+    public var locationPoint : City?
 
     var title:String?{
         if AppConfig.currentLanguage == .arabic{
@@ -68,7 +123,7 @@ public class Bussiness:BaseModel {
             description = value
         }
         if let array =  json["openingDays"].array {
-            openingDays = array.map{$0.int ?? -1}
+            openingDays = array.map{$0.int ?? 0}
         }
         
         if let value = json["openingDaysEnabled"].bool {
@@ -111,18 +166,24 @@ public class Bussiness:BaseModel {
         if let value = json["long"].string {
             long = value
         }
-        
-//        if let value = json["owner"].string {
-//            owner = value
+
+//        if json["owner"] != JSON.null {
+//            owner = Owner(json:json["owner"])
 //        }
-//        if let value = json["category"].string {
-//            category = value
-//        }
-//
-//        if let value = json["subCategory"].string {
-//            subCategory = value
-//        }
-//
+        if  json["category"] != JSON.null {
+            category = Category(json:json["category"])
+        }
+
+        if json["subCategory"] != JSON.null {
+            subCategory = Category(json:json["subCategory"])
+        }
+
+        if json["city"] != JSON.null{
+            city = City(json:json["city"])
+        }
+        if json["location"] != JSON.null{
+            location = City(json:json["location"])
+        }
   
     }
     
@@ -146,9 +207,9 @@ public class Bussiness:BaseModel {
 		dictionary["cover"] = cover
 		dictionary["lat"] = lat
 		dictionary["long"] = long
-		dictionary["owner"] = owner
-		dictionary["category"] = category
-		dictionary["subCategory"] = subCategory
+        if let value = owner{dictionary["owner"] = value.dictionaryRepresentation()}
+        if let value = category {dictionary["category"] = value.dictionaryRepresentation()}
+        if let value = subCategory{dictionary["subCategory"] = value.dictionaryRepresentation()}
         
 		return dictionary
 	}

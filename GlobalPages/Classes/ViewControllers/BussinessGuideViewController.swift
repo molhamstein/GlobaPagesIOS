@@ -49,6 +49,35 @@ enum ControllerType{
             return
         }
     }
+    
+    func bussiness()->[Bussiness]{
+        switch self {
+        case .bussinessGuide:
+                    let filter = categoryFilterType.Category.filter
+                    var temp = DataStore.shared.bussiness
+                    if let keyword = filter.keyWord , !keyword.isEmpty{
+                        temp = temp.filter({($0.title?.lowercased().contains(find: keyword.lowercased()))!})
+                    }
+                    if let city = filter.city{
+                        temp = temp.filter({$0.cityId == city.Fid})
+                    }
+                    if let area = filter.area{
+                        temp = temp.filter({$0.locationId == area.Fid})
+                    }
+                    if let cat = filter.category{
+                        temp = temp.filter({$0.category?.Fid == cat.Fid})
+                    }
+                    if let subCat = filter.subCategory{
+                        temp = temp.filter({$0.subCategory?.Fid == subCat.Fid})
+                    }
+                    return temp
+        case .nearBy:
+            return []
+        case .pharmacy:
+            return []
+        }
+
+    }
 
 }
 
@@ -77,9 +106,7 @@ class BussinessGuideViewController: AbstractController {
     var bussinessGuideListCellId = "BussinessGuidListCell"
     static var filtterCellId = "filtterCell"
     var filters:[categoriesFilter] = []
-    var bussiness:[Bussiness] = []
-    
-     //  <wpt lat="33.523644063907177326200326206162571907" lon="36.294101366357040205912198871374130249">
+//    var bussiness:[Bussiness] = []
     
     var pointAnnotation:MKPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
@@ -142,7 +169,6 @@ class BussinessGuideViewController: AbstractController {
     
     override func buildUp() {
         super.buildUp()
-        
         getFilters()
     }
     
@@ -166,7 +192,6 @@ class BussinessGuideViewController: AbstractController {
         ApiManager.shared.getBusinesses { (success, error, result) in
             self.showActivityLoader(false)
             if success{
-                self.bussiness = result
                 self.bussinessGuideCollectionView.reloadData()
                 self.setBussinessOnMap()
             }
@@ -204,6 +229,8 @@ class BussinessGuideViewController: AbstractController {
             filters.append(cat)
         }
         filtterCollectionView?.reloadData()
+        bussinessGuideCollectionView.reloadData()
+        setBussinessOnMap()
     }
     
     
@@ -253,7 +280,7 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView ==  bussinessGuideCollectionView{
-            return bussiness.count
+            return controllerType.bussiness().count
         }
         if collectionView == filtterCollectionView {
             return filters.count
@@ -266,7 +293,7 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
         
         if collectionView ==  bussinessGuideCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: bussinessGuideListCellId, for: indexPath) as! BussinessGuidListCell
-            cell.bussiness = bussiness[indexPath.item]
+            cell.bussiness = controllerType.bussiness()[indexPath.item]
             return cell
             
         }
@@ -289,7 +316,7 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
         
         if collectionView == self.bussinessGuideCollectionView {
             let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "BussinessDescriptionViewController") as! BussinessDescriptionViewController
-            vc.bussiness = self.bussiness[indexPath.item]
+            vc.bussiness = self.controllerType.bussiness()[indexPath.item]
             let nav = UINavigationController(rootViewController: vc)
             self.present(nav, animated: true, completion: nil)
         }
@@ -420,8 +447,8 @@ extension BussinessGuideViewController{
     }
     
     func setBussinessOnMap(){
-        
-        for bussines in bussiness{
+          mapView.removeAnnotations(mapView.annotations)
+        for bussines in controllerType.bussiness(){
             if let strlat = bussines.lat,let lat = Double(strlat)  , let strlong = bussines.long , let long = Double(strlong){
                 let loc1 = CLLocation(latitude: lat ,longitude: long)
                 setAnnotaion(location: loc1)

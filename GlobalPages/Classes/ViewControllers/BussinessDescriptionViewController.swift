@@ -31,6 +31,7 @@ class BussinessDescriptionViewController: AbstractController {
     @IBOutlet weak var subCategoryTitleLabel: XUILabel!
     @IBOutlet weak var subCategoryLabel: UILabel!
     @IBOutlet weak var productsCollectionView: UICollectionView!
+    @IBOutlet weak var addProductButton: UIButton!
     
     
     
@@ -40,7 +41,7 @@ class BussinessDescriptionViewController: AbstractController {
     
     var bussiness:Bussiness?
     var products:[Product] = []
-    
+    var editMode:Bool = false
     var tagViewWidth:CGFloat = 0{
         
         didSet{
@@ -71,8 +72,8 @@ class BussinessDescriptionViewController: AbstractController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        addProductButton.isHidden = !editMode
+        fillData()
     }
     
     override func customizeView() {
@@ -148,6 +149,18 @@ class BussinessDescriptionViewController: AbstractController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func fillData(){
+        guard  let bussiness = self.bussiness else {return}
+        if let value = bussiness.title { self.bussiniesTitleLabel.text = value}
+        if let value = bussiness.category?.title { self.bussinessCategoryLabel.text = value}
+        if let value = bussiness.category?.title { self.categoryLabel.text = value}
+        if let value = bussiness.subCategory?.title { self.subCategoryLabel.text = value}
+        if let value = bussiness.city?.title { self.cityLabel.text = value}
+        if let value = bussiness.location?.title { self.areaLabel.text = value}
+        if let value = bussiness.description { self.descriptionTextView.text = value}
+        if let value = bussiness.products { self.products = value}
+        productsCollectionView.reloadData()
+    }
     
     
 }
@@ -183,6 +196,7 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
         if collectionView == productsCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellId, for: indexPath) as! ProductCell
             cell.product = self.products[indexPath.item]
+            if self.editMode{ cell.editMode()}
             return cell
         }
         return UICollectionViewCell()

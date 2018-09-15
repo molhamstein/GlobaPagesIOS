@@ -17,12 +17,13 @@ public class Media: BaseModel {
     private let kThumb: String = "thumbnail"
     private let kFile: String = "url"
     
+    
     // MARK: Properties
     //public var name : String?
     public var type : AppMediaType?
     public var fileUrl: String?
     public var thumbUrl: String?
-    
+    public var mid :Int?
     
     // MARK: Initializers
     override init() {
@@ -38,6 +39,7 @@ public class Media: BaseModel {
         if let t = json[kThumb].string {
             self.thumbUrl = t
         }
+        mid = json["id"].int
         
     }
     
@@ -54,7 +56,7 @@ public class Media: BaseModel {
         if let value = type {
             dictionary[kType] = value.rawValue
         }
-        
+        dictionary["id"] = mid
         return dictionary
     }
     

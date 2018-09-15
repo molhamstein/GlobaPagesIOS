@@ -94,19 +94,11 @@ class LoginViewController: AbstractController {
     // MARK: Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-//        if let m = DataStore.shared.me {
-//             self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
-//        }
-        //hideView(withType: .signup)
-        //hideView(withType: .countryV)
-        //loginView.dropShadow()
-        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //self.showNavBackButton = true
+
     }
     
     
