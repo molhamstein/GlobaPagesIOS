@@ -20,10 +20,20 @@ class NewProductViewController: AbstractController {
     @IBOutlet weak var applyButton: XUIButton!
     
     var tempProduct:Product?
+    var bussinessId:String?
+    var image:UIImage?
+    var editMode:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
          self.showNavBackButton = true
+        
+        if let product = tempProduct{
+            fillData(product: product)
+            editMode = true
+        }else{
+            tempProduct = Product()
+        }
     }
     
     override func backButtonAction(_ sender: AnyObject) {
@@ -44,10 +54,21 @@ class NewProductViewController: AbstractController {
     }
     
     
+    func fillData(product:Product){
+        if let title = product.name{ self.nameTextField.text = title}
+        if let desc = product.description { self.descriptionTextView.text = desc ; self.descriptionTextView.placeholder = nil}
+        if let image = product.image { self.imageView.setImageForURL(image, placeholder: nil)}
+    }
+    
     @IBAction func chooseImage(_ sender: UIButton) {
             takePhoto()
     }
     
+    override func setImage(image: UIImage) {
+        self.image = image
+        self.imageView.image = image
+        
+    }
     
     func vlaidate()->Bool{
         
@@ -58,13 +79,62 @@ class NewProductViewController: AbstractController {
             return false
         }
         
-//        if let desc = descriptionTextView.text , !desc.isEmpty{
-//
-//        }
-        
+        if let desc = descriptionTextView.text , !desc.isEmpty{
+            tempProduct?.description = desc
+        }else{
+            tempProduct?.description = nil
+        }
         
         return true
     }
   
+    
+    @IBAction func save(_ sender: UIButton) {
+        if vlaidate(){
+            uplaodImage()
+        }
+    }
+    
+    func uplaodImage(){
+        if let image = image{
+        self.showActivityLoader(true)
+        ApiManager.shared.uploadImages(images: [image]) { (result, error) in
+            self.showActivityLoader(false)
+            if let media = result.first{
+                self.tempProduct?.image = media.fileUrl
+                self.saveProduct()
+            }
+            }
+        }else{
+            self.saveProduct()
+        }
+        
+    }
+    
+    func saveProduct(){
+        self.showActivityLoader(true)
+        if editMode{
+            ApiManager.shared.editProduct(product: tempProduct!, bussinessId: bussinessId ?? "", completionBlock: { (success, error) in
+                self.showActivityLoader(false)
+                if success{
+                    self.showMessage(message: "Done".localized, type: .success)
+                }
+                if error != nil{self.showMessage(message: "error".localized, type: .error)}
+            })
+        }
+        else{
+        ApiManager.shared.addProduct(product: tempProduct!, bussinessId: bussinessId ?? "", completionBlock: { (success, error) in
+            self.showActivityLoader(false)
+            if success{
+                self.showMessage(message: "Done".localized, type: .success)
+            }
+            if error != nil{self.showMessage(message: "error".localized, type: .error)}
+        })
+        }
+
+    }
+    
+    
+    
 
 }

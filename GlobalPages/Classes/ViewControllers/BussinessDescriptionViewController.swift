@@ -146,7 +146,8 @@ class BussinessDescriptionViewController: AbstractController {
     
     
     override func backButtonAction(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        self.popOrDismissViewControllerAnimated(animated: true)
     }
     
     func fillData(){
@@ -162,6 +163,12 @@ class BussinessDescriptionViewController: AbstractController {
         productsCollectionView.reloadData()
     }
     
+    @IBAction func addProduct(_ sender: UIButton) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewProductViewController")  as! NewProductViewController
+        vc.bussinessId = bussiness?.id
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
+    }
     
 }
 
@@ -221,10 +228,19 @@ extension BussinessDescriptionViewController:UICollectionViewDelegateFlowLayout{
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
+ 
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == productsCollectionView{
+            if editMode{
+                let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewProductViewController")  as! NewProductViewController
+                vc.bussinessId = bussiness?.id
+                vc.tempProduct = self.products[indexPath.item]
+                let nav = UINavigationController(rootViewController: vc)
+                self.present(nav, animated: true, completion: nil)
+            }
+        }
+    }
     
 }
 

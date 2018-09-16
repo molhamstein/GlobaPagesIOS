@@ -121,13 +121,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GlobalPages/Classes/Managers/ApiManager.swift"
-            timestampString = "558731750.291151"
+            filePath = "GlobalPages/Classes/Libs/Extensions/UIViewController.swift"
+            timestampString = "558818671.655151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "963"
-            endingLineNumber = "963"
-            landmarkName = "addPost(post:cityId:locationId:completionBlock:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "popOrDismissViewControllerAnimated(animated:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

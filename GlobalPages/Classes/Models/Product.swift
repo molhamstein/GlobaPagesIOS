@@ -16,6 +16,7 @@ public class Product:BaseModel {
 	public var name : String?
 	public var price : Int?
 	public var image : String?
+    public var description:String?
     
     override init() {
         super.init()
@@ -23,15 +24,10 @@ public class Product:BaseModel {
     
     required public init(json: JSON) {
         super.init(json: json)
-        if let value = json["name"].string {
-            name = value
-        }
-        if let value = json["price"].int {
-            price = value
-        }
-        if let value = json["image"].string {
-            image = value
-        }
+        if let value = json["name"].string {name = value}
+        if let value = json["price"].int {price = value}
+        if let value = json["image"].string {image = value}
+        if let value = json["description"].string {description = value}
     }
 
 
@@ -42,7 +38,7 @@ public class Product:BaseModel {
 		dictionary["name"] = name
 		dictionary["price"] = price
 		dictionary["image"] = image
-
+        dictionary["description"] = description
 		return dictionary
 	}
 

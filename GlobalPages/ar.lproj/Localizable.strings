@@ -162,3 +162,8 @@
 // New Ad
 "AD_NEW_TITLE_TEXT_FIELD_PLACEHOLDER" = "منزل للبيع";
 "AD_NEW_DESCRIPTION_PLCAEHOLDER"      = "عن اعلانك";
+
+// new Prouct
+"NEW_PRODUCT_NAME_PLACEHOLDER"       = "الاسم";
+"NEW_PRODUCT_DESC_PLACEHOLDER"       = "الوصف";
+"NEW_PRODUCT_APPLY_BTN"               = "حفظ";

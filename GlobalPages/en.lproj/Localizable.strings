@@ -175,3 +175,9 @@
 // New Ad
 "AD_NEW_TITLE_TEXT_FIELD_PLACEHOLDER" = "House for sale";
 "AD_NEW_DESCRIPTION_PLCAEHOLDER"      = "About your Ad";
+
+
+// new Prouct
+"NEW_PRODUCT_NAME_PLACEHOLDER"       = "Name";
+"NEW_PRODUCT_DESC_PLACEHOLDER"       = "Description";
+"NEW_PRODUCT_APPLY_BTN"               = "Apply";

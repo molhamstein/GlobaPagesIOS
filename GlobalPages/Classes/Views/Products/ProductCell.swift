@@ -27,8 +27,8 @@ class ProductCell: UICollectionViewCell {
             if let image = product.image {
                 imageView.setImageForURL(image, placeholder: nil)
             }
-            if let price = product.price{
-                self.subTitleLabel.text = "\(price)"
+            if let desc = product.description{
+                self.subTitleLabel.text = "\(desc)"
             }
             
             

@@ -117,8 +117,9 @@ class NewAdViewController: AbstractController {
             for mediaObj in array{
                 let imageView = UIImageView()
                 if let url = mediaObj.fileUrl{
-                 
-                    imageView.kf.setImage(with: URL(string: "http://\(url)"), completionHandler: {
+                    var tempurl = url
+                    if !url.contains(find: "http://") { tempurl = "http://\(url)"}
+                    imageView.kf.setImage(with: URL(string: tempurl), completionHandler: {
                         (image, error, cacheType, imageUrl) in
                         if let img = image{
                             self.images.append(img)
@@ -190,11 +191,11 @@ class NewAdViewController: AbstractController {
         self.imageCollectionView.register(imageNib, forCellWithReuseIdentifier: imageCellId)
         
     }
-    
-    override func backButtonAction(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
-    }
- 
+//    
+//    override func backButtonAction(_ sender: AnyObject) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
+// 
     
     // categories and filters
     func getSubCategories(){

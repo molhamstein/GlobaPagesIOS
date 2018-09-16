@@ -14,7 +14,9 @@ extension UIImageView {
     func setImageForURL(_ url: String, placeholder: UIImage?) {
         self.image = placeholder
         self.kf.indicatorType = .activity
-        self.kf.setImage(with: URL(string: "http://\(url)")!, placeholder: image)
+        var tempurl = url
+        if  !url.contains(find: "http://"){ tempurl = "http://\(url)"}
+        self.kf.setImage(with: URL(string: tempurl)!, placeholder: image)
     }
     
 }

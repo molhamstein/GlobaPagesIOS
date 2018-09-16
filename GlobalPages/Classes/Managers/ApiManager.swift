@@ -708,7 +708,7 @@ class ApiManager: NSObject {
     //businessCategories
     func businessCategories(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[categoriesFilter],_ catResult:[Category]) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/businessCategories"
+        let signUpURL = "\(baseURL)/businessCategories?filter[include]=subCategories"
         
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -745,7 +745,7 @@ class ApiManager: NSObject {
     //cities
     func getCities(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[categoriesFilter],_ cityResult:[City]) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/cities"
+        let signUpURL = "\(baseURL)/cities?filter[include]=locations"
     
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -782,7 +782,7 @@ class ApiManager: NSObject {
     
     func postCategories(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[categoriesFilter]) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/postCategories"
+        let signUpURL = "\(baseURL)/postCategories?filter[include]=subCategories"
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -957,6 +957,7 @@ class ApiManager: NSObject {
             }
         }
     }
+
     // add user post
     func addPost(post: Post,cityId:String,locationId:String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         // url & parameters
@@ -1132,6 +1133,84 @@ class ApiManager: NSObject {
             }
         }
     }
+    
+    // add product
+    ///businesses/5b89bdbacb12b88b078c1963/myProducts
+    
+    func addProduct(product: Product,bussinessId:String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)/businesses/\(bussinessId)/myProducts"
+        let parameters : [String : Any] = product.dictionaryRepresentation()
+        print(parameters)
+        
+        // build request
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError)
+                } else {
+                    // parse response to data model >> user object
+                    completionBlock(true , nil)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError)
+                } else {
+                    completionBlock(false, ServerError.connectionError)
+                }
+            }
+        }
+    }
+    
+    // edit product
+    //businesses/sdfsdf/myProducts/fsdf
+    /*
+     {
+     "name": "string",
+     "price": 0,
+     "image": "string",
+     "description": "string",
+     "id": "string"
+     }
+     */
+    
+    func editProduct(product: Product,bussinessId:String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
+        
+        let signInURL = "\(baseURL)/businesses/\(bussinessId)/myProducts/\(product.id ?? "")"
+        let parameters : [String : Any] = product.dictionaryRepresentation()
+        print(parameters)
+        // build request
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError)
+                } else {
+                    // parse response to data model >> user object
+                    completionBlock(true , nil)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError)
+                } else {
+                    completionBlock(false, ServerError.connectionError)
+                }
+            }
+        }
+    }
+    
+    
     // businesses
     func getBusinesses(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters
