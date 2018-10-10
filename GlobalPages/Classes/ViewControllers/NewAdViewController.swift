@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 class NewAdViewController: AbstractController {
     
     
@@ -119,14 +119,25 @@ class NewAdViewController: AbstractController {
                 if let url = mediaObj.fileUrl{
                     var tempurl = url
                     if !url.contains(find: "http://") { tempurl = "http://\(url)"}
-                    imageView.kf.setImage(with: URL(string: tempurl), completionHandler: {
-                        (image, error, cacheType, imageUrl) in
+//                    imageView.kf.setImage(with: URL(string: tempurl), completionHandler: {
+//                        (image, error, cacheType, imageUrl) in
+//                        if let img = image{
+//                            self.images.append(img)
+//                        }
+//                        count += 1
+//                        if count == array.count{
+//                        self.imageCollectionView.reloadData()
+//                        }
+//                    })
+                    imageView.sd_setShowActivityIndicatorView(true)
+                    imageView.sd_setIndicatorStyle(.gray)
+                    imageView.sd_setImage(with: URL(string:tempurl), completed: { (image, error, cach, url) in
                         if let img = image{
                             self.images.append(img)
                         }
                         count += 1
                         if count == array.count{
-                        self.imageCollectionView.reloadData()
+                            self.imageCollectionView.reloadData()
                         }
                     })
                     
