@@ -41,6 +41,7 @@ class BussinessDescriptionViewController: AbstractController {
     
     var bussiness:Bussiness?
     var products:[Product] = []
+    var images:[Media] = []
     var editMode:Bool = false
     var tagViewWidth:CGFloat = 0{
         
@@ -112,7 +113,7 @@ class BussinessDescriptionViewController: AbstractController {
         self.containerView.dropShadow()
    
         // page Controller
-        self.pageController.numberOfPages = 3
+        self.pageController.numberOfPages = 0
         
         // change nav bar tint color for back button
         self.navigationController?.navigationBar.tintColor = .white
@@ -146,8 +147,8 @@ class BussinessDescriptionViewController: AbstractController {
     
     
     override func backButtonAction(_ sender: AnyObject) {
-//        self.dismiss(animated: true, completion: nil)
-        self.popOrDismissViewControllerAnimated(animated: true)
+          self.dismiss(animated: true, completion: nil)
+   //     self.popOrDismissViewControllerAnimated(animated: true)
     }
     
     func fillData(){
@@ -161,6 +162,9 @@ class BussinessDescriptionViewController: AbstractController {
         if let value = bussiness.description { self.descriptionTextView.text = value}
         if let value = bussiness.products { self.products = value}
         productsCollectionView.reloadData()
+        if let value = bussiness.media{self.images = value}
+        imageCollectionView.reloadData()
+        self.pageController.numberOfPages = self.images.count
     }
     
     @IBAction func addProduct(_ sender: UIButton) {
@@ -187,7 +191,7 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
             return products.count
         }
         if collectionView == imageCollectionView {
-            return 3
+            return self.images.count
         }
         return 3
     }
@@ -197,7 +201,7 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == imageCollectionView{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ImageCell
-        print(cell.frame.height)
+        cell.media = self.images[indexPath.item]
         return cell
         }
         if collectionView == productsCollectionView{

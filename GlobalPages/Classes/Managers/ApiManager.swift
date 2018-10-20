@@ -1032,52 +1032,12 @@ class ApiManager: NSObject {
         }
     }
     
-    /*
-     {
-     "nameEn": "Flafel",
-     "nameAr": "فلافل",
-     "nameUnique": "shob3rfny",
-     "logo": "string",
-     "status": "pending",
-     "description": "ma fe shi",
-     "locationPoint": {
-     "lat": 0,
-     "lng": 0
-     },
-     "openingDays": [
-     0
-     ],
-     "openingDaysEnabled": false,
-     "ownerId": "5b855cb0ee3548256fbf0b2a",
-     "products": [
-     {
-     "name": "string",
-     "price": 0,
-     "image": "string",
-     "id": "string"
-     }
-     ],
-     "categoryId": "5b825cda4892087d4b0bac95",
-     "subCategoryId": "5b825cda4892087d4b0bac99",
-     "cityId": "5b825cda4892087d4b0bac87",
-     "locationId": "5b880013cb12b88b078c195c",
-     "covers": [
-     {
-     "url": "string",
-     "type": "image",
-     "thumbnail": "string",
-     "id": "string"
-     }
-     ]
-     }
-     */
-    
     // add bussiness
     func addBussiness(bussiness: Bussiness, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         // url & parameters
         guard let token = DataStore.shared.token else {return}
         let signInURL = "\(baseURL)/businesses?access_token=\(token)"
-        var parameters : [String : Any] =  bussiness.dictionaryRepresentation()
+        let parameters : [String : Any] =  bussiness.dictionaryRepresentation()
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -1106,9 +1066,8 @@ class ApiManager: NSObject {
     // edit Bussiness
     func editBussiness(bussiness: Bussiness, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         // url & parameters
-        guard let token = DataStore.shared.token else {return}
         let signInURL = "\(baseURL)/businesses?id=\(bussiness.id)"
-        var parameters : [String : Any] =  bussiness.dictionaryRepresentation()
+        let parameters : [String : Any] =  bussiness.dictionaryRepresentation()
         // build request
         Alamofire.request(signInURL, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -1168,18 +1127,7 @@ class ApiManager: NSObject {
         }
     }
     
-    // edit product
-    //businesses/sdfsdf/myProducts/fsdf
-    /*
-     {
-     "name": "string",
-     "price": 0,
-     "image": "string",
-     "description": "string",
-     "id": "string"
-     }
-     */
-    
+    // edit product    
     func editProduct(product: Product,bussinessId:String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         
         let signInURL = "\(baseURL)/businesses/\(bussinessId)/myProducts/\(product.id ?? "")"
@@ -1246,6 +1194,44 @@ class ApiManager: NSObject {
             }
         }
     }
+    
+    // get nearby bussiness
+    func getNearByBusinesses(lat:String,lng:String,catId:String,subCatId:String,codeSubCat:String,openDay:String,limit:String,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/businesses/searchByLocation?lat=\(lat)&lng=\(lng)&catId=\(catId)&subCatId=\(subCatId)&codeSubCat=\(codeSubCat)&openingDay=\(openDay)&limit=\(limit)"
+        
+        // build request
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError, [])
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let filters = array.map{Bussiness(json:$0)}
+                        DataStore.shared.bussiness = filters
+                        completionBlock(true , nil, filters)
+                    }else{
+                        completionBlock(true , nil, [])
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, [])
+                } else {
+                    completionBlock(false, ServerError.connectionError, [])
+                }
+            }
+        }
+    }
+    
+    
 }
 
 

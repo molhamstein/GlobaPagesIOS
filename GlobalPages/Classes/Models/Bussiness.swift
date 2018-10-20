@@ -12,22 +12,21 @@ import Foundation
 import SwiftyJSON
 /* For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
-class Points:BaseModel{
-    var lat:String?
-    var long:String?
+public class Points:BaseModel{
+    var lat:Double?
+    var long:Double?
     override init() {
         super.init()
     }
     
     required public init(json: JSON) {
         super.init(json: json)
-        lat = json["lat"].string
-        long = json["lng"].string
+        lat = json["lat"].double
+        long = json["lng"].double
     }
     
     override public func dictionaryRepresentation() -> [String:Any] {
         var dictionary = super.dictionaryRepresentation()
-
         dictionary["lat"] = self.lat
         dictionary["lng"] = self.long
         return dictionary
@@ -36,13 +35,13 @@ class Points:BaseModel{
 
 
 public enum Day:Int{
-    case saturday = 6
-    case sunday = 0
-    case monday = 1
-    case tuesday = 2
-    case wednsday = 3
-    case thursday = 4
-    case fridy = 5
+    case saturday = 7
+    case sunday = 1
+    case monday = 2
+    case tuesday = 3
+    case wednsday = 4
+    case thursday = 5
+    case fridy = 6
     
     var name:String{
         switch self {
@@ -80,16 +79,26 @@ public class Bussiness:BaseModel {
 	public var cityId : String?
 	public var locationId : String?
 	public var covers : Array<String>?
-	public var cover : String?
-	public var lat : String?
-	public var long : String?
 	public var owner : Owner?
 	public var category : Category?
 	public var subCategory : Category?
     public var city : City?
     public var location : City?
-    public var locationPoint : City?
+    public var locationPoint : Points?
+    public var media:[Media]?
 
+    public var lat : Double?{
+        return locationPoint?.lat
+    }
+    
+    public var long : Double?{
+        return locationPoint?.long
+    }
+    
+    public var cover : String?{
+        return media?.first?.fileUrl
+    }
+    
     var title:String?{
         if AppConfig.currentLanguage == .arabic{
             return nameAr
@@ -153,18 +162,16 @@ public class Bussiness:BaseModel {
             locationId = value
         }
         
-        if let array = json["covers"].array {
-            covers = array.map{$0.string ?? ""}
-        }
-        if let value = json["cover"].string {
-            cover = value
-        }
        
-        if let value = json["lat"].string {
-            lat = value
-        }
-        if let value = json["long"].string {
-            long = value
+//        if let value = json["lat"].string {
+//            lat = value
+//        }
+//        if let value = json["long"].string {
+//            long = value
+//        }
+//
+        if json["locationPoint"] != JSON.null {
+            locationPoint = Points(json: json["locationPoint"])
         }
 
 //        if json["owner"] != JSON.null {
@@ -183,6 +190,9 @@ public class Bussiness:BaseModel {
         }
         if json["location"] != JSON.null{
             location = City(json:json["location"])
+        }
+        if let array = json["media"].array{
+            media = array.map{Media(json:$0)}
         }
   
     }
@@ -210,6 +220,10 @@ public class Bussiness:BaseModel {
         if let value = owner{dictionary["owner"] = value.dictionaryRepresentation()}
         if let value = category {dictionary["category"] = value.dictionaryRepresentation()}
         if let value = subCategory{dictionary["subCategory"] = value.dictionaryRepresentation()}
+        if let value = locationPoint{dictionary["locationPoint"] = value.dictionaryRepresentation()}
+        if let value = media {
+            dictionary["media"] = value.map{$0.dictionaryRepresentation()}
+        }
         
 		return dictionary
 	}

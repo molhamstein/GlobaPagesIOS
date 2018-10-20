@@ -72,9 +72,9 @@ enum ControllerType{
                     }
                     return temp
         case .nearBy:
-            return []
+            return DataStore.shared.bussiness
         case .pharmacy:
-            return []
+            return DataStore.shared.bussiness
         }
 
     }
@@ -100,8 +100,36 @@ class BussinessGuideViewController: AbstractController {
     @IBOutlet weak var mapView: MKMapView!
     
     
+    // nearby filter
+    @IBOutlet weak var nearByView: UIView!
+    @IBOutlet weak var infoLabel: XUILabel!
+    @IBOutlet weak var categoryTitleLabel: UILabel!
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
+    @IBOutlet weak var categoryView: UIView!
+    @IBOutlet weak var subCategoryView: UIView!
+    @IBOutlet weak var subCategoryTitleLabel: UILabel!
+    @IBOutlet weak var subCategoryCollectionView: UICollectionView!
+    
+    var categoryfiltertype:categoryFilterType = .Category
+    var filtterCellId2 = "filterCell2"
+    
+    var selectedCategory:categoriesFilter?
+    var selectedSubCategory:categoriesFilter?
+    
+    var categoryfilters:[categoriesFilter]{
+        return filters.filter{$0.parentCategoryId == nil}
+    }
+    
+    var subCategoryFilters:[categoriesFilter]{
+        if let cat = selectedCategory{
+            return filters.filter({$0.parentCategoryId == cat.Fid})
+        }
+        return []
+    }
+    //
     
     var controllerType:ControllerType = .bussinessGuide
+    var selectedBussiness:Bussiness?
     
     var bussinessGuideListCellId = "BussinessGuidListCell"
     static var filtterCellId = "filtterCell"
@@ -127,11 +155,68 @@ class BussinessGuideViewController: AbstractController {
         customizeMap()
 
         if controllerType == .nearBy{
-            controllerType.showFilters()
+            getBussinessFilters()
+            showNearbyFilterView()
+//            controllerType.showFilters()
+        }else if controllerType == .bussinessGuide{
+            getBussiness()
+        }else if controllerType == .pharmacy{
+            getNearByPharmacies()
         }
-        getBussiness()
     }
     
+    
+    func getBussinessFilters(){
+        self.showActivityLoader(true)
+        ApiManager.shared.businessCategories { (success, error, result ,cats) in
+            self.showActivityLoader(false)
+            if success{
+                self.filters = result
+                self.categoryCollectionView.reloadData()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+    }
+    func showNearbyFilterView(){
+        self.nearByView.isHidden = false
+        self.nearByView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+        self.categoryView.animateIn(mode: .animateInFromRight, delay: 0.4)
+    }
+    
+    @IBAction func backAction(_ sender: Any) {
+        if subCategoryView.isHidden == false{
+            self.showCategory()
+        }else{
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func showSubCategory(){
+        //      self.categoryView.animateIn(mode: .animateOutToLeft, delay: 0.2)
+        subCategoryCollectionView.reloadData()
+        dispatch_main_after(0.2) {
+            self.subCategoryView.isHidden = false
+            self.subCategoryView.animateIn(mode: .animateInFromRight, delay: 0.2)
+            self.categoryView.isHidden = true
+        }
+        
+    }
+    
+    func showCategory(){
+        //   self.subCategoryView.animateIn(mode: .animateOutToRight, delay: 0.2)
+        dispatch_main_after(0.2) {
+            self.categoryView.isHidden = false
+            self.categoryView.animateIn(mode: .animateInFromLeft, delay: 0.2)
+            self.subCategoryView.isHidden = true
+            
+        }
+    }
+    
+    //
     
     func customizeMap(){
   
@@ -139,7 +224,7 @@ class BussinessGuideViewController: AbstractController {
         // my location Settings
         mapView.showsUserLocation = true
         NotificationCenter.default.addObserver(self, selector: #selector(setMyLocation), name: .notificationLocationChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(show3NearBy), name: .notificationShow3NearByChanged, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(show3NearBy), name: .notificationShow3NearByChanged, object: nil)
         
         LocationHelper.shared.startUpdateLocation()
     }
@@ -164,6 +249,15 @@ class BussinessGuideViewController: AbstractController {
         // set view by controller type
         self.filtersBarView.isHidden = controllerType.filterBarViewIsHidden
         
+        
+     // near by view
+        self.infoLabel.font = AppFonts.big
+        self.categoryTitleLabel.font = AppFonts.big
+        self.subCategoryTitleLabel.font = AppFonts.big
+        
+        let nib = UINib(nibName: filtterCellId2, bundle: nil)
+        self.categoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId2)
+        self.subCategoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId2)
     }
     
     
@@ -235,7 +329,11 @@ class BussinessGuideViewController: AbstractController {
     
     
     override func backButtonAction(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+        if controllerType == .nearBy{
+            backAction(self)
+        }else{
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
      // change map View to list view
@@ -251,16 +349,14 @@ class BussinessGuideViewController: AbstractController {
         bussinessGuideCollectionView.isHidden = false
         bussinessGuideCollectionView.animateIn(mode: .animateInFromLeft, delay: 0.3)
     }
+
     
-    
-    // show 3 nearby in nearby mode
-    func show3NearBy(){
-        let loc1 = CLLocation(latitude: LocationHelper.shared.myLocation.lat! - 0.01 ,longitude: LocationHelper.shared.myLocation.long! - 0.01)
-        setAnnotaion(location: loc1)
-        let loc2 = CLLocation(latitude: LocationHelper.shared.myLocation.lat! + 0.01 ,longitude: LocationHelper.shared.myLocation.long! - 0.01)
-        setAnnotaion(location: loc2)
-        let loc3 = CLLocation(latitude: LocationHelper.shared.myLocation.lat! - 0.01 ,longitude: LocationHelper.shared.myLocation.long! + 0.01)
-        setAnnotaion(location: loc3)
+    // setBottom View Data
+    func setBottomViewWith(bussiness:Bussiness){
+        self.bussinessGuidImageView.image = nil
+        if let image = bussiness.cover{bussinessGuidImageView.setImageForURL(image, placeholder: nil)}
+        if let title = bussiness.title{ bussinessGuideTitleLabel.text = title}
+        if let category = bussiness.description{ bussinessGuideCategoryLabel.text = category}
     }
     
     
@@ -268,6 +364,49 @@ class BussinessGuideViewController: AbstractController {
     
     @IBAction func search(_ sender: UIButton) {
         controllerType.showFilters()
+    }
+    
+    func getNearByBusness(){
+        guard let catId = selectedCategory?.Fid, let subCatId = selectedSubCategory?.Fid , let lat = LocationHelper.shared.myLocation.lat , let lng = LocationHelper.shared.myLocation.long else{ return}
+        self.showActivityLoader(true)
+        ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: catId, subCatId: subCatId,codeSubCat:"", openDay: "",limit: "3") { (success, error, resutl) in
+            
+            self.showActivityLoader(false)
+            if success{
+                self.nearByView.animateIn(mode: .animateOutToBottom, delay: 0.2)
+                self.setBussinessOnMap()
+            }
+            if error != nil{
+                if let msg = error?.errorName {
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+    }
+    
+    func getNearByPharmacies(){
+        guard  let lat = LocationHelper.shared.myLocation.lat , let lng = LocationHelper.shared.myLocation.long else{ return}
+        self.showActivityLoader(true)
+        ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: "", subCatId: "",codeSubCat:"pharmacies", openDay: "\(DateHelper.getDayNumberFrom(date: Date()))",limit: "") { (success, error, resutl) in
+            
+            self.showActivityLoader(false)
+            if success{
+             
+                self.setBussinessOnMap()
+            }
+            if error != nil{
+                if let msg = error?.errorName {
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+    }
+    
+    @IBAction func goToBussinessDescription(_ sender: UIButton) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "BussinessDescriptionViewController") as! BussinessDescriptionViewController
+        vc.bussiness = selectedBussiness
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
     }
     
 }
@@ -278,13 +417,10 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        if collectionView ==  bussinessGuideCollectionView{
-            return controllerType.bussiness().count
-        }
-        if collectionView == filtterCollectionView {
-            return filters.count
-        }
+        if collectionView ==  bussinessGuideCollectionView{return controllerType.bussiness().count}
+        if collectionView == filtterCollectionView {return filters.count}
+        if collectionView == categoryCollectionView {return categoryfilters.count}
+        if collectionView == subCategoryCollectionView {return subCategoryFilters.count}
         return 0
     }
     
@@ -305,6 +441,47 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
             return cell
             
         }
+        
+        if collectionView == categoryCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filtterCellId2, for: indexPath) as! filterCell2
+            if let category = categoryfiltertype.filter.category{
+                if category.Fid == categoryfilters[indexPath.item].Fid{
+                    cell.isSelected = true
+                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                }else{
+                    collectionView.deselectItem(at: indexPath, animated: true)
+                    cell.isSelected = false
+                }
+            }else{
+                collectionView.deselectItem(at: indexPath, animated: true)
+                cell.isSelected = false
+            }
+            cell.filter = categoryfilters[indexPath.item]
+            cell.setupView(type:.map)
+            return cell
+        }
+        
+        
+        if collectionView == subCategoryCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: filtterCellId2, for: indexPath) as! filterCell2
+            
+            if let category = categoryfiltertype.filter.category{
+                if category.Fid == subCategoryFilters[indexPath.item].Fid{
+                    cell.isSelected = true
+                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                }else{
+                    collectionView.deselectItem(at: indexPath, animated: true)
+                    cell.isSelected = false
+                }
+            }else{
+                collectionView.deselectItem(at: indexPath, animated: true)
+                cell.isSelected = false
+            }
+            cell.filter = subCategoryFilters[indexPath.item]
+            cell.setupView(type:.map)
+            return cell
+        }
+        
         return UICollectionViewCell()
     }
     
@@ -320,6 +497,16 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
             let nav = UINavigationController(rootViewController: vc)
             self.present(nav, animated: true, completion: nil)
         }
+        if collectionView == categoryCollectionView {
+            self.selectedCategory = categoryfilters[indexPath.item]
+            self.showSubCategory()
+        }
+        if collectionView == subCategoryCollectionView{
+            ///
+            
+            self.selectedSubCategory = self.subCategoryFilters[indexPath.item]
+            self.getNearByBusness()
+        }
     }
 }
 
@@ -334,7 +521,14 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
         if collectionView == filtterCollectionView {
             return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
         }
+        if collectionView == categoryCollectionView {
+            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+        }
         
+        if collectionView == subCategoryCollectionView{
+            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            
+        }
         
         return CGSize(width: self.view.frame.width * 0.7, height: 0)
     }
@@ -345,12 +539,8 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
             return 16
 
         }
-        if collectionView == filtterCollectionView{
-            return 8
-            
-        }
-      
-        return 0
+        
+        return 8
     }
 
 }
@@ -399,8 +589,12 @@ extension BussinessGuideViewController: MKMapViewDelegate {
             return
         }
         view.image = UIImage(named : "pin_yellow")
-        self.bottomView.isHidden = false
-        self.bottomView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+        if let title = view.annotation?.title, let tag = Int(title!){
+            selectedBussiness = controllerType.bussiness()[tag]
+            self.bottomView.isHidden = false
+            self.setBottomViewWith(bussiness: selectedBussiness!)
+            self.bottomView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+        }
         
     }
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -437,24 +631,26 @@ extension BussinessGuideViewController{
         let regionRadius: CLLocationDistance = 1000
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
-        setAnnotaion(location: location)
+        setAnnotaion(location: location,tag: -1)
     }
-    func setAnnotaion(location:CLLocation){
-        //  mapView.removeAnnotations(mapView.annotations)
+    
+    func setAnnotaion(location:CLLocation,tag:Int){
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        annotation.title = "\(tag)"
         self.mapView.addAnnotation(annotation)
     }
     
     func setBussinessOnMap(){
-          mapView.removeAnnotations(mapView.annotations)
+        mapView.removeAnnotations(mapView.annotations)
+        var i = 0
         for bussines in controllerType.bussiness(){
-            if let strlat = bussines.lat,let lat = Double(strlat)  , let strlong = bussines.long , let long = Double(strlong){
+            if let lat = bussines.lat,let long = bussines.long {
                 let loc1 = CLLocation(latitude: lat ,longitude: long)
-                setAnnotaion(location: loc1)
+                setAnnotaion(location: loc1,tag: i)
+                i += 1
             }
         }
-        
     }
     
 }

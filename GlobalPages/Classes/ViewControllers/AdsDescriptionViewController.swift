@@ -137,8 +137,6 @@ class AdsDescriptionViewController: AbstractController {
         self.dismiss(animated: true, completion: nil)
     }
     
-
-
 }
 
 

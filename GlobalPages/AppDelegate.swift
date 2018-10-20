@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // make nav bar trasculante
         AppConfig.setNavigationStyle()
-        
-        
+
         return true
     }
 

@@ -43,6 +43,20 @@ struct DateHelper {
         return getISOStringFromDate(timestampDate as Date)
     }
     
+    
+    static func getDayFrom(date:Date) -> String{
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        let dayInWeek = formatter.string(from: date)
+        return dayInWeek
+    }
+    
+    static func getDayNumberFrom(date:Date) ->Int{
+        let dayNumber = Calendar.current.component(.weekday, from: date)
+        return dayNumber
+    }
+    
     static func ellapsedString(fromDate date:Date?) -> String {
         guard let created = date?.timeIntervalSince1970 else {
             return ""
