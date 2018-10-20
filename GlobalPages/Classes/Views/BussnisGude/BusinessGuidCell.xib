@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCl-yP-ZEE">
                         <rect key="frame" x="0.0" y="0.0" width="420" height="96"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AI_Image" translatesAutoresizingMaskIntoConstraints="NO" id="GSM-6X-PyQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GSM-6X-PyQ">
                                 <rect key="frame" x="0.0" y="0.0" width="420" height="96"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9s-zs-hrk">
@@ -53,6 +53,7 @@
                     </view>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="QCl-yP-ZEE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="AHe-PF-cpD"/>
                 <constraint firstAttribute="trailing" secondItem="QCl-yP-ZEE" secondAttribute="trailing" id="Ow3-iK-qW9"/>
@@ -74,7 +75,4 @@
             <point key="canvasLocation" x="112" y="56"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="AI_Image" width="1139" height="643"/>
-    </resources>
 </document>

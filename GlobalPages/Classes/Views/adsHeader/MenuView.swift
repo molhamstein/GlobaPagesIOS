@@ -20,6 +20,11 @@ class MenuView: UICollectionReusableView {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var filtterCollectionView: UICollectionView!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var previoseButton: UIButton!
+    
+
+    var currentVolume = 0
     
     // MARK: - Properties
     var delegate: MenuViewDelegate?
@@ -45,16 +50,25 @@ class MenuView: UICollectionReusableView {
     }
     
     @IBAction func tapMapButton(_ sender: UIButton) {
-        delegate?.showMap()
+        ActionShowNewAd.execute()
     }
     
     @IBAction func tapNextWeekButton(_ sender: UIButton) {
         delegate?.nextVolume()
+        if currentVolume > 0 {
+            currentVolume = currentVolume - 1
+        }
+        if currentVolume == 0{
+            self.nextButton.isEnabled = false
+        }
     }
     
     @IBAction func tapPreviosWeekButton(_ sender: UIButton) {
         delegate?.preVolume()
+        self.currentVolume += 1
+        self.nextButton.isEnabled = true
     }
+    
     
 }
 

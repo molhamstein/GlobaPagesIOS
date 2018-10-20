@@ -107,3 +107,15 @@ class ActionShowAdsDescrption: Action {
         UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
     }
 }
+
+
+ // NewAdViewController
+class ActionShowNewAd: Action {
+    override class func execute() {
+        if DataStore.shared.isLoggedin {
+        let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: NewAdViewController.className) as! NewAdViewController
+        let nav = UINavigationController(rootViewController: ViewController)
+            UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
+        }
+    }
+}

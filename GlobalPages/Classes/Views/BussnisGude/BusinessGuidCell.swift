@@ -32,8 +32,8 @@ class BusinessGuidCell: UICollectionViewCell {
     var post:Post?{
         didSet{
             guard let psot = post else{ return }
-            if let image = psot.media?.first,let url = image.fileUrl{
-                self.imageView.setImageForURL(url, placeholder: #imageLiteral(resourceName: "AI_Image"))
+            if let image = psot.image{
+                self.imageView.setImageForURL(image, placeholder: nil)
             }
             if let title = post?.title{
                 self.businessInfoLabel.text = title
@@ -51,6 +51,7 @@ class BusinessGuidCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.businessInfoLabel.font = AppFonts.xBigBold
+        self.businessInfoLabel.dropShadow()
     }
 
    

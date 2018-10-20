@@ -26,7 +26,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXJ-pO-jaN">
                         <rect key="frame" x="0.0" y="0.0" width="162" height="100"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AI_Image" translatesAutoresizingMaskIntoConstraints="NO" id="m6t-dg-Fcz">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m6t-dg-Fcz">
                                 <rect key="frame" x="0.0" y="0.0" width="162" height="100"/>
                             </imageView>
                         </subviews>
@@ -164,7 +164,4 @@
             <point key="canvasLocation" x="81" y="82"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="AI_Image" width="1139" height="643"/>
-    </resources>
 </document>

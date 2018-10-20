@@ -23,7 +23,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5B9-rd-R7O">
                         <rect key="frame" x="0.0" y="0.0" width="276" height="79"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shawrma" translatesAutoresizingMaskIntoConstraints="NO" id="9pl-dz-19K">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9pl-dz-19K">
                                 <rect key="frame" x="8" y="8" width="63" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9pl-dz-19K" secondAttribute="height" multiplier="1:1" id="icQ-Un-LYB"/>
@@ -83,6 +83,5 @@
     </objects>
     <resources>
         <image name="ic_edit" width="21" height="21"/>
-        <image name="shawrma" width="81" height="67"/>
     </resources>
 </document>

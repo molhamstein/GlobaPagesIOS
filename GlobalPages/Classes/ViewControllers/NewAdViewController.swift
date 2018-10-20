@@ -202,11 +202,11 @@ class NewAdViewController: AbstractController {
         self.imageCollectionView.register(imageNib, forCellWithReuseIdentifier: imageCellId)
         
     }
-//    
-//    override func backButtonAction(_ sender: AnyObject) {
-//        self.dismiss(animated: true, completion: nil)
-//    }
-// 
+    
+    override func backButtonAction(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
+    }
+ 
     
     // categories and filters
     func getSubCategories(){

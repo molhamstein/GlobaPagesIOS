@@ -27,7 +27,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfb-Jy-19M">
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfb-Jy-19M">
                                     <rect key="frame" x="383" y="0.0" width="24" height="35"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="vy2-2d-ES7"/>
@@ -57,11 +57,11 @@
                                 <constraint firstItem="4Oo-Na-WZh" firstAttribute="leading" secondItem="7x6-tZ-ULM" secondAttribute="trailing" id="W3y-9v-PnE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 <constraint firstAttribute="height" constant="35" id="cEb-y7-X71"/>
                                 <constraint firstItem="bfb-Jy-19M" firstAttribute="top" secondItem="Z6d-qC-XZy" secondAttribute="top" id="d9A-Dv-144" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                <constraint firstItem="7x6-tZ-ULM" firstAttribute="leading" secondItem="Z6d-qC-XZy" secondAttribute="leading" constant="8" id="eQJ-Mv-YLN" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstItem="7x6-tZ-ULM" firstAttribute="left" secondItem="Z6d-qC-XZy" secondAttribute="left" constant="8" id="eQJ-Mv-YLN" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 <constraint firstAttribute="bottom" secondItem="4Oo-Na-WZh" secondAttribute="bottom" id="mTk-rU-YUy" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 <constraint firstItem="bfb-Jy-19M" firstAttribute="leading" secondItem="4Oo-Na-WZh" secondAttribute="trailing" id="oAZ-MC-CfM" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 <constraint firstItem="7x6-tZ-ULM" firstAttribute="top" secondItem="Z6d-qC-XZy" secondAttribute="top" id="p5G-Dl-rA0" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                <constraint firstAttribute="trailing" secondItem="bfb-Jy-19M" secondAttribute="trailing" constant="8" id="q3E-WU-rkP" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                <constraint firstAttribute="right" secondItem="bfb-Jy-19M" secondAttribute="right" constant="8" id="q3E-WU-rkP" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N86-9z-mK8">
@@ -82,12 +82,15 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iiS-O5-sq6">
-                                            <rect key="frame" x="52" y="12.5" width="22" height="22"/>
+                                            <rect key="frame" x="54" y="12" width="20" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="22" id="LOT-1B-HXr" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                                <constraint firstAttribute="width" constant="22" id="WdR-Ly-PsJ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                <constraint firstAttribute="height" constant="20" id="LOT-1B-HXr" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                <constraint firstAttribute="width" constant="20" id="WdR-Ly-PsJ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                             </constraints>
-                                            <state key="normal" image="ic_nearby"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                            <state key="normal" title="+">
+                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
                                             <connections>
                                                 <action selector="tapMapButton:" destination="eUA-Pv-khb" eventType="touchUpInside" id="XV0-mi-4hp"/>
                                             </connections>
@@ -96,7 +99,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="3Ap-v7-3ge" firstAttribute="leading" secondItem="7dy-ho-uCb" secondAttribute="leading" constant="8" id="4xS-jr-4XL" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                        <constraint firstItem="iiS-O5-sq6" firstAttribute="centerY" secondItem="7dy-ho-uCb" secondAttribute="centerY" id="CIB-WG-UG7" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                        <constraint firstItem="iiS-O5-sq6" firstAttribute="centerY" secondItem="7dy-ho-uCb" secondAttribute="centerY" constant="-2" id="CIB-WG-UG7" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                         <constraint firstAttribute="trailing" secondItem="iiS-O5-sq6" secondAttribute="trailing" constant="16" id="jdP-ff-djS" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                         <constraint firstAttribute="width" constant="90" id="w1c-fC-b2k" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                         <constraint firstItem="3Ap-v7-3ge" firstAttribute="centerY" secondItem="7dy-ho-uCb" secondAttribute="centerY" id="wBr-ir-UxQ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
@@ -156,12 +159,13 @@
             <connections>
                 <outlet property="dateLabel" destination="4Oo-Na-WZh" id="PqW-vk-Z8v"/>
                 <outlet property="filtterCollectionView" destination="BVX-r8-vd3" id="1JW-Uk-bmx"/>
+                <outlet property="nextButton" destination="bfb-Jy-19M" id="Xgl-61-wDD"/>
+                <outlet property="previoseButton" destination="7x6-tZ-ULM" id="6j5-Rm-yQ9"/>
             </connections>
             <point key="canvasLocation" x="4.5" y="-54.5"/>
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="ic_nearby" width="14" height="23"/>
         <image name="ic_search" width="20" height="20"/>
         <image name="next_volume" width="11" height="12"/>
         <image name="pre_volume" width="11" height="13"/>

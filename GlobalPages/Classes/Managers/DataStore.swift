@@ -179,7 +179,7 @@ class DataStore :NSObject {
     
     
     public var featuredPosts:[Post]{
-        return posts.filter{ $0.isFeatured == false }
+        return posts.filter{ $0.isFeatured == true }
     }
     
     public var token:String? {

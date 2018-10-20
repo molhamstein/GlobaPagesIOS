@@ -29,6 +29,7 @@ public class Post:BaseModel{
     public var isFeatured: Bool?
     public var city:City?
     public var location:City?
+    
     public var image : String?{
         return media?.first?.fileUrl
     }

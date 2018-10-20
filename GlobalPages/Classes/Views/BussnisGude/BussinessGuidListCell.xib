@@ -24,7 +24,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WP9-DM-ep3">
                         <rect key="frame" x="0.0" y="0.0" width="326" height="76"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shawrma" translatesAutoresizingMaskIntoConstraints="NO" id="RrQ-It-FCd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RrQ-It-FCd">
                                 <rect key="frame" x="8" y="8" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RrQ-It-FCd" secondAttribute="height" multiplier="1:1" id="iwN-fg-TKm"/>
@@ -129,6 +129,5 @@
     </objects>
     <resources>
         <image name="right_arrow" width="41" height="37"/>
-        <image name="shawrma" width="81" height="67"/>
     </resources>
 </document>

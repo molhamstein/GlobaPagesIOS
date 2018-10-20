@@ -403,14 +403,13 @@ extension HomeViewController: MenuViewDelegate {
     }
     
     func nextVolume() {
-    
-        currentVolume = currentVolume! + 1
-    }
-    
-    func preVolume(){
         if let value = currentVolume , value > 0 {
             currentVolume = currentVolume! - 1
         }
+    }
+    
+    func preVolume(){
+      currentVolume = currentVolume! + 1
     }
     
     func showMap() {
