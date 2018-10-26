@@ -302,14 +302,14 @@ class NewAdViewController: AbstractController {
         if let desc = descriptionTextView.text , !desc.isEmpty{
             tempPost?.description = desc
         }else{
-            self.showMessage(message: "please Enter a description to your add".localized, type: .error)
+            self.showMessage(message: "please Enter a description to your AD".localized, type: .error)
             return false
         }
         
         if let cat = selectedCategory {
             tempPost?.categoryId = cat.Fid
         }else{
-            self.showMessage(message: "please select a category to your add".localized, type: .error)
+            self.showMessage(message: "please select a category to your AD".localized, type: .error)
             return false
         }
         
@@ -317,7 +317,7 @@ class NewAdViewController: AbstractController {
         if let cat = selectedSubCategory {
             tempPost?.subCategoryId = cat.Fid
         }else{
-            self.showMessage(message: "please select a subCategory to your add".localized, type: .error)
+            self.showMessage(message: "please select a subCategory to your AD".localized, type: .error)
             return false
         }
         
@@ -325,14 +325,14 @@ class NewAdViewController: AbstractController {
             cityId = cat.Fid!
             
         }else{
-            self.showMessage(message: "please select a city to your add".localized, type: .error)
+            self.showMessage(message: "please select a city to your AD".localized, type: .error)
             return false
         }
 
         if let cat = selectedArea {
             locationId = cat.Fid!
         }else{
-            self.showMessage(message: "please select an area to your add".localized, type: .error)
+            self.showMessage(message: "please select an area to your AD".localized, type: .error)
             return false
         }
         

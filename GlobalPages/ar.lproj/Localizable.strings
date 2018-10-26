@@ -149,7 +149,7 @@
 
 "BUSSINESS_GUIDE_TITLE"                 = "دليل الاعمال";
 "NEAR_BY_TITLE"                         = "البحث حولي";
-"ON_DUTY_PHARMACY_TITLE"                = "الصيدليات المناوبات";
+"ON_DUTY_PHARMACY_TITLE"                = "الصيدليات";
 
 // bussiness guid description
 "ADS_DESC_SUB_CATEGORY_LABEL"         = "اصناف فرعية";
@@ -157,7 +157,7 @@
 "ADS_DESC_SERVICES_PRODUCTS"          = "المنتجات";
 
 // Near by filters
-"NEAR_BY_FILTERS_INFO"                = "select what you are looking for and we will find you top 3 nearby ones!";
+"NEAR_BY_FILTERS_INFO"                = "اختر ما تبحث عنه وسنختار لك اقرب ٣ اليك !";
 
 // New Ad
 "AD_NEW_TITLE_TEXT_FIELD_PLACEHOLDER" = "منزل للبيع";
@@ -170,3 +170,8 @@
 
 // location view
 "LOCATION_TITLE"                     = "العنوان";
+
+// New Ad
+"AD_TITLE"                           = "عنوان (يجب ان لايتجاوزال (٣٥ حرف";
+"ADD_BUTTON_TITLE"                   = "اضافة";
+"IMAGES"                             = "صور";

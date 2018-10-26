@@ -36,32 +36,41 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zRM-m7-bFZ">
                                     <rect key="frame" x="12" y="16" width="616" height="120.5"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reB-kx-BBe">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reB-kx-BBe" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
                                             <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Bussiness Guide">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localization" value="BUSSINESS_GUIDE_TITLE"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="showBussinessGuides:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="8Lz-Wf-aoc"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRz-et-HAy">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRz-et-HAy" userLabel="Find Near By Button" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
                                             <rect key="frame" x="209.5" y="0.0" width="197" height="120.5"/>
                                             <color key="backgroundColor" red="0.24313725489999999" green="0.65098039220000004" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Find Nearby">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localization" value="NEAR_BY_TITLE"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="showNearBy:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="nDy-Qc-S8n"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CG0-aP-ZTD">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CG0-aP-ZTD" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
                                             <rect key="frame" x="418.5" y="0.0" width="197.5" height="120.5"/>
                                             <color key="backgroundColor" red="0.85073267490000004" green="0.0" blue="0.019810459209999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="On Duty Pharmacy">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localization" value="ON_DUTY_PHARMACY_TITLE"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="showPharmacies:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="m5w-fK-laK"/>
                                             </connections>

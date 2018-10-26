@@ -185,3 +185,19 @@
 
 // location view
 "LOCATION_TITLE"                      = "Location";
+
+////
+// New Ad
+"AD_TITLE"                           = "Ad Title(max 35 chars)";
+"ADD_BUTTON_TITLE"                   = "Add";
+"IMAGES"                             = "Images";
+"Edit Ad"                            = "Edit Ad";
+"Add new Ad"                         = "Add new Ad";
+"Update"                             = "Update";
+ // error messages
+"please Enter a title to your add"   = "please Enter a title to your add";
+"please Enter a description to your AD" = "please Enter a description to your AD";
+"please select a category to your add" = "please select a category to your AD";
+"please select a subCategory to your AD" = "please select a subCategory to your AD";
+"please select a city to your add"     =  "please select a city to your add";
+

@@ -95,7 +95,7 @@ class HomeViewController: AbstractController {
         self.profileButton.makeRounded()
         self.notificationButton.dropShortShadow()
         self.profileButton.dropShortShadow()
-        self.notificationButton.badge = "2"
+        
         // setFonts
         self.navBarTitleLabel.font = AppFonts.xBig
     }
@@ -106,6 +106,7 @@ class HomeViewController: AbstractController {
             isFirstTimeToLoad = false
         }
         getFilters()
+        getNotifications()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -162,6 +163,21 @@ class HomeViewController: AbstractController {
         
     }
     
+    func getNotifications(){
+        guard let userId = DataStore.shared.me?.objectId else { return }
+        ApiManager.shared.getNotification(user_id: userId) { (success, error, result) in
+            if success{
+                if result.count > 0 {
+                    let count = result.filter({$0.seen == false}).count
+                    self.notificationButton.badge = "\(count)"
+                }
+            }
+            if error != nil{}
+        }
+        
+    }
+    
+    
     func getFeaturedPosts(){
         ApiManager.shared.getPosts { (success, error, result) in
             if success{self.businessGuidCollectionView?.reloadData()}
@@ -192,6 +208,14 @@ class HomeViewController: AbstractController {
     @IBAction func profileButtonAction(_ sender: AnyObject) {
         if DataStore.shared.isLoggedin {
             self.performSegue(withIdentifier: "HomeProfileSegue", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "HomeLoginSegue", sender: self)
+        }
+    }
+    //NotificationsViewController
+    @IBAction func NotificationButtonAction(_ sender: AnyObject) {
+        if DataStore.shared.isLoggedin {
+            self.performSegue(withIdentifier: "notificationSegue", sender: self)
         } else {
             self.performSegue(withIdentifier: "HomeLoginSegue", sender: self)
         }

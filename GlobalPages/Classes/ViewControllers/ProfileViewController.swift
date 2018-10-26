@@ -117,6 +117,8 @@ class ProfileViewController: AbstractController {
         super.buildUp()
         fillUserData()
         fetchUserData()
+        getAds()
+        getBussiness()
     }
     
     override func backButtonAction(_ sender: AnyObject) {

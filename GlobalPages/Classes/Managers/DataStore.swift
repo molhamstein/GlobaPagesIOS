@@ -28,6 +28,7 @@ class DataStore :NSObject {
     private let CACHE_KEY_AD_CATEGORY = "ADCategory"
     private let CACHE_KEY_AD_SUB_CATEGORY = "ADSUBCategory"
     private let CACHE_KEY_BUSSINESS = "bussiness"
+    private let CACHE_KEY_NOTIFICATION = "notification"
     private let CACHE_KEY_CITY = "cities"
     private let CACHE_KEY_AREA = "area"
     private let CACHE_KEY_USER = "user"
@@ -47,6 +48,7 @@ class DataStore :NSObject {
     private var _cities:[City] = [City]()
     private var _areas:[City] = [City]()
     private var _bussiness:[Bussiness] = [Bussiness]()
+    private var _notification:[AppNotification] = [AppNotification]()
     private var _token: String?
     
     // user loggedin flag
@@ -174,6 +176,19 @@ class DataStore :NSObject {
                 _bussiness = loadBaseModelArrayForKey(key: CACHE_KEY_BUSSINESS)
             }
             return _bussiness
+        }
+    }
+    
+    public var notifications: [AppNotification] {
+        set {
+            _notification = newValue
+            saveBaseModelArray(array: _notification, withKey: CACHE_KEY_NOTIFICATION)
+        }
+        get {
+            if(_notification.isEmpty){
+                _notification = loadBaseModelArrayForKey(key: CACHE_KEY_NOTIFICATION)
+            }
+            return _notification
         }
     }
     

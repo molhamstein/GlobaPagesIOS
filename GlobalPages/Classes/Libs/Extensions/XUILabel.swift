@@ -9,8 +9,14 @@
 import Foundation
 import UIKit
 
+@IBDesignable
 class XUILabel:UILabel{
-
+    
+    @IBInspectable var localization: String = "" {
+        didSet {
+            self.text = localization.localized
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -28,6 +34,7 @@ class XUILabel:UILabel{
     }
 
 }
+
 
 
 

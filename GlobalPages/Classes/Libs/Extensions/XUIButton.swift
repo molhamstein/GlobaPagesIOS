@@ -8,10 +8,15 @@
 
 
 import UIKit
+
 @IBDesignable
 class XUIButton:UIButton{
-
     
+    @IBInspectable var localization: String = "" {
+        didSet {
+            self.setTitle(localization.localized, for: .normal)
+        }
+    }
     
     @IBInspectable var primary:Bool {
         didSet{
