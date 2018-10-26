@@ -663,7 +663,7 @@ class ApiManager: NSObject {
                             }
         })
     }
-    
+    //filter[where][ownerId]=5b855cb0ee3548256fbf0b2a
     // MARK: notifications
     func sendPushNotification(msg: String, targetUser: AppUser, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         // url & parameters
@@ -701,6 +701,34 @@ class ApiManager: NSObject {
         }
     }
     
+    
+    // get notifications
+    func getNotification(user_id: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?,_ result : [String]) -> Void) {
+        // url & parameters
+        let bottleURL = "\(baseURL)/notifications?filter[where][ownerId]=\(user_id)"
+        
+        // build request
+        Alamofire.request(bottleURL, method: .get,encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError,[])
+                } else {
+                    
+                    completionBlock(true , nil,[])
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError,[])
+                } else {
+                    completionBlock(false, ServerError.connectionError,[])
+                }
+            }
+        }
+    }
     
     
     /// Api
@@ -963,6 +991,7 @@ class ApiManager: NSObject {
         // url & parameters
         guard let token = DataStore.shared.token else {return}
         let signInURL = "\(baseURL)/posts?access_token=\(token)"
+        print(signInURL)
         var parameters : [String : Any] = post.dictionaryRepresentation()
         parameters["cityId"] = cityId
         parameters["locationId"] = locationId
@@ -970,6 +999,7 @@ class ApiManager: NSObject {
     
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -1038,6 +1068,7 @@ class ApiManager: NSObject {
         guard let token = DataStore.shared.token else {return}
         let signInURL = "\(baseURL)/businesses?access_token=\(token)"
         let parameters : [String : Any] =  bussiness.dictionaryRepresentation()
+        print(parameters)
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {

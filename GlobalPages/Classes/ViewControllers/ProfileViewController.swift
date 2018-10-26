@@ -265,14 +265,9 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             cell.isSelected = false
             cell.configureCell()
         }
-        
-        if collectionView == myBussinessCollectionView{
-            
-            
-        }
+        if collectionView == myBussinessCollectionView{}
     }
 
-    
     func getCellContentSize(indexPath:IndexPath) -> CGFloat{
         var height:CGFloat = 0
         let post = posts[indexPath.item]

@@ -18,6 +18,8 @@ struct Location {
     public var photo:String?
     public var lat:Double?
     public var long:Double?
+    public var address:String?
+    
     //Keys for API TODO: read about keyPath in swift3
     private let kId = "id"
     private let kGoogleID = "google_place_id"
@@ -35,7 +37,7 @@ struct Location {
         if let lattitude = lat, let longitude = long {
             coordinate0 = CLLocation(latitude: lattitude , longitude: longitude)
         }
-        if let lat2 = currentLocation.lat , let long2 = currentLocation.long {
+        if let lat2 = currentLocation?.lat , let long2 = currentLocation?.long {
             coordinate1 = CLLocation(latitude: lat2, longitude: long2)
         }
         if let point0 = coordinate0 , let point1 = coordinate1 {
@@ -81,6 +83,7 @@ struct Location {
         name = json[kName].string
         photo = json[kPhoto].string
         city = json[kAddress].string
+        address = json[kAddress].string
     }
     
     /**
@@ -96,6 +99,7 @@ struct Location {
         if let value  = long { dictionary[kLong] = value}
         if let value  = photo { dictionary[kPhoto] = value}
         if let value = city { dictionary[kAddress] = value}
+        if let value = address { dictionary[kAddress] = value}
         return dictionary
     }
     

@@ -11,6 +11,7 @@ import SDWebImage
 class NewAdViewController: AbstractController {
     
     
+    @IBOutlet weak var backGroundView: UIView!
     // outlates
     @IBOutlet weak var adTitleLabel: UILabel!
     @IBOutlet weak var adtitleTextField: UITextField!
@@ -39,6 +40,13 @@ class NewAdViewController: AbstractController {
     @IBOutlet weak var hideAbleView1: UIView!
     @IBOutlet weak var hideAbelView2: UIView!
     @IBOutlet weak var addButton: XUIButton!
+    
+    
+     // success view
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var infoLabel: XUILabel!
+    @IBOutlet weak var backHomeButton: UIButton!
     
     
     enum viewType {
@@ -119,16 +127,6 @@ class NewAdViewController: AbstractController {
                 if let url = mediaObj.fileUrl{
                     var tempurl = url
                     if !url.contains(find: "http://") { tempurl = "http://\(url)"}
-//                    imageView.kf.setImage(with: URL(string: tempurl), completionHandler: {
-//                        (image, error, cacheType, imageUrl) in
-//                        if let img = image{
-//                            self.images.append(img)
-//                        }
-//                        count += 1
-//                        if count == array.count{
-//                        self.imageCollectionView.reloadData()
-//                        }
-//                    })
                     imageView.sd_setShowActivityIndicatorView(true)
                     imageView.sd_setIndicatorStyle(.gray)
                     imageView.sd_setImage(with: URL(string:tempurl), completed: { (image, error, cach, url) in
@@ -183,10 +181,23 @@ class NewAdViewController: AbstractController {
         self.descriptionTextView.placeholder = "AD_NEW_DESCRIPTION_PLCAEHOLDER".localized
         
         self.addButton.setTitle(mode.addButtonTitle, for: .normal)
+       
+
+        /// success view
+        topLabel.font = AppFonts.xBigBold
+        infoLabel.font = AppFonts.normal
+        backHomeButton.titleLabel?.font = AppFonts.bigBold
+        
         
         setupCollectionViews()
         getBussinessFilters()
         getCityFilters()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.addButton.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .diagonal)
+        backHomeButton.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .diagonal)
     }
     
     func setupCollectionViews(){
@@ -214,18 +225,14 @@ class NewAdViewController: AbstractController {
         subCategoryCollectionView.reloadData()
         subCategoryCollectionView.collectionViewLayout.invalidateLayout()
         subCategoryCollectionView.layoutSubviews()
-
-//        UIView.animate(withDuration: 0.2, animations: {
             self.subCategoryView.isHidden = false
             self.hideAbleView1.isHidden = true
-//        }){ (success) in}
+
     }
     
     func hideSubCategoryView(){
-//        UIView.animate(withDuration: 0.2, animations: {
             self.subCategoryView.isHidden = true
             self.hideAbleView1.isHidden = false
-//        }){ (success) in}
     }
     
     
@@ -234,17 +241,13 @@ class NewAdViewController: AbstractController {
         areaCollectionView.reloadData()
         areaCollectionView.collectionViewLayout.invalidateLayout()
         areaCollectionView.layoutSubviews()
-//        UIView.animate(withDuration: 0.2, animations: {
             self.areaView.isHidden = false
             self.hideAbelView2.isHidden = true
-//        }){ (success) in}
-        
     }
+    
     func HideAreaView(){
-//        UIView.animate(withDuration: 0.2, animations: {
             self.areaView.isHidden = true
             self.hideAbelView2.isHidden = false
-//        }){ (success) in}
     }
     
     
@@ -360,6 +363,8 @@ class NewAdViewController: AbstractController {
             self.showActivityLoader(false)
             if success{
                 self.showMessage(message: "Done".localized, type: .success)
+                self.backGroundView.animateIn(mode: .animateOutToBottom, delay: 0.4)
+                self.backGroundView.isHidden = true
             }
             if error != nil{}
         }
@@ -376,6 +381,9 @@ class NewAdViewController: AbstractController {
         }
 
         
+    }
+    @IBAction func backToHome(_ sender: UIButton) {
+        performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
     }
     
 }

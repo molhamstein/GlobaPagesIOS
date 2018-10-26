@@ -93,26 +93,123 @@ extension UITextField {
         }
     }
     
-    func addIconButton(image:String){
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: image), for: .normal)
-        
-        if (AppConfig.currentLanguage == .arabic) {
-            button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -16)
-        }else{
-            button.imageEdgeInsets = UIEdgeInsetsMake(0, -16, 0, 0)
-        }
-        button.frame = CGRect(x: CGFloat(self.frame.size.width - 30), y: CGFloat(5), width: CGFloat(25), height: CGFloat(25))
-       // button.addTarget(self, action: #selector(showOrHideText) ,for: .touchUpInside)
-        self.rightView = button
-        self.rightViewMode = .always
-   
-    }
-    
     func showOrHideText(){
         self.isSecureTextEntry = !isSecureTextEntry
     }
     
     
+    func addIconButton(image:String){
+        let button = UIButton(type: .custom)
+        var img = UIImage(named: image)
+        img = img?.imageFlippedForRightToLeftLayoutDirection()
+        button.setImage(img , for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        if (AppConfig.currentLanguage == .arabic) {
+            button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -16)
+        }else{
+            button.imageEdgeInsets = UIEdgeInsetsMake(0, -16, 0, 0)
+        }
+        
+        
+        button.frame = CGRect(x: CGFloat(self.frame.size.width - 30), y: CGFloat(5), width: CGFloat(25), height: CGFloat(25))
+        
+        
+        self.rightView = button
+        self.rightViewMode = .always
+        
+    }
+    
+    
+    func removeIconButton(){
+        self.rightView = nil
+        self.leftView = nil
+    }
+    
+    func addLeftIconButton(image:String){
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: image), for: .normal)
+        
+        //        if (AppConfig.currentLanguage == .arabic) {
+        //            button.imageEdgeInsets = UIEdgeInsetsMake(0, 16, 0, 0)
+        //        }else{
+        //            button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -16)
+        //        }
+        button.frame = CGRect(x: 0, y: CGFloat(5), width: CGFloat(25), height: CGFloat(25))
+        
+        self.leftView = button
+        self.leftViewMode = .always
+    }
+    
+    
+
+    
+    func showActivityIndicator(show:Bool){
+        
+        if show{
+            self.rightView = nil
+            let activityIndicator:UIActivityIndicatorView =  UIActivityIndicatorView()
+            activityIndicator.activityIndicatorViewStyle = .gray
+            if (AppConfig.currentLanguage == .arabic) {
+                
+                activityIndicator.frame = CGRect(x: 16 , y: 0, width: 24, height: 24)
+            }else{
+                activityIndicator.frame = CGRect(x: -16 , y: 0, width: 24, height: 24)
+            }
+            
+            
+            self.rightView?.backgroundColor = .red
+            self.rightView = activityIndicator
+            self.rightViewMode = .always
+            //  activityIndicator.center = CGPoint(x: (self.rightView?.center.x)! - 16, y: (self.rightView?.center.y)!)
+            activityIndicator.startAnimating()
+            
+            
+        }else{
+            
+            self.rightView = nil
+            
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
     
 }
+
+
+extension UITextField: UITextFieldDelegate{
+    
+    func addToolBar(){
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = .black
+        
+        let doneButton = UIBarButtonItem(image: #imageLiteral(resourceName: "done"), style: .done, target: self, action: #selector(UITextField.cancelPressed))
+        //let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(UITextField.cancelPressed))
+        // let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        toolBar.sizeToFit()
+        
+        self.delegate = self
+        self.inputAccessoryView = toolBar
+    }
+    func donePressed(){
+        self.superview?.endEditing(true)
+    }
+    func cancelPressed(){
+        self.superview?.endEditing(true)
+    }
+    
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        addToolBar()
+    }
+}
+

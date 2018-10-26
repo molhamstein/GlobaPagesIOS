@@ -166,4 +166,7 @@
 // new Prouct
 "NEW_PRODUCT_NAME_PLACEHOLDER"       = "الاسم";
 "NEW_PRODUCT_DESC_PLACEHOLDER"       = "الوصف";
-"NEW_PRODUCT_APPLY_BTN"               = "حفظ";
+"NEW_PRODUCT_APPLY_BTN"              = "حفظ";
+
+// location view
+"LOCATION_TITLE"                     = "العنوان";

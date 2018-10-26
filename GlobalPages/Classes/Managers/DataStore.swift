@@ -197,6 +197,9 @@ class DataStore :NSObject {
         }
     }
     
+    
+    public var location:Location = Location()
+    
     public var currentUTCTime:TimeInterval {
         get {
             return Date().timeIntervalSince1970 * 1000

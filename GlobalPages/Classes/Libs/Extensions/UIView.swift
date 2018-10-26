@@ -118,6 +118,10 @@ extension UIView {
     }
     
     
+    func applyStyleGredeant(){
+        applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .diagonal)
+    }
+    
     func removeGradientLayer() {
         if let lastLayer = self.layer.sublayers?[0] as? CAGradientLayer {
             lastLayer.removeFromSuperlayer()

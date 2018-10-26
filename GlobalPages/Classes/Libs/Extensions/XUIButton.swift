@@ -21,7 +21,6 @@ class XUIButton:UIButton{
                 self.setTitleColor(.white, for: .normal)
             }
         }
-
     }
     init(primary:Bool){
         self.primary = primary

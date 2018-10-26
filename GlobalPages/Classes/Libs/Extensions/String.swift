@@ -47,15 +47,15 @@ extension String {
         if self != filtered{
             return false
         }
+//
+//        if self.length < 12{
+//            return false
+//        }
         
-        if self.length < 12{
-            return false
-        }
-        
-        if !(self.starts(with: "00963") || self.starts(with: "+963") ) {
-            return false
-        }
-        
+//        if !(self.starts(with: "00963") || self.starts(with: "+963") ) {
+//            return false
+//        }
+//
         return  true
         
     }

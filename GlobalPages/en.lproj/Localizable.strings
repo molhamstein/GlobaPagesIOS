@@ -178,6 +178,10 @@
 
 
 // new Prouct
-"NEW_PRODUCT_NAME_PLACEHOLDER"       = "Name";
-"NEW_PRODUCT_DESC_PLACEHOLDER"       = "Description";
+"NEW_PRODUCT_NAME_PLACEHOLDER"        = "Name";
+"NEW_PRODUCT_DESC_PLACEHOLDER"        = "Description";
 "NEW_PRODUCT_APPLY_BTN"               = "Apply";
+
+
+// location view
+"LOCATION_TITLE"                      = "Location";

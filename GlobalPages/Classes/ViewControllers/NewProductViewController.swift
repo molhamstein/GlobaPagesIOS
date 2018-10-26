@@ -36,6 +36,12 @@ class NewProductViewController: AbstractController {
         }
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.applyButton.applyStyleGredeant()
+    }
+    
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }

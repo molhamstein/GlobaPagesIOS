@@ -31,6 +31,7 @@
 		146AF2472121F4B000FE2919 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AF2462121F4AF00FE2919 /* UIImageView.swift */; };
 		146AF24B2123633600FE2919 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146AF2492123633600FE2919 /* ProductCell.swift */; };
 		146AF24C2123633600FE2919 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 146AF24A2123633600FE2919 /* ProductCell.xib */; };
+		14709EF7217FB53F006F4470 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14709EF6217FB53E006F4470 /* LocationViewController.swift */; };
 		1477053B2141AE26002A160B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477053A2141AE26002A160B /* EditProfileViewController.swift */; };
 		1481AF5120F154E9003A1F10 /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F820ED4B9F0064286D /* Cairo-Black.ttf */; };
 		1481AF5220F154E9003A1F10 /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F720ED4B9F0064286D /* Cairo-Bold.ttf */; };
@@ -168,6 +169,7 @@
 		146B39F820ED4B9F0064286D /* Cairo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Black.ttf"; sourceTree = "<group>"; };
 		146B39F920ED4BA00064286D /* Cairo-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-ExtraLight.ttf"; sourceTree = "<group>"; };
 		146B39FA20ED4BA00064286D /* Cairo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Light.ttf"; sourceTree = "<group>"; };
+		14709EF6217FB53E006F4470 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		1477053A2141AE26002A160B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		148E77EB2114E0A500683027 /* businessCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = businessCategories.swift; sourceTree = "<group>"; };
 		14B1B88920DEF17B00D86536 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
@@ -646,6 +648,7 @@
 		5786885820C4AB350002C67B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				14709EF6217FB53E006F4470 /* LocationViewController.swift */,
 				578685ED20C47FD30002C67B /* HomeViewController.swift */,
 				14D7F38720E1225F00CF6E4B /* FiltersViewController.swift */,
 				144BD89920E82C430068D561 /* AdsDescriptionViewController.swift */,
@@ -876,6 +879,7 @@
 				578687C420C481800002C67B /* BaseModel.swift in Sources */,
 				5786860020C480910002C67B /* LoginViewController.swift in Sources */,
 				14160BE520E3C72C004CEA7D /* filterCell2.swift in Sources */,
+				14709EF7217FB53F006F4470 /* LocationViewController.swift in Sources */,
 				14CC8C9520C8A03D000319B0 /* UIApplication.swift in Sources */,
 				14FF479321163ABA00E6A44C /* UITextView.swift in Sources */,
 				14DEE79F211E07A100561AA3 /* Bussiness.swift in Sources */,

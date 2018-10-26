@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class BussinessDescriptionViewController: AbstractController {
     
@@ -34,6 +35,24 @@ class BussinessDescriptionViewController: AbstractController {
     @IBOutlet weak var addProductButton: UIButton!
     
     
+    
+    // contact view
+    @IBOutlet weak var contactsBGView: UIView!
+    @IBOutlet weak var contactsMiddleView: UIView!
+    @IBOutlet weak var phone1TitleLabel: XUILabel!
+    @IBOutlet weak var phone1Label: UILabel!
+    @IBOutlet weak var phone1Button: UIButton!
+    @IBOutlet weak var phone2TitleLabel: XUILabel!
+    @IBOutlet weak var phone2Label: UILabel!
+    @IBOutlet weak var phone2Button: UIButton!
+    @IBOutlet weak var faxTitleLabel: XUILabel!
+    @IBOutlet weak var faxLabel: UILabel!
+    
+    
+    
+    // mapView
+    @IBOutlet weak var mapBGView: UIView!
+    @IBOutlet weak var mapView: MKMapView!
     
     
     @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
@@ -104,6 +123,14 @@ class BussinessDescriptionViewController: AbstractController {
         self.contactBottomButton.titleLabel?.font  = AppFonts.normalBold
         self.descriptionTextView.font = AppFonts.normalBold
         self.descriptinTitleLabel.font = AppFonts.normalBold
+        self.phone1TitleLabel.font = AppFonts.normal
+        self.phone1Label.font = AppFonts.normalBold
+        self.phone2TitleLabel.font = AppFonts.normal
+        self.phone2Label.font = AppFonts.normalBold
+        self.faxTitleLabel.font = AppFonts.normal
+        self.faxLabel.font = AppFonts.normalBold
+        
+        
         
         //colors
         self.headerView.backgroundColor = AppColors.grayXDark
@@ -165,6 +192,9 @@ class BussinessDescriptionViewController: AbstractController {
         if let value = bussiness.media{self.images = value}
         imageCollectionView.reloadData()
         self.pageController.numberOfPages = self.images.count
+        if let phone1 = bussiness.phone1 {self.phone1Label.text = phone1}
+        if let phone2 = bussiness.phone2 {self.phone2Label.text = phone2}
+        if let fax = bussiness.fax {self.faxLabel.text = fax}
     }
     
     @IBAction func addProduct(_ sender: UIButton) {
@@ -172,6 +202,64 @@ class BussinessDescriptionViewController: AbstractController {
         vc.bussinessId = bussiness?.id
         let nav = UINavigationController(rootViewController: vc)
         self.present(nav, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func showContactsView(_ sender: UIButton) {
+        self.contactsBGView.isHidden = false
+    self.contactsMiddleView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+    }
+    
+    @IBAction func hideContactsView(_ sender: UITapGestureRecognizer) {
+        self.contactsBGView.isHidden = true
+    }
+    @IBAction func callPhone1(_ sender: UIButton) {
+        if let phone1 = bussiness?.phone1 {
+            callPhone(phone:phone1)
+        }
+    }
+    
+    @IBAction func callPhone2(_ sender: UIButton) {
+        if let phone2 = bussiness?.phone2{
+            callPhone(phone:phone2)
+        }
+    }
+    
+    func callPhone(phone:String){
+        guard let number = URL(string: "tel://" + phone) else { return }
+        UIApplication.shared.openURL(number)
+    }
+    
+    
+    // map View
+    
+    @IBAction func showMapView(_ sender: UIButton) {
+        self.mapBGView.isHidden = false
+        self.mapView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+        if let lat = bussiness?.locationPoint?.lat , let long = bussiness?.locationPoint?.long{
+            let location = CLLocation(latitude: lat , longitude: long)
+            centerMapOnLocation(location: location)
+        }
+    }
+    
+    @IBAction func hideMapView(_ sender: UITapGestureRecognizer) {
+        self.mapBGView.isHidden = true
+    }
+    
+    func centerMapOnLocation(location: CLLocation) {
+        self.view.endEditing(true)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+                                                                  1000, 1000)
+        mapView.setRegion(coordinateRegion, animated: true)
+        setAnnotaion(location: location)
+            }
+    
+    
+    func setAnnotaion(location:CLLocation){
+        mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        self.mapView.addAnnotation(annotation)
     }
     
 }

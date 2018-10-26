@@ -26,7 +26,7 @@ class LocationHelper : NSObject,CLLocationManagerDelegate
     
     // MARK: location stuff
     var locationManager = CLLocationManager()
-    var myLocation = Location(lat:DefaultLocation.latitude, long:DefaultLocation.longitude) {
+    var myLocation:Location? = nil{
         didSet {
             NotificationCenter.default.post(name: .notificationLocationChanged, object: nil)
         }

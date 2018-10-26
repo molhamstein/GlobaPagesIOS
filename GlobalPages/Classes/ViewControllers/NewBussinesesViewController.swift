@@ -41,6 +41,7 @@ class NewBussinesesViewController: AbstractController {
     @IBOutlet weak var hideAbelView2: UIView!
     @IBOutlet weak var addButton: XUIButton!
     @IBOutlet weak var subCategoryHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var selectLocationButton: UIButton!
     
     var subCategoryViewHeight:CGFloat = 0{
         didSet{
@@ -71,6 +72,8 @@ class NewBussinesesViewController: AbstractController {
     var categoriesCount = 0
     var subCategoriesCount = 0
     
+    var selectedLocation:Location?
+    
     var tempBussiness:Bussiness?
     
     override func viewDidLoad() {
@@ -87,14 +90,17 @@ class NewBussinesesViewController: AbstractController {
         }
         getBussinessFilters()
         self.subCategoryView.isHidden = false
-        
-    
     }
     
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.showNavBackButton = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.addButton.applyStyleGredeant()
     }
     
     override func customizeView() {
@@ -179,7 +185,6 @@ class NewBussinesesViewController: AbstractController {
     
     func validate()-> Bool{
         
-        
         if let title = adtitleTextField.text , !title.isEmpty{
             if AppConfig.currentLanguage == .arabic{ tempBussiness?.nameAr = title}
             else{ tempBussiness?.nameEn = title}
@@ -189,15 +194,23 @@ class NewBussinesesViewController: AbstractController {
         }
         
         if let phone = phonenumber1TextField.text , !phone.isEmpty{
-            
+            if phone.isPhoneNumber { tempBussiness?.phone1 = phone }
+            else{
+                self.showMessage(message: "Please enter a valid phone number", type: .error)
+                return false
+            }
         }else{
-            
+            tempBussiness?.phone1 = nil
         }
         
         if let phone2 = phonenumber2TextField.text , !phone2.isEmpty{
-            
+            if phone2.isPhoneNumber { tempBussiness?.phone2 = phone2 }
+            else{
+                self.showMessage(message: "Please enter a valid phone number", type: .error)
+                return false
+            }
         }else{
-            
+            tempBussiness?.phone2 = nil
         }
         
         
@@ -216,13 +229,30 @@ class NewBussinesesViewController: AbstractController {
             return false
         }
         
-    
+        if let loc  = self.selectedLocation{
+            tempBussiness?.locationPoint = Points()
+            tempBussiness?.locationPoint?.lat = loc.lat
+            tempBussiness?.locationPoint?.long = loc.long
+        }
+        
+        if let address = locationTextField.text , !address.isEmpty {
+            tempBussiness?.address = address
+        }else{
+            tempBussiness?.address =  nil
+        }
+        
+        
         if let desc = descriptionTextView.text , !desc.isEmpty{
             tempBussiness?.description = desc
         }else{
             tempBussiness?.description = nil
         }
         
+        if let fax = faxTextView.text , !fax.isEmpty{
+            tempBussiness?.fax = fax
+        }else{
+            tempBussiness?.fax = nil
+        }
         tempBussiness?.ownerId = DataStore.shared.me?.objectId
         return true
     }
@@ -232,6 +262,7 @@ class NewBussinesesViewController: AbstractController {
         self.showActivityLoader(true)
         ApiManager.shared.uploadImages(images: self.images) { (urls, error) in
             self.media = urls
+            self.tempBussiness?.media = urls
             self.addBussiness()
         }
     }
@@ -248,11 +279,42 @@ class NewBussinesesViewController: AbstractController {
     
     func addBussiness(){
         ApiManager.shared.addBussiness(bussiness: tempBussiness!) { (success, error) in
+            self.showActivityLoader(false)
             if success{
                 self.showMessage(message: "Done".localized, type: .success)
+                self.dismiss(animated: true, completion: nil)
             }
-            if error != nil{}
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
         }
+    }
+    
+    
+    @IBAction func selectRecipientLocation(_ sender: UIButton) {
+        NotificationCenter.default.removeObserver(self, name: .notificationLocationChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setLocation), name: .notificationLocationChanged, object: nil)
+        openLocationSelector()
+        
+        self.locationTextField.addIconButton(image: "ic_nearby")
+        let locationTextFieldRightButton = locationTextField.rightView as! UIButton
+        locationTextFieldRightButton.addTarget(self, action: #selector(selectRecipientLocation(_:)), for: .touchUpInside)
+    }
+    
+    func openLocationSelector() {
+        
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "LocationViewController") as! LocationViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    func setLocation(){
+        let loc = DataStore.shared.location
+        self.selectLocationButton.isHidden = true
+        self.selectedLocation = loc 
+        self.locationTextField.text = loc.address ?? ""
     }
 }
 

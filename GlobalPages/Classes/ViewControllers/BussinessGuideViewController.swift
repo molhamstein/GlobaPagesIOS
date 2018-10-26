@@ -367,7 +367,7 @@ class BussinessGuideViewController: AbstractController {
     }
     
     func getNearByBusness(){
-        guard let catId = selectedCategory?.Fid, let subCatId = selectedSubCategory?.Fid , let lat = LocationHelper.shared.myLocation.lat , let lng = LocationHelper.shared.myLocation.long else{ return}
+        guard let catId = selectedCategory?.Fid, let subCatId = selectedSubCategory?.Fid , let lat = LocationHelper.shared.myLocation?.lat , let lng = LocationHelper.shared.myLocation?.long else{ return}
         self.showActivityLoader(true)
         ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: catId, subCatId: subCatId,codeSubCat:"", openDay: "",limit: "3") { (success, error, resutl) in
             
@@ -385,7 +385,7 @@ class BussinessGuideViewController: AbstractController {
     }
     
     func getNearByPharmacies(){
-        guard  let lat = LocationHelper.shared.myLocation.lat , let lng = LocationHelper.shared.myLocation.long else{ return}
+        guard  let lat = LocationHelper.shared.myLocation?.lat , let lng = LocationHelper.shared.myLocation?.long else{ return}
         self.showActivityLoader(true)
         ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: "", subCatId: "",codeSubCat:"pharmacies", openDay: "\(DateHelper.getDayNumberFrom(date: Date()))",limit: "") { (success, error, resutl) in
             
@@ -618,7 +618,7 @@ extension BussinessGuideViewController{
     }
 
     func setMyLocation(){
-        let location = CLLocation(latitude: LocationHelper.shared.myLocation.lat!, longitude: LocationHelper.shared.myLocation.long!)
+        let location = CLLocation(latitude: (LocationHelper.shared.myLocation?.lat)!, longitude: (LocationHelper.shared.myLocation?.long)!)
         let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
         self.mapView.setRegion(viewRegion, animated: true)
 //        show3NearBy()

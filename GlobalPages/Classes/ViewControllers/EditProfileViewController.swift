@@ -73,12 +73,10 @@ class EditProfileViewController: AbstractController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if !self.isInitialized {
-            self.mainView.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
-    
-            self.updateButton.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
-        }
-        self.isInitialized = true
+        
+            self.mainView.applyStyleGredeant()
+            self.updateButton.applyStyleGredeant()
+     
     }
     
     override func customizeView() {

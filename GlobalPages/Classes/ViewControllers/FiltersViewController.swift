@@ -376,6 +376,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
                 if city.Fid == cities[indexPath.item].Fid{
                     cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                    self.selectedCity = city
                     self.getAreas()
                 }else{
                     cell.isSelected = false
