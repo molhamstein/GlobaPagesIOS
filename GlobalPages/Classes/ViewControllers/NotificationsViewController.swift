@@ -20,13 +20,25 @@ class NotificationsViewController: AbstractController {
         super.customizeView()
         self.setNavBarTitle(title: "Notifications".localized)
         self.showNavBackButton = true
-        
         tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func getNotifications(){
+        guard let userid = DataStore.shared.me?.objectId else{ return }
+        self.showActivityLoader(true)
+        ApiManager.shared.getNotification(user_id: userid) { (success, error, result) in
+            self.showActivityLoader(false)
+            self.tableView.reloadData()
+        }
+        
+    }
+    
 }
 
 

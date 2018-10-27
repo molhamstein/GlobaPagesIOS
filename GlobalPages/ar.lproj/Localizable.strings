@@ -170,8 +170,64 @@
 
 // location view
 "LOCATION_TITLE"                     = "العنوان";
-
+"CURRENT_LOCATION_BTN"                = "اختر موقعي الحالي";
+"SET_LOCATION"                        = "اختر";
 // New Ad
-"AD_TITLE"                           = "عنوان (يجب ان لايتجاوزال (٣٥ حرف";
+"AD_TITLE"                           = "عنوان (يجب ان لا يتجاز ال ٣٥ حرفا)";
 "ADD_BUTTON_TITLE"                   = "اضافة";
 "IMAGES"                             = "صور";
+"Edit Ad"                            = "تعديل الاعلان";
+"Add new Ad"                         = "اضافة اعلان جديد";
+"Update"                             = "تحديث";
+
+// error messages
+"please Enter a title"   = "الرجاء ادخال اسم";
+"please Enter a description" = "الرجاء ادخال وصف";
+"please select a category" = "الرجاء اختيار صنف";
+"please select a subCategory" = "الرجاء اختيار صنف ";
+"please select a city"     =  "الرجاء اختيار مدينة";
+"please select an area"     =  "الرجاء اختيار منطقة";
+"Please enter a valid phone number"      = "الرجاء ادخال رقم جوال صحيح";
+
+
+// profile view
+"USER_NAME"                         = "اسم المستخدم";
+"EMAIL"                             = "البريد الالكتروني";
+"ADS_ADDED"                         = "اعلانات مضافة";
+"FEMALE"                            = "انثى";
+"MALE"                              = "ذكر";
+"SUBSCRIBE_CATEGORY"                = "اشترك في اصناف";
+"MY_ADS"                            = "اعلاناتي";
+"MY_BUSSIESES"                      = "اعمالي";
+"My Profile"                        = "ملفي الشخصي";
+"Edit Profile"                      = "تعديل الملف الشخصي";
+// Product View
+"PRODUCT_INFO"                      = "اختر صورة للخدمة او المنتج";
+"PRODUCT_NAME"                      = "اسم المنتج";
+
+
+// birthdate view
+"Done"                              = "تم";
+"CANCEL"                            = "الغاء";
+"PICK_BIRTHDATE"                    = "اختر تاريخ الميلاد";
+
+// new Bussines
+"Add New Bussiness"                 = "اضافة عمل جديد";
+"Edit Bussiness"                    = "تعديل عمل";
+"(Optional)"                        = "(اختياري)";
+"Bussiness Name"                    = "اسم العمل";
+"Phone Number 1"                    = "هاتف ١";
+"Phone Number 2"                    = "هاتف ٢";
+"FAX"                               = "فاكس";
+
+
+// days
+"Saturday"                         = "السبت";
+"Sunday"                           = "الاحد";
+"Monday"                           = "الاثنين";
+"Tuesday"                          = "الثلاثاء";
+"Wednsday"                         = "الاربعاء";
+"Thursday"                         = "الخميس";
+"Friday"                           = "الجمعة";
+"Open Days"                        = "ايام العمل";
+

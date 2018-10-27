@@ -11,6 +11,7 @@ import UIKit
 
 protocol BussinessGuidListCellDelegate {
     func showDetails(bussinesGuide:String) // here should be a modle of typ bussines guid
+    func showEdit(bussiness:Bussiness)
 }
 
 class BussinessGuidListCell: UICollectionViewCell {
@@ -20,6 +21,7 @@ class BussinessGuidListCell: UICollectionViewCell {
     @IBOutlet weak var bussinessGuideCategoryLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     
     @IBOutlet weak var tagView: GradientView!
     
@@ -54,12 +56,18 @@ class BussinessGuidListCell: UICollectionViewCell {
     
     
     @IBAction func detailsButtonClicked(_ sender: UIButton) {
+        
+    }
+    @IBAction func edit(_ sender: UIButton) {
+        delegate?.showEdit(bussiness: bussiness!)
+        print("sdsd")
     }
     
     
     func profileMode(){
         self.tagView.isHidden = true
         self.nextButton.isHidden = true
+        self.editButton.isHidden = false
         self.addShadow()
     }
 }

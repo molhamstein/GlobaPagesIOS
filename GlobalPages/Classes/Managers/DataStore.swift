@@ -304,6 +304,7 @@ class DataStore :NSObject {
 //        categories = [Category]()
         //shopItems = [ShopItem]()
         //OneSignal.deleteTags(["user_id","user_name"])
+        notifications = []
     }
 }
 

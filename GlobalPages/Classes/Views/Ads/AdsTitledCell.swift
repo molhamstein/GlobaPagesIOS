@@ -26,8 +26,12 @@ class AdsTitledCell: UICollectionViewCell {
     
     var tagLabelWidht:CGFloat = 0 {
         didSet{
-            tagLabelWidthConstraint.setNewConstant(tagLabelWidht)
-            tagViewWidthConstraint.setNewConstant(tagLabelWidht + 32)
+             tagLabelWidthConstraint.setNewConstant(tagLabelWidht + 32)
+            if AppConfig.currentLanguage == .arabic{
+                tagViewWidthConstraint.setNewConstant(tagLabelWidht + 56)
+            }else{
+                tagViewWidthConstraint.setNewConstant(tagLabelWidht + 32)
+            }
             UIView.animate(withDuration: 0.3, animations: {
                 self.layoutSubviews()
             }, completion: nil)
@@ -75,7 +79,7 @@ class AdsTitledCell: UICollectionViewCell {
     
     func resizeTagView(){
         if let width = tagLabel.text?.getLabelWidth(font: AppFonts.small){
-            tagLabelWidht = width
+        tagLabelWidht = width
         }
     }
     

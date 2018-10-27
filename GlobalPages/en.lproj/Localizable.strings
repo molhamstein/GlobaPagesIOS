@@ -185,6 +185,8 @@
 
 // location view
 "LOCATION_TITLE"                      = "Location";
+"CURRENT_LOCATION_BTN"                = "Use my current location";
+"SET_LOCATION"                        = "Set location";
 
 ////
 // New Ad
@@ -195,9 +197,42 @@
 "Add new Ad"                         = "Add new Ad";
 "Update"                             = "Update";
  // error messages
-"please Enter a title to your add"   = "please Enter a title to your add";
-"please Enter a description to your AD" = "please Enter a description to your AD";
-"please select a category to your add" = "please select a category to your AD";
-"please select a subCategory to your AD" = "please select a subCategory to your AD";
-"please select a city to your add"     =  "please select a city to your add";
+"please Enter a title"   = "please Enter a title";
+"please Enter a description" = "please Enter a description";
+"please select a category" = "please select a category";
+"please select a subCategory" = "please select a subCategory";
+"please select a city"     =  "please select a city to your Ad";
+"please select an area"   = "please select an area";
+"Please enter a valid phone number"      = "Please enter a valid phone number";
+
+
+// profile view
+"USER_NAME"                         = "User Name";
+"EMAIL"                             = "Email";
+"ADS_ADDED"                         = "Ads Added";
+"FEMALE"                            = "female";
+"MALE"                              = "male";
+"SUBSCRIBE_CATEGORY"                = "Subscribe to categories";
+"MY_ADS"                            = "My Ads";
+"MY_BUSSIESES"                      = "My Bussineses";
+"My Profile"                        = "My Profile";
+"Edit Profile"                      = "Edit Profile";
+
+// Product View
+"PRODUCT_INFO"                      = "Upload image for service or product";
+"PRODUCT_NAME"                      = "Product Name";
+
+ // birthdate view
+"Done"                              = "Done";
+"CANCEL"                            = "Cancel";
+"PICK_BIRTHDATE"                    = "Pick Birthdate";
+
+// new Bussines
+"Add New Bussiness"                 = "Add New Bussiness";
+"Edit Bussiness"                    = "Edit Bussiness";
+"(Optional)"                        = "(Optional)";
+"Bussiness Name"                    = "Bussiness Name";
+"Phone Number 1"                    = "Phone Number 1";
+"Phone Number 2"                    = "Phone Number 2";
+"FAX"                               = "fax";
 

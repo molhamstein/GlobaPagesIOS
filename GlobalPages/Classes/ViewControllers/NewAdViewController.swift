@@ -66,7 +66,7 @@ class NewAdViewController: AbstractController {
             case .editMode:
                 return "Update".localized
             case .addMode:
-                return "Add".localized
+                return "ADD_BUTTON_TITLE".localized
             }
         }
     }
@@ -294,7 +294,7 @@ class NewAdViewController: AbstractController {
         if let title = adtitleTextField.text , !title.isEmpty{
             tempPost?.title = title
         }else{
-            self.showMessage(message: "please Enter a title to your add".localized, type: .error)
+            self.showMessage(message: "please Enter a title".localized, type: .error)
             return false
         }
         
@@ -302,14 +302,14 @@ class NewAdViewController: AbstractController {
         if let desc = descriptionTextView.text , !desc.isEmpty{
             tempPost?.description = desc
         }else{
-            self.showMessage(message: "please Enter a description to your AD".localized, type: .error)
+            self.showMessage(message: "please Enter a description".localized, type: .error)
             return false
         }
         
         if let cat = selectedCategory {
             tempPost?.categoryId = cat.Fid
         }else{
-            self.showMessage(message: "please select a category to your AD".localized, type: .error)
+            self.showMessage(message: "please select a category".localized, type: .error)
             return false
         }
         
@@ -317,7 +317,7 @@ class NewAdViewController: AbstractController {
         if let cat = selectedSubCategory {
             tempPost?.subCategoryId = cat.Fid
         }else{
-            self.showMessage(message: "please select a subCategory to your AD".localized, type: .error)
+            self.showMessage(message: "please select a subCategory".localized, type: .error)
             return false
         }
         
@@ -325,14 +325,14 @@ class NewAdViewController: AbstractController {
             cityId = cat.Fid!
             
         }else{
-            self.showMessage(message: "please select a city to your AD".localized, type: .error)
+            self.showMessage(message: "please select a city".localized, type: .error)
             return false
         }
 
         if let cat = selectedArea {
             locationId = cat.Fid!
         }else{
-            self.showMessage(message: "please select an area to your AD".localized, type: .error)
+            self.showMessage(message: "please select an area".localized, type: .error)
             return false
         }
         
@@ -366,7 +366,11 @@ class NewAdViewController: AbstractController {
                 self.backGroundView.animateIn(mode: .animateOutToBottom, delay: 0.4)
                 self.backGroundView.isHidden = true
             }
-            if error != nil{}
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
         }
     }
     
@@ -377,7 +381,11 @@ class NewAdViewController: AbstractController {
             if success{
                 self.showMessage(message: "Done".localized, type: .success)
             }
-            if error != nil{}
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
         }
 
         
@@ -412,9 +420,12 @@ extension NewAdViewController:UICollectionViewDataSource,UICollectionViewDelegat
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellId, for: indexPath) as! ImageCell
             if indexPath.item < images.count{
                 cell.image = images[indexPath.item]
-                cell.editMode()
+                cell.delegate = self
+                cell.tag = indexPath.item
+                cell.editMode(state:true)
             }else{
                 cell.image = #imageLiteral(resourceName: "ic_add")
+                cell.editMode(state:false)
             }
             return cell
         }
@@ -637,13 +648,17 @@ extension NewAdViewController:UICollectionViewDelegateFlowLayout{
 
 
 // image handleras
-extension NewAdViewController{
+extension NewAdViewController:ImageCellDelegete{
     
     override func setImage(image: UIImage) {
         images.append(image)
         self.imageCollectionView.reloadData()
     }
     
+    func deleteImage(tag: Int) {
+        self.images.remove(at: tag)
+        self.imageCollectionView.reloadData()
+    }
     
 }
 

@@ -81,7 +81,7 @@ class NewProductViewController: AbstractController {
         if let name = nameTextField.text , !name.isEmpty{
             tempProduct?.name = name
         }else{
-            self.showMessage(message: "Please Enter a name".localized, type: .error)
+            self.showMessage(message: "please Enter a title".localized, type: .error)
             return false
         }
         
@@ -125,7 +125,11 @@ class NewProductViewController: AbstractController {
                 if success{
                     self.showMessage(message: "Done".localized, type: .success)
                 }
-                if error != nil{self.showMessage(message: "error".localized, type: .error)}
+                if error != nil{
+                    if let msg = error?.errorName{
+                        self.showMessage(message: msg, type: .error)
+                    }
+                }
             })
         }
         else{
@@ -134,7 +138,11 @@ class NewProductViewController: AbstractController {
             if success{
                 self.showMessage(message: "Done".localized, type: .success)
             }
-            if error != nil{self.showMessage(message: "error".localized, type: .error)}
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
         })
         }
 

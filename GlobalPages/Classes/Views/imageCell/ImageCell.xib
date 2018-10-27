@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="253" height="126"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-Lj-Uaf">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-Lj-Uaf">
                         <rect key="frame" x="0.0" y="0.0" width="253" height="126"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </imageView>
@@ -54,5 +54,6 @@
     </objects>
     <resources>
         <image name="delete" width="31" height="31"/>
+        <image name="img placeholder" width="600" height="300"/>
     </resources>
 </document>

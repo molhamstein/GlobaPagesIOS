@@ -43,6 +43,12 @@ class NewBussinesesViewController: AbstractController {
     @IBOutlet weak var subCategoryHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var selectLocationButton: UIButton!
     
+    @IBOutlet weak var openDaysBGView: UIView!
+    @IBOutlet weak var openDayView: UIView!
+    @IBOutlet var openDaysButtons: [UIButton]!
+    @IBOutlet weak var openDaysButtonView: UIView!
+    
+    
     var subCategoryViewHeight:CGFloat = 0{
         didSet{
             subCategoryHeightConstraint.setNewConstant(subCategoryViewHeight)
@@ -58,7 +64,15 @@ class NewBussinesesViewController: AbstractController {
     var media:[Media] = []
     
     var selectedCategory:Category?
-    var selectedSubCategory:Category?
+    var selectedSubCategory:Category?{
+        didSet{
+            if selectedSubCategory?.code == "pharmacies" {
+                isOpenDay = true
+            }else{
+                isOpenDay = false
+            }
+        }
+    }
     
     var categoryfilters:[Category]{
         return DataStore.shared.categories.filter { $0.parentCategoryId == nil }
@@ -69,6 +83,14 @@ class NewBussinesesViewController: AbstractController {
         return []
     }
     
+    
+    var openDays:[Bool] = [false,false,false,false,false,false,false,false]
+    var isOpenDay:Bool = false{
+        didSet{
+            openDaysButtonView.isHidden = !isOpenDay
+        }
+    }
+    
     var categoriesCount = 0
     var subCategoriesCount = 0
     
@@ -76,17 +98,25 @@ class NewBussinesesViewController: AbstractController {
     
     var tempBussiness:Bussiness?
     
+    var editMode = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subCategoryViewHeight = 0
-        self.setNavBarTitle(title: "Add New Bussiness")
-        
+   
         if let bussiness = tempBussiness{
-           // fillPostData(post: post)
+            fillData()
+            editMode = true
             print(bussiness.dictionaryRepresentation())
         }
         else{
             tempBussiness = Bussiness()
+        }
+        
+        if !editMode{
+            self.setNavBarTitle(title: "Add New Bussiness".localized)
+        }else{
+            self.setNavBarTitle(title: "Edit Bussiness".localized)
         }
         getBussinessFilters()
         self.subCategoryView.isHidden = false
@@ -124,18 +154,73 @@ class NewBussinesesViewController: AbstractController {
         self.addButton.titleLabel?.font = AppFonts.bigBold
         
         // texts
-        self.adtitleTextField.placeholder = "Name".localized
+        self.adtitleTextField.placeholder = "NEW_PRODUCT_NAME_PLACEHOLDER".localized
         self.descriptionTextView.placeholder = "(Optional)".localized
         self.faxTextView.placeholder = "(Optional)".localized
         self.phonenumber1TextField.placeholder = "(Optional)".localized
         self.phonenumber2TextField.placeholder = "(Optional)".localized
         self.locationTextField.placeholder = "(Optional)".localized
-        
+        if !editMode{
+            self.addButton.setTitle("ADD_BUTTON_TITLE".localized, for: .normal)
+        }else{
+            self.addButton.setTitle("Update".localized, for: .normal)
+        }
         self.locationTextField.addIconButton(image: "ic_nearby")
         
         setupCollectionViews()
     }
     
+    
+    func fillData(){
+        
+        guard let bussiness = tempBussiness else {return}
+        if let name = bussiness.nameEn {self.adtitleTextField.text = name}
+        if let array = bussiness.media{
+            var count = 0
+            for mediaObj in array{
+                let imageView = UIImageView()
+                if let url = mediaObj.fileUrl{
+                    var tempurl = url
+                    if !url.contains(find: "http://") { tempurl = "http://\(url)"}
+                    imageView.sd_setShowActivityIndicatorView(true)
+                    imageView.sd_setIndicatorStyle(.gray)
+                    imageView.sd_setImage(with: URL(string:tempurl), completed: { (image, error, cach, url) in
+                        if let img = image{
+                            self.images.append(img)
+                        }
+                        count += 1
+                        if count == array.count{
+                            self.imageCollectionView.reloadData()
+                        }
+                    })
+                    
+                }
+            }
+        }
+        
+        if let phone = bussiness.phone1 {self.phonenumber1TextField.text = phone}
+        if let phone = bussiness.phone2 {self.phonenumber2TextField.text = phone}
+        selectedCategory = bussiness.category
+        selectedSubCategory = bussiness.subCategory
+        if let location = bussiness.address { self.locationTextField.text = location}
+        if let desc = bussiness.description {self.descriptionTextView.text = desc}
+        if let fax = bussiness.fax {self.faxTextView.text = fax}
+        
+        if let days = bussiness.openingDays{
+            for day in days{
+                if day == 7 {
+                    openDaysButtons[0].isSelected = true
+                }else if day != 0{
+                    openDaysButtons[day].isSelected = true
+                }
+                if day != 0 {
+                    openDays[day] = true
+                }
+            }
+        }
+        
+        
+    }
     
     func getBussinessFilters(){
         self.showActivityLoader(true)
@@ -189,14 +274,14 @@ class NewBussinesesViewController: AbstractController {
             if AppConfig.currentLanguage == .arabic{ tempBussiness?.nameAr = title}
             else{ tempBussiness?.nameEn = title}
         }else{
-            self.showMessage(message: "please Enter a name to your Bussiness".localized, type: .error)
+            self.showMessage(message: "please Enter a title".localized, type: .error)
             return false
         }
         
         if let phone = phonenumber1TextField.text , !phone.isEmpty{
             if phone.isPhoneNumber { tempBussiness?.phone1 = phone }
             else{
-                self.showMessage(message: "Please enter a valid phone number", type: .error)
+                self.showMessage(message: "Please enter a valid phone number".localized, type: .error)
                 return false
             }
         }else{
@@ -206,7 +291,7 @@ class NewBussinesesViewController: AbstractController {
         if let phone2 = phonenumber2TextField.text , !phone2.isEmpty{
             if phone2.isPhoneNumber { tempBussiness?.phone2 = phone2 }
             else{
-                self.showMessage(message: "Please enter a valid phone number", type: .error)
+                self.showMessage(message: "Please enter a valid phone number".localized, type: .error)
                 return false
             }
         }else{
@@ -217,7 +302,7 @@ class NewBussinesesViewController: AbstractController {
         if let cat = selectedCategory {
             tempBussiness?.categoryId = cat.Fid
         }else{
-            self.showMessage(message: "please select a category to your add".localized, type: .error)
+            self.showMessage(message: "please select a category".localized, type: .error)
             return false
         }
         
@@ -225,7 +310,7 @@ class NewBussinesesViewController: AbstractController {
         if let cat = selectedSubCategory {
             tempBussiness?.subCategoryId = cat.Fid
         }else{
-            self.showMessage(message: "please select a subCategory to your add".localized, type: .error)
+            self.showMessage(message: "please select a subCategory".localized, type: .error)
             return false
         }
         
@@ -253,6 +338,16 @@ class NewBussinesesViewController: AbstractController {
         }else{
             tempBussiness?.fax = nil
         }
+        tempBussiness?.openingDaysEnabled = isOpenDay
+        tempBussiness?.openingDays = Array<Int>()
+        if isOpenDay {
+        for i in 1...7 {
+            if openDays[i]{
+                tempBussiness?.openingDays?.append(i)
+            }
+            }
+        }
+        
         tempBussiness?.ownerId = DataStore.shared.me?.objectId
         return true
     }
@@ -263,7 +358,11 @@ class NewBussinesesViewController: AbstractController {
         ApiManager.shared.uploadImages(images: self.images) { (urls, error) in
             self.media = urls
             self.tempBussiness?.media = urls
-            self.addBussiness()
+            if self.editMode{
+                self.updateBussiness()
+            }else{
+                self.addBussiness()
+            }
         }
     }
     
@@ -273,7 +372,17 @@ class NewBussinesesViewController: AbstractController {
     
     @IBAction func addBusinessAction(_ sender: AnyObject) {
         if validate(){
-            uploadImages()
+            if self.images.count > 0{
+                uploadImages()
+                
+            }else{
+                self.showActivityLoader(true)
+            if self.editMode{
+                self.updateBussiness()
+            }else{
+                self.addBussiness()
+                }
+            }
         }
     }
     
@@ -290,6 +399,38 @@ class NewBussinesesViewController: AbstractController {
                 }
             }
         }
+    }
+    
+    
+    func updateBussiness(){
+        ApiManager.shared.editBussiness(bussiness: tempBussiness!) { (success, error) in
+            self.showActivityLoader(false)
+            if success{
+                self.showMessage(message: "Done".localized, type: .success)
+                self.dismiss(animated: true, completion: nil)
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+    }
+    // open Days view
+    
+    @IBAction func togglyDay(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        openDays[sender.tag] = sender.isSelected
+        print(openDays)
+    }
+    
+    @IBAction func showOpenDaysView(_ sender: UIButton) {
+        self.openDaysBGView.isHidden = false
+        self.openDayView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+    }
+    
+    @IBAction func hideDaysView(_ sender: UITapGestureRecognizer) {
+        self.openDaysBGView.isHidden = true
     }
     
     
@@ -346,28 +487,52 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
         if collectionView == imageCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellId, for: indexPath) as! ImageCell
             if indexPath.item < images.count{
+                cell.delegate = self
                 cell.image = images[indexPath.item]
-                cell.editMode()
+                cell.tag = indexPath.item
+                cell.editMode(state:true)
             }else{
                 cell.image = #imageLiteral(resourceName: "ic_add")
+                cell.editMode(state:false)
             }
             return cell
         }
         
         if collectionView == adCategoryCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! filterCell2
+            if let category = selectedCategory{
+                if category.Fid == categoryfilters[indexPath.item].Fid{
+                    cell.isSelected = true
+                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                    self.getSubCategories()
+                }else{
+                    collectionView.deselectItem(at: indexPath, animated: true)
+                    cell.isSelected = false
+                }
+            }else{
+                collectionView.deselectItem(at: indexPath, animated: true)
+                cell.isSelected = false
+            }
             cell.title = categoryfilters[indexPath.item].title ?? ""
-            collectionView.deselectItem(at: indexPath, animated: true)
-            cell.isSelected = false
-            cell.setupView(type: .normal)
+            cell.setupView(type:.normal)
             return cell
         }
         if collectionView == subCategoryCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! filterCell2
+            if let category = selectedSubCategory{
+                if category.Fid == subCategoryFilters[indexPath.item].Fid{
+                    cell.isSelected = true
+                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                }else{
+                    collectionView.deselectItem(at: indexPath, animated: true)
+                    cell.isSelected = false
+                }
+            }else{
+                collectionView.deselectItem(at: indexPath, animated: true)
+                cell.isSelected = false
+            }
             cell.title = subCategoryFilters[indexPath.item].title ?? ""
-            collectionView.deselectItem(at: indexPath, animated: true)
-            cell.isSelected = false
-            cell.setupView(type: .normal)
+            cell.setupView(type:.normal)
             return cell
         }
         return UICollectionViewCell()
@@ -405,7 +570,6 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         if collectionView == adCategoryCollectionView{
         let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
             if collectionView == adCategoryCollectionView {
@@ -417,6 +581,7 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
                         self.hideSubCategoryView()
                     }else{
                         selectedCategory = categoryfilters[indexPath.item]
+                        selectedSubCategory = nil
                         cell.isSelected = true
                         self.getSubCategories()
                     }
@@ -456,6 +621,7 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
         if collectionView == adCategoryCollectionView {
             let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
             selectedCategory = nil
+            selectedSubCategory = nil
             cell.isSelected = false
             cell.configureCell()
         }
@@ -473,10 +639,15 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
 
 
 // image handleras
-extension NewBussinesesViewController {
+extension NewBussinesesViewController:ImageCellDelegete{
 
     override func setImage(image: UIImage) {
         images.append(image)
+        self.imageCollectionView.reloadData()
+    }
+    
+    func deleteImage(tag: Int) {
+        self.images.remove(at: tag)
         self.imageCollectionView.reloadData()
     }
     

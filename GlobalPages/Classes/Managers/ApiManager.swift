@@ -718,6 +718,7 @@ class ApiManager: NSObject {
                 } else {
                     if let array = jsonResponse.array{
                         let notifications = array.map{AppNotification(json:$0)}
+                        DataStore.shared.notifications = notifications
                         completionBlock(true , nil,notifications)
                     }else{
                         completionBlock(true , nil,[])
@@ -1076,6 +1077,7 @@ class ApiManager: NSObject {
         print(parameters)
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {

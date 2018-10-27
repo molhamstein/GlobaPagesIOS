@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ImageCellDelegete {
-    func deleteImage()
+    func deleteImage(tag:Int)
 }
 
 
@@ -50,12 +50,12 @@ class ImageCell: UICollectionViewCell {
     }
     
     
-    func editMode(){
-        self.deleteButton.isHidden = false
+    func editMode(state:Bool){
+        self.deleteButton.isHidden = !state
         self.cornerRadius = 5
     }
 
     @IBAction func remove(_ sender: UIButton) {
-        delegate?.deleteImage()
+        delegate?.deleteImage(tag:self.tag)
     }
 }

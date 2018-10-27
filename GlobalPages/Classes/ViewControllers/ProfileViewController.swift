@@ -58,7 +58,7 @@ class ProfileViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setNavBarTitle(title: "My Profile")
+        self.setNavBarTitle(title: "My Profile".localized)
         // Do any additional setup after loading the view.
 
     }
@@ -234,6 +234,7 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: bussinesCellId, for: indexPath) as! BussinessGuidListCell
             cell.bussiness = bussiness[indexPath.item]
+            cell.delegate  = self
             cell.profileMode()
             return cell
         }
@@ -322,7 +323,17 @@ extension ProfileViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
+}
+
+extension ProfileViewController:BussinessGuidListCellDelegate{
     
+    func showDetails(bussinesGuide: String) {
+    }
     
-    
+    func showEdit(bussiness: Bussiness) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewBussinesesViewController") as! NewBussinesesViewController
+        vc.tempBussiness = bussiness
+        vc.editMode = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

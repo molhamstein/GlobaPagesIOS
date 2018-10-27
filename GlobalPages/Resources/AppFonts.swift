@@ -18,11 +18,36 @@ struct AppFonts {
     private static let fontNameRegularAR = "Cairo-Regular"
     
     // MARK: font sizes
-    private static let sizeXBig:Double = 26
-    private static let sizeBig:Double = 20
-    private static let sizeNormal:Double = 18
-    private static let sizeSmall:Double = 14
-    private static let sizeXSmall:Double = 12
+    private static var sizeXBig:Double {
+        if AppConfig.currentLanguage == .arabic{
+            return 20
+        }
+        return 26
+    }
+    private static var sizeBig:Double {
+        if AppConfig.currentLanguage == .arabic{
+            return 16
+        }
+        return 20
+    }
+    private static var sizeNormal:Double{
+        if AppConfig.currentLanguage == .arabic{
+            return 14
+        }
+        return 18
+    }
+    private static var sizeSmall:Double{
+        if AppConfig.currentLanguage == .arabic{
+            return 10
+        }
+        return 14
+    }
+    private static var sizeXSmall:Double{
+        if AppConfig.currentLanguage == .arabic{
+            return 8
+        }
+        return 12
+    }
     
     private enum FontWeight {
         case bold

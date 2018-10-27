@@ -82,6 +82,7 @@ class HomeViewController: AbstractController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.notificationButton.badge = nil
     }
 
     override func customizeView() {
@@ -170,6 +171,8 @@ class HomeViewController: AbstractController {
                 if result.count > 0 {
                     let count = result.filter({$0.seen == false}).count
                     self.notificationButton.badge = "\(count)"
+                }else{
+                    self.notificationButton.badge = nil
                 }
             }
             if error != nil{}

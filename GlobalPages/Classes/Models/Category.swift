@@ -13,6 +13,7 @@ public class Category: BaseModel {
     private let kCategoryName: String = "name"
     // MARK: Properties
     public var name: String?
+    public var code: String?
     public var titleAr : String?
     public var titleEn : String?
     public var creationDate : String?
@@ -39,6 +40,10 @@ public class Category: BaseModel {
         if let value = json[kCategoryName].string {
             name = value
         }
+        if let value = json["code"].string {
+            code = value
+        }
+        
         if let value = json["titleAr"].string {
             titleAr = value
         }
@@ -64,6 +69,11 @@ public class Category: BaseModel {
         if let value = name {
             dictionary[kCategoryName] = value
         }
+        
+        if let value = code {
+            dictionary["code"] = value
+        }
+        
         if let value = titleAr {
             dictionary["titleAr"] = value
         }
