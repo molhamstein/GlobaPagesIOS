@@ -271,8 +271,8 @@ class NewBussinesesViewController: AbstractController {
     func validate()-> Bool{
         
         if let title = adtitleTextField.text , !title.isEmpty{
-            if AppConfig.currentLanguage == .arabic{ tempBussiness?.nameAr = title}
-            else{ tempBussiness?.nameEn = title}
+                tempBussiness?.nameAr = title
+                tempBussiness?.nameEn = title
         }else{
             self.showMessage(message: "please Enter a title".localized, type: .error)
             return false
@@ -367,7 +367,8 @@ class NewBussinesesViewController: AbstractController {
     }
     
     override func backButtonAction(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        self.popOrDismissViewControllerAnimated(animated: true)
     }
     
     @IBAction func addBusinessAction(_ sender: AnyObject) {

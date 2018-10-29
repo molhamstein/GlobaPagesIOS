@@ -215,7 +215,8 @@ class NewAdViewController: AbstractController {
     }
     
     override func backButtonAction(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+        self.popOrDismissViewControllerAnimated(animated: true)
     }
  
     

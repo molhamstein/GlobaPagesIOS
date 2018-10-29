@@ -150,14 +150,19 @@ extension AdsDescriptionViewController:UICollectionViewDataSource,UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        if images.count > 0 {
+            return images.count
+        }
+        return 1
     }
 
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ImageCell
-        cell.media = images[indexPath.item]
+        if images.count > 0 {
+            cell.media = images[indexPath.item]
+        }
         return cell
     }
     

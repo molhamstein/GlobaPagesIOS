@@ -174,8 +174,8 @@ class BussinessDescriptionViewController: AbstractController {
     
     
     override func backButtonAction(_ sender: AnyObject) {
-          self.dismiss(animated: true, completion: nil)
-   //     self.popOrDismissViewControllerAnimated(animated: true)
+   //       self.dismiss(animated: true, completion: nil)
+        self.popOrDismissViewControllerAnimated(animated: true)
     }
     
     func fillData(){
@@ -279,9 +279,12 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
             return products.count
         }
         if collectionView == imageCollectionView {
-            return self.images.count
+            if self.images.count > 0{
+                return self.images.count
+            }
+            return 1
         }
-        return 3
+        return 1
     }
     
     
@@ -289,7 +292,10 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == imageCollectionView{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ImageCell
-        cell.media = self.images[indexPath.item]
+            if self.images.count > 0{
+                cell.media = self.images[indexPath.item]
+            }
+            
         return cell
         }
         if collectionView == productsCollectionView{
