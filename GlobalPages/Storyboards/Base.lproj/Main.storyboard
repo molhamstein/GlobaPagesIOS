@@ -2050,7 +2050,7 @@
                                         <rect key="frame" x="0.0" y="267" width="375" height="457"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2z-PP-EOw" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="8" width="71" height="24"/>
+                                                <rect key="frame" x="16" y="8" width="70.333333333333329" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="7T0-xg-rG0"/>
                                                 </constraints>
@@ -3100,7 +3100,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmr-69-h3m" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="16" y="139" width="31" height="15"/>
+                                                                        <rect key="frame" x="15.999999999999998" y="139" width="30.333333333333329" height="15"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -3109,7 +3109,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="vWO-TV-aTF">
-                                                                        <rect key="frame" x="265.33333333333337" y="110" width="62" height="17"/>
+                                                                        <rect key="frame" x="265.66666666666669" y="110" width="61.666666666666686" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="17" id="D3R-JL-cNW"/>
                                                                         </constraints>
@@ -3118,7 +3118,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ads Added" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlZ-RZ-rah" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="265" y="91" width="62" height="15"/>
+                                                                        <rect key="frame" x="265.33333333333337" y="91" width="61.666666666666686" height="15"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -3331,7 +3331,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="138"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe to categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKd-em-VaH" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                                <rect key="frame" x="20" y="20" width="182" height="21"/>
+                                                                                <rect key="frame" x="20" y="20" width="181.66666666666666" height="21"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -3340,7 +3340,7 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="urP-W3-cqZ">
-                                                                                <rect key="frame" x="20" y="49" width="182" height="2"/>
+                                                                                <rect key="frame" x="20" y="49" width="181.66666666666666" height="2"/>
                                                                                 <color key="backgroundColor" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="2" id="x4a-cY-wkd"/>
@@ -4599,7 +4599,7 @@
                                         <rect key="frame" x="8" y="201" width="321.66666666666669" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLZ-Oi-c7G" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133.66666666666666" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -4629,7 +4629,7 @@
                                         <rect key="frame" x="8" y="297" width="321.66666666666669" height="120"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNw-bb-Qz2" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="92" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="299" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -5638,59 +5638,13 @@
                                             <constraint firstItem="3J0-qM-8GF" firstAttribute="leading" secondItem="drA-ix-luJ" secondAttribute="leading" id="pGp-fX-lZC" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eG8-Dg-2bv">
-                                        <rect key="frame" x="0.0" y="120" width="313" height="60"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0q-51-IKC">
-                                                <rect key="frame" x="0.0" y="59" width="313" height="1"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="414-PV-GSh" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                                </constraints>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our Partners" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe1-Fd-BoS" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="19" width="98" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2z-TH-w6n" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="289" y="18" width="24" height="24"/>
-                                                <state key="normal" image="chevron"/>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9J-TI-5iZ" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="313" height="59"/>
-                                                <connections>
-                                                    <action selector="viewPartnersAction:" destination="Kff-4e-bpL" eventType="touchUpInside" id="k9p-EU-gzG"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="oe1-Fd-BoS" firstAttribute="centerY" secondItem="eG8-Dg-2bv" secondAttribute="centerY" id="4RK-iu-p4x" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstItem="q9J-TI-5iZ" firstAttribute="leading" secondItem="eG8-Dg-2bv" secondAttribute="leading" id="NQJ-3J-agG" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstAttribute="trailing" secondItem="d2z-TH-w6n" secondAttribute="trailing" id="THV-Kk-x5y" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstItem="oe1-Fd-BoS" firstAttribute="leading" secondItem="eG8-Dg-2bv" secondAttribute="leading" id="nAt-SL-Ah9" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstAttribute="bottom" secondItem="c0q-51-IKC" secondAttribute="bottom" id="ocb-We-t0M" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstItem="q9J-TI-5iZ" firstAttribute="top" secondItem="eG8-Dg-2bv" secondAttribute="top" id="pco-h8-8di" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstAttribute="trailing" secondItem="q9J-TI-5iZ" secondAttribute="trailing" id="rcw-W2-hKx" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstItem="c0q-51-IKC" firstAttribute="top" secondItem="q9J-TI-5iZ" secondAttribute="bottom" id="sKM-ly-k0p" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstAttribute="height" constant="60" id="ur8-cr-6nn" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstItem="d2z-TH-w6n" firstAttribute="centerY" secondItem="eG8-Dg-2bv" secondAttribute="centerY" id="vzY-za-ofo" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstItem="c0q-51-IKC" firstAttribute="leading" secondItem="eG8-Dg-2bv" secondAttribute="leading" id="y18-5T-gHT" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                            <constraint firstAttribute="trailing" secondItem="c0q-51-IKC" secondAttribute="trailing" id="yuj-hH-yvs" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="eG8-Dg-2bv" firstAttribute="leading" secondItem="CbN-uz-mEX" secondAttribute="leading" id="3io-8c-jPi"/>
-                                    <constraint firstItem="eG8-Dg-2bv" firstAttribute="top" secondItem="drA-ix-luJ" secondAttribute="bottom" id="4w3-nO-Vqg"/>
                                     <constraint firstItem="drA-ix-luJ" firstAttribute="leading" secondItem="CbN-uz-mEX" secondAttribute="leading" id="Hsq-pz-9mo" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstItem="IyQ-nQ-X82" firstAttribute="leading" secondItem="CbN-uz-mEX" secondAttribute="leading" id="Inx-eK-B77" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstItem="IyQ-nQ-X82" firstAttribute="top" secondItem="CbN-uz-mEX" secondAttribute="top" id="SH0-YC-9J2" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstAttribute="height" constant="180" id="XUW-Vg-qF7" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstItem="drA-ix-luJ" firstAttribute="top" secondItem="IyQ-nQ-X82" secondAttribute="bottom" id="kx0-2V-bLB" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                    <constraint firstAttribute="trailing" secondItem="eG8-Dg-2bv" secondAttribute="trailing" id="lBX-b1-orT"/>
                                     <constraint firstAttribute="trailing" secondItem="drA-ix-luJ" secondAttribute="trailing" id="m6V-YX-NAs" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstAttribute="trailing" secondItem="IyQ-nQ-X82" secondAttribute="trailing" id="m6h-3W-rBd" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 </constraints>

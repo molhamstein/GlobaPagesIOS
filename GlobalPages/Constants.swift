@@ -24,7 +24,7 @@ struct AppConfig {
     static let twitterConsumerKey = "eq0dVMoM1JqNcR6VJJILsdXNddo"
     static let twitterConsumerSecret = "6JkdvzSijm13xjBW0fYSEG4yF2tbro8pwxz1vDx290Bj0aMw2vssI"
     static let googleClientID = "82142364137-21s23clufpu4d0abp5ppa5na245tak1u.apps.googleusercontent.com"
-    static let oneSingleID = "3754a01e-b355-4248-a906-e04549e6ab32"
+    static let oneSingleID = "1eaeda82-b4bb-4354-adb2-192febfb3caa"
     static let AppleStoreAppId = "3754a01e-b355-4248-a906-e04549e6ab32"
     
     static let PlaceHolderImage = UIImage(named: "bottle-1")
