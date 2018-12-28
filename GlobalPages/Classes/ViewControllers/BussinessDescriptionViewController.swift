@@ -338,6 +338,13 @@ extension BussinessDescriptionViewController:UICollectionViewDelegateFlowLayout{
                 self.present(nav, animated: true, completion: nil)
             }
         }
+
+        if collectionView == imageCollectionView{
+            let cell = collectionView.cellForItem(at: indexPath) as! ImageCell
+            if let image = cell.iamgeView.image{
+                self.showFullScreenImage(image: image)
+            }
+        }
     }
     
 }

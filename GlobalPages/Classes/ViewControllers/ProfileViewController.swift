@@ -9,6 +9,9 @@
 import UIKit
 
 class ProfileViewController: AbstractController {
+
+
+    @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var usernameTitleLabel: XUILabel!
@@ -36,8 +39,13 @@ class ProfileViewController: AbstractController {
     
     var posts:[Post] = []
     var bussiness:[Bussiness] = []
-    
-    var filters:[String] = ["Real States","Jobs","Cars","Restaurants"]
+
+    var userFavoritesCategories:[Category] {
+        return DataStore.shared.favorites
+    }
+    var categories:[Category]{
+        return DataStore.shared.categories
+    }
     
     var isMale:Bool = false {
         didSet{
@@ -87,7 +95,11 @@ class ProfileViewController: AbstractController {
         
         setupCollectionViews()
     }
-    
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.infoView.dropShadow()
+    }
     
     func setupCollectionViews(){
         let nib = UINib(nibName: categoryCellId, bundle: nil)
@@ -101,7 +113,10 @@ class ProfileViewController: AbstractController {
         
         
         self.myBussinessCollectionView.register(UINib(nibName: bussinesCellId, bundle: nil), forCellWithReuseIdentifier: bussinesCellId)
-        
+
+
+        self.categoryCollectionView.allowsMultipleSelection = true
+
         self.categoryCollectionView.delegate = self
         self.categoryCollectionView.dataSource = self
         self.myAdsCollectionView.delegate = self
@@ -119,18 +134,19 @@ class ProfileViewController: AbstractController {
         fetchUserData()
         getAds()
         getBussiness()
+        getFavorites()
     }
     
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
+
     func fillUserData(){
         guard let user = DataStore.shared.me else {return}
         if let username = user.userName {self.usernameLabel.text = username}
         if let email = user.email{self.emailLabel.text = email}
-        if let image = user.profilePic { self.imageView.setImageForURL(image, placeholder: #imageLiteral(resourceName: "image_placeholder"))}
+        if let image = user.profilePic { self.imageView.setImageForURL(image, placeholder: #imageLiteral(resourceName: "user_placeholder"))}
         if let birthDate = user.birthdate { birthDateButton.setTitle(DateHelper.getBirthFormatedStringFromDate(birthDate), for: .normal)  }
         if let count = user.postsCount {self.adsCountLabel.text = "\(count)"}
         if let gender = user.gender{isMale = gender.rawValue == "male" ? true : false}
@@ -181,6 +197,57 @@ class ProfileViewController: AbstractController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
+    // favorite actions
+    func getFavorites(){
+        guard let uid = DataStore.shared.me?.objectId else {return}
+        self.showActivityLoader(true)
+        ApiManager.shared.getFavorites(uid: uid) { (success, error, result) in
+            self.showActivityLoader(false)
+            if success{
+                self.categoryCollectionView.reloadData()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+    }
+
+    func addToFavorite(category:Category){
+        guard let uid = DataStore.shared.me?.objectId else {return}
+        self.showActivityLoader(true)
+        ApiManager.shared.addToFavorites(uid: uid, category: category, completionBlock: { (success, error) in
+            self.showActivityLoader(false)
+            if success{
+                self.getFavorites()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        })
+    }
+
+
+    func deleteFromFavorite(id:String){
+        guard let uid = DataStore.shared.me?.objectId else {return}
+        self.showActivityLoader(true)
+        ApiManager.shared.deleteFromFavorites(uid: uid, category_id: id, completionBlock: { (success, error) in
+            self.showActivityLoader(false)
+            if success{
+                self.getFavorites()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        })
+    }
+
+
 }
 
 
@@ -192,14 +259,14 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == categoryCollectionView{
-            return filters.count
+            return categories.count
         }
         if collectionView == myAdsCollectionView {
             return posts.count
         }
         
         if collectionView == myBussinessCollectionView {
-         return bussiness.count
+            return bussiness.count
         }
         return 0
     }
@@ -208,16 +275,23 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categoryCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellId, for: indexPath) as! filterCell2
-            cell.title = filters[indexPath.item]
+            let category = categories[indexPath.item]
+            cell.title = category.title ?? ""
             cell.setupView(type: .normal)
-            collectionView.deselectItem(at: indexPath, animated: true)
-            cell.isSelected = false
+            
+            if userFavoritesCategories.contains(where: {$0.Fid == category.Fid}){
+                cell.isSelected = true
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+            }else{
+                collectionView.deselectItem(at: indexPath, animated: true)
+                cell.isSelected = false
+            }
             return cell
         }
         if collectionView == myAdsCollectionView{
             let post = posts[indexPath.item]
             if post.type == .image{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: adImagedCellId, for: indexPath) as! AdsImageCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: adImagedCellId, for: indexPath) as! AdsImageCell
                 cell.post = post
                 cell.resizeTagView()
                 return cell
@@ -246,7 +320,19 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
             cell.isSelected = true
             cell.configureCell()
+            let category = self.categories[indexPath.item]
+            if userFavoritesCategories.contains(where: {$0.Fid == category.Fid}){
+
+                self.deleteFromFavorite(id: category.Fid ?? "")
+                cell.isSelected = false
+                collectionView.deselectItem(at: indexPath, animated: true)
+            }else{
+                self.addToFavorite(category: category)
+                  collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                cell.isSelected = true
+            }
         }
+
         if collectionView == myAdsCollectionView{
             let post = self.posts[indexPath.item]
             let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewAdViewController") as! NewAdViewController
@@ -255,17 +341,20 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
         }
         if collectionView == myBussinessCollectionView{
             
-         let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "BussinessDescriptionViewController") as! BussinessDescriptionViewController
+            let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "BussinessDescriptionViewController") as! BussinessDescriptionViewController
             vc.bussiness = bussiness[indexPath.item]
             vc.editMode = true
-         self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollectionView{
+            let category = self.categories[indexPath.item]
             let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+            self.deleteFromFavorite(id: category.Fid ?? "")
             cell.isSelected = false
+            collectionView.deselectItem(at: indexPath, animated: true)
             cell.configureCell()
         }
         if collectionView == myBussinessCollectionView{}
@@ -303,7 +392,8 @@ extension ProfileViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == categoryCollectionView{
             let height = self.categoryCollectionView.bounds.height - 24
-            let width = filters[indexPath.item].getLabelWidth(font: AppFonts.normal) + 32
+            var width = categories[indexPath.item].title?.getLabelWidth(font: AppFonts.normal) ?? 0
+            width = width + 32
             return CGSize(width: width, height: height)
         }
         

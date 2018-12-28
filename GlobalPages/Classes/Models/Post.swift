@@ -18,7 +18,7 @@ public class Post:BaseModel{
 	public var description : String?
 	public var status : String?
 	public var viewsCount : Int?
-	public var creationDate : String?
+	public var creationDate : Date?
 	public var ownerId : String?
 	public var categoryId : String?
 	public var subCategoryId : String?
@@ -29,9 +29,19 @@ public class Post:BaseModel{
     public var isFeatured: Bool?
     public var city:City?
     public var location:City?
+    public var phone1:String?
+    public var phone2:String?
+    public var fax:String?
     
     public var image : String?{
         return media?.first?.fileUrl
+    }
+
+    var isActiviated:Bool{
+        if status != nil{
+            return status == "activated"
+        }
+        return false
     }
     
     public var type:AdsType?{
@@ -53,7 +63,9 @@ public class Post:BaseModel{
         description = json["description"].string
         status = json["status"].string
         viewsCount = json["viewsCount"].int
-        creationDate = json["creationDate"].string
+        if let strDate = json["creationDate"].string{
+            creationDate = DateHelper.getDateFromISOString(strDate)
+        }
         ownerId = json["ownerId"].string
         categoryId = json["categoryId"].string
         subCategoryId = json["subCategoryId"].string

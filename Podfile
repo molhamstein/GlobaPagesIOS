@@ -14,10 +14,8 @@ pod 'TwitterKit'
 pod 'Toast-Swift', '~> 2.0.0'
 pod 'GoogleSignIn'
 pod 'NYTPhotoViewer', '~> 1.1.0'
-pod 'OneSignal', '>= 2.6.2', '< 3.0'
-
+pod 'Firebase'
+pod 'Firebase/Core' 
+pod 'Firebase/Messaging'
 end
 
-target 'OneSignalNotificationServiceExtension' do
-  pod 'OneSignal', '>= 2.6.2', '< 3.0'
-end

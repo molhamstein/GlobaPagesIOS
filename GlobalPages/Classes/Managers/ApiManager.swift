@@ -40,8 +40,8 @@ class ApiManager: NSObject {
     private override init(){
         super.init()
     }    
-   
-   
+
+
     // MARK: Authorization
     /// User facebook login request
     func userFacebookLogin(facebookId: String, fbName: String, fbToken: String, email: String, fbGender: String, imageLink: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
@@ -90,7 +90,7 @@ class ApiManager: NSObject {
         let parameters : [String : Any] = [
             "accessToken": accessToken,
             "accessTokenSecret": secret
-            ]
+        ]
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -177,7 +177,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError, nil)
                 } else {
                     // parse response to data model >> user object
-                    let user = AppUser(json: jsonResponse["user"])
+                    let user = AppUser(json: jsonResponse)
                     DataStore.shared.me = user
                     DataStore.shared.token = jsonResponse["id"].string
                     DataStore.shared.me?.objectId = jsonResponse["userId"].string
@@ -189,9 +189,9 @@ class ApiManager: NSObject {
             if responseObject.result.isFailure {
                 let nsError : NSError = responseObject.result.error! as NSError
                 print(nsError.localizedDescription)
-                 if let code = responseObject.response?.statusCode, code >= 400 {
-                completionBlock(false, ServerError.unknownError, nil)
-                 } else {
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
                     completionBlock(false, ServerError.connectionError, nil)
                 }
             }
@@ -258,7 +258,7 @@ class ApiManager: NSObject {
         var parameters : [String : String] = [
             "username": user.userName!,
             "gender": user.gender?.rawValue ?? "male",
-        ]
+            ]
         
         if let email = user.email {
             parameters["email"] = email
@@ -404,7 +404,7 @@ class ApiManager: NSObject {
         let signInURL = "\(baseURL)auth/forgot_password"
         let parameters : [String : Any] = [
             "email": email,
-        ]
+            ]
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -437,7 +437,7 @@ class ApiManager: NSObject {
             "email": email,
             "code": code,
             "password": password
-            ]
+        ]
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -467,25 +467,25 @@ class ApiManager: NSObject {
     }
     
     // MARK: Categories
-//    func requestCategories(completionBlock: @escaping (_ categories: Array<Category>?, _ error: NSError?) -> Void) {
-//        let categoriesListURL = "\(baseURL)categories"
-//        Alamofire.request(categoriesListURL).responseJSON { (responseObject) -> Void in
-//            if responseObject.result.isSuccess {
-//                let resJson = JSON(responseObject.result.value!)
-//                if let data = resJson["data"].array
-//                {
-//                    let categories: [Category] = data.map{Category(json: $0)}
-//                    //save to cache
-//                    DataStore.shared.categories = categories
-//                    completionBlock(categories, nil)
-//                }
-//            }
-//            if responseObject.result.isFailure {
-//                let error : NSError = responseObject.result.error! as NSError
-//                completionBlock(nil, error)
-//            }
-//        }
-//    }
+    //    func requestCategories(completionBlock: @escaping (_ categories: Array<Category>?, _ error: NSError?) -> Void) {
+    //        let categoriesListURL = "\(baseURL)categories"
+    //        Alamofire.request(categoriesListURL).responseJSON { (responseObject) -> Void in
+    //            if responseObject.result.isSuccess {
+    //                let resJson = JSON(responseObject.result.value!)
+    //                if let data = resJson["data"].array
+    //                {
+    //                    let categories: [Category] = data.map{Category(json: $0)}
+    //                    //save to cache
+    //                    DataStore.shared.categories = categories
+    //                    completionBlock(categories, nil)
+    //                }
+    //            }
+    //            if responseObject.result.isFailure {
+    //                let error : NSError = responseObject.result.error! as NSError
+    //                completionBlock(nil, error)
+    //            }
+    //        }
+    //    }
     
 
     func requesReportTypes(completionBlock: @escaping (_ items: Array<ReportType>?, _ error: NSError?) -> Void) {
@@ -510,7 +510,7 @@ class ApiManager: NSObject {
     // MARK: Upload Video
     func uploadMedia(urls:[URL], mediaType: AppMediaType, completionBlock: @escaping (_ files: [Media], _ errorMessage: String?) -> Void) {
         
-//        let mediaURL = "\(baseURL)/uploads/videos/upload"
+        //        let mediaURL = "\(baseURL)/uploads/videos/upload"
         var mediaURL = "\(baseURL)/uploadFiles/videos/upload"
         if mediaType == .image {
             mediaURL = "\(baseURL)/uploadFiles/images/upload"
@@ -533,41 +533,41 @@ class ApiManager: NSObject {
                     multipartFormData.append(url, withName: "file")
                 }
             }
-        
+
         }
         
         Alamofire.upload(multipartFormData: payload, to: mediaURL, method: .post, headers: headers,
                          encodingCompletion: { encodingResult in
                             
-                switch encodingResult {
-                    case .success(let upload, _, _):
-                        upload.responseJSON { responseObject in
+                            switch encodingResult {
+                            case .success(let upload, _, _):
+                                upload.responseJSON { responseObject in
                                     
-                            if responseObject.result.isSuccess {
+                                    if responseObject.result.isSuccess {
                                         
-                                let resJson = JSON(responseObject.result.value!)
-                                if let resArray = resJson.array {
-                                    var files: [Media] = []
-                                    for  i in 0 ..< resArray.count {
-                                        let media = Media(json:resArray[i])
-                                        media.type = mediaType
-                                        files.append(media)
+                                        let resJson = JSON(responseObject.result.value!)
+                                        if let resArray = resJson.array {
+                                            var files: [Media] = []
+                                            for  i in 0 ..< resArray.count {
+                                                let media = Media(json:resArray[i])
+                                                media.type = mediaType
+                                                files.append(media)
+                                            }
+                                            completionBlock(files, nil)
+
+                                        }
+                                    } else { // failure
+                                        
+                                        if let code = responseObject.response?.statusCode, code >= 400 {
+                                            completionBlock([], ServerError.unknownError.type.errorMessage)
+                                        } else {
+                                            completionBlock([], ServerError.connectionError.type.errorMessage)
+                                        }
                                     }
-                                    completionBlock(files, nil)
-                                 
                                 }
-                            } else { // failure
-                                        
-                                if let code = responseObject.response?.statusCode, code >= 400 {
-                                    completionBlock([], ServerError.unknownError.type.errorMessage)
-                                } else {
-                                    completionBlock([], ServerError.connectionError.type.errorMessage)
-                                }
+                            case .failure(let encodingError):
+                                completionBlock([], ServerError.connectionError.type.errorMessage)
                             }
-                    }
-                    case .failure(let encodingError):
-                        completionBlock([], ServerError.connectionError.type.errorMessage)
-                }
         })
     }
     
@@ -623,8 +623,8 @@ class ApiManager: NSObject {
         let payload : Payload = /*@escaping*/{ multipartFormData in
             
             for image in images {
-                    if let compressedImg = UIImageJPEGRepresentation(image, 0) {
-                            multipartFormData.append(compressedImg, withName: "file", fileName: "file", mimeType: "image/png")
+                if let compressedImg = UIImageJPEGRepresentation(image, 0) {
+                    multipartFormData.append(compressedImg, withName: "file", fileName: "file", mimeType: "image/png")
                 }
             }
             
@@ -756,6 +756,7 @@ class ApiManager: NSObject {
                     if let array = jsonResponse.array{
                         let filters = array.map{categoriesFilter(json:$0)}
                         let categories = array.map{Category(json:$0)}
+                        DataStore.shared.categories = categories
                         completionBlock(true , nil, filters,categories)
                     }else{
                         completionBlock(true , nil, [],[])
@@ -780,7 +781,7 @@ class ApiManager: NSObject {
     func getCities(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[categoriesFilter],_ cityResult:[City]) -> Void) {
         // url & parameters
         let signUpURL = "\(baseURL)/cities?filter[include]=locations"
-    
+
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -812,7 +813,7 @@ class ApiManager: NSObject {
         }
     }
     
-//postCategories
+    //postCategories
     
     func postCategories(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[categoriesFilter]) -> Void) {
         // url & parameters
@@ -852,7 +853,7 @@ class ApiManager: NSObject {
         // url & parameters
         let signUpURL = "\(baseURL)/volumes?filter[limit]=\(limit)&filter[skip]=\(skip)"
         // build request
-         DataStore.shared.volume = nil
+        DataStore.shared.volume = nil
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
@@ -864,7 +865,7 @@ class ApiManager: NSObject {
                     if let array = jsonResponse.array{
                         let volumes = array.map{Volume(json:$0)}
                         DataStore.shared.volume = volumes.first
-                         completionBlock(true , nil, volumes.first)
+                        completionBlock(true , nil, volumes.first)
                     }else{
                         completionBlock(true , nil, nil)
                     }
@@ -924,7 +925,7 @@ class ApiManager: NSObject {
     func getUserPosts(ownerId:String,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Post]) -> Void) {
         // url & parameters
         let signUpURL = "\(baseURL)/posts?filter[where][ownerId]=\(ownerId)"
-//        DataStore.shared.posts = []
+        //        DataStore.shared.posts = []
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -936,7 +937,7 @@ class ApiManager: NSObject {
                     // parse response to data model >> user object
                     if let array = jsonResponse.array{
                         let filters = array.map{Post(json:$0)}
-//                        DataStore.shared.posts = filters
+                        //                        DataStore.shared.posts = filters
                         completionBlock(true , nil, filters)
                     }else{
                         completionBlock(true , nil, [])
@@ -991,7 +992,102 @@ class ApiManager: NSObject {
             }
         }
     }
+    //users/5b855cb0ee3548256fbf0b2a/faveoriteCategories?access_token=Xm6kANvgnQ7psqkndMSfhkBFO4EeGCQVGlVpLozd2Qvsm5NxNP0aOQdlfb6QoPIa
+    // get favorites
+    func getFavorites(uid:String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Category]) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)/users/\(uid)/faveoriteCategories"
+        // build request
+        Alamofire.request(signInURL, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            print(responseObject)
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError,[])
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let favorites = array.map{Category(json:$0)}
+                        DataStore.shared.favorites = favorites
+                        completionBlock(true , nil,favorites)
+                    }else{
+                        completionBlock(true , nil,[])
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError,[])
+                } else {
+                    completionBlock(false, ServerError.connectionError,[])
+                }
+            }
+        }
+    }
 
+    func addToFavorites(uid:String,category: Category, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)/users/\(uid)/faveoriteCategories"
+        let parameters : [String : Any] = category.dictionaryRepresentation()
+        print(parameters)
+        // build request
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            print(responseObject)
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError)
+                } else {
+                    // parse response to data model >> user object
+                    completionBlock(true , nil)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError)
+                } else {
+                    completionBlock(false, ServerError.connectionError)
+                }
+            }
+        }
+    }
+    // delete from favorite
+    func deleteFromFavorites(uid:String,category_id: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)/users/\(uid)/faveoriteCategories/\(category_id)"
+        // build request
+        Alamofire.request(signInURL, method: .delete, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            print(responseObject)
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    completionBlock(false , serverError)
+                } else {
+                    // parse response to data model >> user object
+                    completionBlock(true , nil)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError)
+                } else {
+                    completionBlock(false, ServerError.connectionError)
+                }
+            }
+        }
+    }
     // add user post
     func addPost(post: Post,cityId:String,locationId:String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         // url & parameters
@@ -1002,7 +1098,7 @@ class ApiManager: NSObject {
         parameters["cityId"] = cityId
         parameters["locationId"] = locationId
         print(parameters)
-    
+
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             print(responseObject)
@@ -1031,7 +1127,7 @@ class ApiManager: NSObject {
     
     func editPost(post: Post,cityId:String,locationId:String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         // url & parameters
-//        guard let token = DataStore.shared.token else {return}
+        //        guard let token = DataStore.shared.token else {return}
         let signInURL = "\(baseURL)/posts?id=\(post.id)"
         var parameters : [String : Any] = post.dictionaryRepresentation()
         parameters["cityId"] = cityId
@@ -1300,7 +1396,7 @@ struct ServerError {
         case noBottleFound = 406
         case alreadyExists = 101
         case socialLoginFailed = -110
-		case notRegistred = 102
+        case notRegistred = 102
         case missingInputData = 104
         case expiredVerifyCode = 107
         case invalidVerifyCode = 108
@@ -1310,33 +1406,33 @@ struct ServerError {
         /// **Warning:** it is not localized string
         var errorMessage:String {
             switch(self) {
-                case .unknown:
-                    return "ERROR_UNKNOWN".localized
-                case .connection:
-                    return "ERROR_NO_CONNECTION".localized
-                case .authorization:
-                    return "ERROR_NOT_AUTHORIZED".localized
-                case .alreadyExists:
-                    return "ERROR_SIGNUP_EMAIL_EXISTS".localized
-				case .notRegistred:
-                    return "ERROR_SIGNIN_WRONG_CREDIST".localized
-                case .missingInputData:
-                    return "ERROR_MISSING_INPUT_DATA".localized
-                case .expiredVerifyCode:
-                    return "ERROR_EXPIRED_VERIFY_CODE".localized
-                case .invalidVerifyCode:
-                    return "ERROR_INVALID_VERIFY_CODE".localized
-                case .userNotFound:
-                    return "ERROR_RESET_WRONG_EMAIL".localized
-                case .userNotActivated:
-                    return "ERROR_UNACTIVATED_USER".localized
-                case .invalidUserName:
-                    return "ERROR_INVALID_USERNAME".localized
-                case .noBottleFound:
-                    return "ERROR_BOTTLE_NOT_FOUND".localized
+            case .unknown:
+                return "ERROR_UNKNOWN".localized
+            case .connection:
+                return "ERROR_NO_CONNECTION".localized
+            case .authorization:
+                return "ERROR_NOT_AUTHORIZED".localized
+            case .alreadyExists:
+                return "ERROR_SIGNUP_EMAIL_EXISTS".localized
+            case .notRegistred:
+                return "ERROR_SIGNIN_WRONG_CREDIST".localized
+            case .missingInputData:
+                return "ERROR_MISSING_INPUT_DATA".localized
+            case .expiredVerifyCode:
+                return "ERROR_EXPIRED_VERIFY_CODE".localized
+            case .invalidVerifyCode:
+                return "ERROR_INVALID_VERIFY_CODE".localized
+            case .userNotFound:
+                return "ERROR_RESET_WRONG_EMAIL".localized
+            case .userNotActivated:
+                return "ERROR_UNACTIVATED_USER".localized
+            case .invalidUserName:
+                return "ERROR_INVALID_USERNAME".localized
+            case .noBottleFound:
+                return "ERROR_BOTTLE_NOT_FOUND".localized
                 
-                default:
-                    return "ERROR_UNKNOWN".localized
+            default:
+                return "ERROR_UNKNOWN".localized
             }
         }
     }

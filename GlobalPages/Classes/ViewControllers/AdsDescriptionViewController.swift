@@ -32,7 +32,20 @@ class AdsDescriptionViewController: AbstractController {
     @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
     @IBOutlet weak var subCategoryWidthConstraint: XNSLayoutConstraint!
     
-    
+
+    // contact view
+    @IBOutlet weak var contactsBGView: UIView!
+    @IBOutlet weak var contactsMiddleView: UIView!
+    @IBOutlet weak var phone1TitleLabel: XUILabel!
+    @IBOutlet weak var phone1Label: UILabel!
+    @IBOutlet weak var phone1Button: UIButton!
+    @IBOutlet weak var phone2TitleLabel: XUILabel!
+    @IBOutlet weak var phone2Label: UILabel!
+    @IBOutlet weak var phone2Button: UIButton!
+    @IBOutlet weak var faxTitleLabel: XUILabel!
+    @IBOutlet weak var faxLabel: UILabel!
+
+
     var tagViewWidth:CGFloat = 0{
         
         didSet{
@@ -69,7 +82,8 @@ class AdsDescriptionViewController: AbstractController {
             backButtonAction(self)
             return
         }
-        if let value = post.creationDate{dateLabel.text = value}
+
+        if let value = post.creationDate{dateLabel.text = DateHelper.getStringFromDate(value)}
         if let value = post.description{descriptionTextView.text = value}
 //        if let value = post. areaLabel.text
         if let value = post.title{titleLabel.text = value}
@@ -78,6 +92,10 @@ class AdsDescriptionViewController: AbstractController {
         if let value = post.media {images = value}
         if let city = post.city , let value = city.title{ self.cityLabel.text = value}
         if let city = post.location , let value = city.title{ self.areaLabel.text = value}
+
+        if let phone1 = post.phone1 {self.phone1Label.text = phone1}
+        if let phone2 = post.phone2 {self.phone2Label.text = phone2}
+        if let fax = post.fax {self.faxLabel.text = fax}
     }
     
     override func customizeView() {
@@ -132,9 +150,39 @@ class AdsDescriptionViewController: AbstractController {
     }
     
     
-    
+    @IBAction func close(_ sender: UIButton) {
+        self.popOrDismissViewControllerAnimated(animated: true)
+    }
+
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
+    }
+
+// contacts view actions
+
+    @IBAction func showContactsView(_ sender: UIButton) {
+        self.contactsBGView.isHidden = false
+        self.contactsMiddleView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+    }
+
+    @IBAction func hideContactsView(_ sender: UITapGestureRecognizer) {
+        self.contactsBGView.isHidden = true
+    }
+    @IBAction func callPhone1(_ sender: UIButton) {
+        if let phone1 = post?.phone1 {
+            callPhone(phone:phone1)
+        }
+    }
+
+    @IBAction func callPhone2(_ sender: UIButton) {
+        if let phone2 = post?.phone2{
+            callPhone(phone:phone2)
+        }
+    }
+
+    func callPhone(phone:String){
+        guard let number = URL(string: "tel://" + phone) else { return }
+        UIApplication.shared.openURL(number)
     }
     
 }
@@ -165,7 +213,17 @@ extension AdsDescriptionViewController:UICollectionViewDataSource,UICollectionVi
         }
         return cell
     }
-    
+
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == imageCollectionView {
+            let cell = collectionView.cellForItem(at: indexPath) as! ImageCell
+            if let image = cell.iamgeView.image{
+                self.showFullScreenImage(image: image)
+            }
+        }
+    }
+
 }
 
 extension AdsDescriptionViewController:UICollectionViewDelegateFlowLayout{

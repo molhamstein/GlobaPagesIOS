@@ -75,6 +75,7 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     /// Navigation bar custome back button
     var navBackButton : UIBarButtonItem  {
         let _navBackButton   = UIButton()
+        _navBackButton.dropShadow()
         _navBackButton.setBackgroundImage(UIImage(named: "navBackIcon"), for: .normal)
         _navBackButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         _navBackButton.addTarget(self, action: #selector(backButtonAction(_:)), for: .touchUpInside)
@@ -359,7 +360,31 @@ extension AbstractController :UIImagePickerControllerDelegate,UINavigationContro
         
     }
     
-    
+
+
+    // show Fullscreen image
+    func showFullScreenImage(image:UIImage){
+        let newImageView = UIImageView(image: image)
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        newImageView.addGestureRecognizer(tap)
+
+        UIView.animate(withDuration: 0.5, delay: 0.3, options: .allowAnimatedContent, animations: {
+            self.view.addSubview(newImageView)
+        }, completion: nil)
+
+        self.navigationController?.isNavigationBarHidden = true
+
+    }
+
+    func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        sender.view?.removeFromSuperview()
+    }
     
 }
 

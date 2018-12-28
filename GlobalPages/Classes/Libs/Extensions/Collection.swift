@@ -14,14 +14,14 @@ extension Collection {
     /// Return a copy of `self` with its elements shuffled
     func shuffle() -> [Iterator.Element] {
         var list = Array(self)
-        list.shuffle()
+        list.shuffle2()
         return list
     }
 }
 
 extension MutableCollection where Index == Int {
     /// Shuffle the elements of `self` in-place.
-    mutating func shuffle() {
+    mutating func shuffle2() {
         // empty and single-element collections don't shuffle
         if count < 2 {
             return

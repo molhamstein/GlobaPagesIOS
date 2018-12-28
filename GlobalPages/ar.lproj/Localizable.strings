@@ -147,9 +147,9 @@
 
 // Bussiness Guide
 
-"BUSSINESS_GUIDE_TITLE"                 = "دليل الاعمال";
-"NEAR_BY_TITLE"                         = "البحث حولي";
-"ON_DUTY_PHARMACY_TITLE"                = "الصيدليات";
+"BUSSINESS_GUIDE_TITLE"                 = "دليل الأعمال";
+"NEAR_BY_TITLE"                         = "إبحث قربي";
+"ON_DUTY_PHARMACY_TITLE"                = "صيدلية مناوبة";
 
 // bussiness guid description
 "ADS_DESC_SUB_CATEGORY_LABEL"         = "اصناف فرعية";

@@ -27,16 +27,23 @@ extension UIViewController{
     }
     
     func isPresentedModally() -> Bool {
-        return self.presentingViewController?.presentedViewController == self
+        if let navigationController = self.navigationController{
+            if navigationController.viewControllers.first != self{return false}
+        }
+        if self.presentingViewController != nil {return true}
+        if self.navigationController?.presentingViewController?.presentedViewController == self.navigationController  {return true}
+        if self.tabBarController?.presentingViewController is UITabBarController {return true}
+        return false
     }
-    
+
     func popOrDismissViewControllerAnimated(animated: Bool){
-        if (self.navigationController != nil) {
-            self.navigationController?.popViewController(animated: animated)
-        }else {
+        if (self.isPresentedModally()) {
             self.dismiss(animated: animated, completion: nil)
+        } else if (self.navigationController != nil) {
+            self.navigationController?.popViewController(animated: animated)
         }
     }
+
 }
 
 

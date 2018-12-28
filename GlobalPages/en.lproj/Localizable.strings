@@ -159,9 +159,9 @@
 
 
 // Bussiness Gudie
-"BUSSINESS_GUIDE_TITLE"                 = "Bussiness Guide";
+"BUSSINESS_GUIDE_TITLE"                 = "Business Guide";
 "NEAR_BY_TITLE"                         = "Find Nearby";
-"ON_DUTY_PHARMACY_TITLE"                = "On Duty Pharmacies";
+"ON_DUTY_PHARMACY_TITLE"                = "Oncall Pharmacy";
 
 
 // bussiness guide description

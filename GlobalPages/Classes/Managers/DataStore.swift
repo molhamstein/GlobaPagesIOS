@@ -37,6 +37,7 @@ class DataStore :NSObject {
     private let CACHE_KEY_MY_REPLIES = "myReplies"
     private let CACHE_KEY_POSTS = "posts"
     private let CACHE_KEY_Volume = "volume"
+    private let CACHE_KEY_FAVORITE = "favorites"
     //MARK: Temp data holders
     //keep reference to the written value in another private property just to prevent reading from cache each time you use this var
     private var _me:AppUser?
@@ -44,6 +45,7 @@ class DataStore :NSObject {
     private var _volume:Volume?
     private var _posts:[Post] = [Post]()
     private var _categories:[Category] = [Category]()
+    private var _favorites:[Category] = [Category]()
     private var _subcategories:[Category] = [Category]()
     private var _cities:[City] = [City]()
     private var _areas:[City] = [City]()
@@ -58,7 +60,7 @@ class DataStore :NSObject {
         }
         return false
     }
-
+//favorites
     // Data in cache
     public var categories: [Category] {
         set {
@@ -72,7 +74,20 @@ class DataStore :NSObject {
             return _categories
         }
     }
-    
+
+    public var favorites: [Category] {
+        set {
+            _favorites = newValue
+            saveBaseModelArray(array: _favorites, withKey: CACHE_KEY_FAVORITE)
+        }
+        get {
+            if(_favorites.isEmpty){
+                _favorites = loadBaseModelArrayForKey(key: CACHE_KEY_FAVORITE)
+            }
+            return _favorites
+        }
+    }
+
     public var subCategories: [Category] {
         set {
             _subcategories = newValue
@@ -194,7 +209,7 @@ class DataStore :NSObject {
     
     
     public var featuredPosts:[Post]{
-        return posts.filter{ $0.isFeatured == true }
+        return posts.filter{ $0.isFeatured == true && $0.isActiviated}
     }
     
     public var token:String? {

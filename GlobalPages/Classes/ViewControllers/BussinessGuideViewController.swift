@@ -70,6 +70,7 @@ enum ControllerType{
                     if let subCat = filter.subCategory{
                         temp = temp.filter({$0.subCategory?.Fid == subCat.Fid})
                     }
+                    temp = temp.filter({$0.isActive})
                     return temp
         case .nearBy:
             return DataStore.shared.bussiness
@@ -159,6 +160,7 @@ class BussinessGuideViewController: AbstractController {
             showNearbyFilterView()
 //            controllerType.showFilters()
         }else if controllerType == .bussinessGuide{
+            self.isListView = true
             getBussiness()
         }else if controllerType == .pharmacy{
             getNearByPharmacies()

@@ -69,7 +69,11 @@ public class Category: BaseModel {
         if let value = name {
             dictionary[kCategoryName] = value
         }
-        
+
+        if let value = Fid{
+            dictionary["id"] = value
+        }
+
         if let value = code {
             dictionary["code"] = value
         }

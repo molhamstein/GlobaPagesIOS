@@ -151,16 +151,16 @@ class AppUser: BaseModel, NSCopying {
     
     func copy(with zone: NSZone? = nil) -> Any {
         let copy = AppUser()
-        copy.objectId = objectId
-        copy.userName = userName
-        copy.email = email
-        copy.profilePic = profilePic
-        copy.gender = gender
-        copy.birthdate = birthdate
-        copy.loginType = loginType
-        copy.status = status
-        copy.token = token
-        copy.mobileNumber = mobileNumber
+            copy.objectId = objectId
+            copy.userName = userName
+            copy.email = email
+            copy.profilePic = profilePic
+            copy.gender = gender
+            copy.birthdate = birthdate
+            copy.loginType = loginType
+            copy.status = status
+            copy.token = token
+            copy.mobileNumber = mobileNumber
         return copy
     }
     

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import OneSignal
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,37 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // make nav bar trasculante
         AppConfig.setNavigationStyle()
-        
-        // one signal settings
-        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
-        
-        // Replace 'YOUR_APP_ID' with your OneSignal App ID.
-        OneSignal.initWithLaunchOptions(launchOptions,
-                                        appId: "270df309-e188-4ffa-8fa6-fb2ecc27476f",
-                                        handleNotificationAction: nil,
-                                        settings: onesignalInitSettings)
-        
-        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
-        
-        // Recommend moving the below line to prompt for push after informing the user about
-        //   how your app will use them.
-        OneSignal.promptForPushNotifications(userResponse: { accepted in
-            print("User accepted notifications: \(accepted)")
-        })
-        ////// / /
-        
-        
-        
-        
+
+        configureFireBase(application)
+        getBussinessFilters()
         return true
     }
 
-    
-    func initPushNotification(){
-  
-        
-        
+
+    func getBussinessFilters(){
+        ApiManager.shared.businessCategories { (success, error, result , cats) in}
     }
+    
+
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

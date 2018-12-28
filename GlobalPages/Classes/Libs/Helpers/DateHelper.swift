@@ -23,7 +23,25 @@ struct DateHelper {
         dateFormater.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         return dateFormater.string(from: date)
     }
-    
+
+    /// Get date from  string
+    static func getDateFromString(_ dateStr: String) -> Date? {
+        let dateFormater = DateFormatter()
+        let loc = Locale(identifier: "us")
+        dateFormater.locale = loc
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        return dateFormater.date(from: dateStr)
+    }
+
+
+    /// Get  date string from date object
+    static func getStringFromDate(_ date: Date) -> String? {
+        let dateFormater = DateFormatter()
+        let loc = Locale(identifier: "us")
+        dateFormater.locale = loc
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        return dateFormater.string(from: date)
+    }
     
     static func getBirthFormatedStringFromDate(_ date: Date) -> String? {
         let dateFormater = DateFormatter()

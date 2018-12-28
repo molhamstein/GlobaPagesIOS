@@ -208,7 +208,7 @@ class EditProfileViewController: AbstractController {
             let date2yearsOld = calendar.date(byAdding: .year, value: -12, to: Date())
             let date100yearsOld = calendar.date(byAdding: .year, value: 100, to: Date())
             
-            if date2yearsOld!.compare(birthdate) == .orderedAscending {
+            if birthdate.compare(date2yearsOld!) == .orderedAscending {
                 showMessage(message:"SINGUP_VALIDATION_DATE".localized, type: .warning)
                 return false
             }

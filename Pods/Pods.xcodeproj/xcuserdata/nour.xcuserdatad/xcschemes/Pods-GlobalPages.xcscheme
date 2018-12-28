@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "94373069C0967FA6CEFF2DB82A851C83"
+               BlueprintIdentifier = "987A61270B7FEA457CAA5C1C880B813E"
                BuildableName = "Pods_GlobalPages.framework"
                BlueprintName = "Pods-GlobalPages"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "94373069C0967FA6CEFF2DB82A851C83"
+            BlueprintIdentifier = "987A61270B7FEA457CAA5C1C880B813E"
             BuildableName = "Pods_GlobalPages.framework"
             BlueprintName = "Pods-GlobalPages"
             ReferencedContainer = "container:Pods.xcodeproj">

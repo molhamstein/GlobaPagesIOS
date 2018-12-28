@@ -102,6 +102,13 @@ public class Bussiness:BaseModel {
     public var cover : String?{
         return media?.first?.fileUrl
     }
+
+    public var isActive:Bool{
+        if status != nil{
+            return status == "activated"
+        }
+        return false
+    }
     
     var title:String?{
         if AppConfig.currentLanguage == .arabic{

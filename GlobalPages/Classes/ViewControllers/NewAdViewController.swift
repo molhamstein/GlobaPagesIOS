@@ -544,6 +544,11 @@ extension NewAdViewController:UICollectionViewDelegateFlowLayout{
         if collectionView == imageCollectionView{
                 if indexPath.item == images.count{
                     takePhoto()
+                }else{
+                    let cell = collectionView.cellForItem(at: indexPath) as! ImageCell
+                    if let image = cell.iamgeView.image{
+                        self.showFullScreenImage(image: image)
+                    }
             }
         }
         else{
