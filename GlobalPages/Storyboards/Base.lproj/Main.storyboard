@@ -4845,7 +4845,7 @@
                                         <rect key="frame" x="8" y="201" width="321.66666666666669" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLZ-Oi-c7G" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="133.66666666666666" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -4875,7 +4875,7 @@
                                         <rect key="frame" x="8" y="297" width="321.66666666666669" height="120"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNw-bb-Qz2" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="92" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="299" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -5884,6 +5884,7 @@
                                             <constraint firstItem="3J0-qM-8GF" firstAttribute="leading" secondItem="drA-ix-luJ" secondAttribute="leading" id="pGp-fX-lZC" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                         </constraints>
                                     </view>
+==== BASE ====
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eG8-Dg-2bv">
                                         <rect key="frame" x="0.0" y="120" width="313" height="60"/>
                                         <subviews>
@@ -5895,7 +5896,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our Partners" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe1-Fd-BoS" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="19.666666666666686" width="98" height="21"/>
+                                                <rect key="frame" x="0.0" y="19" width="98" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -5927,16 +5928,14 @@
                                             <constraint firstAttribute="trailing" secondItem="c0q-51-IKC" secondAttribute="trailing" id="yuj-hH-yvs" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                         </constraints>
                                     </view>
+==== BASE ====
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="eG8-Dg-2bv" firstAttribute="leading" secondItem="CbN-uz-mEX" secondAttribute="leading" id="3io-8c-jPi"/>
-                                    <constraint firstItem="eG8-Dg-2bv" firstAttribute="top" secondItem="drA-ix-luJ" secondAttribute="bottom" id="4w3-nO-Vqg"/>
                                     <constraint firstItem="drA-ix-luJ" firstAttribute="leading" secondItem="CbN-uz-mEX" secondAttribute="leading" id="Hsq-pz-9mo" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstItem="IyQ-nQ-X82" firstAttribute="leading" secondItem="CbN-uz-mEX" secondAttribute="leading" id="Inx-eK-B77" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstItem="IyQ-nQ-X82" firstAttribute="top" secondItem="CbN-uz-mEX" secondAttribute="top" id="SH0-YC-9J2" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstAttribute="height" constant="180" id="XUW-Vg-qF7" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstItem="drA-ix-luJ" firstAttribute="top" secondItem="IyQ-nQ-X82" secondAttribute="bottom" id="kx0-2V-bLB" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                    <constraint firstAttribute="trailing" secondItem="eG8-Dg-2bv" secondAttribute="trailing" id="lBX-b1-orT"/>
                                     <constraint firstAttribute="trailing" secondItem="drA-ix-luJ" secondAttribute="trailing" id="m6V-YX-NAs" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstAttribute="trailing" secondItem="IyQ-nQ-X82" secondAttribute="trailing" id="m6h-3W-rBd" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 </constraints>
