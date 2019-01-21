@@ -84,6 +84,7 @@ class filterCell2: UICollectionViewCell {
     }
     
     func configureCell(){
+        
         if isSelected{
             self.containerView.isHidden = false
         }else{

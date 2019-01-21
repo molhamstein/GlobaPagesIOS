@@ -27,8 +27,8 @@ class AdsImageCell: UICollectionViewCell {
     
     var tagLabelWidht:CGFloat = 0 {
         didSet{
-            tagLabelWidthConstraint.setNewConstant(tagLabelWidht)
-            tagViewWidthConstraint.setNewConstant(tagLabelWidht + 32)
+           // tagLabelWidthConstraint.setNewConstant(tagLabelWidht)
+            tagViewWidthConstraint.setNewConstant(tagLabelWidht + 52)
             UIView.animate(withDuration: 0.3, animations: {
                 self.layoutSubviews()
             }, completion: nil)
@@ -60,7 +60,15 @@ class AdsImageCell: UICollectionViewCell {
         
         
     }
-    
+
+
+    var image:String?{
+        didSet{
+            guard let image = image else{ return}
+                self.imageView.setImageForURL(image, placeholder: nil)
+            }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // fonts

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxP-4O-dQV">
-                        <rect key="frame" x="8" y="44.5" width="125" height="1"/>
+                        <rect key="frame" x="8" y="44" width="125" height="1"/>
                         <color key="backgroundColor" red="1" green="0.84705882352941175" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="125" id="3WF-bb-HbZ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
@@ -40,7 +40,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXh-B1-4Bu">
-                        <rect key="frame" x="8" y="53.5" width="181" height="0.0"/>
+                        <rect key="frame" x="8" y="53" width="181" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                         <rect key="frame" x="0.0" y="16" width="197" height="20"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2x-vF-dby">
-                                <rect key="frame" x="8" y="9" width="125" height="1"/>
+                                <rect key="frame" x="8" y="9.5" width="125" height="1"/>
                                 <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="3Zd-Cq-DcM" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
@@ -59,11 +59,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEK-e7-qFM" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
                                 <rect key="frame" x="117" y="0.0" width="90" height="20"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="سيارات للبيع" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iag-gR-n2A">
-                                        <rect key="frame" x="80" y="0.0" width="0.0" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" id="tk9-eY-CEJ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iag-gR-n2A">
+                                        <rect key="frame" x="45" y="10" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -73,8 +70,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="0xz-Mr-ZW8"/>
                                     <constraint firstAttribute="width" constant="90" id="8yT-58-fhO" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                    <constraint firstItem="Iag-gR-n2A" firstAttribute="top" secondItem="ZEK-e7-qFM" secondAttribute="top" id="ky8-Sa-NNY"/>
-                                    <constraint firstAttribute="bottom" secondItem="Iag-gR-n2A" secondAttribute="bottom" id="zdP-xC-lAd"/>
+                                    <constraint firstItem="Iag-gR-n2A" firstAttribute="centerY" secondItem="ZEK-e7-qFM" secondAttribute="centerY" id="T2u-A6-zr9"/>
+                                    <constraint firstItem="Iag-gR-n2A" firstAttribute="centerX" secondItem="ZEK-e7-qFM" secondAttribute="centerX" id="uIZ-5K-fsu"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -92,7 +89,6 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Iag-gR-n2A" secondAttribute="trailing" id="B4a-gX-apL"/>
                             <constraint firstItem="u2x-vF-dby" firstAttribute="leading" secondItem="4rQ-Vq-j1c" secondAttribute="leading" constant="8" id="EyP-aQ-75p"/>
                             <constraint firstItem="ZEK-e7-qFM" firstAttribute="centerY" secondItem="4rQ-Vq-j1c" secondAttribute="centerY" id="Hgy-Bz-0OG"/>
                             <constraint firstItem="u2x-vF-dby" firstAttribute="centerY" secondItem="4rQ-Vq-j1c" secondAttribute="centerY" id="f1b-9U-Xhz"/>
@@ -101,7 +97,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u12-8P-zJA">
-                        <rect key="frame" x="8" y="61.5" width="181" height="0.0"/>
+                        <rect key="frame" x="8" y="61" width="181" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -144,7 +140,6 @@
                 <outlet property="lineView" destination="fxP-4O-dQV" id="mZj-hi-X9G"/>
                 <outlet property="lineView2" destination="u2x-vF-dby" id="bgo-X5-vMw"/>
                 <outlet property="tagLabel" destination="Iag-gR-n2A" id="IeN-qx-xcp"/>
-                <outlet property="tagLabelWidthConstraint" destination="tk9-eY-CEJ" id="hC7-LZ-JLf"/>
                 <outlet property="tagView" destination="ZEK-e7-qFM" id="exQ-0w-BHb"/>
                 <outlet property="tagViewWidthConstraint" destination="8yT-58-fhO" id="K9r-HG-05q"/>
                 <outlet property="titleLabel" destination="8bp-NP-2sC" id="DoK-8f-DuG"/>

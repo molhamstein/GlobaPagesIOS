@@ -31,7 +31,7 @@ class ApiManager: NSObject {
         }
     }
     
-    let baseURL = "http://104.217.253.15:3000/api"
+    let baseURL = "http://almersal.co/api"
     let error_domain = "GlobalPages"
     
     //MARK: Shared Instance
@@ -331,6 +331,42 @@ class ApiManager: NSObject {
             }
         }
     }
+
+    // set FCM Token
+    func setFCMToken(token: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/users/fcmToken"
+
+        var parameters : [String : String] = ["token": token]
+
+        // build request
+        Alamofire.request(signUpURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse)
+                    DataStore.shared.me = user
+                    //DataStore.shared.onUserLogin()
+                    completionBlock(true , nil, user)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
+
     //businessCategories
     
     func userVerify(code: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
@@ -889,7 +925,7 @@ class ApiManager: NSObject {
     func getPosts(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Post]) -> Void) {
         // url & parameters
         let signUpURL = "\(baseURL)/posts"
-        DataStore.shared.posts = []
+
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {

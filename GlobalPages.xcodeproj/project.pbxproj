@@ -44,6 +44,7 @@
 		1481AF5520F154E9003A1F10 /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F620ED4B9F0064286D /* Cairo-Regular.ttf */; };
 		1481AF5620F154E9003A1F10 /* CairoSemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F520ED4B9E0064286D /* CairoSemiBold.ttf */; };
 		148E77EC2114E0A500683027 /* businessCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E77EB2114E0A500683027 /* businessCategories.swift */; };
+		148F168621F475F100C02B66 /* CategoriesSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F168521F475F100C02B66 /* CategoriesSubscriptionViewController.swift */; };
 		1497EF0D21D6BA2200E63B99 /* FireBaseNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */; };
 		1497EF0F21D6C66F00E63B99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1497EF0E21D6C66E00E63B99 /* GoogleService-Info.plist */; };
 		14B1B88C20DEF17C00D86536 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88920DEF17B00D86536 /* CustomLayout.swift */; };
@@ -197,6 +198,7 @@
 		14709EF6217FB53E006F4470 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		1477053A2141AE26002A160B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		148E77EB2114E0A500683027 /* businessCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = businessCategories.swift; sourceTree = "<group>"; };
+		148F168521F475F100C02B66 /* CategoriesSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSubscriptionViewController.swift; sourceTree = "<group>"; };
 		1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseNotification.swift; sourceTree = "<group>"; };
 		1497EF0E21D6C66E00E63B99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14B1B88920DEF17B00D86536 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
@@ -707,6 +709,7 @@
 				142E8C0B21839CC10081C7E7 /* AboutViewController.swift */,
 				142E8C0A21839CC10081C7E7 /* TermsViewController.swift */,
 				142E8C102183A9600081C7E7 /* NotificationsViewController.swift */,
+				148F168521F475F100C02B66 /* CategoriesSubscriptionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -936,6 +939,7 @@
 				578687C420C481800002C67B /* BaseModel.swift in Sources */,
 				142E8C0F21839ED40081C7E7 /* Notification.swift in Sources */,
 				5786860020C480910002C67B /* LoginViewController.swift in Sources */,
+				148F168621F475F100C02B66 /* CategoriesSubscriptionViewController.swift in Sources */,
 				14160BE520E3C72C004CEA7D /* filterCell2.swift in Sources */,
 				14709EF7217FB53F006F4470 /* LocationViewController.swift in Sources */,
 				142E8C112183A9600081C7E7 /* NotificationsViewController.swift in Sources */,

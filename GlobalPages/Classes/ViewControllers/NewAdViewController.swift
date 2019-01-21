@@ -107,14 +107,7 @@ class NewAdViewController: AbstractController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let post = tempPost{
-            fillPostData(post: post)
-            mode = .editMode
-        }
-        else{
-            tempPost = Post()
-        }
-        self.setNavBarTitle(title: mode.title)
+
     }
     
     func fillPostData(post:Post){
@@ -148,6 +141,10 @@ class NewAdViewController: AbstractController {
         selectedSubCategory = post.subCategory
         selectedCity = post.city
         selectedArea = post.location
+        self.cityCollectionView.reloadData()
+        self.areaCollectionView.reloadData()
+        self.adCategoryCollectionView.reloadData()
+        self.subCategoryCollectionView.reloadData()
     }
     
     
@@ -192,12 +189,22 @@ class NewAdViewController: AbstractController {
         setupCollectionViews()
         getBussinessFilters()
         getCityFilters()
+        if let post = tempPost{
+            fillPostData(post: post)
+            mode = .editMode
+        }
+        else{
+            tempPost = Post()
+        }
+        self.setNavBarTitle(title: mode.title)
+        self.backGroundView.dropShadow()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.addButton.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .diagonal)
         backHomeButton.applyGradient(colours: [AppColors.yellowLight,AppColors.yellowDark], direction: .diagonal)
+        addButton.dropShadow()
     }
     
     func setupCollectionViews(){
@@ -242,8 +249,8 @@ class NewAdViewController: AbstractController {
         areaCollectionView.reloadData()
         areaCollectionView.collectionViewLayout.invalidateLayout()
         areaCollectionView.layoutSubviews()
-            self.areaView.isHidden = false
-            self.hideAbelView2.isHidden = true
+        self.areaView.isHidden = false
+        self.hideAbelView2.isHidden = true
     }
     
     func HideAreaView(){
@@ -352,11 +359,16 @@ class NewAdViewController: AbstractController {
     func atempToAddPost(){
         
         self.showActivityLoader(true)
+        if images.count > 0{
             ApiManager.shared.uploadImages(images: images, completionBlock: { (result, error) in
                     self.tempPost?.media = result
                 if self.mode == .addMode{self.addPost()}
                 else { self.editPost()}
             })
+        }else{
+            if self.mode == .addMode{self.addPost()}
+            else { self.editPost()}
+        }
     }
     
     func addPost(){
@@ -418,7 +430,7 @@ extension NewAdViewController:UICollectionViewDataSource,UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == imageCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellId, for: indexPath) as! ImageCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellId, for: indexPath) as? ImageCell else{return UICollectionViewCell()}
             if indexPath.item < images.count{
                 cell.image = images[indexPath.item]
                 cell.delegate = self
@@ -432,7 +444,7 @@ extension NewAdViewController:UICollectionViewDataSource,UICollectionViewDelegat
         }
         
         if collectionView == adCategoryCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
     
             if let category = selectedCategory{
                 if category.Fid == categoryfilters[indexPath.item].Fid{
@@ -452,7 +464,7 @@ extension NewAdViewController:UICollectionViewDataSource,UICollectionViewDelegat
             return cell
         }
         if collectionView == subCategoryCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
             
             if let category = selectedSubCategory{
                 if category.Fid == subCategoryFilters[indexPath.item].Fid{
@@ -471,7 +483,7 @@ extension NewAdViewController:UICollectionViewDataSource,UICollectionViewDelegat
             return cell
         }
         if collectionView == cityCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
             if let city = selectedCity{
                 if city.Fid == cities[indexPath.item].Fid{
                     cell.isSelected = true
@@ -490,7 +502,7 @@ extension NewAdViewController:UICollectionViewDataSource,UICollectionViewDelegat
             return cell
         }
         if collectionView == areaCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
             if let city = selectedArea{
                 if city.Fid == areas[indexPath.item].Fid{
                     cell.isSelected = true
@@ -545,7 +557,7 @@ extension NewAdViewController:UICollectionViewDelegateFlowLayout{
                 if indexPath.item == images.count{
                     takePhoto()
                 }else{
-                    let cell = collectionView.cellForItem(at: indexPath) as! ImageCell
+                    guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCell else{return}
                     if let image = cell.iamgeView.image{
                         self.showFullScreenImage(image: image)
                     }
@@ -553,7 +565,7 @@ extension NewAdViewController:UICollectionViewDelegateFlowLayout{
         }
         else{
         
-        let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+            guard let cell = collectionView.cellForItem(at: indexPath) as? filterCell2 else {return}
         
         if collectionView == adCategoryCollectionView {
             if let value = selectedCategory{
@@ -628,25 +640,29 @@ extension NewAdViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == adCategoryCollectionView {
-            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+            if let cell = collectionView.cellForItem(at: indexPath) as? filterCell2{
             selectedCategory = nil
             cell.isSelected = false
             cell.configureCell()
+            }
         }else if collectionView == subCategoryCollectionView{
-            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+            if let cell = collectionView.cellForItem(at: indexPath) as? filterCell2{
             selectedSubCategory = nil
             cell.isSelected = false
             cell.configureCell()
+            }
         }else if collectionView == cityCollectionView{
-            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+            if let cell = collectionView.cellForItem(at: indexPath) as? filterCell2{
             selectedCity = nil
             cell.isSelected = false
             cell.configureCell()
+            }
         }else if collectionView == areaCollectionView{
-            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+            if let cell = collectionView.cellForItem(at: indexPath) as? filterCell2{
             selectedArea = nil
             cell.isSelected = false
             cell.configureCell()
+            }
         }
        
     }

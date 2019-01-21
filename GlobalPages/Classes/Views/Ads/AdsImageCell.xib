@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -43,7 +43,7 @@
                         <rect key="frame" x="0.0" y="90" width="162" height="20"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ai0-p9-Ylq">
-                                <rect key="frame" x="8" y="9" width="125" height="1"/>
+                                <rect key="frame" x="8" y="9.5" width="125" height="1"/>
                                 <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="cSc-aE-vX7"/>
@@ -53,11 +53,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OeV-CF-tg2" customClass="GradientView" customModule="GlobalPages" customModuleProvider="target">
                                 <rect key="frame" x="94" y="0.0" width="90" height="20"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mly-pc-vI1">
-                                        <rect key="frame" x="68" y="0.0" width="0.0" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" id="dtQ-jk-ZMd" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mly-pc-vI1">
+                                        <rect key="frame" x="45" y="10" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -67,8 +64,8 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="5mT-dc-BGE" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstAttribute="height" constant="20" id="8MQ-qq-r2E"/>
-                                    <constraint firstItem="mly-pc-vI1" firstAttribute="top" secondItem="OeV-CF-tg2" secondAttribute="top" id="cdb-HM-Cpg"/>
-                                    <constraint firstAttribute="bottom" secondItem="mly-pc-vI1" secondAttribute="bottom" id="hhb-3D-s7v"/>
+                                    <constraint firstItem="mly-pc-vI1" firstAttribute="centerY" secondItem="OeV-CF-tg2" secondAttribute="centerY" id="ViB-9i-3Zy"/>
+                                    <constraint firstItem="mly-pc-vI1" firstAttribute="centerX" secondItem="OeV-CF-tg2" secondAttribute="centerX" id="sZe-Of-gA8"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -108,7 +105,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBy-qF-wY3">
-                        <rect key="frame" x="8" y="134.5" width="146" height="0.0"/>
+                        <rect key="frame" x="8" y="135" width="146" height="0.0"/>
                         <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -136,7 +133,6 @@
                 <constraint firstItem="deS-ei-Ukl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dro-yH-tma"/>
                 <constraint firstItem="k2x-X2-xd6" firstAttribute="top" secondItem="ZXJ-pO-jaN" secondAttribute="bottom" constant="-10" id="kd3-pr-pav"/>
                 <constraint firstAttribute="trailing" secondItem="GmX-kG-iUI" secondAttribute="trailing" constant="8" id="mBT-jY-c7a"/>
-                <constraint firstAttribute="trailing" secondItem="mly-pc-vI1" secondAttribute="trailing" id="pyf-V7-Qn0"/>
                 <constraint firstItem="Qbz-s0-lgq" firstAttribute="top" secondItem="GmX-kG-iUI" secondAttribute="bottom" constant="8" id="uzN-Fd-J3c"/>
                 <constraint firstItem="Qbz-s0-lgq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="wc4-Ol-QXW"/>
                 <constraint firstItem="ZXJ-pO-jaN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xeN-xw-EmW"/>
@@ -155,7 +151,6 @@
                 <outlet property="lineView" destination="deS-ei-Ukl" id="scc-9A-Rpv"/>
                 <outlet property="lineView2" destination="ai0-p9-Ylq" id="Pev-DZ-yTB"/>
                 <outlet property="tagLabel" destination="mly-pc-vI1" id="byx-v1-FJp"/>
-                <outlet property="tagLabelWidthConstraint" destination="dtQ-jk-ZMd" id="DaD-pc-4fd"/>
                 <outlet property="tagView" destination="OeV-CF-tg2" id="VAA-9C-4SI"/>
                 <outlet property="tagViewWidthConstraint" destination="5mT-dc-BGE" id="FEv-tH-sHW"/>
                 <outlet property="titleLabel" destination="KBy-qF-wY3" id="3EF-hR-2EF"/>

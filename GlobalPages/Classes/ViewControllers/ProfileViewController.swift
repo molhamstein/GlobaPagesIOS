@@ -292,7 +292,8 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             let post = posts[indexPath.item]
             if post.type == .image{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: adImagedCellId, for: indexPath) as! AdsImageCell
-                cell.post = post
+                cell.titleLabel.text = post.title
+                cell.image = post.image
                 cell.resizeTagView()
                 return cell
                 

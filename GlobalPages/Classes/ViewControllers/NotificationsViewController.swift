@@ -11,7 +11,8 @@ import UIKit
 class NotificationsViewController: AbstractController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var containerView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,7 +25,12 @@ class NotificationsViewController: AbstractController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
+
+
+    override func buildUp() {
+        super.buildUp()
+        self.containerView.dropShadow()
+    }
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }

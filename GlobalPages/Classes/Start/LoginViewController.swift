@@ -94,6 +94,7 @@ class LoginViewController: AbstractController {
     // MARK: Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showNavCloseButton = true
     }
     
     override func viewDidLayoutSubviews() {

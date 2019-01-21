@@ -16,7 +16,7 @@ struct AppConfig {
     static let appBaseLiveURL = "https://brain-socket.com/live"
     static let useLiveAPI: Bool = false
     static let useCurrentLocation: Bool = false
-    static let contactUsEmail: String = "hey@vobble.com"
+    static let contactUsEmail: String = "almersalgroupe@gmail.com"
     
     // social
     static let instagramClienID = "99366a1b59984cffb7e99bb8c9c7fda8"

@@ -66,8 +66,8 @@ class ResetPasswordViewController: AbstractController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         resetPswView.dropShadow()
-        backgroundView.applyGradient(colours: [AppColors.blueXDark, AppColors.blueXLight], direction: .diagonal)
-        nextButton.applyGradient(colours: [AppColors.blueXDark, AppColors.blueXLight], direction: .diagonal)
+        backgroundView.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
+        nextButton.applyGradient(colours: [AppColors.yellowDark, AppColors.yellowLight], direction: .diagonal)
         
     }
     

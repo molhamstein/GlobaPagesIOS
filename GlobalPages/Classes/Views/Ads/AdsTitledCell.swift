@@ -26,7 +26,7 @@ class AdsTitledCell: UICollectionViewCell {
     
     var tagLabelWidht:CGFloat = 0 {
         didSet{
-             tagLabelWidthConstraint.setNewConstant(tagLabelWidht + 32)
+//             tagLabelWidthConstraint.setNewConstant(tagLabelWidht + 32)
             if AppConfig.currentLanguage == .arabic{
                 tagViewWidthConstraint.setNewConstant(tagLabelWidht + 56)
             }else{

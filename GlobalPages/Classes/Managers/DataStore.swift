@@ -209,7 +209,7 @@ class DataStore :NSObject {
     
     
     public var featuredPosts:[Post]{
-        return posts.filter{ $0.isFeatured == true && $0.isActiviated}
+        return DataStore.shared.posts.filter{ $0.isFeatured == true && $0.isActiviated}
     }
     
     public var token:String? {
