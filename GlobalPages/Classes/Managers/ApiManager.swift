@@ -197,7 +197,37 @@ class ApiManager: NSObject {
             }
         }
     }
-    
+
+    func userLogout(email: String, password: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)/users/logout"
+
+        // build request
+        Alamofire.request(signInURL, method: .post, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+
+                    completionBlock(true , nil, nil)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
     /// User Signup request
     func userSignup(user: AppUser, password: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
         // url & parameters
@@ -221,6 +251,7 @@ class ApiManager: NSObject {
         
         // build request
         Alamofire.request(signUpURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -228,10 +259,10 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError, nil)
                 } else {
                     // parse response to data model >> user object
-                    let user = AppUser(json: jsonResponse["user"])
+                    let user = AppUser(json: jsonResponse)
                     DataStore.shared.me = user
                     DataStore.shared.token = jsonResponse["id"].string
-                    DataStore.shared.me?.objectId = jsonResponse["userId"].string
+                    DataStore.shared.me?.objectId = jsonResponse["id"].string
                     DataStore.shared.onUserLogin()
                     completionBlock(true , nil, user)
                 }
@@ -251,13 +282,14 @@ class ApiManager: NSObject {
     
     
     /// User Signup request
-    func updateUser(user: AppUser, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+    func updateUser(user: AppUser,categories:[categoriesFilter] = [], completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
         // url & parameters
         let signUpURL = "\(baseURL)/users/\(user.objectId!)"
         
-        var parameters : [String : String] = [
-            "username": user.userName!,
+        var parameters : [String : Any] = [
+            "username": user.userName != nil ? user.userName! : nil,
             "gender": user.gender?.rawValue ?? "male",
+            "postCategoriesIds" : categories.map{$0.Fid ?? ""},
             ]
         
         if let email = user.email {
@@ -270,6 +302,10 @@ class ApiManager: NSObject {
         if let img = user.profilePic {
             parameters["imageProfile"] = img
         }
+        if categories.count > 0 {
+            parameters["postCategoriesIds"] = categories.map{$0.Fid ?? ""}
+        }
+        print(parameters)
         
         // build request
         Alamofire.request(signUpURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -865,6 +901,7 @@ class ApiManager: NSObject {
                     // parse response to data model >> user object
                     if let array = jsonResponse.array{
                         let filters = array.map{categoriesFilter(json:$0)}
+                        DataStore.shared.postCategories = filters
                         completionBlock(true , nil, filters)
                     }else{
                         completionBlock(true , nil, [])

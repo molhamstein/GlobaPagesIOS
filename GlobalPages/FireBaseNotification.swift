@@ -20,7 +20,6 @@ extension AppDelegate {
         
         Messaging.messaging().delegate = self
         
-        
 //
 //        if #available(iOS 10.0, *) {
 //            // For iOS 10 display notification (sent via APNS)
@@ -74,11 +73,12 @@ func application(_ application: UIApplication, didFailToRegisterForRemoteNotific
 // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
 // the FCM registration token.
 
- 
+
     
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("APNs token retrieved: \(deviceToken)")
+
 //        Messaging.messaging().apnsToken = deviceToken
 //
 //        #if DEBUG
@@ -148,14 +148,14 @@ extension AppDelegate : MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
-        
+        AppConfig.FCMToken = fcmToken
       //  DataStore.shared.FCMToken = fcmToken
         
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
-       // DataStore.shared.FCMToken = fcmToken
+        AppConfig.FCMToken = fcmToken
         
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.

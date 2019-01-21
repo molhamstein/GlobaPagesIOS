@@ -24,6 +24,7 @@ class ActionLogout:Action {
         let okButton = UIAlertAction(title: "SETTINGS_USER_LOGOUT".localized, style: .default, handler: {
             (action) in
             //clear user
+            ApiManager.shared.userLogout(email: "", password: "", completionBlock: { (_, _, _) in})
             DataStore.shared.logout()
             ActionShowStart.execute()
         })
@@ -119,3 +120,16 @@ class ActionShowNewAd: Action {
         }
     }
 }
+
+class ActionShowPostCategories: Action {
+    override class func execute() {
+        if DataStore.shared.isLoggedin {
+            let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "CategoriesSubscriptionViewController") as! CategoriesSubscriptionViewController
+            let nav = UINavigationController(rootViewController: ViewController)
+            UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
+        }
+    }
+}
+
+
+//CategoriesSubscriptionViewController

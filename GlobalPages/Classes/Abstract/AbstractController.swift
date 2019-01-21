@@ -211,7 +211,7 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     }
     
     func backButtonAction(_ sender: AnyObject) {
-        _ = self.navigationController?.popViewController(animated: true)
+         self.popOrDismissViewControllerAnimated(animated: true)
     }
     
     func closeButtonAction(_ sender: AnyObject) {

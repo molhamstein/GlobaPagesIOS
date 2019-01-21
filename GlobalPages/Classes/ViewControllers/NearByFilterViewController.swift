@@ -32,11 +32,12 @@ class NearByFilterViewController: AbstractController {
     
     var subCategoryFilters:[categoriesFilter]{
         if let cat = selectedCategory{
-            return filters.filter({$0.parentCategoryId == cat.Fid})
+            return DataStore.shared.postCategories.filter({$0.parentCategoryId == cat.Fid})
         }
         return []
     }
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -47,8 +48,10 @@ class NearByFilterViewController: AbstractController {
     
     
     override func customizeView() {
+
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-            // fonts
+
+        // fonts
         self.infoLabel.font = AppFonts.big
         self.categoryTitleLabel.font = AppFonts.big
         self.subCategoryTitleLabel.font = AppFonts.big
@@ -57,6 +60,7 @@ class NearByFilterViewController: AbstractController {
         self.categoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId)
         self.subCategoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId)
     }
+
     
     override func buildUp() {
         self.showNavBackButton = true
@@ -78,7 +82,7 @@ class NearByFilterViewController: AbstractController {
             self.showActivityLoader(false)
             if success{
                 self.filters = result
-                self.categoryCollectionView.reloadData()
+                self.subCategoryCollectionView.reloadData()
             }
             if error != nil{
                 if let msg = error?.errorName{
@@ -174,7 +178,7 @@ extension NearByFilterViewController:UICollectionViewDelegate,UICollectionViewDa
             self.subCategoryView.animateIn(mode: .animateInFromRight, delay: 0.2)
             self.categoryView.isHidden = true
         }
-        
+
     }
     
     func showCategory(){

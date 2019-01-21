@@ -31,7 +31,8 @@ class ProfileViewController: AbstractController {
     @IBOutlet weak var maleLabel: UILabel!
     @IBOutlet weak var femaleButton: UIButton!
     @IBOutlet weak var femaleLabel: UILabel!
-    
+    @IBOutlet weak var subscriptionButton: XUIButton!
+
     let categoryCellId = "filterCell2"
     let adImagedCellId = "AdsImageCell"
     let adTitledCellId = "AdsTitledCell"
@@ -43,8 +44,10 @@ class ProfileViewController: AbstractController {
     var userFavoritesCategories:[Category] {
         return DataStore.shared.favorites
     }
-    var categories:[Category]{
-        return DataStore.shared.categories
+    var categories:[categoriesFilter] = []
+
+    var subCategoryFilters:[categoriesFilter]{
+        return DataStore.shared.postCategories.filter({$0.parentCategoryId != nil})
     }
     
     var isMale:Bool = false {
@@ -124,7 +127,7 @@ class ProfileViewController: AbstractController {
         
         self.myBussinessCollectionView.delegate = self
         self.myBussinessCollectionView.dataSource = self
-        
+
         getAds()
         getBussiness()
     }
@@ -136,11 +139,30 @@ class ProfileViewController: AbstractController {
         getBussiness()
         getFavorites()
     }
+
+    func getUserCategories(){
+        categories.removeAll()
+        guard let user = DataStore.shared.me else{return}
+        guard subCategoryFilters.count > 0 else {return}
+        if let posts = user.posts{
+            for post in posts{
+                for subcat in subCategoryFilters {
+                    if subcat.Fid == post{
+                        self.categories.append(subcat)
+                    }
+                }
+            }
+        }
+        categoryCollectionView.reloadData()
+    }
     
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func openSubscriptionPage(_ sender: UIButton) {
+        ActionShowPostCategories.execute()
+    }
 
     func fillUserData(){
         guard let user = DataStore.shared.me else {return}
@@ -150,7 +172,7 @@ class ProfileViewController: AbstractController {
         if let birthDate = user.birthdate { birthDateButton.setTitle(DateHelper.getBirthFormatedStringFromDate(birthDate), for: .normal)  }
         if let count = user.postsCount {self.adsCountLabel.text = "\(count)"}
         if let gender = user.gender{isMale = gender.rawValue == "male" ? true : false}
-        
+        getUserCategories()
     }
     
     func fetchUserData(){
@@ -259,6 +281,11 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == categoryCollectionView{
+            if categories.count == 0 {
+                self.subscriptionButton.isHidden = false
+            }else{
+                self.subscriptionButton.isHidden = true
+            }
             return categories.count
         }
         if collectionView == myAdsCollectionView {
@@ -279,13 +306,13 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             cell.title = category.title ?? ""
             cell.setupView(type: .normal)
             
-            if userFavoritesCategories.contains(where: {$0.Fid == category.Fid}){
-                cell.isSelected = true
-                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
-            }else{
-                collectionView.deselectItem(at: indexPath, animated: true)
-                cell.isSelected = false
-            }
+//            if userFavoritesCategories.contains(where: {$0.Fid == category.Fid}){
+//                cell.isSelected = true
+//                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//            }else{
+//                collectionView.deselectItem(at: indexPath, animated: true)
+//                cell.isSelected = false
+//            }
             return cell
         }
         if collectionView == myAdsCollectionView{
@@ -318,20 +345,21 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollectionView{
-            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
-            cell.isSelected = true
-            cell.configureCell()
-            let category = self.categories[indexPath.item]
-            if userFavoritesCategories.contains(where: {$0.Fid == category.Fid}){
-
-                self.deleteFromFavorite(id: category.Fid ?? "")
-                cell.isSelected = false
-                collectionView.deselectItem(at: indexPath, animated: true)
-            }else{
-                self.addToFavorite(category: category)
-                  collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
-                cell.isSelected = true
-            }
+//            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+//            cell.isSelected = true
+//            cell.configureCell()
+//            let category = self.categories[indexPath.item]
+//            if userFavoritesCategories.contains(where: {$0.Fid == category.Fid}){
+//
+//                self.deleteFromFavorite(id: category.Fid ?? "")
+//                cell.isSelected = false
+//                collectionView.deselectItem(at: indexPath, animated: true)
+//            }else{
+//                self.addToFavorite(category: category)
+//                  collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//                cell.isSelected = true
+//            }
+            ActionShowPostCategories.execute()
         }
 
         if collectionView == myAdsCollectionView{

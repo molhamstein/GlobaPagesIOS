@@ -28,27 +28,28 @@ class CategoriesSubscriptionViewController: AbstractController {
     var selectedCategory:categoriesFilter?
 
     var categoryfilters:[categoriesFilter]{
-        return filters.filter{$0.parentCategoryId == nil}
+        return DataStore.shared.postCategories.filter{$0.parentCategoryId == nil}
     }
 
+
     var subCategoryFilters:[categoriesFilter]{
-        if let cat = selectedCategory{
-            return filters.filter({$0.parentCategoryId == cat.Fid})
-        }
-        return []
+        return DataStore.shared.postCategories.filter({$0.parentCategoryId != nil})
     }
+
+    var selectedSubCategories:[categoriesFilter] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
         self.navigationController?.navigationBar.tintColor = .white
-        getBussinessFilters()
+//        getBussinessFilters()
     }
 
 
     override func customizeView() {
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        getUserCategories()
         // fonts
         self.infoLabel.font = AppFonts.big
         self.categoryTitleLabel.font = AppFonts.big
@@ -57,6 +58,21 @@ class CategoriesSubscriptionViewController: AbstractController {
         let nib = UINib(nibName: filtterCellId, bundle: nil)
         self.categoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId)
         self.subCategoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId)
+    }
+    
+    func getUserCategories(){
+        guard let user = DataStore.shared.me else{return}
+        guard subCategoryFilters.count > 0 else {return}
+        if let posts = user.posts{
+            for post in posts{
+                for subcat in subCategoryFilters {
+                    if subcat.Fid == post{
+                        self.selectedSubCategories.append(subcat)
+                    }
+                }
+            }
+        }
+        subCategoryCollectionView.reloadData()
     }
 
     override func buildUp() {
@@ -89,6 +105,22 @@ class CategoriesSubscriptionViewController: AbstractController {
         }
     }
 
+    @IBAction func apply(_ sender: UIButton) {
+
+        self.showActivityLoader(true)
+        ApiManager.shared.updateUser(user: DataStore.shared.me!,categories: selectedSubCategories) { (success, error, user) in
+            self.showActivityLoader(false)
+            if success {
+                self.popOrDismissViewControllerAnimated(animated: true)
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+
+    }
 
 }
 
@@ -133,20 +165,15 @@ extension CategoriesSubscriptionViewController:UICollectionViewDelegate,UICollec
 
         if collectionView == subCategoryCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
-
-            if let category = categoryfiltertype.filter.category{
-                if category.Fid == subCategoryFilters[indexPath.item].Fid{
+                let category = subCategoryFilters[indexPath.item]
+            if  selectedSubCategories.contains(where: { (cat) -> Bool in category.Fid == cat.Fid}){
                     cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
                 }else{
                     collectionView.deselectItem(at: indexPath, animated: true)
                     cell.isSelected = false
                 }
-            }else{
-                collectionView.deselectItem(at: indexPath, animated: true)
-                cell.isSelected = false
-            }
-            cell.filter = subCategoryFilters[indexPath.item]
+            cell.titleLabel.text = subCategoryFilters[indexPath.item].title
             cell.setupView(type:.map)
             return cell
         }
@@ -159,10 +186,16 @@ extension CategoriesSubscriptionViewController:UICollectionViewDelegate,UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollectionView {
             self.selectedCategory = categoryfilters[indexPath.item]
-            self.showSubCategory()
+//            self.showSubCategory()
         }
         if collectionView == subCategoryCollectionView{
-            show3NearBy()
+            let cat = subCategoryFilters[indexPath.item]
+            if selectedSubCategories.contains(where: { (category) -> Bool in category.Fid == cat.Fid}){
+                selectedSubCategories = selectedSubCategories.filter({$0.Fid != cat.Fid})
+            }else{
+                selectedSubCategories.append(cat)
+            }
+            subCategoryCollectionView.reloadData()
         }
     }
 

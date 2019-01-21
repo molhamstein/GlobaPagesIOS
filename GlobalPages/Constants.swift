@@ -28,7 +28,15 @@ struct AppConfig {
     static let AppleStoreAppId = "3754a01e-b355-4248-a906-e04549e6ab32"
     
     static let PlaceHolderImage = UIImage(named: "bottle-1")
-    
+    static var FCMToken:String = ""{
+        didSet{
+            if DataStore.shared.isLoggedin{
+                ApiManager.shared.setFCMToken(token: FCMToken) { (_, _, _) in
+
+                }
+            }
+        }
+    }
     // validation
     static let passwordLength = 6
     

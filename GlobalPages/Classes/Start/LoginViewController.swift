@@ -340,6 +340,7 @@ class LoginViewController: AbstractController {
                         
                             self.signupButton.isLoading = false
                             self.hideView(withType: .signup)
+                            ActionShowPostCategories.execute()
                             self.showView(withType: .signupSuccess)
                         
                         } else {

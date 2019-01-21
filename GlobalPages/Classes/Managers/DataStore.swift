@@ -21,6 +21,7 @@ class DataStore :NSObject {
     
     //MARK: Cache keys
     private let CACHE_KEY_CATEGORIES = "categories"
+    private let CACHE_KEY_POST_CATEGORIES = "postcategories"
     private let CACHE_KEY_SHORES = "SHORES"
     private let CACHE_KEY_SHOPITEM = "SHOPITEM"
     private let CACHE_KEY_INVENTORY = "INVENTORY_ITEMS"
@@ -45,6 +46,7 @@ class DataStore :NSObject {
     private var _volume:Volume?
     private var _posts:[Post] = [Post]()
     private var _categories:[Category] = [Category]()
+    private var _post_categories:[categoriesFilter] = [categoriesFilter]()
     private var _favorites:[Category] = [Category]()
     private var _subcategories:[Category] = [Category]()
     private var _cities:[City] = [City]()
@@ -74,6 +76,19 @@ class DataStore :NSObject {
             return _categories
         }
     }
+    public var postCategories: [categoriesFilter] {
+        set {
+            _post_categories = newValue
+            saveBaseModelArray(array: _post_categories, withKey: CACHE_KEY_POST_CATEGORIES)
+        }
+        get {
+            if(_post_categories.isEmpty){
+                _post_categories = loadBaseModelArrayForKey(key: CACHE_KEY_POST_CATEGORIES)
+            }
+            return _post_categories
+        }
+    }
+
 
     public var favorites: [Category] {
         set {
