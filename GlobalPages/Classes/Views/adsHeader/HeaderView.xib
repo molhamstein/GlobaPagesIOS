@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -36,45 +35,108 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="zRM-m7-bFZ">
                                     <rect key="frame" x="12" y="16" width="616" height="120.5"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reB-kx-BBe" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tsz-is-eh1">
                                             <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
-                                            <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="Bussiness Guide">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="localization" value="BUSSINESS_GUIDE_TITLE"/>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="showBussinessGuides:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="8Lz-Wf-aoc"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRz-et-HAy" userLabel="Find Near By Button" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bussiness Guides" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9Wf-uQ-syM" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localization" value="BUSSINESS_GUIDE_TITLE"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reB-kx-BBe" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="showBussinessGuides:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="8Lz-Wf-aoc"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="9Wf-uQ-syM" secondAttribute="bottom" id="5h0-Lb-5tv"/>
+                                                <constraint firstAttribute="trailing" secondItem="reB-kx-BBe" secondAttribute="trailing" id="65S-w1-t7f"/>
+                                                <constraint firstItem="reB-kx-BBe" firstAttribute="leading" secondItem="Tsz-is-eh1" secondAttribute="leading" id="HaB-OD-Gr9"/>
+                                                <constraint firstItem="9Wf-uQ-syM" firstAttribute="leading" secondItem="Tsz-is-eh1" secondAttribute="leading" id="XUP-Cf-f0b"/>
+                                                <constraint firstAttribute="trailing" secondItem="9Wf-uQ-syM" secondAttribute="trailing" id="dB2-tg-Kye"/>
+                                                <constraint firstItem="9Wf-uQ-syM" firstAttribute="top" secondItem="Tsz-is-eh1" secondAttribute="top" id="rmw-gC-Ru2"/>
+                                                <constraint firstAttribute="bottom" secondItem="reB-kx-BBe" secondAttribute="bottom" id="xrJ-NO-CDc"/>
+                                                <constraint firstItem="reB-kx-BBe" firstAttribute="top" secondItem="Tsz-is-eh1" secondAttribute="top" id="yKa-3Q-4bu"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IGJ-60-mOc">
                                             <rect key="frame" x="209.5" y="0.0" width="197" height="120.5"/>
-                                            <color key="backgroundColor" red="0.24313725489999999" green="0.65098039220000004" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="Find Nearby">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="localization" value="NEAR_BY_TITLE"/>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="showNearBy:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="nDy-Qc-S8n"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CG0-aP-ZTD" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Near By" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hke-FY-gQP" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="120.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localization" value="NEAR_BY_TITLE"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRz-et-HAy" userLabel="Find Near By Button" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="120.5"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="showNearBy:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="nDy-Qc-S8n"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="nRz-et-HAy" firstAttribute="top" secondItem="IGJ-60-mOc" secondAttribute="top" id="47O-Ow-Uq2"/>
+                                                <constraint firstAttribute="trailing" secondItem="nRz-et-HAy" secondAttribute="trailing" id="6L9-JC-ZAv"/>
+                                                <constraint firstItem="Hke-FY-gQP" firstAttribute="leading" secondItem="IGJ-60-mOc" secondAttribute="leading" id="BjF-ve-1VM"/>
+                                                <constraint firstItem="nRz-et-HAy" firstAttribute="leading" secondItem="IGJ-60-mOc" secondAttribute="leading" id="Gbm-Zb-O4a"/>
+                                                <constraint firstAttribute="bottom" secondItem="Hke-FY-gQP" secondAttribute="bottom" id="KO3-Zh-BHF"/>
+                                                <constraint firstAttribute="trailing" secondItem="Hke-FY-gQP" secondAttribute="trailing" id="PKj-ce-jo4"/>
+                                                <constraint firstItem="Hke-FY-gQP" firstAttribute="top" secondItem="IGJ-60-mOc" secondAttribute="top" id="eJv-Wd-HDx"/>
+                                                <constraint firstAttribute="bottom" secondItem="nRz-et-HAy" secondAttribute="bottom" id="npE-FU-fGn"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKk-cQ-Ssn">
                                             <rect key="frame" x="418.5" y="0.0" width="197.5" height="120.5"/>
-                                            <color key="backgroundColor" red="0.85073267490000004" green="0.0" blue="0.019810459209999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <state key="normal" title="On Duty Pharmacy">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="localization" value="ON_DUTY_PHARMACY_TITLE"/>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="showPharmacies:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="m5w-fK-laK"/>
-                                            </connections>
-                                        </button>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On Duty Pharmacy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="E6M-9S-AI2" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="localization" value="ON_DUTY_PHARMACY_TITLE"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CG0-aP-ZTD" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="showPharmacies:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="m5w-fK-laK"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="CG0-aP-ZTD" secondAttribute="bottom" id="3Jb-Pj-n6N"/>
+                                                <constraint firstItem="E6M-9S-AI2" firstAttribute="top" secondItem="iKk-cQ-Ssn" secondAttribute="top" id="BAX-Ne-Jt5"/>
+                                                <constraint firstItem="CG0-aP-ZTD" firstAttribute="top" secondItem="iKk-cQ-Ssn" secondAttribute="top" id="PDj-jY-Gyn"/>
+                                                <constraint firstAttribute="trailing" secondItem="CG0-aP-ZTD" secondAttribute="trailing" id="XwA-w1-FKc"/>
+                                                <constraint firstItem="E6M-9S-AI2" firstAttribute="leading" secondItem="iKk-cQ-Ssn" secondAttribute="leading" id="bmx-UN-xPe"/>
+                                                <constraint firstAttribute="bottom" secondItem="E6M-9S-AI2" secondAttribute="bottom" id="ek2-G3-aZg"/>
+                                                <constraint firstItem="CG0-aP-ZTD" firstAttribute="leading" secondItem="iKk-cQ-Ssn" secondAttribute="leading" id="ogT-iD-dB0"/>
+                                                <constraint firstAttribute="trailing" secondItem="E6M-9S-AI2" secondAttribute="trailing" id="sPx-sO-IvK"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                 </stackView>
                             </subviews>
@@ -114,9 +176,15 @@
             <connections>
                 <outlet property="businessGuidCollectionView" destination="4wB-Gj-8F1" id="65o-ta-x3d"/>
                 <outlet property="bussinessGuideButton" destination="reB-kx-BBe" id="haC-ET-yFP"/>
+                <outlet property="bussinessLabel" destination="9Wf-uQ-syM" id="QQc-3i-2mB"/>
+                <outlet property="bussinessView" destination="Tsz-is-eh1" id="Hqv-Bq-KG5"/>
                 <outlet property="finNearByButton" destination="nRz-et-HAy" id="b2F-wR-al0"/>
+                <outlet property="findNearByLabel" destination="Hke-FY-gQP" id="Nde-mX-nhL"/>
+                <outlet property="nearByView" destination="IGJ-60-mOc" id="nmU-YE-AiL"/>
                 <outlet property="overlayView" destination="BaI-Of-QuR" id="oIn-Xy-rTd"/>
                 <outlet property="pharmacyButton" destination="CG0-aP-ZTD" id="Rfc-cs-OnA"/>
+                <outlet property="pharmacyLabel" destination="E6M-9S-AI2" id="3Y5-QJ-FdB"/>
+                <outlet property="pharmacyView" destination="iKk-cQ-Ssn" id="UkC-WG-SoM"/>
             </connections>
             <point key="canvasLocation" x="-84" y="-64.5"/>
         </collectionReusableView>

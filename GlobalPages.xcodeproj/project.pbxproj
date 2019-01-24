@@ -45,6 +45,8 @@
 		1481AF5620F154E9003A1F10 /* CairoSemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146B39F520ED4B9E0064286D /* CairoSemiBold.ttf */; };
 		148E77EC2114E0A500683027 /* businessCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E77EB2114E0A500683027 /* businessCategories.swift */; };
 		148F168621F475F100C02B66 /* CategoriesSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F168521F475F100C02B66 /* CategoriesSubscriptionViewController.swift */; };
+		1497BC4121F783F300C0DFE2 /* DroidKufiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1497BC3F21F783F200C0DFE2 /* DroidKufiBold.ttf */; };
+		1497BC4221F783F300C0DFE2 /* DroidKufiRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1497BC4021F783F200C0DFE2 /* DroidKufiRegular.ttf */; };
 		1497EF0D21D6BA2200E63B99 /* FireBaseNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */; };
 		1497EF0F21D6C66F00E63B99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1497EF0E21D6C66E00E63B99 /* GoogleService-Info.plist */; };
 		14B1B88C20DEF17C00D86536 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88920DEF17B00D86536 /* CustomLayout.swift */; };
@@ -127,8 +129,6 @@
 		578687F920C482560002C67B /* VobbleNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578687DB20C482560002C67B /* VobbleNavigationBar.swift */; };
 		5786881320C483190002C67B /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786880720C483190002C67B /* AppColors.swift */; };
 		5786881420C483190002C67B /* MullerBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5786880920C483190002C67B /* MullerBold.otf */; };
-		5786881520C483190002C67B /* DroidKufiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5786880A20C483190002C67B /* DroidKufiBold.ttf */; };
-		5786881620C483190002C67B /* DroidKufiRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5786880B20C483190002C67B /* DroidKufiRegular.ttf */; };
 		5786881720C483190002C67B /* Antipasto_regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5786880C20C483190002C67B /* Antipasto_regular.otf */; };
 		5786881820C483190002C67B /* Antipasto_extrabold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5786880D20C483190002C67B /* Antipasto_extrabold.otf */; };
 		5786881920C483190002C67B /* MullerRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5786880E20C483190002C67B /* MullerRegular.otf */; };
@@ -199,6 +199,8 @@
 		1477053A2141AE26002A160B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		148E77EB2114E0A500683027 /* businessCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = businessCategories.swift; sourceTree = "<group>"; };
 		148F168521F475F100C02B66 /* CategoriesSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSubscriptionViewController.swift; sourceTree = "<group>"; };
+		1497BC3F21F783F200C0DFE2 /* DroidKufiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidKufiBold.ttf; sourceTree = "<group>"; };
+		1497BC4021F783F200C0DFE2 /* DroidKufiRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidKufiRegular.ttf; sourceTree = "<group>"; };
 		1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseNotification.swift; sourceTree = "<group>"; };
 		1497EF0E21D6C66E00E63B99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14B1B88920DEF17B00D86536 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
@@ -289,8 +291,6 @@
 		578687DB20C482560002C67B /* VobbleNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VobbleNavigationBar.swift; sourceTree = "<group>"; };
 		5786880720C483190002C67B /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		5786880920C483190002C67B /* MullerBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MullerBold.otf; sourceTree = "<group>"; };
-		5786880A20C483190002C67B /* DroidKufiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidKufiBold.ttf; sourceTree = "<group>"; };
-		5786880B20C483190002C67B /* DroidKufiRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidKufiRegular.ttf; sourceTree = "<group>"; };
 		5786880C20C483190002C67B /* Antipasto_regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Antipasto_regular.otf; sourceTree = "<group>"; };
 		5786880D20C483190002C67B /* Antipasto_extrabold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Antipasto_extrabold.otf; sourceTree = "<group>"; };
 		5786880E20C483190002C67B /* MullerRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MullerRegular.otf; sourceTree = "<group>"; };
@@ -664,10 +664,10 @@
 		5786880820C483190002C67B /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				1497BC3F21F783F200C0DFE2 /* DroidKufiBold.ttf */,
+				1497BC4021F783F200C0DFE2 /* DroidKufiRegular.ttf */,
 				146B39F420ED4B8D0064286D /* Cairo */,
 				5786880920C483190002C67B /* MullerBold.otf */,
-				5786880A20C483190002C67B /* DroidKufiBold.ttf */,
-				5786880B20C483190002C67B /* DroidKufiRegular.ttf */,
 				5786880C20C483190002C67B /* Antipasto_regular.otf */,
 				5786880D20C483190002C67B /* Antipasto_extrabold.otf */,
 				5786880E20C483190002C67B /* MullerRegular.otf */,
@@ -815,6 +815,7 @@
 				578685F320C47FD30002C67B /* Assets.xcassets in Resources */,
 				5786881B20C483190002C67B /* OpenSansBold.ttf in Resources */,
 				5786872420C481010002C67B /* CountryPicker.bundle in Resources */,
+				1497BC4121F783F300C0DFE2 /* DroidKufiBold.ttf in Resources */,
 				5786883720C483240002C67B /* Start.storyboard in Resources */,
 				578687F320C482560002C67B /* ShopCollectionViewCell.xib in Resources */,
 				5786881720C483190002C67B /* Antipasto_regular.otf in Resources */,
@@ -823,13 +824,12 @@
 				578685F120C47FD30002C67B /* Main.storyboard in Resources */,
 				1463C45520D9253500156E84 /* AdsTitledCell.xib in Resources */,
 				14C9DC9A20CA27580031685E /* filtterCell.xib in Resources */,
-				5786881620C483190002C67B /* DroidKufiRegular.ttf in Resources */,
 				145CF7D62105003600126046 /* BussinessGuidListCell.xib in Resources */,
 				1497EF0F21D6C66F00E63B99 /* GoogleService-Info.plist in Resources */,
 				5786884920C488EE0002C67B /* Localizable.strings in Resources */,
 				5786881A20C483190002C67B /* OpenSansSemiBold.ttf in Resources */,
-				5786881520C483190002C67B /* DroidKufiBold.ttf in Resources */,
 				5786881C20C483190002C67B /* OpenSansRegular.ttf in Resources */,
+				1497BC4221F783F300C0DFE2 /* DroidKufiRegular.ttf in Resources */,
 				14160BE620E3C72C004CEA7D /* filterCell2.xib in Resources */,
 				1463C44C20D845D100156E84 /* MenuView.xib in Resources */,
 				5786883220C483240002C67B /* ShoreCell.xib in Resources */,

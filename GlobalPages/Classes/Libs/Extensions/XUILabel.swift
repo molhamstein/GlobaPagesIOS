@@ -44,6 +44,7 @@ class XUILabel:UILabel{
 //        }else{
 //            self.font = UIFont.systemFont(ofSize: 10)
 //        }
+       // setLineHeight(height: 0.5)
         self.text = self.text?.localized
     }
 

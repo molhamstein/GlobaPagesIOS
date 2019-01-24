@@ -11,12 +11,17 @@ import UIKit
 struct AppFonts {
     // MARK: fonts names
     private static let fontNameBoldEN = "Antipasto-ExtraBold"
-    private static let fontNameBoldAR = "Cairo-Bold"
+//    private static let fontNameBoldAR = "Cairo-Bold"
+    private static let fontNameBoldAR = "DroidArabicKufi-Bold"
+    private static let fontNameSemiBoldAR = "DroidArabicKufi"
+//    private static let fontNameBoldAR = "DroidKufiBold"
     private static let fontNameSemiBoldEN = "Antipasto-ExtraBold"
-    private static let fontNameSemiBoldAR = "Cairo-SemiBold"
+//    private static let fontNameSemiBoldAR = "Cairo-SemiBold"
+//    private static let fontNameSemiBoldAR = "Cairo-SemiBold"
     private static let fontNameRegularEN = "Antipasto"
+//    private static let fontNameRegularAR = "DroidKufiRegular"
     private static let fontNameRegularAR = "Cairo-Regular"
-    
+
     // MARK: font sizes
     private static var sizeXBig:Double {
         if AppConfig.currentLanguage == .arabic{
@@ -138,7 +143,7 @@ struct AppFonts {
         if (ScreenSize.isSmallScreen) {    // iPhone 4 & 5 (480 - 568)
             scale = 0.8;
         } else if (ScreenSize.isMidScreen){ // iPhone 6 & 7 (667)
-            scale = 0.95;
+            scale = 0.7;
         } else {                    // iPhone 6+ & 7+ (736)
             scale = 1.0;
         }
@@ -163,11 +168,11 @@ struct AppFonts {
         } else {
             switch weight {
             case .bold:
-                return fontNameBoldEN
+                return fontNameBoldAR
             case .semiBold:
-                return fontNameSemiBoldEN
+                return fontNameSemiBoldAR
             default:
-                return fontNameRegularEN
+                return fontNameRegularAR
             }
         }
     }
