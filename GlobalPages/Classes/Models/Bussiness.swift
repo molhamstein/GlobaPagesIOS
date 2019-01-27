@@ -219,7 +219,6 @@ public class Bussiness:BaseModel {
     override public func dictionaryRepresentation() -> [String:Any] {
 
         var dictionary = super.dictionaryRepresentation()
-    
 		dictionary["nameEn"] = nameEn
 		dictionary["nameAr"] = nameAr
 		dictionary["logo"] = logo
