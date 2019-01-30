@@ -9,12 +9,15 @@
 import Foundation
 
 public enum filterValues {
+    case keyword
     case category
     case subCategory
     case city
     case area
     func removeFilter(fltr:Filter){
         switch self{
+        case .keyword:
+            fltr.keyWord = nil
         case .category:
             fltr.category = nil
             fltr.subCategory = nil

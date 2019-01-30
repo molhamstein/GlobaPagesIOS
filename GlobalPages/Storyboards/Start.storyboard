@@ -87,11 +87,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splahs_icon" translatesAutoresizingMaskIntoConstraints="NO" id="YUR-Oc-moy">
-                                <rect key="frame" x="122.66666666666669" y="276" width="130" height="260"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_en" translatesAutoresizingMaskIntoConstraints="NO" id="YUR-Oc-moy">
+                                <rect key="frame" x="69" y="377.66666666666669" width="237" height="57"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="260" id="L2j-Cs-awS"/>
-                                    <constraint firstAttribute="width" constant="130" id="WMB-8m-DJx"/>
+                                    <constraint firstAttribute="height" constant="57" id="E7b-If-ipK"/>
+                                    <constraint firstAttribute="width" constant="237" id="lgf-ws-xdL"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -103,13 +103,14 @@
                         <viewLayoutGuide key="safeArea" id="pBR-hY-U6D"/>
                     </view>
                     <connections>
+                        <outlet property="logoImageView" destination="YUR-Oc-moy" id="4NR-qF-G08"/>
                         <segue destination="5hf-2z-PY5" kind="show" identifier="startLoginSegue" id="x59-XY-dEn"/>
                         <segue destination="uvO-8I-ZUa" kind="show" identifier="startHomeSegue" id="zq0-Kg-Tsy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLG-YQ-odS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8.6956521739130448" y="240.48913043478262"/>
+            <point key="canvasLocation" x="7.2000000000000002" y="240.14778325123154"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Vjh-8C-Xdl">
@@ -1273,14 +1274,14 @@ ZGVhbHMgYXJyb3VuZA
         <image name="checkBoxActive" width="20" height="21"/>
         <image name="downArrow" width="25" height="22"/>
         <image name="ic_reg_business" width="150" height="143"/>
+        <image name="logo_en" width="237" height="57"/>
         <image name="navBackIcon" width="16" height="14"/>
         <image name="signup_female" width="36" height="17"/>
         <image name="signup_male" width="63" height="15"/>
-        <image name="splahs_icon" width="300" height="402"/>
         <image name="twtr-icn_close.png" width="15" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lrG-K8-s4P"/>
-        <segue reference="rhd-YC-Rxc"/>
+        <segue reference="x59-XY-dEn"/>
+        <segue reference="zq0-Kg-Tsy"/>
     </inferredMetricsTieBreakers>
 </document>

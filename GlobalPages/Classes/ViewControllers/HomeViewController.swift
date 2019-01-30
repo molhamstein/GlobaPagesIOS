@@ -35,7 +35,8 @@ class HomeViewController: AbstractController {
     weak var businessGuidCollectionView: UICollectionView?
     weak var volumeTitle:UILabel?
     static var businessGuidCellId = "BusinessGuidCell"
-    
+    @IBOutlet weak var logoImageView: UIImageView!
+
     var businessGuides:[BusinessGuide] = []
     
     var gradiantColors:[[UIColor]] = [[AppColors.blueLight,AppColors.blueDark],[AppColors.pinkLight,AppColors.pinkDark],[AppColors.blueLight,AppColors.blueDark]]
@@ -70,7 +71,7 @@ class HomeViewController: AbstractController {
             if let subCat = categoryfiltertype.filter.subCategory{
                 temp = temp.filter({$0.subCategory?.Fid == subCat.Fid})
             }
-                temp = temp.filter({$0.isActiviated})
+              //  temp = temp.filter({$0.isActiviated})
             return temp
         }
         return []
@@ -88,6 +89,8 @@ class HomeViewController: AbstractController {
     }
 
     override func customizeView() {
+        let image = "logo_\(AppConfig.currentLanguage.langCode)"
+        logoImageView.image = UIImage(named:image)
         getFeaturedPosts()
         collectionViewSetup()
     }
@@ -134,7 +137,7 @@ class HomeViewController: AbstractController {
         self.profileButton.imageView?.makeRounded()
         self.profileButton.imageView?.clipsToBounds = true
         // setFonts
-        self.navBarTitleLabel.font = AppFonts.xBig
+
     }
     
     override func buildUp() {
@@ -171,6 +174,13 @@ class HomeViewController: AbstractController {
     
     func getFilters(){
         filters.removeAll()
+        if let keyWord = categoryfiltertype.filter.keyWord{
+            let cat = categoriesFilter()
+            cat.filtervalue = .keyword
+            cat.titleAr = keyWord
+            cat.titleEn = keyWord
+            filters.append(cat)
+        }
         if let city = categoryfiltertype.filter.city{
             filters.append(city)
             if let area = categoryfiltertype.filter.area{
@@ -506,7 +516,7 @@ extension HomeViewController : PinterestLayoutDelegate {
             height += 8
             height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // area label height
             height += 18 // line view + 8 + 8
-            height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // title label height
+            height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normalBold)) ?? 0 // title label height
             height += 16
         }
         else{
@@ -516,7 +526,7 @@ extension HomeViewController : PinterestLayoutDelegate {
             height += 18 // line view + 8 + 8
             height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // city label height
             height += 8 // padding
-            height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // area label height
+            height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normalBold)) ?? 0 // area label height
             height += 16 // extra
 
         }

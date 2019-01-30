@@ -26,6 +26,8 @@ public class Post:BaseModel{
 	public var owner : Owner?
 	public var category : Category?
 	public var subCategory : Category?
+    public var categoryFilter : categoriesFilter?
+    public var subCategoryFilter : categoriesFilter?
     public var isFeatured: Bool?
     public var city:City?
     public var location:City?
@@ -75,6 +77,8 @@ public class Post:BaseModel{
         }
         if (json["category"] != JSON.null) { category = Category(json: json["category"]) }
         if (json["subCategory"] != JSON.null) { subCategory = Category(json: json["subCategory"]) }
+        if (json["category"] != JSON.null) { categoryFilter = categoriesFilter(json: json["category"]) }
+        if (json["subCategory"] != JSON.null) { subCategoryFilter = categoriesFilter(json: json["subCategory"]) }
         if json["city"] != JSON.null { city = City(json:json["city"]) }
         if json["location"] != JSON.null { location = City(json:json["location"]) }
     }

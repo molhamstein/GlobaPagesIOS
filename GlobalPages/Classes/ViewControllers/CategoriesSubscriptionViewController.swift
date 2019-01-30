@@ -33,7 +33,10 @@ class CategoriesSubscriptionViewController: AbstractController {
 
 
     var subCategoryFilters:[categoriesFilter]{
-        return DataStore.shared.postCategories.filter({$0.parentCategoryId != nil})
+        if let cat = selectedCategory{
+            return DataStore.shared.postCategories.filter({$0.parentCategoryId == cat.Fid})
+        }
+        return []
     }
 
     var selectedSubCategories:[categoriesFilter] = []
@@ -48,7 +51,7 @@ class CategoriesSubscriptionViewController: AbstractController {
 
 
     override func customizeView() {
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+//        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         getUserCategories()
         // fonts
         self.infoLabel.font = AppFonts.big
@@ -58,14 +61,16 @@ class CategoriesSubscriptionViewController: AbstractController {
         let nib = UINib(nibName: filtterCellId, bundle: nil)
         self.categoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId)
         self.subCategoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId)
+        subCategoryCollectionView.allowsMultipleSelection = true
     }
     
     func getUserCategories(){
         guard let user = DataStore.shared.me else{return}
-        guard subCategoryFilters.count > 0 else {return}
+//        guard subCategoryFilters.count > 0 else {return}
+        let subCat = DataStore.shared.postCategories.filter({$0.parentCategoryId != nil})
         if let posts = user.posts{
             for post in posts{
-                for subcat in subCategoryFilters {
+                for subcat in subCat {
                     if subcat.Fid == post{
                         self.selectedSubCategories.append(subcat)
                     }
@@ -81,9 +86,12 @@ class CategoriesSubscriptionViewController: AbstractController {
     }
 
     @IBAction func backAction(_ sender: Any) {
-        if subCategoryView.isHidden == false{
-            self.showCategory()
-        }else{self.dismiss(animated: true, completion: nil)}
+//        if subCategoryView.isHidden == false{
+//            self.showCategory()
+//        }else{
+            self.dismiss(animated: true, completion: nil)
+
+//    }
     }
 
 
@@ -144,11 +152,12 @@ extension CategoriesSubscriptionViewController:UICollectionViewDelegate,UICollec
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categoryCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
             if let category = categoryfiltertype.filter.category{
                 if category.Fid == categoryfilters[indexPath.item].Fid{
                     cell.isSelected = true
                     collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                    self.showSubCategory()
                 }else{
                     collectionView.deselectItem(at: indexPath, animated: true)
                     cell.isSelected = false
@@ -164,7 +173,7 @@ extension CategoriesSubscriptionViewController:UICollectionViewDelegate,UICollec
 
 
         if collectionView == subCategoryCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
                 let category = subCategoryFilters[indexPath.item]
             if  selectedSubCategories.contains(where: { (cat) -> Bool in category.Fid == cat.Fid}){
                     cell.isSelected = true
@@ -175,6 +184,7 @@ extension CategoriesSubscriptionViewController:UICollectionViewDelegate,UICollec
                 }
             cell.titleLabel.text = subCategoryFilters[indexPath.item].title
             cell.setupView(type:.map)
+            cell.configureCell()
             return cell
         }
 
@@ -186,8 +196,20 @@ extension CategoriesSubscriptionViewController:UICollectionViewDelegate,UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollectionView {
             self.selectedCategory = categoryfilters[indexPath.item]
-//            self.showSubCategory()
+            self.showSubCategory()
         }
+        if collectionView == subCategoryCollectionView{
+            let cat = subCategoryFilters[indexPath.item]
+            if selectedSubCategories.contains(where: { (category) -> Bool in category.Fid == cat.Fid}){
+                selectedSubCategories = selectedSubCategories.filter({$0.Fid != cat.Fid})
+            }else{
+                selectedSubCategories.append(cat)
+            }
+            subCategoryCollectionView.reloadData()
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == subCategoryCollectionView{
             let cat = subCategoryFilters[indexPath.item]
             if selectedSubCategories.contains(where: { (category) -> Bool in category.Fid == cat.Fid}){
@@ -203,11 +225,11 @@ extension CategoriesSubscriptionViewController:UICollectionViewDelegate,UICollec
     func showSubCategory(){
         //      self.categoryView.animateIn(mode: .animateOutToLeft, delay: 0.2)
         subCategoryCollectionView.reloadData()
-        dispatch_main_after(0.2) {
-            self.subCategoryView.isHidden = false
-            self.subCategoryView.animateIn(mode: .animateInFromRight, delay: 0.2)
-            self.categoryView.isHidden = true
-        }
+//        dispatch_main_after(0.2) {
+//            self.subCategoryView.isHidden = false
+//            self.subCategoryView.animateIn(mode: .animateInFromRight, delay: 0.2)
+//            self.categoryView.isHidden = true
+//        }
 
     }
 

@@ -924,7 +924,7 @@ class ApiManager: NSObject {
     // volumes
     func getVolumes(limit:Int = 1,skip:Int ,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:Volume?) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/volumes?filter[limit]=\(limit)&filter[skip]=\(skip)"
+        let signUpURL = "\(baseURL)/volumes?filter[limit]=\(limit)&filter[skip]=\(skip)&filter[order]=creationDate DESC".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         // build request
         DataStore.shared.volume = nil
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { (responseObject) -> Void in
@@ -1210,10 +1210,12 @@ class ApiManager: NSObject {
         parameters.removeValue(forKey: "subCategory")
         parameters.removeValue(forKey: "category")
         parameters.removeValue(forKey: "location")
+        parameters.removeValue(forKey: "creationDate")
+//        parameters.removeValue(forKey: "viewsCount")
         print(parameters)
         
         // build request
-        Alamofire.request(signInURL, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+        Alamofire.request(signInURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {

@@ -75,8 +75,8 @@ class NewAdViewController: AbstractController {
     let imageCellId = "ImageCell"
     var images:[UIImage] = []
     var media:[Media] = []
-    var selectedCategory:Category?
-    var selectedSubCategory:Category?
+    var selectedCategory:categoriesFilter?
+    var selectedSubCategory:categoriesFilter?
     var selectedCity:City?
     var selectedArea:City?
     var cityId = ""
@@ -84,16 +84,18 @@ class NewAdViewController: AbstractController {
     
     var mode:viewType = .addMode
     
-    var categoryfilters:[Category]{
-        return DataStore.shared.categories.filter { $0.parentCategoryId == nil }
+    var categoryfilters:[categoriesFilter]{
+        return DataStore.shared.postCategories.filter { $0.parentCategoryId == nil }
     }
-    var subCategoryFilters:[Category] {
-        if let cat = selectedCategory { return DataStore.shared.categories.filter({$0.parentCategoryId == cat.Fid}) }
+    var subCategoryFilters:[categoriesFilter] {
+        if let cat = selectedCategory { return DataStore.shared.postCategories.filter({$0.parentCategoryId == cat.Fid}) }
         return []
     }
     var cities:[City] { return DataStore.shared.cities }
     var areas:[City]  {
-        if let city = selectedCity { return city.locations ?? [] }
+        if let city = selectedCity {
+            return city.locations ?? []
+        }
         return []
     }
     
@@ -137,10 +139,11 @@ class NewAdViewController: AbstractController {
             
         }
         
-        selectedCategory = post.category
-        selectedSubCategory = post.subCategory
+        selectedCategory = post.categoryFilter
+        selectedSubCategory = post.subCategoryFilter
         selectedCity = post.city
         selectedArea = post.location
+        getAreas()
         self.cityCollectionView.reloadData()
         self.areaCollectionView.reloadData()
         self.adCategoryCollectionView.reloadData()
@@ -155,7 +158,16 @@ class NewAdViewController: AbstractController {
     
     override func customizeView() {
         super.customizeView()
-        
+
+        if let post = tempPost{
+            mode = .editMode
+            fillPostData(post: post)
+
+        }
+        else{
+            tempPost = Post()
+        }
+
         self.subCategoryView.isHidden = true
         self.areaView.isHidden = true
         self.hideAbleView1.isHidden = false
@@ -189,13 +201,7 @@ class NewAdViewController: AbstractController {
         setupCollectionViews()
         getBussinessFilters()
         getCityFilters()
-        if let post = tempPost{
-            fillPostData(post: post)
-            mode = .editMode
-        }
-        else{
-            tempPost = Post()
-        }
+
         self.setNavBarTitle(title: mode.title)
         self.backGroundView.dropShadow()
     }
@@ -226,7 +232,33 @@ class NewAdViewController: AbstractController {
         self.popOrDismissViewControllerAnimated(animated: true)
     }
  
-    
+    func scrollToSelectedCategory(){
+        if let categoryIndex = categoryfilters.index(where: {$0.Fid == selectedCategory?.Fid}){
+            self.adCategoryCollectionView.scrollToItem(at: IndexPath(item: categoryIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }
+
+    }
+    func scrollToSelectedSubCategory(){
+
+        if let subCategoryIndex = subCategoryFilters.index(where: {$0.Fid == selectedSubCategory?.Fid}){
+            self.subCategoryCollectionView.scrollToItem(at: IndexPath(item: subCategoryIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }
+
+    }
+    func scrollToSelectedCity(){
+
+        if let citIndex = cities.index(where: {$0.Fid == selectedCity?.Fid}){
+            self.cityCollectionView.scrollToItem(at: IndexPath(item: citIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }
+
+    }
+    func scrollToSelectedArea(){
+
+        if let areaIndex = areas.index(where: {$0.Fid == selectedArea?.Fid}){
+            self.areaCollectionView.scrollToItem(at: IndexPath(item: areaIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }
+    }
+
     // categories and filters
     func getSubCategories(){
         self.subCategoriesCount = self.subCategoryFilters.count
@@ -235,7 +267,7 @@ class NewAdViewController: AbstractController {
         subCategoryCollectionView.layoutSubviews()
             self.subCategoryView.isHidden = false
             self.hideAbleView1.isHidden = true
-
+        scrollToSelectedSubCategory()
     }
     
     func hideSubCategoryView(){
@@ -251,6 +283,7 @@ class NewAdViewController: AbstractController {
         areaCollectionView.layoutSubviews()
         self.areaView.isHidden = false
         self.hideAbelView2.isHidden = true
+        scrollToSelectedArea()
     }
     
     func HideAreaView(){
@@ -261,10 +294,10 @@ class NewAdViewController: AbstractController {
     
     func getBussinessFilters(){
         self.showActivityLoader(true)
-        ApiManager.shared.businessCategories { (success, error, result , cats) in
+        ApiManager.shared.postCategories { (success, error, result) in
             self.showActivityLoader(false)
             if success{
-                DataStore.shared.categories = cats
+                DataStore.shared.postCategories = result
                 self.categoriesCount = self.categoryfilters.count
                 self.adCategoryCollectionView.reloadData()
                 self.adCategoryCollectionView.collectionViewLayout.invalidateLayout()
@@ -286,6 +319,11 @@ class NewAdViewController: AbstractController {
                 self.citiesCount = self.cities.count
                 self.cityCollectionView.reloadData()
                 self.cityCollectionView.collectionViewLayout.invalidateLayout()
+                if let city = self.selectedCity{
+                    self.selectedCity = self.cities.filter({$0.Fid == city.Fid}).first
+                }
+                self.scrollToSelectedCity()
+                self.getAreas()
             }
             if error != nil{
                 if let msg = error?.errorName{

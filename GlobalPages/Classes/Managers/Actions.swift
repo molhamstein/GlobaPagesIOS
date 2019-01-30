@@ -125,6 +125,8 @@ class ActionShowPostCategories: Action {
     override class func execute() {
         if DataStore.shared.isLoggedin {
             let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "CategoriesSubscriptionViewController") as! CategoriesSubscriptionViewController
+            ViewController.modalTransitionStyle = .crossDissolve
+            ViewController.modalPresentationStyle = .overFullScreen
             let nav = UINavigationController(rootViewController: ViewController)
             UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
         }

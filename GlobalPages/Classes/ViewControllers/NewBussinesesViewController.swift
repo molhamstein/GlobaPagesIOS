@@ -47,7 +47,29 @@ class NewBussinesesViewController: AbstractController {
     @IBOutlet weak var openDayView: UIView!
     @IBOutlet var openDaysButtons: [UIButton]!
     @IBOutlet weak var openDaysButtonView: UIView!
-    
+
+
+    //city views
+    @IBOutlet weak var cityTitleLabel: UILabel!
+    @IBOutlet weak var cityCollectionView: UICollectionView!
+
+    @IBOutlet weak var areaTitleLabel: UILabel!
+    @IBOutlet weak var areaCollectionView: UICollectionView!
+
+    @IBOutlet weak var areaView: UIView!
+    var selectedCity:City?
+    var selectedArea:City?
+    var cities:[City] { return DataStore.shared.cities }
+    var areas:[City]  {
+        if let city = selectedCity { return city.locations ?? [] }
+        return []
+    }
+
+    var citiesCount = 0
+    var areasCount = 0
+    var cityId = ""
+    var locationId = ""
+
     
     var subCategoryViewHeight:CGFloat = 0{
         didSet{
@@ -119,7 +141,9 @@ class NewBussinesesViewController: AbstractController {
             self.setNavBarTitle(title: "Edit Bussiness".localized)
         }
         getBussinessFilters()
+        getCityFilters()
         self.subCategoryView.isHidden = false
+        self.areaView.isHidden = true
     }
     
     
@@ -144,6 +168,8 @@ class NewBussinesesViewController: AbstractController {
         self.imagesTitleLabel.font = AppFonts.big
         self.adCategoryTitleLabel.font = AppFonts.big
         self.subCategortTitleLabel.font = AppFonts.big
+        self.cityTitleLabel.font = AppFonts.big
+        self.areaTitleLabel.font = AppFonts.big
         self.phonenumber1TitleLabel.font = AppFonts.big
         self.phonenumber1TextField.font = AppFonts.xBigBold
         self.phonenumber2TitleLabel.font = AppFonts.big
@@ -166,8 +192,10 @@ class NewBussinesesViewController: AbstractController {
             self.addButton.setTitle("Update".localized, for: .normal)
         }
         self.locationTextField.addIconButton(image: "ic_nearby")
-        
+
+
         setupCollectionViews()
+
     }
     
     
@@ -200,8 +228,7 @@ class NewBussinesesViewController: AbstractController {
         
         if let phone = bussiness.phone1 {self.phonenumber1TextField.text = phone}
         if let phone = bussiness.phone2 {self.phonenumber2TextField.text = phone}
-        selectedCategory = bussiness.category
-        selectedSubCategory = bussiness.subCategory
+
         if let location = bussiness.address { self.locationTextField.text = location}
         if let desc = bussiness.description {self.descriptionTextView.text = desc}
         if let fax = bussiness.fax {self.faxTextView.text = fax}
@@ -218,8 +245,61 @@ class NewBussinesesViewController: AbstractController {
                 }
             }
         }
-        
-        
+
+
+        selectedCategory = bussiness.category
+        selectedSubCategory = bussiness.subCategory
+        if let city = bussiness.city{
+            selectedCity = city
+        }else if let id = bussiness.cityId{
+            let city = City()
+            city.Fid = id;
+            selectedCity = city
+        }
+
+
+        if let city = bussiness.location{
+            selectedArea = city
+        }else if let id = bussiness.locationId{
+            let city = City()
+            city.Fid = id;
+            selectedArea = city
+        }
+
+        self.cityCollectionView.reloadData()
+        self.areaCollectionView.reloadData()
+        self.adCategoryCollectionView.reloadData()
+        self.subCategoryCollectionView.reloadData()
+//        scrollToSelected()
+
+    }
+
+
+    func scrollToSelectedCategory(){
+        if let categoryIndex = categoryfilters.index(where: {$0.Fid == selectedCategory?.Fid}){
+            self.adCategoryCollectionView.scrollToItem(at: IndexPath(item: categoryIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }
+
+    }
+    func scrollToSelectedSubCategory(){
+
+        if let subCategoryIndex = subCategoryFilters.index(where: {$0.Fid == selectedSubCategory?.Fid}){
+            self.subCategoryCollectionView.scrollToItem(at: IndexPath(item: subCategoryIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }
+
+    }
+    func scrollToSelectedCity(){
+
+        if let citIndex = cities.index(where: {$0.Fid == selectedCity?.Fid}){
+            self.cityCollectionView.scrollToItem(at: IndexPath(item: citIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }
+
+    }
+    func scrollToSelectedArea(){
+
+        if let areaIndex = areas.index(where: {$0.Fid == selectedArea?.Fid}){
+            self.areaCollectionView.scrollToItem(at: IndexPath(item: areaIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }
     }
     
     func getBussinessFilters(){
@@ -230,6 +310,7 @@ class NewBussinesesViewController: AbstractController {
                 DataStore.shared.categories = cats
                 self.categoriesCount = self.categoryfilters.count
                 self.adCategoryCollectionView.reloadData()
+                self.scrollToSelectedCategory()
             }
             if error != nil{
                 if let msg = error?.errorName{
@@ -247,6 +328,7 @@ class NewBussinesesViewController: AbstractController {
         UIView.animate(withDuration: 0.2, animations: {
             self.subCategoryViewHeight  = 100
         }){ (success) in}
+        scrollToSelectedSubCategory()
     }
     
     func hideSubCategoryView(){
@@ -254,14 +336,55 @@ class NewBussinesesViewController: AbstractController {
             self.subCategoryViewHeight  = 0
         }){ (success) in}
     }
-    
+
+    func getAreas(){
+        self.areasCount = self.areas.count
+        areaCollectionView.reloadData()
+        areaCollectionView.collectionViewLayout.invalidateLayout()
+        areaCollectionView.layoutSubviews()
+        self.areaView.isHidden = false
+        scrollToSelectedArea()
+
+    }
+
+    func HideAreaView(){
+        self.areaView.isHidden = true
+
+    }
+
+
+
+    func getCityFilters(){
+        self.showActivityLoader(true)
+        ApiManager.shared.getCities { (success, error, result,cities) in
+            self.showActivityLoader(false)
+            if success{
+                DataStore.shared.cities = cities
+                self.citiesCount = self.cities.count
+                self.cityCollectionView.reloadData()
+                self.cityCollectionView.collectionViewLayout.invalidateLayout()
+                if let city = self.selectedCity{
+                    self.selectedCity = self.cities.filter({$0.Fid == city.Fid}).first
+                }
+                self.scrollToSelectedCity()
+                self.getAreas()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+    }
+
     func setupCollectionViews(){
         
         let nib = UINib(nibName: cellId, bundle: nil)
         
         self.adCategoryCollectionView.register(nib, forCellWithReuseIdentifier: cellId)
         self.subCategoryCollectionView.register(nib, forCellWithReuseIdentifier: cellId)
-
+        self.cityCollectionView.register(nib, forCellWithReuseIdentifier: cellId)
+        self.areaCollectionView.register(nib, forCellWithReuseIdentifier: cellId)
         let imageNib = UINib(nibName: imageCellId, bundle: nil)
         self.imageCollectionView.register(imageNib, forCellWithReuseIdentifier: imageCellId)
         
@@ -311,6 +434,22 @@ class NewBussinesesViewController: AbstractController {
             tempBussiness?.subCategoryId = cat.Fid
         }else{
             self.showMessage(message: "please select a subCategory".localized, type: .error)
+            return false
+        }
+
+        if let cat = selectedCity {
+            cityId = cat.Fid!
+            tempBussiness?.cityId = cityId
+        }else{
+            self.showMessage(message: "please select a city".localized, type: .error)
+            return false
+        }
+
+        if let cat = selectedArea {
+            locationId = cat.Fid!
+            tempBussiness?.locationId = locationId
+        }else{
+            self.showMessage(message: "please select an area".localized, type: .error)
             return false
         }
         
@@ -480,6 +619,8 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
         if collectionView == self.subCategoryCollectionView{
             return subCategoryFilters.count
         }
+        if collectionView == cityCollectionView         { return citiesCount }
+        if collectionView == areaCollectionView         { return areasCount }
         return 0
     }
     
@@ -500,7 +641,7 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
         }
         
         if collectionView == adCategoryCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! filterCell2
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
             if let category = selectedCategory{
                 if category.Fid == categoryfilters[indexPath.item].Fid{
                     cell.isSelected = true
@@ -516,10 +657,11 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
             }
             cell.title = categoryfilters[indexPath.item].title ?? ""
             cell.setupView(type:.normal)
+            cell.configureCell()
             return cell
         }
         if collectionView == subCategoryCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! filterCell2
+           guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
             if let category = selectedSubCategory{
                 if category.Fid == subCategoryFilters[indexPath.item].Fid{
                     cell.isSelected = true
@@ -534,6 +676,48 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
             }
             cell.title = subCategoryFilters[indexPath.item].title ?? ""
             cell.setupView(type:.normal)
+            cell.configureCell()
+            return cell
+        }
+
+        if collectionView == cityCollectionView{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
+            if let city = selectedCity{
+                if city.Fid == cities[indexPath.item].Fid{
+                    cell.isSelected = true
+                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                    getAreas()
+                }else{
+                    collectionView.deselectItem(at: indexPath, animated: true)
+                    cell.isSelected = false
+                }
+            }else{
+                collectionView.deselectItem(at: indexPath, animated: true)
+                cell.isSelected = false
+            }
+            cell.title = cities[indexPath.item].title ?? ""
+            cell.setupView(type:.normal)
+            cell.configureCell()
+            return cell
+        }
+
+        if collectionView == areaCollectionView{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
+            if let city = selectedArea{
+                if city.Fid == areas[indexPath.item].Fid{
+                    cell.isSelected = true
+                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                }else{
+                    collectionView.deselectItem(at: indexPath, animated: true)
+                    cell.isSelected = false
+                }
+            }else{
+                collectionView.deselectItem(at: indexPath, animated: true)
+                cell.isSelected = false
+            }
+            cell.title = areas[indexPath.item].title ?? ""
+            cell.setupView(type:.normal)
+            cell.configureCell()
             return cell
         }
         return UICollectionViewCell()
@@ -550,15 +734,22 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
         }
         
         if collectionView == adCategoryCollectionView{
-            let height = self.adCategoryCollectionView.bounds.height - 24
+            let height = self.adCategoryCollectionView.bounds.height - 16
             let width = (categoryfilters[indexPath.item].title?.getLabelWidth(font: AppFonts.normal))! + 32
             return CGSize(width: width, height: height)
         }
         
         if collectionView == subCategoryCollectionView{
-            let height = self.subCategoryCollectionView.bounds.height - 24
+            let height = self.subCategoryCollectionView.bounds.height - 16
             let width = (subCategoryFilters[indexPath.item].title?.getLabelWidth(font: AppFonts.normal))! + 32
             return CGSize(width: width, height: height)
+        }
+
+        if collectionView == cityCollectionView{
+            return CGSize(width: cities[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.cityCollectionView.frame.height - 16)
+        }
+        if collectionView == areaCollectionView{
+            return CGSize(width: areas[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.areaCollectionView.frame.height - 16)
         }
         return CGSize(width: 0, height: 0)
     }
@@ -571,9 +762,10 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
         if collectionView == adCategoryCollectionView{
-        let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
-            if collectionView == adCategoryCollectionView {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? filterCell2 else {return}
+
                 if let value = selectedCategory{
                     if value.Fid == categoryfilters[indexPath.item].Fid{
                         cell.isSelected = false
@@ -591,10 +783,11 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
                     cell.isSelected = true
                     self.getSubCategories()
                 }
-            }
+                cell.configureCell()
+
         }
             if collectionView == subCategoryCollectionView{
-                let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+                guard let cell = collectionView.cellForItem(at: indexPath) as? filterCell2 else {return}
                 if let value = selectedSubCategory{
                     if value.Fid == subCategoryFilters[indexPath.item].Fid{
                         selectedSubCategory = nil
@@ -608,7 +801,46 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
                     selectedSubCategory = subCategoryFilters[indexPath.item]
                     cell.isSelected = true
                 }
+                cell.configureCell()
             }
+        if collectionView == cityCollectionView{
+            guard let cell = collectionView.cellForItem(at: indexPath) as? filterCell2 else {return}
+            if let value = selectedCity{
+                if value.Fid == cities[indexPath.item].Fid{
+                    cell.isSelected = false
+                    selectedCity = nil
+                    collectionView.deselectItem(at: indexPath, animated: true)
+                    self.HideAreaView()
+                }else{
+                    selectedCity = cities[indexPath.item]
+                    cell.isSelected = true
+                    self.getAreas()
+                }
+            }else{
+                selectedCity = cities[indexPath.item]
+                cell.isSelected = true
+                self.getAreas()
+            }
+            cell.configureCell()
+
+        }else if collectionView == areaCollectionView{
+            guard let cell = collectionView.cellForItem(at: indexPath) as? filterCell2 else {return}
+            if let value = selectedArea{
+                if value.Fid == areas[indexPath.item].Fid{
+                    selectedArea = nil
+                    cell.isSelected = false
+                    collectionView.deselectItem(at: indexPath, animated: true)
+                }else{
+                    selectedArea = areas[indexPath.item]
+                    cell.isSelected = true
+                }
+            }else{
+                selectedArea = areas[indexPath.item]
+                cell.isSelected = true
+            }
+            cell.configureCell()
+        }
+
         
         if collectionView == imageCollectionView{
             if indexPath.item == images.count{
@@ -625,18 +857,33 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     
         if collectionView == adCategoryCollectionView {
-            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+            guard let  cell = collectionView.cellForItem(at: indexPath) as? filterCell2 else{ return}
             selectedCategory = nil
             selectedSubCategory = nil
             cell.isSelected = false
             cell.configureCell()
         }
         if collectionView == subCategoryCollectionView{
-            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
+            guard let  cell = collectionView.cellForItem(at: indexPath) as? filterCell2 else{ return}
             selectedSubCategory = nil
             cell.isSelected = false
             cell.configureCell()
         }
+        if collectionView == cityCollectionView{
+            if let cell = collectionView.cellForItem(at: indexPath) as? filterCell2{
+                selectedCity = nil
+                cell.isSelected = false
+                cell.configureCell()
+            }
+        }
+        if collectionView == areaCollectionView{
+            if let cell = collectionView.cellForItem(at: indexPath) as? filterCell2{
+                selectedArea = nil
+                cell.isSelected = false
+                cell.configureCell()
+            }
+        }
+
         
     
     }

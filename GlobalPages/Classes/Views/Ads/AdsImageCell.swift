@@ -46,15 +46,23 @@ class AdsImageCell: UICollectionViewCell {
             }
             if let category = post.category{
                 self.tagLabel.text = category.title
+            }else{
+                self.tagLabel.text = ""
             }
             if let title = post.title{
                 self.titleLabel.text = title
+            }else{
+                self.titleLabel.text = ""
             }
             if let city = post.city , let value = city.title{
                 self.cityLabel.text = value
+            }else{
+                self.cityLabel.text = ""
             }
             if let city = post.location , let value = city.title{
                 self.areaLabel.text = value
+            }else{
+                self.areaLabel.text = ""
             }
         }
         

@@ -301,6 +301,13 @@ class BussinessGuideViewController: AbstractController {
     
     func getFilters(){
         filters.removeAll()
+        if let keyWord = Filter.bussinesGuid.keyWord{
+            let cat = categoriesFilter()
+            cat.filtervalue = .keyword
+            cat.titleAr = keyWord
+            cat.titleEn = keyWord
+            filters.append(cat)
+        }
         if let city = Filter.bussinesGuid.city{
             filters.append(city)
             if let area = Filter.bussinesGuid.area{
@@ -359,6 +366,11 @@ class BussinessGuideViewController: AbstractController {
         if let image = bussiness.cover{bussinessGuidImageView.setImageForURL(image, placeholder: nil)}
         if let title = bussiness.title{ bussinessGuideTitleLabel.text = title}
         if let category = bussiness.description{ bussinessGuideCategoryLabel.text = category}
+        if let tag = bussiness.category?.title {
+            tagLabel.text = tag
+
+        }
+
     }
     
     
@@ -539,9 +551,10 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
         
         if collectionView == bussinessGuideCollectionView{
             return 16
-
         }
-        
+        if collectionView == subCategoryCollectionView{
+            return 8
+        }
         return 8
     }
 

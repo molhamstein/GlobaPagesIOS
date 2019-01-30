@@ -189,7 +189,7 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // build up view
-         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64)
+//         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64)
         self.buildUp()
     }
     
