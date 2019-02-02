@@ -89,7 +89,7 @@ class HomeViewController: AbstractController {
     }
 
     override func customizeView() {
-        let image = "logo_\(AppConfig.currentLanguage.langCode)"
+        let image = "logoWhite_\(AppConfig.currentLanguage.langCode)"
         logoImageView.image = UIImage(named:image)
         getFeaturedPosts()
         collectionViewSetup()

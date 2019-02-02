@@ -72,6 +72,7 @@ class AboutViewController: AbstractController, MFMailComposeViewControllerDelega
     
     @IBAction func logout(_ sender: UIButton) {
         ActionLogout.execute()
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

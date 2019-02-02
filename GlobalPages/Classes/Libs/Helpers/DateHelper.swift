@@ -14,6 +14,8 @@ struct DateHelper {
     static func getDateFromISOString(_ dateStr: String) -> Date? {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let loc = Locale(identifier: "us")
+        dateFormater.locale = loc
         return dateFormater.date(from: dateStr)
     }
     
@@ -21,6 +23,8 @@ struct DateHelper {
     static func getISOStringFromDate(_ date: Date) -> String? {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let loc = Locale(identifier: "us")
+        dateFormater.locale = loc
         return dateFormater.string(from: date)
     }
 
@@ -45,12 +49,16 @@ struct DateHelper {
     
     static func getBirthFormatedStringFromDate(_ date: Date) -> String? {
         let dateFormater = DateFormatter()
+        let loc = Locale(identifier: "us")
+        dateFormater.locale = loc
         dateFormater.dateFormat = "dd MMM yyyy"
         return dateFormater.string(from: date)
     }
     
     static func getBirthDateFromString(_ dateStr: String) -> Date? {
         let dateFormater = DateFormatter()
+        let loc = Locale(identifier: "us")
+        dateFormater.locale = loc
         dateFormater.dateFormat = "dd MMM yyyy"
         return dateFormater.date(from: dateStr)
     }

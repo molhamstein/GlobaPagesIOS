@@ -357,6 +357,7 @@ class BussinessGuideViewController: AbstractController {
         overLayView.isHidden = false
         bussinessGuideCollectionView.isHidden = false
         bussinessGuideCollectionView.animateIn(mode: .animateInFromLeft, delay: 0.3)
+        listMapViewButton.isSelected = true
     }
 
     
@@ -630,6 +631,7 @@ extension BussinessGuideViewController{
         bussinessGuideCollectionView.animateIn(mode: .animateOutToLeft, delay: 0.2)
         bussinessGuideCollectionView.isHidden = true
         overLayView.isHidden = true
+        listMapViewButton.isSelected = false
     }
 
     func setMyLocation(){
