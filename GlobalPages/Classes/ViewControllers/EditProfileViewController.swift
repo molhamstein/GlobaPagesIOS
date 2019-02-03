@@ -105,7 +105,7 @@ class EditProfileViewController: AbstractController {
         tempUserInfoHolder = user
         if let username = user.userName {self.usernameTextField.text = username}
         if let email = user.email{self.emailTextField.text = email}
-        if let image = user.profilePic { self.imageView.setImageForURL(image, placeholder: #imageLiteral(resourceName: "image_placeholder"))}
+        if let image = user.profilePic { self.imageView.setImageForURL(image, placeholder: #imageLiteral(resourceName: "user_placeholder"))}
         if let birthDate = user.birthdate {
             birthDateButton.setTitle(DateHelper.getBirthFormatedStringFromDate(birthDate), for: .normal)
             self.birthdate = birthDate
@@ -200,12 +200,12 @@ class EditProfileViewController: AbstractController {
 //            return false
 //        }
         
-        if let birthdate = birthdate {
+        if let birthdate = self.birthdate {
             
             // make sure selected date is valid
             // picked birthadate should be earlier than 12 years from now
             let calendar = NSCalendar.current
-            let date2yearsOld = calendar.date(byAdding: .year, value: -12, to: Date())
+            let date2yearsOld = calendar.date(byAdding: .year, value: -60, to: Date())
             let date100yearsOld = calendar.date(byAdding: .year, value: 100, to: Date())
             
             if birthdate.compare(date2yearsOld!) == .orderedAscending {

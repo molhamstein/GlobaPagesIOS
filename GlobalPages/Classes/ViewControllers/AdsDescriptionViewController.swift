@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 class AdsDescriptionViewController: AbstractController {
 
@@ -71,6 +72,7 @@ class AdsDescriptionViewController: AbstractController {
     }
     
     var images:[Media] = []
+    var SkImages:[SKPhoto] = []
     var cellID = "ImageCell"
     
     var post:Post?

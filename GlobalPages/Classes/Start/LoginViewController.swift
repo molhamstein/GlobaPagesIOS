@@ -337,12 +337,10 @@ class LoginViewController: AbstractController {
                         self.view.isUserInteractionEnabled = true
                         // login success
                         if (isSuccess) {
-                        
-                            self.signupButton.isLoading = false
+
                             self.hideView(withType: .signup)
-                            ActionShowPostCategories.execute()
                             self.showView(withType: .signupSuccess)
-                        
+
                         } else {
                             self.showMessage(message:(error?.type.errorMessage)!, type: .error)
                         }
@@ -351,6 +349,8 @@ class LoginViewController: AbstractController {
                     DataStore.shared.fetchBaseData()
                 
               } else {
+                    self.signupButton.isLoading = false
+                    self.view.isUserInteractionEnabled = true
                     self.showMessage(message:(err?.type.errorMessage)!, type: .error)
               }
           }
@@ -483,7 +483,7 @@ class LoginViewController: AbstractController {
             // make sure selected date is valid
             // picked birthadate should be earlier than 12 years from now
             let calendar = NSCalendar.current
-            let date2yearsOld = calendar.date(byAdding: .year, value: -12, to: Date())
+            let date2yearsOld = calendar.date(byAdding: .year, value: -60, to: Date())
             let date100yearsOld = calendar.date(byAdding: .year, value: 100, to: Date())
             
             if date2yearsOld!.compare(birthdate) == .orderedAscending {
@@ -558,6 +558,11 @@ class LoginViewController: AbstractController {
                 self.signupSucessView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 0)
             }, completion: {(finished: Bool) in
                 self.viewType = .signupSuccess
+                let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "CategoriesSubscriptionViewController") as! CategoriesSubscriptionViewController
+                ViewController.modalTransitionStyle = .crossDissolve
+                ViewController.modalPresentationStyle = .overFullScreen
+                let nav = UINavigationController(rootViewController: ViewController)
+                self.present(nav, animated: true, completion: nil)
             })
         case .socialLoginStep2 :
 //            socialInfoView.dropShadow()
@@ -603,40 +608,13 @@ class LoginViewController: AbstractController {
     }
 }
 
-extension LoginViewController: GIDSignInDelegate, GIDSignInUIDelegate{
-    
-    //MARK:Google SignIn Delegate
-    func signInWillDispatch(signIn: GIDSignIn!, error: NSError!) {
-        self.showActivityLoader(false)
-    }
-    
-    // Present a view that prompts the user to sign in with Google
-    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    // Dismiss the "Sign in with Google" view
-    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    //completed sign In
-    public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
-    }
-    
-    public func sign(inWillDispatch signIn: GIDSignIn!, error: Error!) {
-         self.showActivityLoader(false)
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        
-    }
-}
 
 extension LoginViewController{
 
     func birthdateChanged(_ sender: UIDatePicker) {
         self.birthdate = sender.date
+        if let date = birthdate{
+            self.selectCountryButton.setTitle(DateHelper.getBirthFormatedStringFromDate(date), for: .normal)
+        }
     }
 }

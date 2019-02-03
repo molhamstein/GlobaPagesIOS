@@ -129,6 +129,7 @@ PODS:
   - SDWebImage/WebP (4.4.2):
     - libwebp (~> 0.5)
     - SDWebImage/Core
+  - SKPhotoBrowser (4.1.1)
   - SwiftyJSON (4.1.0)
   - Toast-Swift (2.0.0)
   - TwitterCore (3.2.0)
@@ -145,6 +146,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - NYTPhotoViewer (~> 1.1.0)
   - SDWebImage/WebP
+  - SKPhotoBrowser (~> 4.1.1)
   - SwiftyJSON
   - Toast-Swift (~> 2.0.0)
   - TwitterKit
@@ -173,6 +175,7 @@ SPEC REPOS:
     - NYTPhotoViewer
     - Protobuf
     - SDWebImage
+    - SKPhotoBrowser
     - SwiftyJSON
     - Toast-Swift
     - TwitterCore
@@ -194,18 +197,19 @@ SPEC CHECKSUMS:
   GoogleSignIn: 591e46382014e591269f862ba6e7bc0fbd793532
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GoogleUtilities: abb092d2c12e817fa3e0e7b274987dd72fb86ec3
-  GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
+  GTMOAuth2: e8b6512c896235149df975c41d9a36c868ab7fba
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  SKPhotoBrowser: aa02de50f56d80fac23f543e40847af6b360e4b3
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: bc7bd086b9b724a1d888745a054e1d0b1ecc4f3f
 
-PODFILE CHECKSUM: 0c2e3b2970ca0eb741b548bb554ac6bad01e77bc
+PODFILE CHECKSUM: 3390fdb21f2e53b7cdefa9732a3c40c8f7f5823b
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.5.3

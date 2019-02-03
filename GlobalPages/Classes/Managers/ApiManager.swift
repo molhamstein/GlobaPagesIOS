@@ -248,6 +248,7 @@ class ApiManager: NSObject {
             "password": password,
             "image": ""
         ]
+        print(parameters)
         
         // build request
         Alamofire.request(signUpURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -287,7 +288,7 @@ class ApiManager: NSObject {
         let signUpURL = "\(baseURL)/users/\(user.objectId!)"
         
         var parameters : [String : Any] = [
-            "username": user.userName != nil ? user.userName! : nil,
+            "username": user.userName ?? "",
             "gender": user.gender?.rawValue ?? "male",
             "postCategoriesIds" : categories.map{$0.Fid ?? ""},
             ]
@@ -373,10 +374,10 @@ class ApiManager: NSObject {
         // url & parameters
         let signUpURL = "\(baseURL)/users/fcmToken"
 
-        var parameters : [String : String] = ["token": token]
+        let parameters : [String : String] = ["token": token]
 
         // build request
-        Alamofire.request(signUpURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+        Alamofire.request(signUpURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -1469,7 +1470,7 @@ struct ServerError {
         case userNotActivated = 403
         case invalidUserName = 405
         case noBottleFound = 406
-        case alreadyExists = 101
+        case alreadyExists = 422
         case socialLoginFailed = -110
         case notRegistred = 102
         case missingInputData = 104

@@ -51,7 +51,7 @@ class CategoriesSubscriptionViewController: AbstractController {
 
 
     override func customizeView() {
-//        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(5.0)
         getUserCategories()
         // fonts
         self.infoLabel.font = AppFonts.big

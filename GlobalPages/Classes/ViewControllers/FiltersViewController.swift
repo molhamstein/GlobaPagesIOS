@@ -101,7 +101,7 @@ class FiltersViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
         containerView.isHidden = true
-        if let keyword = categoryfiltertype?.filter.keyWord {
+        if let keyword = categoryfiltertype?.filter.keyWord , !keyword.isEmpty {
             self.keyWordTextField.text = keyword
         }
         if self.categoryfiltertype == categoryFilterType.Home{
@@ -206,7 +206,7 @@ class FiltersViewController: AbstractController {
     
     
     @IBAction func apply(_ sender: UIButton) {
-        if let keyword = keyWordTextField.text{
+        if let keyword = keyWordTextField.text , !keyword.isEmpty{
             categoryfiltertype?.filter.keyWord = keyword
         }else{
             categoryfiltertype?.filter.keyWord = nil

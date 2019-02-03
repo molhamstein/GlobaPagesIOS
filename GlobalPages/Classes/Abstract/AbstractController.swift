@@ -8,6 +8,7 @@
 
 import UIKit
 import Toast_Swift
+import SKPhotoBrowser
 
 // MARK: Alert message types
 enum MessageType{
@@ -364,19 +365,27 @@ extension AbstractController :UIImagePickerControllerDelegate,UINavigationContro
 
     // show Fullscreen image
     func showFullScreenImage(image:UIImage){
-        let newImageView = UIImageView(image: image)
-        newImageView.frame = UIScreen.main.bounds
-        newImageView.backgroundColor = .black
-        newImageView.contentMode = .scaleAspectFit
-        newImageView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
-        newImageView.addGestureRecognizer(tap)
+//        let newImageView = UIImageView(image: image)
+//        newImageView.frame = UIScreen.main.bounds
+//        newImageView.backgroundColor = .black
+//        newImageView.contentMode = .scaleAspectFit
+//        newImageView.isUserInteractionEnabled = true
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+//        newImageView.addGestureRecognizer(tap)
+//
+//        UIView.animate(withDuration: 0.5, delay: 0.3, options: .allowAnimatedContent, animations: {
+//            self.view.addSubview(newImageView)
+//        }, completion: nil)
+//
+//        self.navigationController?.isNavigationBarHidden = true
+        var images = [SKPhoto]()
+        let photo = SKPhoto.photoWithImage(image)// add some UIImage
+        images.append(photo)
 
-        UIView.animate(withDuration: 0.5, delay: 0.3, options: .allowAnimatedContent, animations: {
-            self.view.addSubview(newImageView)
-        }, completion: nil)
-
-        self.navigationController?.isNavigationBarHidden = true
+        // 2. create PhotoBrowser Instance, and present from your viewController.
+        let browser = SKPhotoBrowser(photos: images)
+        browser.initializePageIndex(0)
+        present(browser, animated: true, completion: {})
 
     }
 

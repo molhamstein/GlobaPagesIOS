@@ -332,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eeS-zc-KhK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="977" y="842"/>
+            <point key="canvasLocation" x="977" y="927"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PBY-DX-gYH">
@@ -350,7 +350,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0IO-hk-mcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="214" y="842"/>
+            <point key="canvasLocation" x="214" y="927"/>
         </scene>
         <!--Add New Ad-->
         <scene sceneID="suT-Qy-YPg">
@@ -2226,7 +2226,7 @@
                                         <rect key="frame" x="0.0" y="267" width="375" height="457"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uc6-rw-ecV" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="8" width="274.33333333333331" height="24"/>
+                                                <rect key="frame" x="16" y="8" width="105" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="hdK-7j-8Tw"/>
                                                 </constraints>
@@ -2287,7 +2287,7 @@
                                         <rect key="frame" x="0.0" y="267" width="375" height="457"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2z-PP-EOw" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="15.999999999999986" y="8" width="233.66666666666663" height="24"/>
+                                                <rect key="frame" x="16" y="8" width="70.333333333333329" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="7T0-xg-rG0"/>
                                                 </constraints>
@@ -4985,7 +4985,7 @@
                                         <rect key="frame" x="8" y="201" width="321.66666666666669" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLZ-Oi-c7G" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="133.66666666666666" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -5015,7 +5015,7 @@
                                         <rect key="frame" x="8" y="297" width="321.66666666666669" height="120"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNw-bb-Qz2" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="299" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="92" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -6839,7 +6839,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                 <rect key="frame" x="16" y="184" width="279" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZd-Do-FG2" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="23.333333333333332" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="iSc-fH-PKg"/>
                                                         </constraints>
@@ -8034,14 +8034,14 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="localization" value="You are not subscribed to any category, add?"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                                 <connections>
-                                                                                    <action selector="openSubscriptionPage:" destination="HFS-tc-yzr" eventType="touchUpInside" id="NzH-RE-LZX"/>
+                                                                                    <action selector="openSubscriptionPage:" destination="koG-YK-hKP" eventType="touchUpInside" id="Mht-VE-1Kg"/>
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3F-Qm-CUk">
                                                                                 <rect key="frame" x="301" y="16" width="26" height="26"/>
                                                                                 <state key="normal" image="add"/>
                                                                                 <connections>
-                                                                                    <action selector="openSubscriptionPage:" destination="HFS-tc-yzr" eventType="touchUpInside" id="16V-06-foE"/>
+                                                                                    <action selector="openSubscriptionPage:" destination="koG-YK-hKP" eventType="touchUpInside" id="PGN-WA-Byu"/>
                                                                                 </connections>
                                                                             </button>
                                                                         </subviews>

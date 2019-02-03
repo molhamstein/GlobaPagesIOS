@@ -155,8 +155,8 @@ class SocialManager: NSObject{
     func googleLogin(delegateController: LoginViewController) {
         
         GIDSignIn.sharedInstance().clientID = AppConfig.googleClientID
-        GIDSignIn.sharedInstance().delegate = delegateController
-        GIDSignIn.sharedInstance().uiDelegate = delegateController
+//        GIDSignIn.sharedInstance().delegate = delegateController
+//        GIDSignIn.sharedInstance().uiDelegate = delegateController
         GIDSignIn.sharedInstance().signIn()
         
 //        GIDSignIn.sharedInstance().delegate = self

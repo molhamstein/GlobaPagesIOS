@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65D84FA2A65AE25E733FC7AAF3B8A124"
-               BlueprintName = "FirebaseAnalytics"
+               BlueprintIdentifier = "C4FE22635148D3CD147BE9FF6840D129"
+               BlueprintName = "SKPhotoBrowser"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "FirebaseAnalytics">
+               BuildableName = "SKPhotoBrowser.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

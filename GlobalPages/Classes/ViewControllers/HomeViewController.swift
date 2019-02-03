@@ -200,8 +200,8 @@ class HomeViewController: AbstractController {
             }
         }else{
             let cat = categoriesFilter()
-            cat.titleAr = "كل الاعلانات"
-            cat.titleEn = "all Ads"
+            cat.titleAr = "كل الاصناف"
+            cat.titleEn = "all categories"
             filters.append(cat)
         }
         filtterCollectionView?.reloadData()

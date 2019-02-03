@@ -33,6 +33,7 @@ class ActionLogout:Action {
         alert.addAction(cancelButton)
         if let controller = UIApplication.visibleViewController() {
             controller.present(alert, animated: true, completion: nil)
+            
         }
     }
 }
