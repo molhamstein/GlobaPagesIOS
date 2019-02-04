@@ -148,9 +148,7 @@ extension AppDelegate : MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
-        AppConfig.FCMToken = fcmToken
-      //  DataStore.shared.FCMToken = fcmToken
-        
+        AppConfig.FCMToken = fcmToken  
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
