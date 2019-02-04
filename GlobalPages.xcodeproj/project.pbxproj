@@ -48,12 +48,12 @@
 		1497BC4121F783F300C0DFE2 /* DroidKufiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1497BC3F21F783F200C0DFE2 /* DroidKufiBold.ttf */; };
 		1497BC4221F783F300C0DFE2 /* DroidKufiRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1497BC4021F783F200C0DFE2 /* DroidKufiRegular.ttf */; };
 		1497EF0D21D6BA2200E63B99 /* FireBaseNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */; };
-		1497EF0F21D6C66F00E63B99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1497EF0E21D6C66E00E63B99 /* GoogleService-Info.plist */; };
 		14B1B88C20DEF17C00D86536 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88920DEF17B00D86536 /* CustomLayout.swift */; };
 		14B1B88D20DEF17C00D86536 /* CustomLayoutSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */; };
 		14B1B88E20DEF17C00D86536 /* CustomLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */; };
 		14B1B89120DF88E000D86536 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88F20DF88DD00D86536 /* HeaderView.swift */; };
 		14B1B89220DF88E000D86536 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B1B89020DF88DF00D86536 /* HeaderView.xib */; };
+		14B2BE2522088756000342D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14B2BE2422088756000342D1 /* GoogleService-Info.plist */; };
 		14C05AB320E01EC80096C73C /* SectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C05AB220E01EC70096C73C /* SectionFooterView.swift */; };
 		14C05AB520E01EDD0096C73C /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C05AB420E01EDD0096C73C /* SectionHeaderView.swift */; };
 		14C9DC9920CA27580031685E /* filtterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C9DC9720CA27580031685E /* filtterCell.swift */; };
@@ -202,12 +202,13 @@
 		1497BC3F21F783F200C0DFE2 /* DroidKufiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidKufiBold.ttf; sourceTree = "<group>"; };
 		1497BC4021F783F200C0DFE2 /* DroidKufiRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidKufiRegular.ttf; sourceTree = "<group>"; };
 		1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseNotification.swift; sourceTree = "<group>"; };
-		1497EF0E21D6C66E00E63B99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14B1B88920DEF17B00D86536 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
 		14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutSettings.swift; sourceTree = "<group>"; };
 		14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutAttributes.swift; sourceTree = "<group>"; };
 		14B1B88F20DF88DD00D86536 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		14B1B89020DF88DF00D86536 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		14B2BE2422088756000342D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		14B2BE2622088969000342D1 /* GlobalPages.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlobalPages.entitlements; sourceTree = "<group>"; };
 		14C05AB220E01EC70096C73C /* SectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionFooterView.swift; sourceTree = "<group>"; };
 		14C05AB420E01EDD0096C73C /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		14C9DC9720CA27580031685E /* filtterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filtterCell.swift; sourceTree = "<group>"; };
@@ -441,6 +442,7 @@
 		578685EA20C47FD30002C67B /* GlobalPages */ = {
 			isa = PBXGroup;
 			children = (
+				14B2BE2622088969000342D1 /* GlobalPages.entitlements */,
 				5786885720C4AADB0002C67B /* GlobalPages-Bridging-Header.h */,
 				578685FD20C480500002C67B /* Classes */,
 				5786880620C483190002C67B /* Resources */,
@@ -450,7 +452,7 @@
 				5786884520C4841E0002C67B /* Constants.swift */,
 				578685F220C47FD30002C67B /* Assets.xcassets */,
 				578685F720C47FD30002C67B /* Info.plist */,
-				1497EF0E21D6C66E00E63B99 /* GoogleService-Info.plist */,
+				14B2BE2422088756000342D1 /* GoogleService-Info.plist */,
 				5786884B20C488EE0002C67B /* Localizable.strings */,
 			);
 			path = GlobalPages;
@@ -771,6 +773,14 @@
 					578685E720C47FD30002C67B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -825,7 +835,7 @@
 				1463C45520D9253500156E84 /* AdsTitledCell.xib in Resources */,
 				14C9DC9A20CA27580031685E /* filtterCell.xib in Resources */,
 				145CF7D62105003600126046 /* BussinessGuidListCell.xib in Resources */,
-				1497EF0F21D6C66F00E63B99 /* GoogleService-Info.plist in Resources */,
+				14B2BE2522088756000342D1 /* GoogleService-Info.plist in Resources */,
 				5786884920C488EE0002C67B /* Localizable.strings in Resources */,
 				5786881A20C483190002C67B /* OpenSansSemiBold.ttf in Resources */,
 				5786881C20C483190002C67B /* OpenSansRegular.ttf in Resources */,
@@ -1195,8 +1205,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GlobalPages/GlobalPages.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BBSB6N9C9P;
+				DEVELOPMENT_TEAM = W75U8BF3K8;
 				INFOPLIST_FILE = GlobalPages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1215,8 +1226,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GlobalPages/GlobalPages.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = BBSB6N9C9P;
+				DEVELOPMENT_TEAM = W75U8BF3K8;
 				INFOPLIST_FILE = GlobalPages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
