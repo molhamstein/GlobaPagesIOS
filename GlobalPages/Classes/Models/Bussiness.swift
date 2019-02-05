@@ -243,7 +243,7 @@ public class Bussiness:BaseModel {
         if let value = subCategory{dictionary["subCategory"] = value.dictionaryRepresentation()}
         if let value = locationPoint{dictionary["locationPoint"] = value.dictionaryRepresentation()}
         if let value = media {dictionary["media"] = value.map{$0.dictionaryRepresentation()}}
-    //    if let value = media {dictionary["covers"] = value.map{$0.dictionaryRepresentation()}}
+        if let value = media {dictionary["covers"] = value.map{$0.dictionaryRepresentation()}}
         if let array = products {dictionary["products"] = array.map{$0.dictionaryRepresentation()}}
         
 		return dictionary
