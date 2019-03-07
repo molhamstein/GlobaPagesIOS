@@ -71,7 +71,7 @@ class HomeViewController: AbstractController {
             if let subCat = categoryfiltertype.filter.subCategory{
                 temp = temp.filter({$0.subCategory?.Fid == subCat.Fid})
             }
-              //  temp = temp.filter({$0.isActiviated})
+            temp = temp.filter({$0.isActiviated})
             return temp
         }
         return []
@@ -485,7 +485,11 @@ extension HomeViewController: MenuViewDelegate {
     }
     
     func preVolume(){
-        currentVolume = currentVolume! + 1
+        if let value = currentVolume , value < 4{
+            currentVolume = currentVolume! + 1
+        }else{
+            self.showMessage(message: "END_OF_VOULUMES".localized, type: .warning)
+        }
     }
     
     func showMap() {

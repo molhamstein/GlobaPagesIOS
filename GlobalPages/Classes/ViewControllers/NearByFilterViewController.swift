@@ -41,9 +41,9 @@ class NearByFilterViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
          self.navigationController?.navigationBar.tintColor = .white
-        getBussinessFilters()
+         self.filters = DataStore.shared.categoriesfilters
+         getBussinessFilters()
     }
     
     
@@ -77,7 +77,9 @@ class NearByFilterViewController: AbstractController {
     
     
     func getBussinessFilters(){
-        self.showActivityLoader(true)
+        if DataStore.shared.categoriesfilters.isEmpty{
+            self.showActivityLoader(true)
+        }
         ApiManager.shared.businessCategories { (success, error, result ,cats) in
             self.showActivityLoader(false)
             if success{

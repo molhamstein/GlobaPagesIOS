@@ -20,6 +20,13 @@ public class Volume:BaseModel {
         return titleEn
     }
     
+    var isActiviated:Bool{
+        if status != nil{
+            return status == "activated"
+        }
+        return false
+    }
+    
     // MARK: Initializers
     override init() {
         super.init()

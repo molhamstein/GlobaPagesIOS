@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GlobalPages/Classes/Managers/ApiManager.swift"
-            timestampString = "570890112.699668"
+            timestampString = "573655876.069563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1174"
-            endingLineNumber = "1174"
+            startingLineNumber = "1177"
+            endingLineNumber = "1177"
             landmarkName = "addPost(post:cityId:locationId:completionBlock:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -176,6 +176,390 @@
             startingLineNumber = "203"
             endingLineNumber = "203"
             landmarkName = "validateFields()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/ProfileViewController.swift"
+            timestampString = "573638061.297686"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "fillUserData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/Managers/ApiManager.swift"
+            timestampString = "573655876.070102"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "getMe(completionBlock:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GlobalPages.ApiManager.getMe(completionBlock: (Swift.Bool, Swift.Optional&lt;GlobalPages.ServerError&gt;, Swift.Optional&lt;GlobalPages.AppUser&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "GlobalPages"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/Managers/ApiManager.swift"
+                  timestampString = "573638343.840214"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "345"
+                  endingLineNumber = "345"
+                  offsetFromSymbolStart = "808">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in GlobalPages.ApiManager.getMe(completionBlock: (Swift.Bool, Swift.Optional&lt;GlobalPages.ServerError&gt;, Swift.Optional&lt;GlobalPages.AppUser&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "GlobalPages"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/Managers/ApiManager.swift"
+                  timestampString = "573638343.842926"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "346"
+                  endingLineNumber = "346"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/Managers/DataStore.swift"
+            timestampString = "573655876.070442"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
+            landmarkName = "logout()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+            timestampString = "573655876.070833"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
+            landmarkName = "scrollToSelectedCity()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GlobalPages.NewBussinesesViewController.scrollToSelectedCity() -&gt; ()"
+                  moduleName = "GlobalPages"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+                  timestampString = "573655878.283235"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "293"
+                  endingLineNumber = "293"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (GlobalPages.City) -&gt; Swift.Bool in GlobalPages.NewBussinesesViewController.scrollToSelectedCity() -&gt; ()"
+                  moduleName = "GlobalPages"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+                  timestampString = "573655878.28861"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "293"
+                  endingLineNumber = "293"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+            timestampString = "573655876.071092"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "scrollToSelectedSubCategory()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GlobalPages.NewBussinesesViewController.scrollToSelectedSubCategory() -&gt; ()"
+                  moduleName = "GlobalPages"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+                  timestampString = "573655878.301463"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "286"
+                  endingLineNumber = "286"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (GlobalPages.Category) -&gt; Swift.Bool in GlobalPages.NewBussinesesViewController.scrollToSelectedSubCategory() -&gt; ()"
+                  moduleName = "GlobalPages"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+                  timestampString = "573655878.304183"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "286"
+                  endingLineNumber = "286"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+            timestampString = "573655876.071303"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "scrollToSelectedCategory()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GlobalPages.NewBussinesesViewController.scrollToSelectedCategory() -&gt; ()"
+                  moduleName = "GlobalPages"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+                  timestampString = "573655878.310267"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "279"
+                  endingLineNumber = "279"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (GlobalPages.Category) -&gt; Swift.Bool in GlobalPages.NewBussinesesViewController.scrollToSelectedCategory() -&gt; ()"
+                  moduleName = "GlobalPages"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+                  timestampString = "573655878.313221"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "279"
+                  endingLineNumber = "279"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+            timestampString = "573655876.071447"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "scrollToSelectedArea()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GlobalPages.NewBussinesesViewController.scrollToSelectedArea() -&gt; ()"
+                  moduleName = "GlobalPages"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+                  timestampString = "573655878.321068"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (GlobalPages.City) -&gt; Swift.Bool in GlobalPages.NewBussinesesViewController.scrollToSelectedArea() -&gt; ()"
+                  moduleName = "GlobalPages"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+                  timestampString = "573655878.32333"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+            timestampString = "573655876.071614"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "fillData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+            timestampString = "573655876.07186"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "getBussinessFilters()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+            timestampString = "573655876.072028"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "getAreas()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+            timestampString = "573655876.072198"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "getCityFilters()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+            timestampString = "573655876.072373"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
+            landmarkName = "validate()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
+            timestampString = "573655876.072528"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
+            landmarkName = "fillData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GlobalPages/Classes/ViewControllers/FiltersViewController.swift"
+            timestampString = "573655876.072739"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "getBussinessFilters()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

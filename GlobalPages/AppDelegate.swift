@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func getBussinessFilters(){
         ApiManager.shared.businessCategories { (success, error, result , cats) in}
         ApiManager.shared.postCategories(completionBlock: { (_, _, _) in})
+        ApiManager.shared.getCities { (_, _, _, _) in}
     }
     
 

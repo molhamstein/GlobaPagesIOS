@@ -339,7 +339,7 @@ class ApiManager: NSObject {
     /// get me
     func getMe(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/users/\(DataStore.shared.me?.objectId ?? " ")"
+        let signUpURL = "\(baseURL)/users/\(DataStore.shared.me?.objectId ?? "")"
         
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -830,7 +830,8 @@ class ApiManager: NSObject {
                         let filters = array.map{categoriesFilter(json:$0)}
                         let categories = array.map{Category(json:$0)}
                         DataStore.shared.categories = categories
-                        completionBlock(true , nil, filters,categories)
+                        DataStore.shared.categoriesfilters = filters
+                        completionBlock(true , nil, filters , categories)
                     }else{
                         completionBlock(true , nil, [],[])
                     }
@@ -867,6 +868,8 @@ class ApiManager: NSObject {
                     if let array = jsonResponse.array{
                         let filters = array.map{categoriesFilter(json:$0)}
                         let cities = array.map{City(json:$0)}
+                        DataStore.shared.cities = cities
+                        DataStore.shared.citiesfilters = filters
                         completionBlock(true , nil, filters,cities)
                     }else{
                         completionBlock(true , nil, [],[])

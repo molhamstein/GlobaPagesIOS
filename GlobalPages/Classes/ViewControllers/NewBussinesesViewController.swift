@@ -140,8 +140,8 @@ class NewBussinesesViewController: AbstractController {
         }else{
             self.setNavBarTitle(title: "Edit Bussiness".localized)
         }
-        getBussinessFilters()
-        getCityFilters()
+//        getBussinessFilters()
+//        getCityFilters()
         self.subCategoryView.isHidden = false
         self.areaView.isHidden = true
     }

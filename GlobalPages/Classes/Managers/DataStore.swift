@@ -21,6 +21,7 @@ class DataStore :NSObject {
     
     //MARK: Cache keys
     private let CACHE_KEY_CATEGORIES = "categories"
+    private let CACHE_KEY_CATEGORIES_FILTERS = "categories_filters"
     private let CACHE_KEY_POST_CATEGORIES = "postcategories"
     private let CACHE_KEY_SHORES = "SHORES"
     private let CACHE_KEY_SHOPITEM = "SHOPITEM"
@@ -31,6 +32,7 @@ class DataStore :NSObject {
     private let CACHE_KEY_BUSSINESS = "bussiness"
     private let CACHE_KEY_NOTIFICATION = "notification"
     private let CACHE_KEY_CITY = "cities"
+    private let CACHE_KEY_CITY_FILTERS = "citiesfilters"
     private let CACHE_KEY_AREA = "area"
     private let CACHE_KEY_USER = "user"
     private let CACHE_KEY_TOKEN = "token"
@@ -46,10 +48,12 @@ class DataStore :NSObject {
     private var _volume:Volume?
     private var _posts:[Post] = [Post]()
     private var _categories:[Category] = [Category]()
+    private var _categories_filters:[categoriesFilter] = [categoriesFilter]()
     private var _post_categories:[categoriesFilter] = [categoriesFilter]()
     private var _favorites:[Category] = [Category]()
     private var _subcategories:[Category] = [Category]()
     private var _cities:[City] = [City]()
+    private var _cities_filters:[categoriesFilter] = [categoriesFilter]()
     private var _areas:[City] = [City]()
     private var _bussiness:[Bussiness] = [Bussiness]()
     private var _notification:[AppNotification] = [AppNotification]()
@@ -76,6 +80,21 @@ class DataStore :NSObject {
             return _categories
         }
     }
+    
+    
+    public var categoriesfilters: [categoriesFilter] {
+        set {
+            _categories_filters = newValue
+            saveBaseModelArray(array: _categories_filters, withKey: CACHE_KEY_CATEGORIES_FILTERS)
+        }
+        get {
+            if(_categories_filters.isEmpty){
+                _categories_filters = loadBaseModelArrayForKey(key: CACHE_KEY_CATEGORIES_FILTERS)
+            }
+            return _categories_filters
+        }
+    }
+    
     public var postCategories: [categoriesFilter] {
         set {
             _post_categories = newValue
@@ -128,6 +147,20 @@ class DataStore :NSObject {
             return _cities
         }
     }
+    
+    public var citiesfilters: [categoriesFilter] {
+        set {
+            _cities_filters = newValue
+            saveBaseModelArray(array: _cities_filters, withKey: CACHE_KEY_CITY_FILTERS)
+        }
+        get {
+            if(_cities_filters.isEmpty){
+                _cities_filters = loadBaseModelArrayForKey(key: CACHE_KEY_CITY_FILTERS)
+            }
+            return _cities_filters
+        }
+    }
+    
     
     
     public var areas: [City] {

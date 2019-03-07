@@ -105,10 +105,13 @@ class FiltersViewController: AbstractController {
             self.keyWordTextField.text = keyword
         }
         if self.categoryfiltertype == categoryFilterType.Home{
+            self.filters = DataStore.shared.postCategories
             getPostFilters()
         }else{
+            self.filters = DataStore.shared.categoriesfilters
             getBussinessFilters()
         }
+        self.cities = DataStore.shared.citiesfilters
         getCityFilters()
         
     }
@@ -170,6 +173,8 @@ class FiltersViewController: AbstractController {
         
         self.hideSubCategoryView()
         self.HideAreaView()
+        self.filters = DataStore.shared.categoriesfilters
+        self.cities  = DataStore.shared.citiesfilters
         
         setupCollectionViews()
     }
@@ -253,7 +258,9 @@ class FiltersViewController: AbstractController {
     
     
     func getBussinessFilters(){
-        self.showActivityLoader(true)
+        if DataStore.shared.categoriesfilters.isEmpty{
+            self.showActivityLoader(true)
+        }
         ApiManager.shared.businessCategories { (success, error, result,cats) in
             self.showActivityLoader(false)
             if success{
@@ -271,7 +278,9 @@ class FiltersViewController: AbstractController {
     }
     
     func getCityFilters(){
-        self.showActivityLoader(true)
+        if DataStore.shared.citiesfilters.isEmpty{
+            self.showActivityLoader(true)
+        }
         ApiManager.shared.getCities { (success, error, result,cats) in
             self.showActivityLoader(false)
             if success{
@@ -289,7 +298,9 @@ class FiltersViewController: AbstractController {
     
     //postCategories
     func getPostFilters(){
-        self.showActivityLoader(true)
+        if DataStore.shared.postCategories.isEmpty{
+            self.showActivityLoader(true)
+        }
         ApiManager.shared.postCategories { (success, error, result) in
             self.showActivityLoader(false)
             if success{

@@ -7204,7 +7204,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Appartment for sale in Al-Mazzeh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aB-as-fbe">
-                                                <rect key="frame" x="16" y="91.333333333333314" width="194" height="40.666666666666657"/>
+                                                <rect key="frame" x="16" y="111.66666666666669" width="194" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -7310,7 +7310,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUS-rn-M1F">
-                                        <rect key="frame" x="32" y="256" width="311" height="300"/>
+                                        <rect key="frame" x="32" y="306" width="311" height="200"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJh-fn-x2l">
                                                 <rect key="frame" x="16" y="32" width="279" height="60"/>
@@ -7426,71 +7426,16 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                     <constraint firstAttribute="trailing" secondItem="MbN-ZK-Ysy" secondAttribute="trailing" id="xFv-ZZ-qFU"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fW1-yb-Ncz">
-                                                <rect key="frame" x="16" y="184" width="279" height="60"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFL-KT-RMU" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="23.333333333333332" height="22"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="22" id="Pay-KQ-cjf"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localization" value="FAX"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMw-LQ-DEE">
-                                                        <rect key="frame" x="8" y="30" width="231" height="30"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQU-Xs-d3L">
-                                                        <rect key="frame" x="247" y="33" width="24" height="24"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="24" id="RUd-kC-Ng2"/>
-                                                            <constraint firstAttribute="width" constant="24" id="y2J-3n-mGc"/>
-                                                        </constraints>
-                                                    </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Spa-Lf-pd1">
-                                                        <rect key="frame" x="0.0" y="59" width="279" height="1"/>
-                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="1" id="csU-pK-2DG"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="Spa-Lf-pd1" secondAttribute="trailing" id="2Hb-mj-eZB"/>
-                                                    <constraint firstItem="lQU-Xs-d3L" firstAttribute="centerY" secondItem="iMw-LQ-DEE" secondAttribute="centerY" id="5LD-Xu-BOb"/>
-                                                    <constraint firstAttribute="height" constant="60" id="6V8-C7-wr4"/>
-                                                    <constraint firstAttribute="bottom" secondItem="iMw-LQ-DEE" secondAttribute="bottom" id="TOg-bz-ZcI"/>
-                                                    <constraint firstItem="Spa-Lf-pd1" firstAttribute="leading" secondItem="fW1-yb-Ncz" secondAttribute="leading" id="UTZ-rm-rFd"/>
-                                                    <constraint firstItem="lQU-Xs-d3L" firstAttribute="leading" secondItem="iMw-LQ-DEE" secondAttribute="trailing" constant="8" id="VMM-cK-Xtd"/>
-                                                    <constraint firstItem="mFL-KT-RMU" firstAttribute="top" secondItem="fW1-yb-Ncz" secondAttribute="top" id="Zy2-az-m3O"/>
-                                                    <constraint firstAttribute="trailing" secondItem="lQU-Xs-d3L" secondAttribute="trailing" constant="8" id="cDK-Rs-hW6"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Spa-Lf-pd1" secondAttribute="bottom" id="hs7-sT-X5X"/>
-                                                    <constraint firstItem="iMw-LQ-DEE" firstAttribute="leading" secondItem="fW1-yb-Ncz" secondAttribute="leading" constant="8" id="r3C-aH-T8l"/>
-                                                    <constraint firstItem="mFL-KT-RMU" firstAttribute="leading" secondItem="fW1-yb-Ncz" secondAttribute="leading" id="xBT-wE-wOC"/>
-                                                    <constraint firstItem="iMw-LQ-DEE" firstAttribute="top" secondItem="mFL-KT-RMU" secondAttribute="bottom" constant="8" id="xju-6y-nvy"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="0zX-hP-djq"/>
+                                            <constraint firstAttribute="height" constant="200" id="0zX-hP-djq"/>
                                             <constraint firstAttribute="trailing" secondItem="Doa-VM-QsO" secondAttribute="trailing" constant="16" id="5pM-hS-MO4"/>
-                                            <constraint firstItem="fW1-yb-Ncz" firstAttribute="leading" secondItem="EUS-rn-M1F" secondAttribute="leading" constant="16" id="6QZ-BV-E5u"/>
                                             <constraint firstItem="Doa-VM-QsO" firstAttribute="top" secondItem="NJh-fn-x2l" secondAttribute="bottom" constant="16" id="8aP-lc-utK"/>
                                             <constraint firstItem="NJh-fn-x2l" firstAttribute="leading" secondItem="EUS-rn-M1F" secondAttribute="leading" constant="16" id="D1O-mT-8BG"/>
-                                            <constraint firstAttribute="trailing" secondItem="fW1-yb-Ncz" secondAttribute="trailing" constant="16" id="EP4-2g-C3Q"/>
                                             <constraint firstItem="NJh-fn-x2l" firstAttribute="top" secondItem="EUS-rn-M1F" secondAttribute="top" constant="32" id="Eb2-Lv-JQe"/>
                                             <constraint firstItem="Doa-VM-QsO" firstAttribute="leading" secondItem="EUS-rn-M1F" secondAttribute="leading" constant="16" id="IEQ-2F-DGU"/>
                                             <constraint firstAttribute="trailing" secondItem="NJh-fn-x2l" secondAttribute="trailing" constant="16" id="UfZ-6Y-RP8"/>
-                                            <constraint firstItem="fW1-yb-Ncz" firstAttribute="top" secondItem="Doa-VM-QsO" secondAttribute="bottom" constant="16" id="dXi-hG-L3n"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -7550,8 +7495,6 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                         <outlet property="dateTitleLabel" destination="qzZ-z1-VZ3" id="B9o-JH-Yii"/>
                         <outlet property="descriptinTitleLabel" destination="J2x-lB-XGX" id="qar-97-hMy"/>
                         <outlet property="descriptionTextView" destination="Tj6-yc-QjH" id="Px3-Ah-xJc"/>
-                        <outlet property="faxLabel" destination="iMw-LQ-DEE" id="5po-IL-aMz"/>
-                        <outlet property="faxTitleLabel" destination="mFL-KT-RMU" id="Km4-cK-q99"/>
                         <outlet property="headerView" destination="Ckv-Hl-nB6" id="0CK-3L-H9k"/>
                         <outlet property="imageCollectionView" destination="lk0-dg-9ii" id="LiH-hz-JJ4"/>
                         <outlet property="pageController" destination="W5a-Ns-uAn" id="m1r-HQ-AW7"/>
