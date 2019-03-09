@@ -8,8 +8,11 @@
 
 import UIKit
 
+protocol AdsCellDelegate {
+    func showEdit(post:Post)
+}
+
 class AdsTitledCell: UICollectionViewCell {
-    
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topView: UIView!
@@ -23,6 +26,10 @@ class AdsTitledCell: UICollectionViewCell {
     @IBOutlet weak var lineView2: UIView!
     @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
     @IBOutlet weak var tagLabelWidthConstraint: XNSLayoutConstraint!
+    
+    @IBOutlet weak var editButton: UIButton!
+    
+    var delegate:AdsCellDelegate?
     
     var tagLabelWidht:CGFloat = 0 {
         didSet{
@@ -65,13 +72,11 @@ class AdsTitledCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // fonts
-        
         self.descriptionLabel.font = AppFonts.normalBold
         self.tagLabel.font =  AppFonts.small
         self.titleLabel.font = AppFonts.normalBold
         self.cityLabel.font = AppFonts.normal
         self.areaLabel.font = AppFonts.normal
-        
         self.roundedBorder(value: 5.0)
         self.addShadow()
     }
@@ -83,7 +88,14 @@ class AdsTitledCell: UICollectionViewCell {
         }
     }
     
+    @IBAction func edit(){
+        guard let post = self.post else{return}
+        delegate?.showEdit(post: post)
+    }
     
+    func editMode(){
+        self.editButton.isHidden = false
+    }
 }
 
 

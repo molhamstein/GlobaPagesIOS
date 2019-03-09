@@ -1188,6 +1188,9 @@ ZGVhbHMgYXJyb3VuZA
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="gradient" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="nextStageAction:" destination="6Tj-pv-43H" eventType="touchUpInside" id="sPc-cU-GaT"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -58,9 +58,9 @@ class ResetPasswordViewController: AbstractController {
     // MARK: Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.showNavBackButton = true
+        //        self.showNavBackButton = true
         
-         navigationView.viewcontroller = self
+        navigationView.viewcontroller = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -83,81 +83,66 @@ class ResetPasswordViewController: AbstractController {
     // Customize all view members (fonts - style - text)
     override func customizeView() {
         super.customizeView()
-//        // set fonts
+        //        // set fonts
         emailLabel.font = AppFonts.big
         emailTextField.font = AppFonts.xBigBold
         
-//        stage1Desc.font = AppFonts.small
-//        stage2Label.font = AppFonts.big
-//        stage2Desc.font = AppFonts.small
-//        codeLabel.font = AppFonts.xSmallBold
-//        passwordLabel.font = AppFonts.xSmallBold
-//        nextButton.titleLabel?.font = AppFonts.normalSemiBold
-//        // set text
-//        stage1Label.text = "RESET_STEP1_TITLE".localized
-//        stage1Desc.text = "RESET_STEP1_DESC".localized
-//        emailLabel.text = "SINGUP_EMAIL_TITLE".localized
+        //        stage1Desc.font = AppFonts.small
+        //        stage2Label.font = AppFonts.big
+        //        stage2Desc.font = AppFonts.small
+        //        codeLabel.font = AppFonts.xSmallBold
+        //        passwordLabel.font = AppFonts.xSmallBold
+        //        nextButton.titleLabel?.font = AppFonts.normalSemiBold
+        //        // set text
+        //        stage1Label.text = "RESET_STEP1_TITLE".localized
+        //        stage1Desc.text = "RESET_STEP1_DESC".localized
+        //        emailLabel.text = "SINGUP_EMAIL_TITLE".localized
         navigationView.title = "RESET_STEP1_TITLE".localized
         emailLabel.text = "LOGIN_EMAIL_TITLE".localized
         emailTextField.placeholder = "LOGIN_EMAIL_PLACEHOLDER".localized
         nextButton.setTitle("RESET_ACTION_NEXT".localized, for: .normal)
         nextButton.setTitle("RESET_ACTION_NEXT".localized, for: .highlighted)
-
-//        stage2Label.text = "RESET_STEP1_TITLE".localized
-//        stage2Desc.text = "RESET_STEP2_DESC".localized
-//        codeLabel.text = "RESET_CODE_TITLE".localized
-//        codeTextField.placeholder = "RESET_CODE_PLACEHOLDER".localized
-//        passwordLabel.text = "RESET_PASSWORD_TITLE".localized
-//        passwordTextField.placeholder = "RESET_PASSWORD_PLACEHOLDER".localized
-//        nextButton.setTitle("RESET_ACTION_NEXT".localized, for: .normal)
-//        nextButton.setTitle("RESET_ACTION_NEXT".localized, for: .highlighted)
-//        nextButton.hideTextWhenLoading = true
-//        // text field styles
-//        emailTextField.appStyle()
-//        codeTextField.appStyle()
-//        passwordTextField.appStyle()
-//        // init stages array
-//        arrayStagesContainers.append(resetStage1)
-//        arrayStagesContainers.append(resetStage2)
-//        arrayStagesBullets.append(s1Bullet)
-//        arrayStagesBullets.append(s2Bullet)
-//        // start first stage
-//        nextStageAction(nextButton)
+        
+        //        stage2Label.text = "RESET_STEP1_TITLE".localized
+        //        stage2Desc.text = "RESET_STEP2_DESC".localized
+        //        codeLabel.text = "RESET_CODE_TITLE".localized
+        //        codeTextField.placeholder = "RESET_CODE_PLACEHOLDER".localized
+        //        passwordLabel.text = "RESET_PASSWORD_TITLE".localized
+        //        passwordTextField.placeholder = "RESET_PASSWORD_PLACEHOLDER".localized
+        //        nextButton.setTitle("RESET_ACTION_NEXT".localized, for: .normal)
+        //        nextButton.setTitle("RESET_ACTION_NEXT".localized, for: .highlighted)
+        //        nextButton.hideTextWhenLoading = true
+        //        // text field styles
+        //        emailTextField.appStyle()
+        //        codeTextField.appStyle()
+        //        passwordTextField.appStyle()
+        //        // init stages array
+        //        arrayStagesContainers.append(resetStage1)
+        //        arrayStagesContainers.append(resetStage2)
+        //        arrayStagesBullets.append(s1Bullet)
+        //        arrayStagesBullets.append(s2Bullet)
+        //        // start first stage
+        //        nextStageAction(nextButton)
     }
     
     override func backButtonAction(_ sender: AnyObject) {
         // hide keyboard
-//        emailTextField.resignFirstResponder()
-//        codeTextField.resignFirstResponder()
-//        passwordTextField.resignFirstResponder()
-//        if currentStageIndex == 0 {
-            _ = self.navigationController?.popViewController(animated: true)
-//        } else {
-//            backStage()
-//        }
+        //        emailTextField.resignFirstResponder()
+        //        codeTextField.resignFirstResponder()
+        //        passwordTextField.resignFirstResponder()
+        //        if currentStageIndex == 0 {
+        _ = self.navigationController?.popViewController(animated: true)
+        //        } else {
+        //            backStage()
+        //        }
     }
     
     // MARK: Actions
     @IBAction func nextStageAction (_ sender: AnyObject) {
         // hide keyboard
         emailTextField.resignFirstResponder()
-        codeTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        switch currentStageIndex {
-        case -1:
-            switchToStageIndex(0)
-        case 0:
-            if self.validateStage1() {
-                forgetPassword()
-            }
-            break;
-        case 1:
-            if self.validateStage2() {
-                confirmForgetPassword()
-            }
-            break;
-        default:
-            break;
+        if self.validateStage1() {
+            forgetPassword()
         }
     }
     
@@ -255,13 +240,14 @@ class ResetPasswordViewController: AbstractController {
         // start loader
         nextButton.isLoading = true
         self.view.isUserInteractionEnabled = false
-        ApiManager.shared.forgetPassword(email: userEmail) { (success: Bool, err: ServerError?) in
+        ApiManager.shared.forgetPassword(email: userEmail) { (success: Bool, err: ServerError?, result) in
             // stop loader
             self.nextButton.isLoading = false
             self.view.isUserInteractionEnabled = true
             if (success) {
-                let newStageIndex = self.currentStageIndex + 1
-                self.switchToStageIndex(newStageIndex)
+                if let msg = result{
+                    self.showMessage(message: msg, type: .success)
+                }
             } else {
                 self.showMessage(message:(err?.type.errorMessage)!, type: .error)
             }

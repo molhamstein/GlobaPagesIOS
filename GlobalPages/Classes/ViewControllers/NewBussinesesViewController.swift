@@ -140,8 +140,9 @@ class NewBussinesesViewController: AbstractController {
         }else{
             self.setNavBarTitle(title: "Edit Bussiness".localized)
         }
-//        getBussinessFilters()
-//        getCityFilters()
+        getBussinessFilters()
+        getCityFilters()
+        self.citiesCount = self.cities.count
         self.subCategoryView.isHidden = false
         self.areaView.isHidden = true
     }
@@ -154,6 +155,7 @@ class NewBussinesesViewController: AbstractController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        self.addButton.dropShadow()
         self.addButton.applyStyleGredeant()
     }
     
@@ -303,7 +305,9 @@ class NewBussinesesViewController: AbstractController {
     }
     
     func getBussinessFilters(){
-        self.showActivityLoader(true)
+        if DataStore.shared.categories.isEmpty{
+            self.showActivityLoader(true)
+        }
         ApiManager.shared.businessCategories { (success, error, result , cats) in
             self.showActivityLoader(false)
             if success{
@@ -355,7 +359,9 @@ class NewBussinesesViewController: AbstractController {
 
 
     func getCityFilters(){
-        self.showActivityLoader(true)
+        if DataStore.shared.cities.isEmpty{
+            self.showActivityLoader(true)
+        }
         ApiManager.shared.getCities { (success, error, result,cities) in
             self.showActivityLoader(false)
             if success{
@@ -645,7 +651,7 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
             if let category = selectedCategory{
                 if category.Fid == categoryfilters[indexPath.item].Fid{
                     cell.isSelected = true
-                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
                     self.getSubCategories()
                 }else{
                     collectionView.deselectItem(at: indexPath, animated: true)
@@ -665,7 +671,7 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
             if let category = selectedSubCategory{
                 if category.Fid == subCategoryFilters[indexPath.item].Fid{
                     cell.isSelected = true
-                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
                 }else{
                     collectionView.deselectItem(at: indexPath, animated: true)
                     cell.isSelected = false
@@ -685,7 +691,7 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
             if let city = selectedCity{
                 if city.Fid == cities[indexPath.item].Fid{
                     cell.isSelected = true
-                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
                     getAreas()
                 }else{
                     collectionView.deselectItem(at: indexPath, animated: true)
@@ -706,7 +712,7 @@ extension NewBussinesesViewController:UICollectionViewDataSource,UICollectionVie
             if let city = selectedArea{
                 if city.Fid == areas[indexPath.item].Fid{
                     cell.isSelected = true
-                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
                 }else{
                     collectionView.deselectItem(at: indexPath, animated: true)
                     cell.isSelected = false

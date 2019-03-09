@@ -161,6 +161,8 @@ class BussinessGuideViewController: AbstractController {
 //            controllerType.showFilters()
         }else if controllerType == .bussinessGuide{
             self.isListView = true
+            getBussinessFilters()
+            showNearbyFilterView()
             getBussiness()
         }else if controllerType == .pharmacy{
             getNearByPharmacies()
@@ -279,7 +281,7 @@ class BussinessGuideViewController: AbstractController {
         self.tagView.layer.cornerRadius = 12
         // gradiant
         self.tagView.applyGradient(colours: [AppColors.yellowDark,AppColors.yellowLight], direction: .diagonal)
-        self.showNavBackButton = true
+        self.showNavBlackBackButton = true
     }
     
     func getBussiness(){
@@ -309,8 +311,10 @@ class BussinessGuideViewController: AbstractController {
             filters.append(cat)
         }
         if let city = Filter.bussinesGuid.city{
+            city.filtervalue = .city
             filters.append(city)
             if let area = Filter.bussinesGuid.area{
+                area.filtervalue = .area
                 filters.append(area)
             }
         }else{
@@ -321,8 +325,10 @@ class BussinessGuideViewController: AbstractController {
         }
         
         if let cat = Filter.bussinesGuid.category{
+            cat.filtervalue = .category
             filters.append(cat)
             if let subCat = Filter.bussinesGuid.subCategory{
+                subCat.filtervalue = .subCategory
                 filters.append(subCat)
             }
         }else{
@@ -513,8 +519,16 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
             self.present(nav, animated: true, completion: nil)
         }
         if collectionView == categoryCollectionView {
-            self.selectedCategory = categoryfilters[indexPath.item]
-            self.showSubCategory()
+            
+            if controllerType == .bussinessGuide{
+                Filter.bussinesGuid.category = categoryfilters[indexPath.item]
+                self.getFilters()
+                self.nearByView.animateIn(mode: .animateOutToBottom, delay: 0.3)
+                self.nearByView.isHidden = true
+            }else if controllerType == .nearBy{
+                self.selectedCategory = categoryfilters[indexPath.item]
+                self.showSubCategory()
+            }
         }
         if collectionView == subCategoryCollectionView{
             ///

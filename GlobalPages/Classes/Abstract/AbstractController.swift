@@ -77,6 +77,15 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     var navBackButton : UIBarButtonItem  {
         let _navBackButton   = UIButton()
         _navBackButton.dropShadow()
+        _navBackButton.setBackgroundImage(UIImage(named: "ic_back_white"), for: .normal)
+        _navBackButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        _navBackButton.addTarget(self, action: #selector(backButtonAction(_:)), for: .touchUpInside)
+        return UIBarButtonItem(customView: _navBackButton)
+    }
+    
+    var navBlackBackButton : UIBarButtonItem  {
+        let _navBackButton   = UIButton()
+        _navBackButton.dropShadow()
         _navBackButton.setBackgroundImage(UIImage(named: "navBackIcon"), for: .normal)
         _navBackButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         _navBackButton.addTarget(self, action: #selector(backButtonAction(_:)), for: .touchUpInside)
@@ -116,6 +125,17 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
         didSet {
             if (showNavBackButton) {
                 self.navigationItem.leftBarButtonItem = navBackButton
+            } else {
+                self.navigationItem.leftBarButtonItem = nil
+                self.navigationItem.leftBarButtonItems = nil
+            }
+        }
+    }
+    
+    var showNavBlackBackButton: Bool = false {
+        didSet {
+            if (showNavBlackBackButton) {
+                self.navigationItem.leftBarButtonItem = navBlackBackButton
             } else {
                 self.navigationItem.leftBarButtonItem = nil
                 self.navigationItem.leftBarButtonItems = nil

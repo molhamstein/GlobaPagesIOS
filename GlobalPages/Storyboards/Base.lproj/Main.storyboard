@@ -7447,7 +7447,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                     <constraint firstItem="EUS-rn-M1F" firstAttribute="centerY" secondItem="lgN-bL-PSl" secondAttribute="centerY" id="r2q-XQ-4Dh"/>
                                 </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="fc2-6C-iog" appends="YES" id="lD4-r5-xxZ"/>
+                                    <outletCollection property="gestureRecognizers" destination="fc2-6C-iog" appends="YES" id="VUb-Ds-eKU"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -7473,9 +7473,6 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                             <constraint firstItem="uqP-ur-EAX" firstAttribute="height" secondItem="rf1-6F-kd0" secondAttribute="height" multiplier="0.7" id="yUa-F1-Zp6" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gYL-YG-vpL"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="fc2-6C-iog" appends="YES" id="ZUw-od-7QX"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="5Kb-Ln-1fV"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -7514,7 +7511,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mr2-99-4Do" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="fc2-6C-iog" userLabel="contactViewGesture">
                     <connections>
-                        <action selector="hideContactsView:" destination="bAW-zz-QFs" id="5at-gB-TZv"/>
+                        <action selector="hideContactsView:" destination="bAW-zz-QFs" id="RxO-zF-pbg"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -8149,7 +8146,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
         <image name="ic_settings" width="23" height="23"/>
         <image name="image_placeholder" width="266" height="266"/>
         <image name="location" width="24" height="24"/>
-        <image name="logoWhite_en" width="2048" height="484"/>
+        <image name="logoWhite_en" width="682" height="161"/>
         <image name="logo_en" width="237" height="57"/>
         <image name="navBackIcon" width="16" height="14"/>
         <image name="pin_white" width="31" height="49"/>

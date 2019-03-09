@@ -102,12 +102,26 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYA-GZ-QG6">
+                        <rect key="frame" x="173" y="0.0" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="XSv-Eo-ShJ"/>
+                            <constraint firstAttribute="height" constant="24" id="smh-K7-AYz"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" image="ic_edit"/>
+                        <connections>
+                            <action selector="edit" destination="gTV-IL-0wX" eventType="touchUpInside" id="BWt-sD-sm8"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="QYA-GZ-QG6" secondAttribute="trailing" id="2jL-1n-eDp"/>
                 <constraint firstItem="vXh-B1-4Bu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="4NF-Cv-fab"/>
                 <constraint firstAttribute="trailing" secondItem="4rQ-Vq-j1c" secondAttribute="trailing" id="56G-5d-Bfj"/>
+                <constraint firstItem="QYA-GZ-QG6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8I8-cR-Yb5"/>
                 <constraint firstAttribute="trailing" secondItem="8bp-NP-2sC" secondAttribute="trailing" constant="8" id="8P2-PF-KEA"/>
                 <constraint firstItem="u12-8P-zJA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="OIp-eA-FDG"/>
                 <constraint firstItem="u12-8P-zJA" firstAttribute="top" secondItem="vXh-B1-4Bu" secondAttribute="bottom" constant="8" id="VAe-Zc-M8j"/>
@@ -135,6 +149,7 @@
                 <outlet property="areaLabel" destination="u12-8P-zJA" id="Mny-lm-7B4"/>
                 <outlet property="cityLabel" destination="vXh-B1-4Bu" id="plM-pz-lbp"/>
                 <outlet property="descriptionLabel" destination="ZBA-L8-9WU" id="n5M-Ic-8mV"/>
+                <outlet property="editButton" destination="QYA-GZ-QG6" id="gu1-BY-Y94"/>
                 <outlet property="lineView" destination="fxP-4O-dQV" id="mZj-hi-X9G"/>
                 <outlet property="lineView2" destination="u2x-vF-dby" id="bgo-X5-vMw"/>
                 <outlet property="tagLabel" destination="Iag-gR-n2A" id="IeN-qx-xcp"/>
@@ -145,4 +160,7 @@
             <point key="canvasLocation" x="106.5" y="257.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="ic_edit" width="21" height="21"/>
+    </resources>
 </document>

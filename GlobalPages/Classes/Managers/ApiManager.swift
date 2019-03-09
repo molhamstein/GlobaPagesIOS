@@ -96,7 +96,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, nil)
                 } else {
                     // parse response to data model >> user object
@@ -346,7 +346,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, nil)
                 } else {
                     // parse response to data model >> user object
@@ -385,10 +385,10 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError, nil)
                 } else {
                     // parse response to data model >> user object
-                    let user = AppUser(json: jsonResponse)
-                    DataStore.shared.me = user
+//                    let user = AppUser(json: jsonResponse)
+//                    DataStore.shared.me = user
                     //DataStore.shared.onUserLogin()
-                    completionBlock(true , nil, user)
+                    completionBlock(true , nil, nil)
                 }
             }
             // Network error request time out or server error with no payload
@@ -418,7 +418,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, nil)
                 } else {
                     // parse response to data model >> user object
@@ -451,7 +451,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError)
                 } else {
                     completionBlock(true , nil)
@@ -472,9 +472,9 @@ class ApiManager: NSObject {
     
     // MARK: Reset Password
     /// User forget password
-    func forgetPassword(email: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
+    func forgetPassword(email: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?,_ result :String?) -> Void) {
         // url & parameters
-        let signInURL = "\(baseURL)auth/forgot_password"
+        let signInURL = "\(baseURL)/users/forgotPassword"
         let parameters : [String : Any] = [
             "email": email,
             ]
@@ -483,10 +483,11 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
-                    completionBlock(false , serverError)
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
                 } else {
-                    completionBlock(true , nil)
+                    let msg = jsonResponse["message"].string
+                    completionBlock(true , nil,msg)
                 }
             }
             // Network error request time out or server error with no payload
@@ -494,9 +495,9 @@ class ApiManager: NSObject {
                 let nsError : NSError = responseObject.result.error! as NSError
                 print(nsError.localizedDescription)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    completionBlock(false, ServerError.unknownError)
+                    completionBlock(false, ServerError.unknownError,nil)
                 } else {
-                    completionBlock(false, ServerError.connectionError)
+                    completionBlock(false, ServerError.connectionError,nil)
                 }
             }
         }
@@ -516,7 +517,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError)
                 } else {
                     // parse response to data model >> user object
@@ -822,7 +823,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [],[])
                 } else {
                     // parse response to data model >> user object
@@ -861,7 +862,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [],[])
                 } else {
                     // parse response to data model >> user object
@@ -899,7 +900,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
                 } else {
                     // parse response to data model >> user object
@@ -935,7 +936,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, nil)
                 } else {
                     // parse response to data model >> user object
@@ -972,7 +973,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
                 } else {
                     // parse response to data model >> user object
@@ -1008,7 +1009,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
                 } else {
                     // parse response to data model >> user object
@@ -1045,7 +1046,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
                 } else {
                     // parse response to data model >> user object
@@ -1080,7 +1081,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError,[])
                 } else {
                     // parse response to data model >> user object
@@ -1117,7 +1118,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError)
                 } else {
                     // parse response to data model >> user object
@@ -1146,7 +1147,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError)
                 } else {
                     // parse response to data model >> user object
@@ -1182,7 +1183,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError)
                 } else {
                     // parse response to data model >> user object
@@ -1223,7 +1224,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError)
                 } else {
                     // parse response to data model >> user object
@@ -1256,7 +1257,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError)
                 } else {
                     // parse response to data model >> user object
@@ -1286,7 +1287,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError)
                 } else {
                     // parse response to data model >> user object
@@ -1320,7 +1321,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError)
                 } else {
                     // parse response to data model >> user object
@@ -1351,7 +1352,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError)
                 } else {
                     // parse response to data model >> user object
@@ -1382,7 +1383,7 @@ class ApiManager: NSObject {
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
                 } else {
                     // parse response to data model >> user object
@@ -1411,14 +1412,14 @@ class ApiManager: NSObject {
     // get nearby bussiness
     func getNearByBusinesses(lat:String,lng:String,catId:String,subCatId:String,codeSubCat:String,openDay:String,limit:String,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/businesses/searchByLocation?lat=\(lat)&lng=\(lng)&catId=\(catId)&subCatId=\(subCatId)&codeSubCat=\(codeSubCat)&openingDay=\(openDay)&limit=\(limit)"
+        let signUpURL = "\(baseURL)/businesses/searchByLocation?lat=\(lat)&lng=\(lng)&catId=\(catId)&subCatId=\(subCatId)&code=\(codeSubCat)&openingDay=\(openDay)&limit=\(limit)"
         
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse) ?? ServerError.unknownError
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
                 } else {
                     // parse response to data model >> user object
@@ -1471,6 +1472,7 @@ struct ServerError {
         case unknown = -111
         case authorization = 401
         case userNotActivated = 403
+        case emailNotFound = 404
         case invalidUserName = 405
         case noBottleFound = 406
         case alreadyExists = 422
@@ -1493,6 +1495,8 @@ struct ServerError {
                 return "ERROR_NOT_AUTHORIZED".localized
             case .alreadyExists:
                 return "ERROR_SIGNUP_EMAIL_EXISTS".localized
+            case .emailNotFound:
+                return "ERROR_EMAIL_NOT_EXISTS".localized
             case .notRegistred:
                 return "ERROR_SIGNIN_WRONG_CREDIST".localized
             case .missingInputData:

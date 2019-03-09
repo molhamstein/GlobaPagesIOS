@@ -319,23 +319,29 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             let post = posts[indexPath.item]
             if post.type == .image{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: adImagedCellId, for: indexPath) as! AdsImageCell
+                cell.post = post
                 cell.titleLabel.text = post.title ?? ""
                 cell.image = post.image ?? ""
                 cell.tagLabel.text = post.category?.title ?? ""
                 cell.lineView2.isHidden = true
+                cell.cityLabel.text = ""
+                cell.areaLabel.text = ""
                 cell.resizeTagView()
+                
+                cell.delegate = self
+                cell.editMode()
                 return cell
                 
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: adTitledCellId, for: indexPath) as! AdsTitledCell
                 cell.post = post
                 cell.resizeTagView()
+                cell.delegate = self
+                cell.editMode()
                 return cell
             }
-
         }
         if collectionView == myBussinessCollectionView{
-            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: bussinesCellId, for: indexPath) as! BussinessGuidListCell
             cell.bussiness = bussiness[indexPath.item]
             cell.delegate  = self
@@ -347,27 +353,13 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollectionView{
-//            let cell = collectionView.cellForItem(at: indexPath) as! filterCell2
-//            cell.isSelected = true
-//            cell.configureCell()
-//            let category = self.categories[indexPath.item]
-//            if userFavoritesCategories.contains(where: {$0.Fid == category.Fid}){
-//
-//                self.deleteFromFavorite(id: category.Fid ?? "")
-//                cell.isSelected = false
-//                collectionView.deselectItem(at: indexPath, animated: true)
-//            }else{
-//                self.addToFavorite(category: category)
-//                  collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
-//                cell.isSelected = true
-//            }
             ActionShowPostCategories.execute()
         }
 
         if collectionView == myAdsCollectionView{
             let post = self.posts[indexPath.item]
-            let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewAdViewController") as! NewAdViewController
-            vc.tempPost = post
+            let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "AdsDescriptionViewController") as! AdsDescriptionViewController
+            vc.post = post
             self.navigationController?.pushViewController(vc, animated: true)
         }
         if collectionView == myBussinessCollectionView{
@@ -446,7 +438,7 @@ extension ProfileViewController:UICollectionViewDelegateFlowLayout{
     }
 }
 
-extension ProfileViewController:BussinessGuidListCellDelegate{
+extension ProfileViewController:BussinessGuidListCellDelegate,AdsCellDelegate{
     
     func showDetails(bussinesGuide: String) {
     }
@@ -455,6 +447,13 @@ extension ProfileViewController:BussinessGuidListCellDelegate{
         let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewBussinesesViewController") as! NewBussinesesViewController
         vc.tempBussiness = bussiness
         vc.editMode = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func showEdit(post: Post) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewAdViewController") as! NewAdViewController
+        vc.tempPost = post
+        vc.mode = .editMode
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

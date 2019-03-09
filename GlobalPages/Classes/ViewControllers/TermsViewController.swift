@@ -31,7 +31,7 @@ class TermsViewController: AbstractController {
     override func customizeView() {
         super.customizeView()
         
-        self.showNavBackButton = true
+        self.showNavBlackBackButton = true
         
         let url: String! = (AppConfig.currentLanguage == .arabic) ? self.TERMS_URL_AR : self.TERMS_URL_EN
         webView.loadRequest(URLRequest(url: URL(string: url)!))

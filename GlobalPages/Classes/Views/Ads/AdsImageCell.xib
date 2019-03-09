@@ -29,12 +29,26 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="m6t-dg-Fcz">
                                 <rect key="frame" x="0.0" y="0.0" width="162" height="100"/>
                             </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Skk-c3-4bK">
+                                <rect key="frame" x="138" y="0.0" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="EbB-YW-WKf"/>
+                                    <constraint firstAttribute="width" constant="24" id="S0O-ZF-Sei"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="ic_edit"/>
+                                <connections>
+                                    <action selector="edit" destination="gTV-IL-0wX" eventType="touchUpInside" id="d4R-KI-Th2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="943-Wm-FYq"/>
+                            <constraint firstAttribute="trailing" secondItem="Skk-c3-4bK" secondAttribute="trailing" id="9RN-Gf-aSo"/>
                             <constraint firstItem="m6t-dg-Fcz" firstAttribute="leading" secondItem="ZXJ-pO-jaN" secondAttribute="leading" id="FUy-11-F5h"/>
                             <constraint firstItem="m6t-dg-Fcz" firstAttribute="top" secondItem="ZXJ-pO-jaN" secondAttribute="top" id="N6P-ca-4gH"/>
+                            <constraint firstItem="Skk-c3-4bK" firstAttribute="top" secondItem="ZXJ-pO-jaN" secondAttribute="top" id="bk9-rZ-r73"/>
                             <constraint firstAttribute="trailing" secondItem="m6t-dg-Fcz" secondAttribute="trailing" id="tsT-Gp-N6n"/>
                             <constraint firstAttribute="bottom" secondItem="m6t-dg-Fcz" secondAttribute="bottom" id="xzF-1P-tHe"/>
                         </constraints>
@@ -147,6 +161,7 @@
             <connections>
                 <outlet property="areaLabel" destination="Qbz-s0-lgq" id="Q76-V6-R73"/>
                 <outlet property="cityLabel" destination="GmX-kG-iUI" id="R1X-VI-nsZ"/>
+                <outlet property="editButton" destination="Skk-c3-4bK" id="Ezf-5s-rYM"/>
                 <outlet property="imageView" destination="m6t-dg-Fcz" id="Sy6-gc-AQZ"/>
                 <outlet property="lineView" destination="deS-ei-Ukl" id="scc-9A-Rpv"/>
                 <outlet property="lineView2" destination="ai0-p9-Ylq" id="Pev-DZ-yTB"/>
@@ -156,10 +171,11 @@
                 <outlet property="titleLabel" destination="KBy-qF-wY3" id="3EF-hR-2EF"/>
                 <outlet property="topView" destination="ZXJ-pO-jaN" id="EFd-0J-wGJ"/>
             </connections>
-            <point key="canvasLocation" x="81" y="82"/>
+            <point key="canvasLocation" x="80" y="81.859070464767626"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="ic_edit" width="21" height="21"/>
         <image name="img placeholder" width="600" height="300"/>
     </resources>
 </document>

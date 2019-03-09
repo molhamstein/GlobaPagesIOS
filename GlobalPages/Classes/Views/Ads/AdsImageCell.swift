@@ -25,6 +25,10 @@ class AdsImageCell: UICollectionViewCell {
     
     @IBOutlet weak var tagLabelWidthConstraint: XNSLayoutConstraint!
     
+    @IBOutlet weak var editButton: UIButton!
+    
+    var delegate:AdsCellDelegate?
+    
     var tagLabelWidht:CGFloat = 0 {
         didSet{
            // tagLabelWidthConstraint.setNewConstant(tagLabelWidht)
@@ -93,6 +97,15 @@ class AdsImageCell: UICollectionViewCell {
         if let width = tagLabel.text?.getLabelWidth(font: AppFonts.small){
             tagLabelWidht = width
         }
+    }
+    
+    @IBAction func edit(){
+        guard let post = self.post else{return}
+        delegate?.showEdit(post: post)
+    }
+    
+    func editMode(){
+        self.editButton.isHidden = false
     }
     
 }

@@ -26,7 +26,7 @@ class AboutViewController: AbstractController, MFMailComposeViewControllerDelega
     // Customize all view members (fonts - style - text)
     override func customizeView() {
         super.customizeView()
-        self.showNavBackButton = true
+        self.showNavBlackBackButton = true
     }
     
     override func backButtonAction(_ sender: AnyObject) {

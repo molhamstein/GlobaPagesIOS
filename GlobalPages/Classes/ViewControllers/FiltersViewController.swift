@@ -105,13 +105,13 @@ class FiltersViewController: AbstractController {
             self.keyWordTextField.text = keyword
         }
         if self.categoryfiltertype == categoryFilterType.Home{
-            self.filters = DataStore.shared.postCategories
+//            self.filters = DataStore.shared.postCategories
             getPostFilters()
         }else{
-            self.filters = DataStore.shared.categoriesfilters
+//            self.filters = DataStore.shared.categoriesfilters
             getBussinessFilters()
         }
-        self.cities = DataStore.shared.citiesfilters
+//        self.cities = DataStore.shared.citiesfilters
         getCityFilters()
         
     }
@@ -173,8 +173,8 @@ class FiltersViewController: AbstractController {
         
         self.hideSubCategoryView()
         self.HideAreaView()
-        self.filters = DataStore.shared.categoriesfilters
-        self.cities  = DataStore.shared.citiesfilters
+//        self.filters = DataStore.shared.categoriesfilters
+//        self.cities  = DataStore.shared.citiesfilters
         
         setupCollectionViews()
     }
@@ -258,9 +258,9 @@ class FiltersViewController: AbstractController {
     
     
     func getBussinessFilters(){
-        if DataStore.shared.categoriesfilters.isEmpty{
+//        if DataStore.shared.categoriesfilters.isEmpty{
             self.showActivityLoader(true)
-        }
+//        }
         ApiManager.shared.businessCategories { (success, error, result,cats) in
             self.showActivityLoader(false)
             if success{
@@ -278,9 +278,9 @@ class FiltersViewController: AbstractController {
     }
     
     func getCityFilters(){
-        if DataStore.shared.citiesfilters.isEmpty{
+//        if DataStore.shared.citiesfilters.isEmpty{
             self.showActivityLoader(true)
-        }
+//        }
         ApiManager.shared.getCities { (success, error, result,cats) in
             self.showActivityLoader(false)
             if success{
@@ -298,9 +298,9 @@ class FiltersViewController: AbstractController {
     
     //postCategories
     func getPostFilters(){
-        if DataStore.shared.postCategories.isEmpty{
+//        if DataStore.shared.postCategories.isEmpty{
             self.showActivityLoader(true)
-        }
+//        }
         ApiManager.shared.postCategories { (success, error, result) in
             self.showActivityLoader(false)
             if success{
@@ -345,7 +345,15 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
             if let category = categoryfiltertype?.filter.category{
                 if category.Fid == categoryfilters[indexPath.item].Fid{
                     cell.isSelected = true
-                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//                    dispatch_main_after(0.5) {
+//                        if !self.categoryCollectionView.frame.equalTo(CGRect.zero){
+//                            print(self.categoryCollectionView.frame)
+//                            print(indexPath.item)
+//                            print(categoriesCount)
+//                            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//                        }
+//                    }
+                    
                     self.selectedCategory = category
                     self.getSubCategories()
                 }else{
@@ -365,7 +373,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
             if let subCategory = categoryfiltertype?.filter.subCategory{
                 if subCategory.Fid == subCategoryFilters[indexPath.item].Fid{
                     cell.isSelected = true
-                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
                   //  self.getSubCategories()
                 }else{
                     cell.isSelected = false
@@ -386,7 +394,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
             if let city = categoryfiltertype?.filter.city{
                 if city.Fid == cities[indexPath.item].Fid{
                     cell.isSelected = true
-                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
                     self.selectedCity = city
                     self.getAreas()
                 }else{
@@ -407,7 +415,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
             if let area = categoryfiltertype?.filter.area{
                 if area.Fid == areas[indexPath.item].Fid{
                     cell.isSelected = true
-                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+//                   collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
                 }else{
                     cell.isSelected = false
                     collectionView.deselectItem(at: indexPath, animated: true)

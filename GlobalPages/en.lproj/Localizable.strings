@@ -239,3 +239,4 @@
 "Choose Categories you want to subscribe to" = "Choose Categories you want to subscribe to";
 "slogon" = "Know what's around";
 "END_OF_VOULUMES" = "No more volumes";
+"ERROR_EMAIL_NOT_EXISTS" = "Email not found";
