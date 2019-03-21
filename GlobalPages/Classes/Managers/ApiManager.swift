@@ -737,44 +737,6 @@ class ApiManager: NSObject {
                             }
         })
     }
-    //filter[where][ownerId]=5b855cb0ee3548256fbf0b2a
-    // MARK: notifications
-    func sendPushNotification(msg: String, targetUser: AppUser, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
-        // url & parameters
-        let bottleURL = "\(baseURL)/notifications/sendNotification"
-        
-        let msgBodyParams : [String : Any] = [
-            "en": msg
-        ]
-        
-        let parameters : [String : Any] = [
-            "content": msgBodyParams,
-            "userId": targetUser.objectId!,
-            ]
-        
-        // build request
-        Alamofire.request(bottleURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            if responseObject.result.isSuccess {
-                let jsonResponse = JSON(responseObject.result.value!)
-                if let code = responseObject.response?.statusCode, code >= 400 {
-                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
-                    completionBlock(false , serverError)
-                } else {
-                    completionBlock(true , nil)
-                }
-            }
-            // Network error request time out or server error with no payload
-            if responseObject.result.isFailure {
-                let nsError : NSError = responseObject.result.error! as NSError
-                if let code = responseObject.response?.statusCode, code >= 400 {
-                    completionBlock(false, ServerError.unknownError)
-                } else {
-                    completionBlock(false, ServerError.connectionError)
-                }
-            }
-        }
-    }
-    
     
     // get notifications
     func getNotification(user_id: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?,_ result : [AppNotification]) -> Void) {
@@ -1412,7 +1374,7 @@ class ApiManager: NSObject {
     // get nearby bussiness
     func getNearByBusinesses(lat:String,lng:String,catId:String,subCatId:String,codeSubCat:String,openDay:String,limit:String,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/businesses/searchByLocation?lat=\(lat)&lng=\(lng)&catId=\(catId)&subCatId=\(subCatId)&code=\(codeSubCat)&openingDay=\(openDay)&limit=\(limit)"
+        let signUpURL = "\(baseURL)/businesses/searchByLocation?lat=\(lat)&lng=\(lng)&codeCat=\(catId)&codeSubCat=\(subCatId)&code=\(codeSubCat)&openingDay=\(openDay)&limit=\(limit)"
         
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
