@@ -2226,7 +2226,7 @@
                                         <rect key="frame" x="0.0" y="267" width="375" height="457"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uc6-rw-ecV" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="8" width="105" height="24"/>
+                                                <rect key="frame" x="16" y="8" width="274.33333333333331" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="hdK-7j-8Tw"/>
                                                 </constraints>
@@ -2246,9 +2246,12 @@
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="H4U-jJ-Thg">
-                                                <rect key="frame" x="16" y="50" width="295" height="450"/>
+                                                <rect key="frame" x="16" y="50" width="295" height="100"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rNE-TQ-gh6">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="OT2-vd-iOq"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rNE-TQ-gh6">
                                                     <size key="itemSize" width="50" height="50"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -2256,7 +2259,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="C0N-qN-PSl">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <rect key="frame" x="0.0" y="25" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -2279,7 +2282,6 @@
                                             <constraint firstItem="H4U-jJ-Thg" firstAttribute="leading" secondItem="zut-iH-FTx" secondAttribute="leading" constant="16" id="HST-AM-QJz"/>
                                             <constraint firstItem="kQR-Ej-y6M" firstAttribute="top" secondItem="uc6-rw-ecV" secondAttribute="bottom" constant="8" id="PwA-gE-BBw"/>
                                             <constraint firstItem="uc6-rw-ecV" firstAttribute="leading" secondItem="zut-iH-FTx" secondAttribute="leading" constant="16" id="elB-4P-NZ1"/>
-                                            <constraint firstItem="H4U-jJ-Thg" firstAttribute="centerY" secondItem="zut-iH-FTx" secondAttribute="centerY" constant="46.5" id="hNT-fJ-lv4"/>
                                         </constraints>
                                         <viewLayoutGuide key="safeArea" id="otO-Kw-fX5"/>
                                     </view>
@@ -2287,7 +2289,7 @@
                                         <rect key="frame" x="0.0" y="267" width="375" height="457"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2z-PP-EOw" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="8" width="70.333333333333329" height="24"/>
+                                                <rect key="frame" x="15.999999999999986" y="8" width="233.66666666666663" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="7T0-xg-rG0"/>
                                                 </constraints>
@@ -2307,9 +2309,12 @@
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V7n-iK-rkj">
-                                                <rect key="frame" x="16" y="50" width="295" height="450"/>
+                                                <rect key="frame" x="16" y="50" width="295" height="100"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ySX-L2-fFg">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="Z5A-tW-0SY"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ySX-L2-fFg">
                                                     <size key="itemSize" width="50" height="50"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -2317,7 +2322,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cbz-cY-YKH">
-                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <rect key="frame" x="0.0" y="25" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -2334,7 +2339,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="V7n-iK-rkj" secondAttribute="trailing" constant="64" id="53X-aS-LdG"/>
-                                            <constraint firstItem="V7n-iK-rkj" firstAttribute="centerY" secondItem="Dtb-9o-BEq" secondAttribute="centerY" constant="46.5" id="IEa-f2-qnc"/>
                                             <constraint firstItem="ntR-HC-awv" firstAttribute="top" secondItem="E2z-PP-EOw" secondAttribute="bottom" constant="8" id="KQP-m2-PL9"/>
                                             <constraint firstItem="V7n-iK-rkj" firstAttribute="leading" secondItem="Dtb-9o-BEq" secondAttribute="leading" constant="16" id="M6n-SN-XlF"/>
                                             <constraint firstItem="ntR-HC-awv" firstAttribute="leading" secondItem="Dtb-9o-BEq" secondAttribute="leading" constant="16" id="NoI-E1-xo5"/>
@@ -7204,7 +7208,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Appartment for sale in Al-Mazzeh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aB-as-fbe">
-                                                <rect key="frame" x="16" y="111.66666666666669" width="194" height="20.333333333333343"/>
+                                                <rect key="frame" x="16" y="91.333333333333314" width="194" height="40.666666666666657"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>

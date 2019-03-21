@@ -28,8 +28,8 @@
                                     <constraint firstAttribute="width" secondItem="RrQ-It-FCd" secondAttribute="height" multiplier="1:1" id="iwN-fg-TKm"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ego-0g-13q">
-                                <rect key="frame" x="68" y="16" width="0.0" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Ego-0g-13q">
+                                <rect key="frame" x="68" y="16" width="162" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="0Mh-cT-3Rr"/>
                                 </constraints>
@@ -37,8 +37,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cw7-WL-1Ra">
-                                <rect key="frame" x="68" y="41" width="0.0" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Cw7-WL-1Ra">
+                                <rect key="frame" x="68" y="41" width="218" height="14.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14.5" id="U8Y-98-Tub"/>
                                 </constraints>
@@ -108,6 +108,8 @@
                             <constraint firstItem="RFb-Xp-ViE" firstAttribute="width" secondItem="WP9-DM-ep3" secondAttribute="width" multiplier="0.3" id="TQ2-Bh-Dxg"/>
                             <constraint firstAttribute="trailing" secondItem="RFb-Xp-ViE" secondAttribute="trailing" constant="-10" id="ama-YM-KND"/>
                             <constraint firstItem="OZO-Pw-FCz" firstAttribute="top" secondItem="WP9-DM-ep3" secondAttribute="top" constant="8" id="asm-54-BfB"/>
+                            <constraint firstItem="RFb-Xp-ViE" firstAttribute="leading" secondItem="Ego-0g-13q" secondAttribute="trailing" constant="8" id="fRo-hs-EPB"/>
+                            <constraint firstItem="Of0-HF-zS6" firstAttribute="leading" secondItem="Cw7-WL-1Ra" secondAttribute="trailing" constant="8" id="n5f-0k-zYH"/>
                             <constraint firstItem="Ego-0g-13q" firstAttribute="leading" secondItem="RrQ-It-FCd" secondAttribute="trailing" constant="16" id="pKY-eI-Z91"/>
                             <constraint firstAttribute="bottom" secondItem="RrQ-It-FCd" secondAttribute="bottom" constant="16" id="uln-ad-5kF"/>
                             <constraint firstItem="Cw7-WL-1Ra" firstAttribute="top" secondItem="Ego-0g-13q" secondAttribute="bottom" constant="8" id="xN7-0c-xGj"/>
@@ -138,7 +140,7 @@
                 <outlet property="tagLabel" destination="6GV-p2-n94" id="UcN-ac-oPh"/>
                 <outlet property="tagView" destination="RFb-Xp-ViE" id="TNt-ud-Uqm"/>
             </connections>
-            <point key="canvasLocation" x="163" y="65"/>
+            <point key="canvasLocation" x="161.59999999999999" y="64.767616191904054"/>
         </collectionViewCell>
     </objects>
     <resources>

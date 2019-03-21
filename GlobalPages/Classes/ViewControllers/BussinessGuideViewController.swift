@@ -262,6 +262,9 @@ class BussinessGuideViewController: AbstractController {
         let nib = UINib(nibName: filtterCellId2, bundle: nil)
         self.categoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId2)
         self.subCategoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId2)
+        
+        Filter.bussinesGuid.clear();
+        
     }
     
     
