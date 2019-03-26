@@ -111,10 +111,11 @@ public class Bussiness:BaseModel {
     }
     
     var title:String?{
-        if AppConfig.currentLanguage == .arabic{
-            return nameAr
+        if AppConfig.useEnglishLanguage {
+            return AppConfig.currentLanguage == .arabic ? nameAr : nameEn
         }
-        return nameEn
+        
+        return nameAr
     }
     
     // MARK: Initializers

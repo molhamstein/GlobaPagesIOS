@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         configureFireBase(application)
         getBussinessFilters()
+        getMetaData()
         return true
     }
 
@@ -32,6 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApiManager.shared.businessCategories { (success, error, result , cats) in}
         ApiManager.shared.postCategories(completionBlock: { (_, _, _) in})
         ApiManager.shared.getCities { (_, _, _, _) in}
+    }
+    
+    func getMetaData(){
+        
+        ApiManager.shared.getMetaData { (_, _, _) in}
+        
     }
     
 

@@ -30,12 +30,10 @@ public class City: BaseModel {
     public var filtervalue:filterValues?
     
     public var title:String?{
-        if AppConfig.currentLanguage == .arabic{
-            return titleAr
+        if AppConfig.useEnglishLanguage {
+            return AppConfig.currentLanguage == .arabic ? titleAr : titleEn
         }
-        if AppConfig.currentLanguage == .english{
-            return titleEn
-        }
+        
         return titleAr
     }
     // MARK: Initializers

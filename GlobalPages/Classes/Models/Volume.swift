@@ -14,10 +14,11 @@ public class Volume:BaseModel {
 	public var posts : [Post] = [Post]()
 
     public var title:String?{
-        if AppConfig.currentLanguage == .arabic{
-            return titleAr
+        if AppConfig.useEnglishLanguage {
+            return AppConfig.currentLanguage == .arabic ? titleAr : titleEn
         }
-        return titleEn
+        
+        return titleAr
     }
     
     var isActiviated:Bool{

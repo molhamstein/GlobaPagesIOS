@@ -23,10 +23,11 @@ public class Category: BaseModel {
 //    public var id : String?
 
     public var title:String?{
-        if AppConfig.currentLanguage == .arabic{
-            return titleAr
+        if AppConfig.useEnglishLanguage {
+            return AppConfig.currentLanguage == .arabic ? titleAr : titleEn
         }
-        return titleEn
+        
+        return titleAr
     }
     
     

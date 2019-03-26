@@ -17,6 +17,8 @@ struct AppConfig {
     static let useLiveAPI: Bool = false
     static let useCurrentLocation: Bool = false
     static let contactUsEmail: String = "almersalgroupe@gmail.com"
+    // flag for language 
+    static let useEnglishLanguage: Bool = false
     
     // social
     static let instagramClienID = "99366a1b59984cffb7e99bb8c9c7fda8"

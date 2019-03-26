@@ -24,6 +24,7 @@ class NotificationsViewController: AbstractController {
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
+        seenNotification()
     }
 
 
@@ -40,9 +41,17 @@ class NotificationsViewController: AbstractController {
         self.showActivityLoader(true)
         ApiManager.shared.getNotification(user_id: userid) { (success, error, result) in
             self.showActivityLoader(false)
+            self.seenNotification()
             self.tableView.reloadData()
         }
         
+    }
+    
+    func seenNotification(){
+        if DataStore.shared.notifications.count > 0{
+            let ids = DataStore.shared.notifications.map{$0.Nid ?? ""}
+            ApiManager.shared.seenNotification(ids: ids) { (success, error) in}
+        }
     }
     
 }
