@@ -47,7 +47,6 @@
 		1497BC4121F783F300C0DFE2 /* DroidKufiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1497BC3F21F783F200C0DFE2 /* DroidKufiBold.ttf */; };
 		1497BC4221F783F300C0DFE2 /* DroidKufiRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1497BC4021F783F200C0DFE2 /* DroidKufiRegular.ttf */; };
 		1497EF0D21D6BA2200E63B99 /* FireBaseNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */; };
-		14AB449A224A956100172E08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14AB4499224A956100172E08 /* GoogleService-Info.plist */; };
 		14B1B88C20DEF17C00D86536 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88920DEF17B00D86536 /* CustomLayout.swift */; };
 		14B1B88D20DEF17C00D86536 /* CustomLayoutSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */; };
 		14B1B88E20DEF17C00D86536 /* CustomLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */; };
@@ -143,6 +142,7 @@
 		5786884E20C4A5B10002C67B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786884D20C4A5B10002C67B /* Location.swift */; };
 		5786885320C4A8920002C67B /* CountryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5786885220C4A8920002C67B /* CountryPicker.m */; };
 		5786885A20C4AC6E0002C67B /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786885920C4AC6D0002C67B /* Media.swift */; };
+		8F46D19A226528BA0025DD85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F46D199226528BA0025DD85 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -201,7 +201,6 @@
 		1497BC3F21F783F200C0DFE2 /* DroidKufiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidKufiBold.ttf; sourceTree = "<group>"; };
 		1497BC4021F783F200C0DFE2 /* DroidKufiRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidKufiRegular.ttf; sourceTree = "<group>"; };
 		1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseNotification.swift; sourceTree = "<group>"; };
-		14AB4499224A956100172E08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14B1B88920DEF17B00D86536 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
 		14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutSettings.swift; sourceTree = "<group>"; };
 		14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutAttributes.swift; sourceTree = "<group>"; };
@@ -309,6 +308,7 @@
 		5786885720C4AADB0002C67B /* GlobalPages-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GlobalPages-Bridging-Header.h"; sourceTree = "<group>"; };
 		5786885920C4AC6D0002C67B /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		8663B5FAE0E11BA602682EC6 /* Pods-GlobalPages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalPages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages.debug.xcconfig"; sourceTree = "<group>"; };
+		8F46D199226528BA0025DD85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EBE1332543C84F59CE0F0ED5 /* Pods-GlobalPages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalPages.release.xcconfig"; path = "Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -442,6 +442,7 @@
 		578685EA20C47FD30002C67B /* GlobalPages */ = {
 			isa = PBXGroup;
 			children = (
+				8F46D199226528BA0025DD85 /* GoogleService-Info.plist */,
 				14B2BE2622088969000342D1 /* GlobalPages.entitlements */,
 				5786885720C4AADB0002C67B /* GlobalPages-Bridging-Header.h */,
 				578685FD20C480500002C67B /* Classes */,
@@ -451,7 +452,6 @@
 				1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */,
 				5786884520C4841E0002C67B /* Constants.swift */,
 				578685F220C47FD30002C67B /* Assets.xcassets */,
-				14AB4499224A956100172E08 /* GoogleService-Info.plist */,
 				578685F720C47FD30002C67B /* Info.plist */,
 				5786884B20C488EE0002C67B /* Localizable.strings */,
 			);
@@ -835,13 +835,13 @@
 				1463C45520D9253500156E84 /* AdsTitledCell.xib in Resources */,
 				14C9DC9A20CA27580031685E /* filtterCell.xib in Resources */,
 				145CF7D62105003600126046 /* BussinessGuidListCell.xib in Resources */,
-				14AB449A224A956100172E08 /* GoogleService-Info.plist in Resources */,
 				5786884920C488EE0002C67B /* Localizable.strings in Resources */,
 				5786881A20C483190002C67B /* OpenSansSemiBold.ttf in Resources */,
 				5786881C20C483190002C67B /* OpenSansRegular.ttf in Resources */,
 				1497BC4221F783F300C0DFE2 /* DroidKufiRegular.ttf in Resources */,
 				14160BE620E3C72C004CEA7D /* filterCell2.xib in Resources */,
 				1463C44C20D845D100156E84 /* MenuView.xib in Resources */,
+				8F46D19A226528BA0025DD85 /* GoogleService-Info.plist in Resources */,
 				5786883220C483240002C67B /* ShoreCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
