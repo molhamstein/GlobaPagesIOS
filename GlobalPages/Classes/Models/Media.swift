@@ -39,6 +39,26 @@ public class Media: BaseModel {
         if let t = json[kThumb].string {
             self.thumbUrl = t
         }
+        
+        if let type = json[kType].string?.replacingOccurrences(of: "\\", with: "") {
+            switch type{
+            case "video/*":
+                self.type = .video
+            case "image/*":
+                self.type = .image
+            case "audio/*":
+                self.type = .audio
+            case "video/":
+                self.type = .video
+            case "image/":
+                self.type = .image
+            case "audio/":
+                self.type = .audio
+            default:
+                self.type = nil
+            }
+        }
+
         mid = json["id"].int
         
     }

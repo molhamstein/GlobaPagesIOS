@@ -9,6 +9,7 @@
 import UIKit
 import Toast_Swift
 import SKPhotoBrowser
+import AVFoundation
 
 // MARK: Alert message types
 enum MessageType{
@@ -57,6 +58,8 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
     public static var className:String {
         return String(describing: self.self)
     }
+    
+    fileprivate var isVideo: Bool = false
     
     // MARK: Navigation Bar
     func setNavBarTitle(title : String) {
@@ -332,7 +335,8 @@ class AbstractController: UIViewController, UITextFieldDelegate, UIGestureRecogn
 extension AbstractController :UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     
-    func takePhoto() {
+    func takePhoto(_ isVideo: Bool = false) {
+        self.isVideo = isVideo
         
         let alertController  = UIAlertController(title: "Choose source", message: "", preferredStyle: .actionSheet)
         
@@ -349,6 +353,7 @@ extension AbstractController :UIImagePickerControllerDelegate,UINavigationContro
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
+            imagePicker.mediaTypes = isVideo ? ["public.movie"] : ["public.image"]
             imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
             imagePicker.allowsEditing = false
             self.present(imagePicker, animated: true, completion: nil)
@@ -360,11 +365,35 @@ extension AbstractController :UIImagePickerControllerDelegate,UINavigationContro
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary){
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
+            imagePicker.mediaTypes = isVideo ? ["public.movie"] : ["public.image"]
             imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
             imagePicker.allowsEditing = true
             self.present(imagePicker, animated: true, completion: nil)
         }
         
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let videoURL = info[UIImagePickerControllerMediaURL] as? URL {
+            let video = try? Data(contentsOf: videoURL)
+            
+            //Create AVAsset from url
+            let ass = AVAsset(url: videoURL)
+            
+            if let videoThumbnail = ass.videoThumbnail {
+                setVideo(thumb: videoThumbnail, video: video)
+            }
+        }
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            if let updatedImage = image.updateImageOrientionUpSide() {
+                setImage(image: updatedImage)
+            } else {
+                setImage(image: image)
+            }
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!){
@@ -381,6 +410,9 @@ extension AbstractController :UIImagePickerControllerDelegate,UINavigationContro
         
     }
     
+    func setVideo(thumb: UIImage, video: Data?){
+        
+    }
 
 
     // show Fullscreen image

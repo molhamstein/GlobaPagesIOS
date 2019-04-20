@@ -191,7 +191,7 @@ class AdsDescriptionViewController: AbstractController {
 
 
 
-extension AdsDescriptionViewController:UICollectionViewDataSource,UICollectionViewDelegate{
+extension AdsDescriptionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -220,9 +220,19 @@ extension AdsDescriptionViewController:UICollectionViewDataSource,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == imageCollectionView {
             let cell = collectionView.cellForItem(at: indexPath) as! ImageCell
-            if let image = cell.iamgeView.image{
-                self.showFullScreenImage(image: image)
+            if cell.media?.type == .video {
+                if var url = cell.media?.fileUrl {
+                    if !url.contains(find: "http://") {
+                        url = "http://" + url
+                    }
+                    ActionPlayVideo.execute(controller: self, url: url)
+                }
+            }else {
+                if let image = cell.iamgeView.image {
+                    self.showFullScreenImage(image: image)
+                }
             }
+            
         }
     }
 

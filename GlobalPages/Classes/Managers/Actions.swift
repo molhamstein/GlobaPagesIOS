@@ -8,6 +8,8 @@
 
 import Foundation
 import StoreKit
+import AVFoundation
+import AVKit
 
 /**
 Repeated and generic actions to be excuted from any context of the app such as show alert
@@ -134,5 +136,16 @@ class ActionShowPostCategories: Action {
     }
 }
 
+class ActionPlayVideo: Action {
+    class func execute(controller: UIViewController, url: String) {
+        let videoURL = URL(string: url)
+        let player = AVPlayer(url: videoURL!)
+        let playerViewController = AVPlayerViewController()
+        playerViewController.player = player
+        controller.present(playerViewController, animated: true) {
+            playerViewController.player!.play()
+        }
+    }
+}
 
 //CategoriesSubscriptionViewController

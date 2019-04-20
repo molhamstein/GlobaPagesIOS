@@ -21,6 +21,9 @@ class NewAdViewController: AbstractController {
     @IBOutlet weak var imagesTitleLabel: UILabel!
     @IBOutlet weak var imageCollectionView: UICollectionView!
     
+    @IBOutlet weak var videosTitleLabel: UILabel!
+    @IBOutlet weak var videoCollectionView: UICollectionView!
+    
     @IBOutlet weak var adCategoryTitleLabel: UILabel!
     
     @IBOutlet weak var adCategoryCollectionView: UICollectionView!
@@ -74,6 +77,8 @@ class NewAdViewController: AbstractController {
     let cellId = "filterCell2"
     let imageCellId = "ImageCell"
     var images:[UIImage] = []
+    var thumbs:[UIImage] = []
+    var videoData: [Data] = []
     var media:[Media] = []
     var selectedCategory:categoriesFilter?
     var selectedSubCategory:categoriesFilter?
@@ -119,22 +124,45 @@ class NewAdViewController: AbstractController {
             var count = 0
             for mediaObj in array{
                 let imageView = UIImageView()
-                if let url = mediaObj.fileUrl{
-                    var tempurl = url
-                    if !url.contains(find: "http://") { tempurl = "http://\(url)"}
-                    imageView.sd_setShowActivityIndicatorView(true)
-                    imageView.sd_setIndicatorStyle(.gray)
-                    imageView.sd_setImage(with: URL(string:tempurl), completed: { (image, error, cach, url) in
-                        if let img = image{
-                            self.images.append(img)
-                        }
-                        count += 1
-                        if count == array.count{
-                            self.imageCollectionView.reloadData()
-                        }
-                    })
-                    
+                
+                if mediaObj.type == AppMediaType.video {
+                    if let url = mediaObj.thumbUrl{
+                        var tempurl = url
+                        if !url.contains(find: "http://") { tempurl = "http://\(url)"}
+                        imageView.sd_setShowActivityIndicatorView(true)
+                        imageView.sd_setIndicatorStyle(.gray)
+                        imageView.sd_setImage(with: URL(string:tempurl), completed: { (image, error, cach, url) in
+                            if let img = image{
+                                self.thumbs.append(img)
+                            }
+                            count += 1
+                            if count == array.count{
+                                self.imageCollectionView.reloadData()
+                                self.videoCollectionView.reloadData()
+                            }
+                        })
+                        
+                    }
+                }else {
+                    if let url = mediaObj.fileUrl{
+                        var tempurl = url
+                        if !url.contains(find: "http://") { tempurl = "http://\(url)"}
+                        imageView.sd_setShowActivityIndicatorView(true)
+                        imageView.sd_setIndicatorStyle(.gray)
+                        imageView.sd_setImage(with: URL(string:tempurl), completed: { (image, error, cach, url) in
+                            if let img = image{
+                                self.images.append(img)
+                            }
+                            count += 1
+                            if count == array.count{
+                                self.imageCollectionView.reloadData()
+                                self.videoCollectionView.reloadData()
+                            }
+                        })
+                        
+                    }
                 }
+                
             }
             
         }
@@ -224,6 +252,7 @@ class NewAdViewController: AbstractController {
         
         let imageNib = UINib(nibName: imageCellId, bundle: nil)
         self.imageCollectionView.register(imageNib, forCellWithReuseIdentifier: imageCellId)
+        self.videoCollectionView.register(imageNib, forCellWithReuseIdentifier: imageCellId)
         
     }
     
@@ -396,14 +425,42 @@ class NewAdViewController: AbstractController {
     
     func atempToAddPost(){
         
+        var tempMedia: [Media] = []
         self.showActivityLoader(true)
-        if images.count > 0{
+        if images.count > 0 && videoData.count > 0 {
             ApiManager.shared.uploadImages(images: images, completionBlock: { (result, error) in
-                    self.tempPost?.media = result
-                if self.mode == .addMode{self.addPost()}
-                else { self.editPost()}
+                tempMedia.append(contentsOf: result)
+                
+                ApiManager.shared.uploadVideos(videos: self.videoData, completionBlock: {(result, error) in
+                    tempMedia.append(contentsOf: result)
+                    
+                    self.tempPost?.media = tempMedia
+                    
+                    if self.mode == .addMode{self.addPost()}
+                    else { self.editPost()}
+                })
+                
+                
             })
-        }else{
+        }else if images.count > 0 || videoData.count > 0 {
+            if images.count > 0 {
+                ApiManager.shared.uploadImages(images: images, completionBlock: { (result, error) in
+                    self.tempPost?.media = result
+                    
+                    if self.mode == .addMode{self.addPost()}
+                    else { self.editPost()}
+                    
+                })
+            }else {
+                
+                ApiManager.shared.uploadVideos(videos: self.videoData, completionBlock: {(result, error) in
+                    self.tempPost?.media = result
+                    
+                    if self.mode == .addMode{self.addPost()}
+                    else { self.editPost()}
+                })
+            }
+        } else{
             if self.mode == .addMode{self.addPost()}
             else { self.editPost()}
         }
@@ -458,6 +515,7 @@ extension NewAdViewController:UICollectionViewDataSource,UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == imageCollectionView        { return images.count  + 1 }
+        if collectionView == videoCollectionView        { return thumbs.count  + 1 }
         if collectionView == adCategoryCollectionView   { return categoriesCount }
         if collectionView == subCategoryCollectionView  { return subCategoriesCount }
         if collectionView == cityCollectionView         { return citiesCount }
@@ -472,6 +530,22 @@ extension NewAdViewController:UICollectionViewDataSource,UICollectionViewDelegat
             if indexPath.item < images.count{
                 cell.image = images[indexPath.item]
                 cell.delegate = self
+                cell.isVideo = false
+                cell.tag = indexPath.item
+                cell.editMode(state:true)
+            }else{
+                cell.image = #imageLiteral(resourceName: "ic_add")
+                cell.editMode(state:false)
+            }
+            return cell
+        }
+        
+        if collectionView == videoCollectionView{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imageCellId, for: indexPath) as? ImageCell else{return UICollectionViewCell()}
+            if indexPath.item < thumbs.count{
+                cell.image = thumbs[indexPath.item]
+                cell.delegate = self
+                cell.isVideo = true
                 cell.tag = indexPath.item
                 cell.editMode(state:true)
             }else{
@@ -562,7 +636,7 @@ extension NewAdViewController:UICollectionViewDataSource,UICollectionViewDelegat
     }
 }
 
-extension NewAdViewController:UICollectionViewDelegateFlowLayout{
+extension NewAdViewController: UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -571,7 +645,11 @@ extension NewAdViewController:UICollectionViewDelegateFlowLayout{
             
             return CGSize(width: height, height: height)
         }
-        
+        if collectionView == videoCollectionView{
+            let height = self.videoCollectionView.frame.height - 16
+            
+            return CGSize(width: height, height: height)
+        }
         if collectionView == adCategoryCollectionView{
             return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.adCategoryCollectionView.frame.height - 24)
         }
@@ -592,16 +670,25 @@ extension NewAdViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == imageCollectionView{
-                if indexPath.item == images.count{
-                    takePhoto()
-                }else{
-                    guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCell else{return}
-                    if let image = cell.iamgeView.image{
-                        self.showFullScreenImage(image: image)
-                    }
+            if indexPath.item == images.count{
+                takePhoto(false)
+            }else{
+                guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCell else{return}
+                if let image = cell.iamgeView.image{
+                    self.showFullScreenImage(image: image)
+                }
             }
-        }
-        else{
+
+        }else if collectionView == videoCollectionView {
+            if indexPath.item == thumbs.count{
+                takePhoto(true)
+            }else{
+                guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCell else{return}
+                if let image = cell.iamgeView.image{
+                    //self.showFullScreenImage(image: image)
+                }
+            }
+        }else{
         
             guard let cell = collectionView.cellForItem(at: indexPath) as? filterCell2 else {return}
         
@@ -715,11 +802,26 @@ extension NewAdViewController:ImageCellDelegete{
         self.imageCollectionView.reloadData()
     }
     
+    override func setVideo(thumb: UIImage, video: Data?) {
+        thumbs.append(thumb)
+        
+        if let data = video {
+            videoData.append(data)
+        }
+        
+        self.videoCollectionView.reloadData()
+    }
+    
     func deleteImage(tag: Int) {
         self.images.remove(at: tag)
         self.imageCollectionView.reloadData()
     }
     
+    func deleteVideo(tag: Int) {
+        self.thumbs.remove(at: tag)
+        self.videoData.remove(at: tag)
+        self.videoCollectionView.reloadData()
+    }
 }
 
 
