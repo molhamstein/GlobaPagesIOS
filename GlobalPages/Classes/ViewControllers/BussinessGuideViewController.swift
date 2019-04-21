@@ -162,7 +162,7 @@ class BussinessGuideViewController: AbstractController {
         }else if controllerType == .bussinessGuide{
             self.isListView = true
             getBussinessFilters()
-            showNearbyFilterView()
+            //showNearbyFilterView()
             getBussiness()
         }else if controllerType == .pharmacy{
             getNearByPharmacies()
