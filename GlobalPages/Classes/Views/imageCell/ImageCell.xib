@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,13 +33,22 @@
                             <action selector="remove:" destination="gTV-IL-0wX" eventType="touchUpInside" id="jb7-lx-ezm"/>
                         </connections>
                     </button>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play-button" translatesAutoresizingMaskIntoConstraints="NO" id="bN5-ii-vOg">
+                        <rect key="frame" x="96.5" y="33" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="Xbw-Y0-Khg"/>
+                            <constraint firstAttribute="width" constant="60" id="wbD-OB-MNd"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="bN5-ii-vOg" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="BRZ-3h-Aqt"/>
                 <constraint firstItem="Sa3-Lj-Uaf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EgF-sv-fAq"/>
                 <constraint firstAttribute="bottom" secondItem="Sa3-Lj-Uaf" secondAttribute="bottom" id="LgT-KO-FoV"/>
                 <constraint firstItem="Sa3-Lj-Uaf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Npf-io-kQP"/>
+                <constraint firstItem="bN5-ii-vOg" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Sqk-aw-x3N"/>
                 <constraint firstItem="GtD-M6-laU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hwK-xS-3D0"/>
                 <constraint firstAttribute="trailing" secondItem="GtD-M6-laU" secondAttribute="trailing" id="oTT-2I-MnX"/>
                 <constraint firstAttribute="trailing" secondItem="Sa3-Lj-Uaf" secondAttribute="trailing" id="qRi-8M-ddc"/>
@@ -48,6 +57,7 @@
             <connections>
                 <outlet property="deleteButton" destination="GtD-M6-laU" id="CIU-BF-fJx"/>
                 <outlet property="iamgeView" destination="Sa3-Lj-Uaf" id="auL-b7-gyL"/>
+                <outlet property="playbackImageView" destination="bN5-ii-vOg" id="hVj-3B-bXm"/>
             </connections>
             <point key="canvasLocation" x="126.5" y="90"/>
         </collectionViewCell>
@@ -55,5 +65,6 @@
     <resources>
         <image name="delete" width="31" height="31"/>
         <image name="img placeholder" width="600" height="300"/>
+        <image name="play-button" width="64" height="64"/>
     </resources>
 </document>

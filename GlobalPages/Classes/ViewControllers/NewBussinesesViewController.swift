@@ -910,7 +910,9 @@ extension NewBussinesesViewController:ImageCellDelegete{
         self.imageCollectionView.reloadData()
     }
     
-    
+    func deleteVideo(tag: Int) {
+        
+    }
 }
 
 

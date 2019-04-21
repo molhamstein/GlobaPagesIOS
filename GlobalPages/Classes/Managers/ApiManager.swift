@@ -738,6 +738,52 @@ class ApiManager: NSObject {
         })
     }
     
+    // MARK: Upload videos
+    func uploadVideos(videos:[Data], mediaType: AppMediaType = .video, completionBlock: @escaping (_ urls: [Media], _ errorMessage: String?) -> Void) {
+        
+        let mediaURL = "\(baseURL)/attachments/videos/upload"
+        let payload : Payload = /*@escaping*/{ multipartFormData in
+            
+            for video in videos {
+                multipartFormData.append(video, withName: "file", fileName: "file.mp4", mimeType: "video/mp4")
+            }
+            
+        }
+        
+        Alamofire.upload(multipartFormData: payload, to: mediaURL, method: .post, headers: headers,
+                         encodingCompletion: { encodingResult in
+                            
+                            switch encodingResult {
+                            case .success(let upload, _, _):
+                                upload.responseJSON { responseObject in
+                                    
+                                    if responseObject.result.isSuccess {
+                                        
+                                        let resJson = JSON(responseObject.result.value!)
+                                        if let resArray = resJson.array {
+                                            var files: [Media] = []
+                                            for  i in 0 ..< resArray.count {
+                                                let media = Media(json:resArray[i])
+                                                media.type = mediaType
+                                                files.append(media)
+                                            }
+                                            completionBlock(files, nil)
+                                        }
+                                    } else { // failure
+                                        
+                                        if let code = responseObject.response?.statusCode, code >= 400 {
+                                            completionBlock([], ServerError.unknownError.type.errorMessage)
+                                        } else {
+                                            completionBlock([], ServerError.connectionError.type.errorMessage)
+                                        }
+                                    }
+                                }
+                            case .failure(let encodingError):
+                                completionBlock([], ServerError.connectionError.type.errorMessage)
+                            }
+        })
+    }
+    
     // get notifications
     func getNotification(user_id: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?,_ result : [AppNotification]) -> Void) {
         // url & parameters
@@ -939,6 +985,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError, [])
                 } else {
                     // parse response to data model >> user object
+                    print(jsonResponse)
                     if let array = jsonResponse.array{
                         let filters = array.map{Post(json:$0)}
                         DataStore.shared.posts = filters
@@ -975,6 +1022,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError, [])
                 } else {
                     // parse response to data model >> user object
+                    print(jsonResponse)
                     if let array = jsonResponse.array{
                         let filters = array.map{Post(json:$0)}
                         //                        DataStore.shared.posts = filters
