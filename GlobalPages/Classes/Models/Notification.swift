@@ -19,13 +19,18 @@ public class AppNotification: BaseModel {
     private let kid: String = "id"
     private let Kmessage: String = "message"
     private let KrecipientId: String = "recipientId"
+    private let KcreationDate: String = "creationDate"
+    private let Kdata: String = "data"
+    private let KvolumeId: String = "volumeId"
 
     // MARK: Properties
     public var message : String?
     public var type : String?
-    public var seen: Bool?
+    public var seen: Int?
     public var Nid: String?
     public var recipientId :String?
+    public var creationDate: String?
+    public var data : [String : Any]?
     
     // MARK: Initializers
     override init() {
@@ -37,8 +42,10 @@ public class AppNotification: BaseModel {
         message = json[Kmessage].string
         Nid = json["id"].string
         type = json[kType].string
-        seen = json[kseen].bool
+        seen = json[kseen].int
         recipientId = json[KrecipientId].string
+        creationDate = json[KcreationDate].string
+        data = json[Kdata].dictionaryObject
         
     }
     
@@ -55,6 +62,13 @@ public class AppNotification: BaseModel {
         if let value = type {
             dictionary[kType] = value
         }
+        if let value = data {
+            dictionary[Kdata] = value
+        }
+        if let value = creationDate {
+            dictionary[KcreationDate] = value
+        }
+        
         dictionary["id"] = Nid
         dictionary[KrecipientId] = recipientId
         

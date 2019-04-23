@@ -27,11 +27,11 @@ class NotificationsViewController: AbstractController {
         seenNotification()
     }
 
-
     override func buildUp() {
         super.buildUp()
         self.containerView.dropShadow()
     }
+    
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -67,15 +67,40 @@ extension NotificationsViewController:UITableViewDelegate,UITableViewDataSource{
         return DataStore.shared.notifications.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        cell.textLabel?.text = DataStore.shared.notifications[indexPath.row].message
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! NotificationTableViewCell
+        
+        cell.configure(DataStore.shared.notifications[indexPath.row])
+    
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! NotificationTableViewCell
+        
+        if cell.item?.type == "addNewVolume" {
+            let volumeId = cell.item?.data?["volumeId"] as? String
+            
+            self.showActivityLoader(true)
+            ApiManager.shared.getOneVolume(id: volumeId ?? "" , completionBlock: {(success, error, result) in
+                self.showActivityLoader(false)
+                
+                if success {
+                    self.performSegue(withIdentifier: "toNotificationDetails", sender: self)
+                }
+                
+                if error != nil{
+                    if let msg = error?.errorName{
+                        self.showMessage(message: msg, type: .error)
+                    }
+                }
+            })
+            
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return 75
     }
 }
 
