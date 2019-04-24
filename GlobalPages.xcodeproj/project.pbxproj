@@ -144,6 +144,8 @@
 		5786885A20C4AC6E0002C67B /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786885920C4AC6D0002C67B /* Media.swift */; };
 		8F46D19A226528BA0025DD85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F46D199226528BA0025DD85 /* GoogleService-Info.plist */; };
 		8F46D19E226B50B50025DD85 /* AVAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D19D226B50B50025DD85 /* AVAsset.swift */; };
+		8F46D1A1226ECEAF0025DD85 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D1A0226ECEAF0025DD85 /* NotificationTableViewCell.swift */; };
+		8F46D1A3226F7ACC0025DD85 /* VolumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D1A2226F7ACB0025DD85 /* VolumeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -311,6 +313,8 @@
 		8663B5FAE0E11BA602682EC6 /* Pods-GlobalPages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalPages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages.debug.xcconfig"; sourceTree = "<group>"; };
 		8F46D199226528BA0025DD85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F46D19D226B50B50025DD85 /* AVAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAsset.swift; sourceTree = "<group>"; };
+		8F46D1A0226ECEAF0025DD85 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		8F46D1A2226F7ACB0025DD85 /* VolumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeViewController.swift; sourceTree = "<group>"; };
 		EBE1332543C84F59CE0F0ED5 /* Pods-GlobalPages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalPages.release.xcconfig"; path = "Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -616,6 +620,7 @@
 		578687C820C482560002C67B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8F46D19F226ECE860025DD85 /* Notification */,
 				146AF2482123631B00FE2919 /* Products */,
 				144BD89420E82B0F0068D561 /* imageCell */,
 				1463C44A20D8454E00156E84 /* adsHeader */,
@@ -715,6 +720,7 @@
 				142E8C0A21839CC10081C7E7 /* TermsViewController.swift */,
 				142E8C102183A9600081C7E7 /* NotificationsViewController.swift */,
 				148F168521F475F100C02B66 /* CategoriesSubscriptionViewController.swift */,
+				8F46D1A2226F7ACB0025DD85 /* VolumeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -728,6 +734,14 @@
 				20243EAE8A22CECE89040B79 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8F46D19F226ECE860025DD85 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				8F46D1A0226ECEAF0025DD85 /* NotificationTableViewCell.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		AAAC9A07675ED9F498F725E5 /* Frameworks */ = {
@@ -975,6 +989,7 @@
 				14CC8CAB20C9BA67000319B0 /* ShadowLineView.swift in Sources */,
 				14C05AB320E01EC80096C73C /* SectionFooterView.swift in Sources */,
 				578687C720C481800002C67B /* ReportType.swift in Sources */,
+				8F46D1A1226ECEAF0025DD85 /* NotificationTableViewCell.swift in Sources */,
 				5786860220C4809E0002C67B /* StartViewController.swift in Sources */,
 				145FCE79211649A200E42AE7 /* NewBussinesesViewController.swift in Sources */,
 				14CC8C9120C8A03D000319B0 /* UITabBarItem.swift in Sources */,
@@ -1051,6 +1066,7 @@
 				5786872120C481010002C67B /* PassthroughView.m in Sources */,
 				578687A220C481480002C67B /* Actions.swift in Sources */,
 				14CC8C9B20C8A03E000319B0 /* GradiantView.swift in Sources */,
+				8F46D1A3226F7ACC0025DD85 /* VolumeViewController.swift in Sources */,
 				14B1B88D20DEF17C00D86536 /* CustomLayoutSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

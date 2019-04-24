@@ -970,6 +970,39 @@ class ApiManager: NSObject {
         }
     }
     
+    func getOneVolume(id: String ,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:Volume?) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/volumes/\(id)"
+        // build request
+        DataStore.shared.volume = nil
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    print(jsonResponse)
+                    let volume = Volume(json: jsonResponse)
+                    DataStore.shared.volume = volume
+                    completionBlock(true , nil, volume)
+                }
+                // Network error request time out or server error with no payload
+                if responseObject.result.isFailure {
+                    let nsError : NSError = responseObject.result.error! as NSError
+                    print(nsError.localizedDescription)
+                    if let code = responseObject.response?.statusCode, code >= 400 {
+                        completionBlock(false, ServerError.unknownError,nil)
+                    } else {
+                        completionBlock(false, ServerError.connectionError,nil)
+                    }
+                }
+            }
+            
+        }
+        
+    }
     
     // posts
     func getPosts(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Post]) -> Void) {

@@ -55,6 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
             } else if let result = result {
                 print("Remote instance ID token: \(result.token)")
                 
+                Messaging.messaging().subscribe(toTopic: "allUsers") { error in
+                    print("Subscribed to weather topic")
+                }
+                
             }
         }
         

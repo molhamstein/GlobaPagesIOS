@@ -159,6 +159,7 @@ class HomeViewController: AbstractController {
         self.headerView.applyGradient(colours: [AppColors.yellowDark,AppColors.yellowLight], direction: .diagonal)
         
     }
+    
     func collectionViewSetup(){
         
         // adds Collection view layout
@@ -215,7 +216,7 @@ class HomeViewController: AbstractController {
         ApiManager.shared.getNotification(user_id: userId) { (success, error, result) in
             if success{
                 if result.count > 0 {
-                    let count = result.filter({$0.seen == false}).count
+                    let count = result.filter({$0.seen == 1}).count
                     self.notificationButton.badge = "\(count)"
                 }else{
                     self.notificationButton.badge = nil
