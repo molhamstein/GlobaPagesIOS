@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -600,7 +603,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="311" height="84"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ad Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIL-yr-SaM" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="195" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="95.5" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -657,7 +660,7 @@
                                                                 <rect key="frame" x="0.0" y="100" width="311" height="84"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uyo-lf-cp9" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="235.5" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="102.5" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -714,7 +717,7 @@
                                                                 <rect key="frame" x="0.0" y="200" width="311" height="84"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUF-cz-xFp" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="144.5" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="30.5" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -771,7 +774,7 @@
                                                                 <rect key="frame" x="0.0" y="300" width="311" height="84"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Area" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqm-Jd-lKn" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="152.5" height="20.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="35.5" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -841,7 +844,7 @@
                                                         <rect key="frame" x="16" y="16" width="311" height="80"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ad Title (max 35 chars)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRS-Fv-grH" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="73" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="178.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -881,7 +884,7 @@
                                                         <rect key="frame" x="16" y="248" width="311" height="100"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Images" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfe-iO-XHB" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="62" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="55.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -939,7 +942,7 @@
                                                         <rect key="frame" x="16" y="112" width="311" height="120"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhw-Un-8qf" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="200" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -996,7 +999,7 @@
                                                         <rect key="frame" x="16" y="364" width="311" height="100"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcI-mo-fn0" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="60.5" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="52.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1942,7 +1945,7 @@
                                                 <rect key="frame" x="16" y="184" width="279" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yK-Dl-j2x" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="KXX-Tt-JVb"/>
                                                         </constraints>
@@ -2399,7 +2402,7 @@
                                         <rect key="frame" x="0.0" y="224.5" width="375" height="378.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uc6-rw-ecV" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="8" width="274.5" height="24"/>
+                                                <rect key="frame" x="16" y="8" width="105" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="hdK-7j-8Tw"/>
                                                 </constraints>
@@ -2462,7 +2465,7 @@
                                         <rect key="frame" x="0.0" y="224.5" width="375" height="378.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2z-PP-EOw" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="8" width="234" height="24"/>
+                                                <rect key="frame" x="16" y="8" width="70.5" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="7T0-xg-rG0"/>
                                                 </constraints>
@@ -2606,13 +2609,13 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pd9-HX-yf6">
                                         <rect key="frame" x="20" y="20" width="375" height="284.33333333333331"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEAR_BY_FILTERS_INFO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tef-SH-gyP" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NEAR_BY_FILTERS_INFO" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tef-SH-gyP" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
                                                 <rect key="frame" x="46" y="64" width="186" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXc-1K-rOJ">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXc-1K-rOJ">
                                                 <rect key="frame" x="16" y="0.0" width="25" height="23"/>
                                                 <state key="normal" image="ic_back_white"/>
                                                 <connections>
@@ -2633,7 +2636,7 @@
                                     <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="syC-I8-0uP">
                                         <rect key="frame" x="20" y="304" width="375" height="449.66666666666674"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGH-CP-PiZ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sub Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGH-CP-PiZ">
                                                 <rect key="frame" x="16" y="8" width="105" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="ZoW-N3-L8I"/>
@@ -2642,7 +2645,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9u-NY-NiO">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X9u-NY-NiO">
                                                 <rect key="frame" x="16" y="40" width="80" height="2"/>
                                                 <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -2691,7 +2694,7 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wlG-r6-Tdx">
                                         <rect key="frame" x="20" y="304" width="375" height="449.66666666666674"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0n-A0-0Z0">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0n-A0-0Z0">
                                                 <rect key="frame" x="16" y="8" width="71" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="PLC-kN-KPe"/>
@@ -2700,7 +2703,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctk-HZ-vTj">
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ctk-HZ-vTj">
                                                 <rect key="frame" x="16" y="40" width="80" height="2"/>
                                                 <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -3287,7 +3290,7 @@
                                                 <rect key="frame" x="16" y="184" width="279" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9j-eE-J5P" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="4Ku-ME-6Hx"/>
                                                         </constraints>
@@ -3515,13 +3518,13 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="316"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GlobalPages@yahoo.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqR-4C-cCI" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="147" width="164" height="17"/>
+                                                                <rect key="frame" x="16" y="137" width="164" height="17"/>
                                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmr-69-h3m" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="127.5" width="41" height="19.5"/>
+                                                                <rect key="frame" x="16" y="122.5" width="30.5" height="14.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -3533,13 +3536,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="vWO-TV-aTF" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="241" y="110.5" width="86" height="17"/>
+                                                                <rect key="frame" x="265.5" y="105.5" width="61.5" height="17"/>
                                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ads Added" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlZ-RZ-rah" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="241" y="91" width="86" height="19.5"/>
+                                                                <rect key="frame" x="265.5" y="91" width="61.5" height="14.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -3559,13 +3562,13 @@
                                                                 <state key="normal" image="ic_settings"/>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tsg-cv-Gv2">
-                                                                <rect key="frame" x="16" y="191" width="311" height="109"/>
+                                                                <rect key="frame" x="16" y="181" width="311" height="119"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cWG-TX-1wI" userLabel="country View">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="177" height="109"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="177" height="119"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zOu-En-cnO">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="177" height="109"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="177" height="119"/>
                                                                                 <subviews>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGS-F3-HTP" userLabel="arrow">
                                                                                         <rect key="frame" x="165" y="30" width="12" height="12"/>
@@ -3613,7 +3616,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3QL-ZC-eeD" userLabel="gender view">
-                                                                        <rect key="frame" x="187" y="0.0" width="124" height="109"/>
+                                                                        <rect key="frame" x="187" y="0.0" width="124" height="119"/>
                                                                         <subviews>
                                                                             <button opaque="NO" alpha="0.5" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBN-2z-Num" userLabel="male">
                                                                                 <rect key="frame" x="0.0" y="10" width="62" height="22"/>
@@ -3642,10 +3645,10 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uN5-z0-v00" userLabel="big male Btn">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="62" height="109"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="62" height="119"/>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DK-0J-kmG" userLabel="big female btn">
-                                                                                <rect key="frame" x="62" y="0.0" width="62" height="109"/>
+                                                                                <rect key="frame" x="62" y="0.0" width="62" height="119"/>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3700,13 +3703,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Global Pages user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RXo-ng-O95" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="110.5" width="116.5" height="17"/>
+                                                                <rect key="frame" x="16" y="105.5" width="116.5" height="17"/>
                                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXa-ut-A5h" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="16" y="91" width="83.5" height="19.5"/>
+                                                                <rect key="frame" x="16" y="91" width="63" height="14.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -3752,7 +3755,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="138"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe to categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKd-em-VaH" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="20" y="20" width="185" height="21"/>
+                                                                        <rect key="frame" x="20" y="20" width="181.5" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3761,7 +3764,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="urP-W3-cqZ">
-                                                                        <rect key="frame" x="20" y="49" width="185" height="2"/>
+                                                                        <rect key="frame" x="20" y="49" width="181.5" height="2"/>
                                                                         <color key="backgroundColor" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="2" id="x4a-cY-wkd"/>
@@ -3833,7 +3836,7 @@
                                                                 <rect key="frame" x="0.0" y="138" width="343" height="267"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Ads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nm3-Py-r99" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="20" y="16" width="64.5" height="21"/>
+                                                                        <rect key="frame" x="20" y="16" width="57" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3842,7 +3845,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIp-F8-H4e">
-                                                                        <rect key="frame" x="20" y="45" width="64.5" height="2"/>
+                                                                        <rect key="frame" x="20" y="45" width="57" height="2"/>
                                                                         <color key="backgroundColor" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="2" id="ENb-9s-CCN"/>
@@ -3916,7 +3919,7 @@
                                                                         </cells>
                                                                     </collectionView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Bussineses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0E-i3-emn" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="20" y="16" width="119.5" height="21"/>
+                                                                        <rect key="frame" x="20" y="16" width="114" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -3925,7 +3928,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1l-pO-CBg">
-                                                                        <rect key="frame" x="20" y="45" width="119.5" height="2"/>
+                                                                        <rect key="frame" x="20" y="45" width="114" height="2"/>
                                                                         <color key="backgroundColor" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="2" id="apS-JI-fFN"/>
@@ -4076,7 +4079,7 @@
                                                         <rect key="frame" x="16" y="420" width="311" height="88"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bussiness Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Coe-5U-JOL" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="234" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="119" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4134,7 +4137,7 @@
                                                         <rect key="frame" x="16" y="508" width="311" height="104"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFC-WL-fzV" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="8" width="238.5" height="19.5"/>
+                                                                <rect key="frame" x="0.0" y="8" width="102.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4235,7 +4238,7 @@
                                                         <rect key="frame" x="16" y="820" width="311" height="96"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LT-ye-vPQ" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="16" width="132.5" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="16" width="65.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4285,7 +4288,7 @@
                                                         <rect key="frame" x="16" y="112" width="311" height="100"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Images" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvN-7C-9H9" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="62" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="55.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4343,7 +4346,7 @@
                                                         <rect key="frame" x="16" y="932" width="311" height="120"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRv-Ot-dR4" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="299" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4383,7 +4386,7 @@
                                                         <rect key="frame" x="16" y="1068" width="311" height="120"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLu-y9-rgE" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="31" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="26.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4781,7 +4784,7 @@
                                                         <rect key="frame" x="0.0" y="43" width="311" height="42.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7HB-oB-e5Y" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="8" y="0.0" width="61.5" height="42.5"/>
+                                                                <rect key="frame" x="8" y="0.0" width="57.5" height="42.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4811,7 +4814,7 @@
                                                         <rect key="frame" x="0.0" y="85.5" width="311" height="43"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLp-Nm-sD0" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="8" y="0.0" width="66" height="43"/>
+                                                                <rect key="frame" x="8" y="0.0" width="61.5" height="43"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4871,7 +4874,7 @@
                                                         <rect key="frame" x="0.0" y="171.5" width="311" height="43"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednsday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQl-Za-dEj" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="8" y="0.0" width="85" height="43"/>
+                                                                <rect key="frame" x="8" y="0.0" width="80.5" height="43"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -4931,7 +4934,7 @@
                                                         <rect key="frame" x="0.0" y="257" width="311" height="43"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tr-au-2uV" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="8" y="0.0" width="51.5" height="43"/>
+                                                                <rect key="frame" x="8" y="0.0" width="47" height="43"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -5162,7 +5165,7 @@
                                         <rect key="frame" x="8" y="175" width="321.5" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLZ-Oi-c7G" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="134" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -5192,7 +5195,7 @@
                                         <rect key="frame" x="8" y="271" width="321.5" height="120"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNw-bb-Qz2" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="299" height="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="92" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -7016,7 +7019,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                 <rect key="frame" x="16" y="184" width="279" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZd-Do-FG2" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="iSc-fH-PKg"/>
                                                         </constraints>
@@ -7381,7 +7384,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Appartment for sale in Al-Mazzeh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aB-as-fbe">
-                                                <rect key="frame" x="16" y="91" width="194" height="41"/>
+                                                <rect key="frame" x="16" y="111.5" width="194" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -7747,7 +7750,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdf-RY-4fT" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="16" y="139" width="36" height="15"/>
+                                                                        <rect key="frame" x="16" y="139" width="30.5" height="15"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -7756,7 +7759,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="s7f-Ku-abZ">
-                                                                        <rect key="frame" x="255.5" y="110" width="71.5" height="17"/>
+                                                                        <rect key="frame" x="265.5" y="110" width="61.5" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="17" id="sAG-bK-PPf"/>
                                                                         </constraints>
@@ -7765,7 +7768,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ads Added" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GT3-M6-VDh" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="255.5" y="91" width="71.5" height="15"/>
+                                                                        <rect key="frame" x="265.5" y="91" width="61.5" height="15"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -7935,7 +7938,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJM-G9-rFA" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                        <rect key="frame" x="16" y="91" width="71.5" height="15"/>
+                                                                        <rect key="frame" x="16" y="91" width="63" height="15"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -7978,7 +7981,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                         <rect key="frame" x="0.0" y="138" width="343" height="267"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Ads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6r1-7x-TuE" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                                <rect key="frame" x="20" y="16" width="64.5" height="21"/>
+                                                                                <rect key="frame" x="20" y="16" width="57" height="21"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -7987,7 +7990,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHF-UC-wgA">
-                                                                                <rect key="frame" x="20" y="45" width="64.5" height="2"/>
+                                                                                <rect key="frame" x="20" y="45" width="57" height="2"/>
                                                                                 <color key="backgroundColor" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="2" id="YDe-e4-u6f"/>
@@ -8064,7 +8067,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                                 </cells>
                                                                             </collectionView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Bussineses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeQ-ED-osF" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                                <rect key="frame" x="20" y="16" width="119.5" height="21"/>
+                                                                                <rect key="frame" x="20" y="16" width="114" height="21"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -8073,7 +8076,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1h-eT-UIq">
-                                                                                <rect key="frame" x="20" y="45" width="119.5" height="2"/>
+                                                                                <rect key="frame" x="20" y="45" width="114" height="2"/>
                                                                                 <color key="backgroundColor" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="2" id="wqr-lS-Di5"/>
@@ -8104,7 +8107,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="138"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe to categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6L-sX-Jla" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                                <rect key="frame" x="20" y="20" width="185" height="21"/>
+                                                                                <rect key="frame" x="20" y="20" width="181.5" height="21"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -8113,7 +8116,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7BO-em-4mM">
-                                                                                <rect key="frame" x="20" y="49" width="185" height="2"/>
+                                                                                <rect key="frame" x="20" y="49" width="181.5" height="2"/>
                                                                                 <color key="backgroundColor" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="2" id="cCA-wa-Afe"/>

@@ -787,7 +787,7 @@ class ApiManager: NSObject {
     // get notifications
     func getNotification(user_id: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?,_ result : [AppNotification]) -> Void) {
         // url & parameters
-        let bottleURL = "\(baseURL)/notifications?filter[where][recipientId]=\(user_id)"
+        let bottleURL = "\(baseURL)/notifications?filter[where][recipientId]=\(user_id)&filter[order]=creationDate DESC".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         // build request
         Alamofire.request(bottleURL, method: .get,encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -1421,7 +1421,7 @@ class ApiManager: NSObject {
         let parameters : [String:Any] = [:]
         print(parameters)
         // build request
-        Alamofire.request(signInURL, method: .post, parameters: ids, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
