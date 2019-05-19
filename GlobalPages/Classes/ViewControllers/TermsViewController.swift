@@ -10,8 +10,8 @@ import Foundation
 import WebKit
 class TermsViewController: AbstractController {
     
-    let TERMS_URL_AR: String! = "http://almersal.co/policy"
-    let TERMS_URL_EN: String! = "http://almersal.co/policy"
+    let TERMS_URL_AR: String! = "http://almersal.co/privacy/policy_ar.html"
+    let TERMS_URL_EN: String! = "http://almersal.co/privacy/policy_en.html"
     
     // MARK: Properties
     @IBOutlet var webView: UIWebView!

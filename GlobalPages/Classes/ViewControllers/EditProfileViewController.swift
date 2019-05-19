@@ -326,9 +326,6 @@ class EditProfileViewController: AbstractController {
     }
 }
 
-
-
-
 extension EditProfileViewController{
     
     func birthdateChanged(_ sender: UIDatePicker) {

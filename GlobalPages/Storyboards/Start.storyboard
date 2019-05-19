@@ -413,10 +413,10 @@ ZGVhbHMgYXJyb3VuZA
                                                                 <rect key="frame" x="0.0" y="0.0" width="337.66666666666669" height="458.66666666666669"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ly0-VJ-yBq" userLabel="Email View">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="337.66666666666669" height="91.666666666666671"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="337.66666666666669" height="114.66666666666667"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-Kd-2rN" userLabel="Email Stack View">
-                                                                                <rect key="frame" x="20" y="26.666666666666671" width="297.66666666666669" height="60"/>
+                                                                                <rect key="frame" x="20" y="49.666666666666671" width="297.66666666666669" height="60"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZM-Ok-LxC" userLabel="Email Label">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="297.66666666666669" height="24"/>
@@ -433,7 +433,7 @@ ZGVhbHMgYXJyb3VuZA
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BXP-ez-5u6" userLabel="Email Line View">
-                                                                                <rect key="frame" x="20" y="85.666666666666657" width="297.66666666666669" height="1"/>
+                                                                                <rect key="frame" x="20" y="108.66666666666666" width="297.66666666666669" height="1"/>
                                                                                 <color key="backgroundColor" red="0.58424812559999995" green="0.58435159920000002" blue="0.58424162859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="P8C-hL-JRz"/>
@@ -459,10 +459,10 @@ ZGVhbHMgYXJyb3VuZA
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrV-1f-Vib" userLabel="number View">
-                                                                        <rect key="frame" x="0.0" y="91.666666666666657" width="337.66666666666669" height="92"/>
+                                                                        <rect key="frame" x="0.0" y="114.66666666666666" width="337.66666666666669" height="114.66666666666666"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="XOe-gS-aMz" userLabel="number Stack View">
-                                                                                <rect key="frame" x="20" y="27" width="297.66666666666669" height="60"/>
+                                                                                <rect key="frame" x="20" y="49.666666666666686" width="297.66666666666669" height="60"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTk-vR-ud4" userLabel="number Label">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="297.66666666666669" height="24"/>
@@ -471,7 +471,7 @@ ZGVhbHMgYXJyb3VuZA
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="vobblemail@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T2T-6I-vvS" userLabel="number TextField">
-                                                                                        <rect key="frame" x="0.0" y="36" width="297.66666666666669" height="24"/>
+                                                                                        <rect key="frame" x="0.0" y="35.999999999999972" width="297.66666666666669" height="24"/>
                                                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="light" returnKeyType="next"/>
@@ -479,7 +479,7 @@ ZGVhbHMgYXJyb3VuZA
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eb-iS-IHo" userLabel="number Line View">
-                                                                                <rect key="frame" x="20" y="86" width="297.66666666666669" height="1"/>
+                                                                                <rect key="frame" x="20" y="108.66666666666666" width="297.66666666666669" height="1"/>
                                                                                 <color key="backgroundColor" red="0.58424812559999995" green="0.58435159920000002" blue="0.58424162859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="8G1-qc-Ocs"/>
@@ -505,10 +505,10 @@ ZGVhbHMgYXJyb3VuZA
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Vs-ps-p7x" userLabel="UserName View">
-                                                                        <rect key="frame" x="0.0" y="183.66666666666669" width="337.66666666666669" height="91.666666666666686"/>
+                                                                        <rect key="frame" x="0.0" y="229.33333333333329" width="337.66666666666669" height="114.66666666666666"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Os0-Ue-0hZ" userLabel="UserName Stack View">
-                                                                                <rect key="frame" x="20" y="16.666666666666629" width="297.66666666666669" height="58"/>
+                                                                                <rect key="frame" x="20" y="28.333333333333371" width="297.66666666666669" height="58"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSx-kg-2i5" userLabel="UserName Label">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="297.66666666666669" height="23"/>
@@ -525,7 +525,7 @@ ZGVhbHMgYXJyb3VuZA
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jO4-Ou-lXP" userLabel="UserName Line View">
-                                                                                <rect key="frame" x="20" y="74.666666666666629" width="297.66666666666669" height="1"/>
+                                                                                <rect key="frame" x="20" y="86.333333333333371" width="297.66666666666669" height="1"/>
                                                                                 <color key="backgroundColor" red="0.58424812559999995" green="0.58435159920000002" blue="0.58424162859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="4D9-7g-dYw"/>
@@ -552,7 +552,7 @@ ZGVhbHMgYXJyb3VuZA
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BXd-jV-OwI" userLabel="Password View">
-                                                                        <rect key="frame" x="0.0" y="275.33333333333331" width="337.66666666666669" height="91.666666666666686"/>
+                                                                        <rect key="frame" x="0.0" y="344" width="337.66666666666669" height="114.66666666666669"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="2jN-3r-3Bj" userLabel="Password Stack View">
                                                                                 <rect key="frame" x="20" y="5" width="297.66666666666669" height="58"/>
@@ -597,17 +597,17 @@ ZGVhbHMgYXJyb3VuZA
                                                                             <constraint firstItem="ugT-Mw-GMw" firstAttribute="top" secondItem="ky0-p5-pdD" secondAttribute="bottom" id="wZz-DI-6yL"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOX-v2-ZoD">
-                                                                        <rect key="frame" x="0.0" y="367" width="337.66666666666669" height="91.666666666666686"/>
+                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOX-v2-ZoD">
+                                                                        <rect key="frame" x="0.0" y="458.66666666666663" width="337.66666666666669" height="0.0"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdh-Nc-E1H" userLabel="country View">
-                                                                                <rect key="frame" x="20" y="0.0" width="181" height="91.666666666666671"/>
+                                                                                <rect key="frame" x="20" y="0.0" width="181" height="0.0"/>
                                                                                 <subviews>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ka7-Uy-vyG">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="181" height="91.666666666666671"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="181" height="0.0"/>
                                                                                         <subviews>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bba-qh-X3a" userLabel="arrow">
-                                                                                                <rect key="frame" x="169" y="40.333333333333314" width="12" height="12"/>
+                                                                                                <rect key="frame" x="169" y="40.333333333333371" width="12" height="12"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="12" id="PCX-rO-zjf"/>
                                                                                                 </constraints>
@@ -627,7 +627,7 @@ ZGVhbHMgYXJyb3VuZA
                                                                                                 </connections>
                                                                                             </button>
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0w1-JE-s7g" userLabel="Line View">
-                                                                                                <rect key="frame" x="0.0" y="57.333333333333314" width="181" height="1"/>
+                                                                                                <rect key="frame" x="0.0" y="57.333333333333371" width="181" height="1"/>
                                                                                                 <color key="backgroundColor" red="0.58424812559999995" green="0.58435159920000002" blue="0.58424162859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 <constraints>
                                                                                                     <constraint firstAttribute="height" constant="1" id="zIe-G4-GZ9"/>
@@ -657,7 +657,7 @@ ZGVhbHMgYXJyb3VuZA
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Au-wI-pcS" userLabel="gender view">
-                                                                                <rect key="frame" x="210.99999999999997" y="0.0" width="126.66666666666666" height="91.666666666666671"/>
+                                                                                <rect key="frame" x="210.99999999999997" y="0.0" width="126.66666666666666" height="0.0"/>
                                                                                 <subviews>
                                                                                     <button opaque="NO" alpha="0.5" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ff7-hE-2zw" userLabel="male">
                                                                                         <rect key="frame" x="0.0" y="10" width="63.333333333333336" height="26"/>
@@ -680,13 +680,13 @@ ZGVhbHMgYXJyb3VuZA
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eid-ID-EeG" userLabel="big male Btn">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="63.333333333333336" height="91.666666666666671"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="63.333333333333336" height="0.0"/>
                                                                                         <connections>
                                                                                             <action selector="maleBtnPressed:" destination="5hf-2z-PY5" eventType="touchUpInside" id="4Ew-vA-r2G"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtY-zf-20Y" userLabel="big female btn">
-                                                                                        <rect key="frame" x="63.333333333333343" y="0.0" width="63.333333333333343" height="91.666666666666671"/>
+                                                                                        <rect key="frame" x="63.333333333333343" y="0.0" width="63.333333333333343" height="0.0"/>
                                                                                         <connections>
                                                                                             <action selector="femaleBtnPressed:" destination="5hf-2z-PY5" eventType="touchUpInside" id="LxT-m1-Ogd"/>
                                                                                         </connections>
@@ -1277,7 +1277,7 @@ ZGVhbHMgYXJyb3VuZA
         <image name="checkBoxActive" width="20" height="21"/>
         <image name="downArrow" width="25" height="22"/>
         <image name="ic_reg_business" width="150" height="143"/>
-        <image name="logo_en" width="237" height="57"/>
+        <image name="logo_en" width="356" height="86.5"/>
         <image name="navBackIcon" width="16" height="14"/>
         <image name="signup_female" width="36" height="17"/>
         <image name="signup_male" width="63" height="15"/>

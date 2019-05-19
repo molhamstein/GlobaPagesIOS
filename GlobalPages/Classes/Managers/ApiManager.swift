@@ -243,7 +243,7 @@ class ApiManager: NSObject {
             "username": user.userName!,
             "phoneNumber": user.mobileNumber!,
             "gender": user.gender?.rawValue ?? "male",
-            "birthDate" : DateHelper.getISOStringFromDate(user.birthdate!)!,
+//            "birthDate" : DateHelper.getISOStringFromDate(user.birthdate!)!,
             "email": user.email!,
             "password": password,
             "image": ""

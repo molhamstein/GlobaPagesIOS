@@ -411,7 +411,7 @@ class BussinessGuideViewController: AbstractController {
     func getNearByPharmacies(){
         guard  let lat = LocationHelper.shared.myLocation?.lat , let lng = LocationHelper.shared.myLocation?.long else{ return}
         self.showActivityLoader(true)
-        ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: "", subCatId: "pharmacies",codeSubCat:"", openDay: "\(DateHelper.getDayNumberFrom(date: Date()))",limit: "") { (success, error, resutl) in
+        ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: "", subCatId: "",codeSubCat:"pharmacies", openDay: "\(DateHelper.getDayNumberFrom(date: Date()))",limit: "") { (success, error, resutl) in
             
             self.showActivityLoader(false)
             if success{
