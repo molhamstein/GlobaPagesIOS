@@ -375,13 +375,13 @@ extension AbstractController :UIImagePickerControllerDelegate,UINavigationContro
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let videoURL = info[UIImagePickerControllerMediaURL] as? URL {
-            let video = try? Data(contentsOf: videoURL)
+            let _ = try? Data(contentsOf: videoURL)
             
             //Create AVAsset from url
             let ass = AVAsset(url: videoURL)
             
             if let videoThumbnail = ass.videoThumbnail {
-                setVideo(thumb: videoThumbnail, video: video)
+                setVideo(thumb: videoThumbnail, videoUrl: videoURL)
             }
         }
         
@@ -410,7 +410,7 @@ extension AbstractController :UIImagePickerControllerDelegate,UINavigationContro
         
     }
     
-    func setVideo(thumb: UIImage, video: Data?){
+    func setVideo(thumb: UIImage, videoUrl: URL?){
         
     }
 

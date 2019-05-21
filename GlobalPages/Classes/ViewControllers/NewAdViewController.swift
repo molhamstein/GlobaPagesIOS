@@ -802,14 +802,41 @@ extension NewAdViewController:ImageCellDelegete{
         self.imageCollectionView.reloadData()
     }
     
-    override func setVideo(thumb: UIImage, video: Data?) {
-        thumbs.append(thumb)
+    override func setVideo(thumb: UIImage, videoUrl: URL?) {
+
+        // Compress video to uplaod
+        showActivityLoader(true)
         
-        if let data = video {
-            videoData.append(data)
-        }
+        let compressedURL = NSURL.fileURL(withPath: NSTemporaryDirectory() + NSUUID().uuidString + ".m4v")
         
-        self.videoCollectionView.reloadData()
+        ActionCompressVideo.execute(inputURL: videoUrl!, outputURL: compressedURL, handler: {(exportSession) in
+            DispatchQueue.main.async {
+                self.showActivityLoader(false)
+                
+                guard let session = exportSession else { return }
+                
+                switch session.status {
+                case .unknown:
+                    break
+                case .waiting:
+                    break
+                case .exporting:
+                    break
+                case .completed:
+                    guard let compressedData = NSData(contentsOf: compressedURL) else { return }
+                    
+                    self.thumbs.append(thumb)
+                    self.videoData.append(compressedData as Data)
+                    self.videoCollectionView.reloadData()
+                    
+                case .failed:
+                    break
+                case .cancelled:
+                    break
+                }
+            }
+
+        })
     }
     
     func deleteImage(tag: Int) {
