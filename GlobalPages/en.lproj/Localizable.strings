@@ -28,7 +28,7 @@
 
 
 // Connection errors messages
-"ERROR_NOT_AUTHORIZED"                  = "You are not authorized to access this data, please login again";
+"ERROR_NOT_AUTHORIZED"                  = "Please try login again, your email or password is incorrect";
 "ERROR_UNKNOWN"                         = "Unknown error occured";
 "ERROR_SOCIAL_FACEBOOK"                 = "Facebook login failed, please try again";
 "ERROR_SOCIAL_TWITTER"                  = "Twitter login failed, please try again";

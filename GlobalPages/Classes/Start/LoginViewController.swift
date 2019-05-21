@@ -478,30 +478,30 @@ class LoginViewController: AbstractController {
             return false
         }
         
-        if let birthdate = birthdate {
-            
-            // make sure selected date is valid
-            // picked birthadate should be earlier than 12 years from now
-            let calendar = NSCalendar.current
-            let date2yearsOld = calendar.date(byAdding: .year, value: -60, to: Date())
-            let date100yearsOld = calendar.date(byAdding: .year, value: 100, to: Date())
-            
-            if date2yearsOld!.compare(birthdate) == .orderedAscending {
-                showMessage(message:"SINGUP_VALIDATION_DATE".localized, type: .warning)
-                return false
-            }
-            
-            if birthdate.compare(date100yearsOld!) == .orderedDescending {
-                showMessage(message:"SINGUP_VALIDATION_DATE".localized, type: .warning)
-                return false
-            }
-            
-            // date is valid
-            tempUserInfoHolder.birthdate = birthdate
-        } else {
-            showMessage(message:"SINGUP_VALIDATION_CHOOSE_BIRTHDATE".localized, type: .warning)
-            return false
-        }
+//        if let birthdate = birthdate {
+//
+//            // make sure selected date is valid
+//            // picked birthadate should be earlier than 12 years from now
+//            let calendar = NSCalendar.current
+//            let date2yearsOld = calendar.date(byAdding: .year, value: -60, to: Date())
+//            let date100yearsOld = calendar.date(byAdding: .year, value: 100, to: Date())
+//
+//            if date2yearsOld!.compare(birthdate) == .orderedAscending {
+//                showMessage(message:"SINGUP_VALIDATION_DATE".localized, type: .warning)
+//                return false
+//            }
+//
+//            if birthdate.compare(date100yearsOld!) == .orderedDescending {
+//                showMessage(message:"SINGUP_VALIDATION_DATE".localized, type: .warning)
+//                return false
+//            }
+//
+//            // date is valid
+//            tempUserInfoHolder.birthdate = birthdate
+//        } else {
+//            showMessage(message:"SINGUP_VALIDATION_CHOOSE_BIRTHDATE".localized, type: .warning)
+//            return false
+//        }
         
         
 

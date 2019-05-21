@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
                 print("Remote instance ID token: \(result.token)")
                 
                 Messaging.messaging().subscribe(toTopic: "allUsers") { error in
-                    print("Subscribed to weather topic")
+                    print("Subscribed to all users topic")
                 }
                 
             }

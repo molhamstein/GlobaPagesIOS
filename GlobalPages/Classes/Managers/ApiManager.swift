@@ -243,7 +243,7 @@ class ApiManager: NSObject {
             "username": user.userName!,
             "phoneNumber": user.mobileNumber!,
             "gender": user.gender?.rawValue ?? "male",
-            "birthDate" : DateHelper.getISOStringFromDate(user.birthdate!)!,
+//            "birthDate" : DateHelper.getISOStringFromDate(user.birthdate!)!,
             "email": user.email!,
             "password": password,
             "image": ""
@@ -787,7 +787,7 @@ class ApiManager: NSObject {
     // get notifications
     func getNotification(user_id: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?,_ result : [AppNotification]) -> Void) {
         // url & parameters
-        let bottleURL = "\(baseURL)/notifications?filter[where][recipientId]=\(user_id)"
+        let bottleURL = "\(baseURL)/notifications?filter[where][recipientId]=\(user_id)&filter[order]=creationDate DESC".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         // build request
         Alamofire.request(bottleURL, method: .get,encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
