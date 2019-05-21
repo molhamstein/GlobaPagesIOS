@@ -872,7 +872,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-GlobalPages/Pods-GlobalPages-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
@@ -917,7 +917,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GlobalPages/Pods-GlobalPages-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5DC646366A192AB22887CAAD /* [CP] Check Pods Manifest.lock */ = {
@@ -944,7 +944,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-GlobalPages/Pods-GlobalPages-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 			);
@@ -955,7 +955,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GlobalPages/Pods-GlobalPages-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

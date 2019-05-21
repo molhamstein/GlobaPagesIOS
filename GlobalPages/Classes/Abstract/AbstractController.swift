@@ -344,6 +344,12 @@ extension AbstractController :UIImagePickerControllerDelegate,UINavigationContro
         
         alertController.addAction(UIAlertAction(title: "Gallery", style: .default, handler: openGallery))
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        // This block of code is for iPad 
+        alertController.popoverPresentationController?.sourceView = self.view
+        alertController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection()
+        alertController.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.maxY, width: 0, height: 0)
+        
         self.present(alertController, animated: true, completion: nil)
     }
     
