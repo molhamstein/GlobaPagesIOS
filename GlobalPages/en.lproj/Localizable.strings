@@ -240,3 +240,6 @@
 "slogon" = "Know what's around";
 "END_OF_VOULUMES" = "No more volumes";
 "ERROR_EMAIL_NOT_EXISTS" = "Email not found";
+
+// Notifications
+"ALL_NOTIFICATIONS_DELETED"         = "There are no notifications to delete";

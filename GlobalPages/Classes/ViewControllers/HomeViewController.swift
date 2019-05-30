@@ -166,7 +166,8 @@ class HomeViewController: AbstractController {
         let layout = CustomLayout()
         layout.delegate = self
         adsCollectionView.collectionViewLayout = layout
-
+        adsCollectionView.isPagingEnabled = true
+        
         setupCollectionViewLayout()
         adsCollectionView.dataSource = self
         adsCollectionView.delegate = self
@@ -400,6 +401,7 @@ extension HomeViewController {
             forSupplementaryViewOfKind: CustomLayout.Element.menu.kind,
             withReuseIdentifier: CustomLayout.Element.menu.id
         )
+        
 
         customLayout.settings.itemSize = CGSize(width: self.view.frame.width, height: 200)
         customLayout.settings.headerSize = CGSize(width: self.view.frame.width, height: self.view.frame.height * 0.26)
@@ -463,6 +465,7 @@ extension HomeViewController {
                     menuView.filtterCollectionView?.delegate = self
                     menuView.filtterCollectionView?.dataSource = self
                     self.volumeTitle = menuView.dateLabel
+                    menuView.animateAddButton()
                 }
                 return menuView
             }

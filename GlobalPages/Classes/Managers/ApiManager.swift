@@ -1446,6 +1446,37 @@ class ApiManager: NSObject {
         }
     }
     
+    // notifications/seenNotification
+    func deleteNotification(id: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
+        
+        let deleteURL = "\(baseURL)/notifications/\(id)"
+        let parameters : [String:Any] = [:]
+        print(parameters)
+        // build request
+        Alamofire.request(deleteURL, method: .delete, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError)
+                } else {
+            
+                    print(jsonResponse)
+                    completionBlock(true , nil)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError)
+                } else {
+                    completionBlock(false, ServerError.connectionError)
+                }
+            }
+        }
+    }
     // businesses
     func getBusinesses(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters

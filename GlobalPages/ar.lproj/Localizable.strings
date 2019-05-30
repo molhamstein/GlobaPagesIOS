@@ -236,3 +236,10 @@
 "slogon" = "Know what's around";
 "END_OF_VOULUMES" = "لا يوجد اعداد جديدة";
 "ERROR_EMAIL_NOT_EXISTS" = "البريد الالكتروني غير موجود";
+
+
+
+
+
+// Notifications
+"ALL_NOTIFICATIONS_DELETED"         = "ليس هنالك اي اشعارات لحذفها";

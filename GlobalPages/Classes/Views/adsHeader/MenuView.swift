@@ -22,7 +22,7 @@ class MenuView: UICollectionReusableView {
     @IBOutlet weak var filtterCollectionView: UICollectionView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var previoseButton: UIButton!
-    
+    @IBOutlet weak var addButton: UIButton!
 
     var currentVolume = 0
     
@@ -42,7 +42,6 @@ class MenuView: UICollectionReusableView {
         // header Collection register Cell
         let headerNib = UINib(nibName: HomeViewController.filtterCellId, bundle: nil)
         filtterCollectionView.register(headerNib, forCellWithReuseIdentifier: HomeViewController.filtterCellId)
-       
         
     }
     @IBAction func tapSearchButton(_ sender: UIButton) {
@@ -69,7 +68,26 @@ class MenuView: UICollectionReusableView {
         self.nextButton.isEnabled = true
     }
     
-    
+    func animateAddButton(){
+        addButton.isUserInteractionEnabled = true
+        addButton.isEnabled = true
+        
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.6
+        pulse.fromValue = 1.0
+        pulse.toValue = 1.2
+        pulse.autoreverses = true
+        pulse.repeatCount = 1
+        pulse.initialVelocity = 0.5
+        pulse.damping = 0.8
+        
+        let animationGroup = CAAnimationGroup()
+        animationGroup.duration = 2.7
+        animationGroup.repeatCount = .infinity
+        animationGroup.animations = [pulse]
+        
+        addButton.layer.add(animationGroup, forKey: "pulse")
+    }
 }
 
 // MARK: - IBActions

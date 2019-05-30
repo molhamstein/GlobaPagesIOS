@@ -13,6 +13,8 @@ class NotificationsViewController: AbstractController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
 
+    private var btnDelete: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,10 +23,12 @@ class NotificationsViewController: AbstractController {
         super.customizeView()
         self.setNavBarTitle(title: "Notifications".localized)
         self.showNavBackButton = true
+        
         tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
         seenNotification()
+        setupDeleteButton()
     }
 
     override func buildUp() {
@@ -54,6 +58,31 @@ class NotificationsViewController: AbstractController {
         }
     }
     
+    func setupDeleteButton(){
+        let _navDeleteButton = UIButton()
+        _navDeleteButton.dropShadow()
+        _navDeleteButton.setBackgroundImage(UIImage(named: "trash"), for: .normal)
+        _navDeleteButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        _navDeleteButton.addTarget(self, action: #selector(deleteAllNotification), for: .touchUpInside)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: _navDeleteButton)
+     
+    }
+    
+    @objc func deleteAllNotification(){
+        if DataStore.shared.notifications.count > 0{
+            let ids = DataStore.shared.notifications.map{$0.Nid ?? ""}
+            
+            for i in ids {
+                ApiManager.shared.deleteNotification(id: i, completionBlock: {_,_ in})
+            }
+            
+            DataStore.shared.notifications = []
+            self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        }else {
+            self.showMessage(message: "ALL_NOTIFICATIONS_DELETED".localized, type: .error)
+        }
+    }
 }
 
 
