@@ -86,8 +86,7 @@ class NotificationsViewController: AbstractController {
 }
 
 
-extension NotificationsViewController:UITableViewDelegate,UITableViewDataSource{
-    
+extension NotificationsViewController: UITableViewDelegate, UITableViewDataSource, NotificationTableViewCellDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -100,7 +99,8 @@ extension NotificationsViewController:UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! NotificationTableViewCell
         
         cell.configure(DataStore.shared.notifications[indexPath.row])
-    
+        cell.delegate = self
+        
         return cell
     }
     
@@ -130,6 +130,30 @@ extension NotificationsViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
+    }
+    
+    func didMenuClicked(_ cell: NotificationTableViewCell) {
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        sheet.addAction(UIAlertAction(title: "DELETE".localized, style: .destructive, handler: {_ in
+            guard let index = self.tableView.indexPath(for: cell) else {return}
+            
+            self.showActivityLoader(true)
+            ApiManager.shared.deleteNotification(id: cell.item?.Nid ?? "", completionBlock: {success, error in
+                self.showActivityLoader(false)
+                if let error = error {
+                    self.showMessage(message: error.type.errorMessage, type: .error)
+                    return
+                }
+                
+                DataStore.shared.notifications.removeAll {$0.Nid == cell.item?.Nid!}
+                self.tableView.deleteRows(at: [index], with: .automatic)
+            })
+        }))
+        
+        sheet.addAction(UIAlertAction(title: "CANCEL".localized, style: .cancel, handler: nil))
+        
+        self.present(sheet, animated: true, completion: nil)
+        
     }
 }
 

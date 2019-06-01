@@ -12,8 +12,10 @@ class NotificationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var btnMenu: UIButton!
     
     public var item: AppNotification?
+    public var delegate: NotificationTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,4 +36,11 @@ class NotificationTableViewCell: UITableViewCell {
         self.backgroundColor = (item.seen == 0) ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.8799999952, green: 0.8799999952, blue: 0.8799999952, alpha: 1)
     }
 
+    @IBAction func menuAction(_ sender: Any){
+        delegate?.didMenuClicked(self)
+    }
+}
+
+protocol NotificationTableViewCellDelegate : class {
+    func didMenuClicked(_ cell : NotificationTableViewCell)
 }

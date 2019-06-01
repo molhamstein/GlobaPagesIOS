@@ -116,10 +116,10 @@ class LoginViewController: AbstractController {
         
         if !isInitialized {
             // set initial state and hide views to show later with animation
-            self.signupView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.signupView.frame.height)
-            self.loginView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.loginView.frame.height)
-            self.countryView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.countryView.frame.height)
-            self.signupSucessView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.signupSucessView.frame.height)
+            self.signupView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.signupView.frame.height * 2)
+            self.loginView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.loginView.frame.height * 2 )
+            self.countryView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.countryView.frame.height * 2)
+            self.signupSucessView.transform = CGAffineTransform.identity.translatedBy(x: 0, y: self.signupSucessView.frame.height * 2)
                         
             dispatch_main_after(0.7) {
                 self.showView(withType: .login)

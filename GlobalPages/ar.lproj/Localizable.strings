@@ -12,6 +12,7 @@
 "GLOBAL_WARNING_TITLE"                  = "تنبيه!";
 "CANCEL"                                = "الغاء";
 "Ok"                                    = "موافق";
+"DELETE"                                = "حذف";
 
 // Generic erros
 "ERROR_NO_CONNECTION"                   = "لايوجد اتصال، يرجى التأكد من إعدادات الجهاز";

@@ -83,6 +83,9 @@ class HomeViewController: AbstractController {
         }
     }
     
+    var pagingTimer = Timer()
+    var pagingCurrentIndex = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.notificationButton.badge = nil
@@ -166,8 +169,7 @@ class HomeViewController: AbstractController {
         let layout = CustomLayout()
         layout.delegate = self
         adsCollectionView.collectionViewLayout = layout
-        adsCollectionView.isPagingEnabled = true
-        
+    
         setupCollectionViewLayout()
         adsCollectionView.dataSource = self
         adsCollectionView.delegate = self
@@ -233,6 +235,11 @@ class HomeViewController: AbstractController {
         ApiManager.shared.getPosts { (success, error, result) in
             if success{self.businessGuidCollectionView?.reloadData()}
             if error != nil{ }
+            
+            if DataStore.shared.featuredPosts.count > 0 {
+                self.pagingTimer.invalidate()
+                self.pagingTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.scrollToNextPost), userInfo: nil, repeats: true)
+            }
         }
     }
     
@@ -254,6 +261,15 @@ class HomeViewController: AbstractController {
                 }
             }
         }
+    }
+    
+    @objc func scrollToNextPost(){
+        if self.pagingCurrentIndex == DataStore.shared.featuredPosts.count - 1 {
+            self.pagingCurrentIndex = 0
+        }else {
+            self.pagingCurrentIndex += 1
+        }
+        businessGuidCollectionView?.scrollToItem(at: IndexPath(row: self.pagingCurrentIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
     
     @IBAction func profileButtonAction(_ sender: AnyObject) {
@@ -350,6 +366,15 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
             ActionShowAdsDescrption.execute(post:post)
         }
     }
+    
+    // MARK:- This block of code is for businessGuidCollectionView paging
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let visibleRect = CGRect(origin: businessGuidCollectionView!.contentOffset, size: (businessGuidCollectionView?.bounds.size)!)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        
+        self.pagingCurrentIndex = businessGuidCollectionView?.indexPathForItem(at: visiblePoint)?.row ?? 0
+
+    }
 }
 
 // setup Cell and header Size
@@ -358,7 +383,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView ==  businessGuidCollectionView{
-            return CGSize(width: self.view.frame.width * 0.7, height: self.businessGuidView!.frame.height - 16)
+            return CGSize(width: self.view.frame.width - 64, height: self.businessGuidView!.frame.height - 16)
         }
         if collectionView == filtterCollectionView {
             return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
@@ -369,8 +394,21 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
         return CGSize(width: self.view.frame.width * 0.7, height: self.businessGuidView!.frame.height - 16)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == businessGuidCollectionView{
+            return UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
+        }else {
+            return UIEdgeInsets.zero
+        }
+    }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == businessGuidCollectionView {
+            return 64
+        }else {
+            return 10
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == businessGuidCollectionView{return 32}
         if collectionView == filtterCollectionView{return 8}
@@ -445,6 +483,7 @@ extension HomeViewController {
                 self.businessGuidCollectionView =  topHeaderView.businessGuidCollectionView
                 topHeaderView.businessGuidCollectionView?.delegate  = self
                 topHeaderView.businessGuidCollectionView?.dataSource = self
+                topHeaderView.businessGuidCollectionView?.isPagingEnabled = true
                 topHeaderView.customizeCell()
                 topHeaderView.delegate = self
                 return topHeaderView
