@@ -17,6 +17,8 @@ class NotificationsViewController: AbstractController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.getNotifications()
     }
 
     override func customizeView() {
@@ -70,15 +72,27 @@ class NotificationsViewController: AbstractController {
     }
     
     @objc func deleteAllNotification(){
-        if DataStore.shared.notifications.count > 0{
-            let ids = DataStore.shared.notifications.map{$0.Nid ?? ""}
+        if DataStore.shared.notifications.count > 0 {
+            let alert = UIAlertController(title: "GLOBAL_WARNING_TITLE".localized, message: "DELETE_ALL_MSG_WARNING".localized, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "DELETE".localized, style: .destructive, handler: {_ in
+                self.showActivityLoader(true)
+                ApiManager.shared.clearNotification(completionBlock: {isSuccess, error in
+                    self.showActivityLoader(false)
+                    if isSuccess {
+                        DataStore.shared.notifications = []
+                        self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                    }
+                    
+                    if error != nil{
+                        if let msg = error?.errorName{
+                            self.showMessage(message: msg, type: .error)
+                        }
+                    }
+                })
+            }))
             
-            for i in ids {
-                ApiManager.shared.deleteNotification(id: i, completionBlock: {_,_ in})
-            }
-            
-            DataStore.shared.notifications = []
-            self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            alert.addAction(UIAlertAction(title: "CANCEL".localized, style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }else {
             self.showMessage(message: "ALL_NOTIFICATIONS_DELETED".localized, type: .error)
         }
@@ -99,6 +113,7 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! NotificationTableViewCell
         
         cell.configure(DataStore.shared.notifications[indexPath.row])
+        cell.selectionStyle = .none
         cell.delegate = self
         
         return cell
@@ -109,6 +124,16 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
         
         if cell.item?.type == "addNewVolume" {
             let volumeId = cell.item?.data?["volumeId"] as? String
+            
+            let item = DataStore.shared.notifications.filter {$0.Nid == cell.item?.Nid!}
+            item[0].clicked = true
+            cell.item?.clicked = true
+            
+            ApiManager.shared.editNotification(item: cell.item!, completionBlock: {(isSuccess, error) in
+                if isSuccess {
+                    self.tableView.reloadData()
+                }
+            })
             
             self.showActivityLoader(true)
             ApiManager.shared.getOneVolume(id: volumeId ?? "" , completionBlock: {(success, error, result) in

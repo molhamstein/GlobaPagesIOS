@@ -244,3 +244,4 @@
 
 // Notifications
 "ALL_NOTIFICATIONS_DELETED"         = "ليس هنالك اي اشعارات لحذفها";
+"DELETE_ALL_MSG_WARNING"            = "هل انت متاكد من انك تريد حذف جميع الاشعارات";

@@ -16,6 +16,7 @@ public class AppNotification: BaseModel {
     // MARK: Keys
     private let kType: String = "_type"
     private let kseen: String = "seen"
+    private let kclicked: String = "clicked"
     private let kid: String = "id"
     private let Kmessage: String = "message"
     private let KrecipientId: String = "recipientId"
@@ -26,7 +27,8 @@ public class AppNotification: BaseModel {
     // MARK: Properties
     public var message : String?
     public var type : String?
-    public var seen: Int?
+    public var seen: Bool?
+    public var clicked: Bool?
     public var Nid: String?
     public var recipientId :String?
     public var creationDate: String?
@@ -42,7 +44,8 @@ public class AppNotification: BaseModel {
         message = json[Kmessage].string
         Nid = json["id"].string
         type = json[kType].string
-        seen = json[kseen].int
+        seen = json[kseen].bool
+        clicked = json[kclicked].bool
         recipientId = json[KrecipientId].string
         creationDate = json[KcreationDate].string
         data = json[Kdata].dictionaryObject
@@ -55,6 +58,9 @@ public class AppNotification: BaseModel {
         
         if let value = seen {
             dictionary[kseen] = value
+        }
+        if let value = clicked {
+            dictionary[kclicked] = value
         }
         if let value = message {
             dictionary[Kmessage] = value

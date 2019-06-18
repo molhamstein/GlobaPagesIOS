@@ -244,3 +244,4 @@
 
 // Notifications
 "ALL_NOTIFICATIONS_DELETED"         = "There are no notifications to delete";
+"DELETE_ALL_MSG_WARNING"            = "Are you sure you want to delete all notifications";

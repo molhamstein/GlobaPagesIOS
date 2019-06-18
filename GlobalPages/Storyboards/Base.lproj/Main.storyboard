@@ -391,7 +391,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2c-Wc-rJx">
-                                                            <rect key="frame" x="311" y="0.0" width="32" height="32"/>
+                                                            <rect key="frame" x="311" y="19" width="32" height="32"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="32" id="vmD-oI-J3X"/>
                                                                 <constraint firstAttribute="height" constant="32" id="xim-vK-NLq"/>
@@ -403,11 +403,11 @@
                                                         </button>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="z2c-Wc-rJx" firstAttribute="top" secondItem="CTN-qk-rsq" secondAttribute="top" id="41t-cJ-A1K"/>
                                                         <constraint firstItem="z2c-Wc-rJx" firstAttribute="leading" secondItem="GGS-ue-C9u" secondAttribute="trailing" constant="8" id="DhB-rv-Dll"/>
                                                         <constraint firstItem="unl-fH-fmX" firstAttribute="leading" secondItem="CTN-qk-rsq" secondAttribute="leading" constant="16" id="IB7-mm-v1Y"/>
                                                         <constraint firstAttribute="bottom" secondItem="unl-fH-fmX" secondAttribute="bottom" id="KC2-hs-hlA"/>
                                                         <constraint firstItem="unl-fH-fmX" firstAttribute="top" secondItem="CTN-qk-rsq" secondAttribute="top" id="OV1-Tt-9rA"/>
+                                                        <constraint firstItem="z2c-Wc-rJx" firstAttribute="centerY" secondItem="CTN-qk-rsq" secondAttribute="centerY" id="U1u-R0-vkA"/>
                                                         <constraint firstAttribute="trailing" secondItem="z2c-Wc-rJx" secondAttribute="trailing" id="d61-4M-mZg"/>
                                                         <constraint firstItem="GGS-ue-C9u" firstAttribute="leading" secondItem="unl-fH-fmX" secondAttribute="trailing" constant="8" id="u6j-6K-6q9"/>
                                                         <constraint firstItem="GGS-ue-C9u" firstAttribute="top" secondItem="CTN-qk-rsq" secondAttribute="top" constant="8" id="w1u-Zw-DyT"/>
@@ -7395,7 +7395,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Appartment for sale in Al-Mazzeh" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aB-as-fbe">
-                                                <rect key="frame" x="16" y="91" width="194" height="41"/>
+                                                <rect key="frame" x="16" y="111.5" width="194" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
