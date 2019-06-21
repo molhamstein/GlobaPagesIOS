@@ -1418,7 +1418,7 @@ class ApiManager: NSObject {
     func seenNotification(ids: [String],completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         
         let signInURL = "\(baseURL)/notifications/seenNotification"
-        let parameters : [String:Any] = [:]
+        let parameters : [String:Any] = ["notifications": ids]
         print(parameters)
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
