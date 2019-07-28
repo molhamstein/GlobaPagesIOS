@@ -81,6 +81,7 @@ public class Post:BaseModel{
         if (json["subCategory"] != JSON.null) { subCategoryFilter = categoriesFilter(json: json["subCategory"]) }
         if json["city"] != JSON.null { city = City(json:json["city"]) }
         if json["location"] != JSON.null { location = City(json:json["location"]) }
+        if json["owner"] != JSON.null { owner = Owner(json:json["owner"]) }
     }
 
 

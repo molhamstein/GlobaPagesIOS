@@ -9,6 +9,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 import Foundation
+import SwiftyJSON
  
 /* For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
@@ -20,7 +21,6 @@ public class Owner {
 	public var creationDate : String?
 	public var username : String?
 	public var email : String?
-	public var emailVerified : Bool?
 	public var id : String?
 	public var postCategoriesIds : Array<String>?
 
@@ -63,7 +63,6 @@ public class Owner {
 		creationDate = dictionary["creationDate"] as? String
 		username = dictionary["username"] as? String
 		email = dictionary["email"] as? String
-		emailVerified = dictionary["emailVerified"] as? Bool
 		id = dictionary["id"] as? String
 //        if (dictionary["postCategoriesIds"] != nil) { postCategoriesIds = PostCategoriesIds.modelsFromDictionaryArray(dictionary["postCategoriesIds"] as! NSArray) }
 	}
@@ -85,10 +84,29 @@ public class Owner {
 		dictionary.setValue(self.creationDate, forKey: "creationDate")
 		dictionary.setValue(self.username, forKey: "username")
 		dictionary.setValue(self.email, forKey: "email")
-		dictionary.setValue(self.emailVerified, forKey: "emailVerified")
 		dictionary.setValue(self.id, forKey: "id")
 
 		return dictionary
 	}
 
+    
+    init(json: JSON) {
+        self.id = json["id"].string
+        username = json["username"].string
+        email = json["email"].string
+        
+        if let genderString = json["gender"].string {
+            gender = genderString
+        }
+        if let birthdateStr = json["birthDate"].string {
+            self.birthDate = birthdateStr
+        }
+        if let accountStatus = json["status"].string {
+            status = accountStatus
+        }
+        if let phoneNum = json["phoneNumber"].string {
+            self.phoneNumber = phoneNum
+        }
+    }
+    
 }

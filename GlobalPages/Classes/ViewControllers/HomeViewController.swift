@@ -270,7 +270,7 @@ class HomeViewController: AbstractController {
     }
     
     @objc func scrollToNextPost(){
-        if self.pagingCurrentIndex == DataStore.shared.featuredPosts.count - 1 {
+        if self.pagingCurrentIndex >= DataStore.shared.featuredPosts.count - 1 {
             self.pagingCurrentIndex = 0
         }else {
             self.pagingCurrentIndex += 1
@@ -391,8 +391,10 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
             factor = -factor
         }
         let indexPath = IndexPath(row: Int(scrollView.contentOffset.x/pagingCellSize + factor), section: 0)
-        self.businessGuidCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        self.pagingCurrentIndex = indexPath.row
+        if indexPath.row < DataStore.shared.featuredPosts.count && indexPath.row >= 0{
+            self.businessGuidCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            self.pagingCurrentIndex = indexPath.row
+        }
         
     }
 }
@@ -550,7 +552,7 @@ extension HomeViewController: MenuViewDelegate {
     }
     
     func preVolume(){
-        if let value = currentVolume , value < 4{
+        if let value = currentVolume , value < 6{
             currentVolume = currentVolume! + 1
         }else{
             self.showMessage(message: "END_OF_VOULUMES".localized, type: .warning)

@@ -5462,10 +5462,10 @@
                                                                         <rect key="frame" x="0.0" y="118.5" width="337.5" height="119"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="gq9-NM-DYO" userLabel="UserName Stack View">
-                                                                                <rect key="frame" x="20" y="30.5" width="297.5" height="58"/>
+                                                                                <rect key="frame" x="20" y="29.5" width="297.5" height="60"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GU3-7Q-dMh" userLabel="UserName Label" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="297.5" height="23"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="297.5" height="24"/>
                                                                                         <fontDescription key="fontDescription" name="Antipasto" family="Antipasto" pointSize="17"/>
                                                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
@@ -5474,7 +5474,7 @@
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </label>
                                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Z1-tl-xFc" userLabel="username textfield">
-                                                                                        <rect key="frame" x="0.0" y="35" width="297.5" height="23"/>
+                                                                                        <rect key="frame" x="0.0" y="36" width="297.5" height="24"/>
                                                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <fontDescription key="fontDescription" name="Antipasto-ExtraBold" family="Antipasto" pointSize="20"/>
                                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light" returnKeyType="next"/>
@@ -5482,7 +5482,7 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLB-C3-4qF" userLabel="UserName Line View">
-                                                                                <rect key="frame" x="20" y="88.5" width="297.5" height="1"/>
+                                                                                <rect key="frame" x="20" y="89.5" width="297.5" height="1"/>
                                                                                 <color key="backgroundColor" red="0.58424812559999995" green="0.58435159920000002" blue="0.58424162859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="sq1-v1-EBw"/>
@@ -7560,73 +7560,33 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                     <constraint firstAttribute="height" constant="60" id="ufL-Qq-VF1"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Doa-VM-QsO">
-                                                <rect key="frame" x="16" y="108" width="279" height="60"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ch-Sy-TVZ" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="129" height="22"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="22" id="tqw-rQ-15C"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="localization" value="Phone Number 2"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY5-ao-TJy">
-                                                        <rect key="frame" x="8" y="30" width="215" height="30"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQY-QD-9tC">
-                                                        <rect key="frame" x="231" y="25" width="40" height="40"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="40" id="dji-ZW-Q5J"/>
-                                                            <constraint firstAttribute="height" constant="40" id="xAA-eQ-Io1"/>
-                                                        </constraints>
-                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" image="ic_call"/>
-                                                        <connections>
-                                                            <action selector="callPhone2:" destination="bAW-zz-QFs" eventType="touchUpInside" id="1ri-30-ISw"/>
-                                                        </connections>
-                                                    </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MbN-ZK-Ysy">
-                                                        <rect key="frame" x="0.0" y="59" width="279" height="1"/>
-                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="1" id="C3V-Kd-XkP"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1da-vP-8gf" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
+                                                <rect key="frame" x="90.5" y="144" width="130" height="40"/>
+                                                <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="sY5-ao-TJy" firstAttribute="leading" secondItem="Doa-VM-QsO" secondAttribute="leading" constant="8" id="1ch-UB-XRN"/>
-                                                    <constraint firstItem="sQY-QD-9tC" firstAttribute="leading" secondItem="sY5-ao-TJy" secondAttribute="trailing" constant="8" id="5kZ-z4-hjv"/>
-                                                    <constraint firstAttribute="bottom" secondItem="MbN-ZK-Ysy" secondAttribute="bottom" id="6YS-nZ-Pre"/>
-                                                    <constraint firstItem="sQY-QD-9tC" firstAttribute="centerY" secondItem="sY5-ao-TJy" secondAttribute="centerY" id="EUc-UY-d4r"/>
-                                                    <constraint firstAttribute="height" constant="60" id="Fne-cy-Cyd"/>
-                                                    <constraint firstItem="4Ch-Sy-TVZ" firstAttribute="leading" secondItem="Doa-VM-QsO" secondAttribute="leading" id="GOs-yt-J0B"/>
-                                                    <constraint firstItem="MbN-ZK-Ysy" firstAttribute="leading" secondItem="Doa-VM-QsO" secondAttribute="leading" id="GXI-AJ-jLl"/>
-                                                    <constraint firstAttribute="bottom" secondItem="sY5-ao-TJy" secondAttribute="bottom" id="IqY-Si-hJm"/>
-                                                    <constraint firstItem="4Ch-Sy-TVZ" firstAttribute="top" secondItem="Doa-VM-QsO" secondAttribute="top" id="MYZ-Zq-chR"/>
-                                                    <constraint firstItem="sY5-ao-TJy" firstAttribute="top" secondItem="4Ch-Sy-TVZ" secondAttribute="bottom" constant="8" id="TXh-pR-7tH"/>
-                                                    <constraint firstAttribute="trailing" secondItem="sQY-QD-9tC" secondAttribute="trailing" constant="8" id="d5b-KE-vWq"/>
-                                                    <constraint firstAttribute="trailing" secondItem="MbN-ZK-Ysy" secondAttribute="trailing" id="xFv-ZZ-qFU"/>
+                                                    <constraint firstAttribute="height" constant="40" id="5Pp-g4-tkU" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
+                                                    <constraint firstAttribute="width" constant="130" id="ESg-Pr-dp3"/>
                                                 </constraints>
-                                            </view>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="ADS_DESC_CONTACT_BUTTON" image="ic_call"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="callPhone1:" destination="bAW-zz-QFs" eventType="touchUpInside" id="I2U-TH-Qix"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="0zX-hP-djq"/>
-                                            <constraint firstAttribute="trailing" secondItem="Doa-VM-QsO" secondAttribute="trailing" constant="16" id="5pM-hS-MO4"/>
-                                            <constraint firstItem="Doa-VM-QsO" firstAttribute="top" secondItem="NJh-fn-x2l" secondAttribute="bottom" constant="16" id="8aP-lc-utK"/>
                                             <constraint firstItem="NJh-fn-x2l" firstAttribute="leading" secondItem="EUS-rn-M1F" secondAttribute="leading" constant="16" id="D1O-mT-8BG"/>
                                             <constraint firstItem="NJh-fn-x2l" firstAttribute="top" secondItem="EUS-rn-M1F" secondAttribute="top" constant="32" id="Eb2-Lv-JQe"/>
-                                            <constraint firstItem="Doa-VM-QsO" firstAttribute="leading" secondItem="EUS-rn-M1F" secondAttribute="leading" constant="16" id="IEQ-2F-DGU"/>
+                                            <constraint firstItem="1da-vP-8gf" firstAttribute="centerX" secondItem="EUS-rn-M1F" secondAttribute="centerX" id="L9x-rq-1kA"/>
                                             <constraint firstAttribute="trailing" secondItem="NJh-fn-x2l" secondAttribute="trailing" constant="16" id="UfZ-6Y-RP8"/>
+                                            <constraint firstAttribute="bottom" secondItem="1da-vP-8gf" secondAttribute="bottom" constant="16" id="ngl-cC-Q7e"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -7670,6 +7630,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                     <connections>
                         <outlet property="areaLabel" destination="Ani-Z6-2Dl" id="7oE-ss-67X"/>
                         <outlet property="areaTitleLabel" destination="31R-ct-pKB" id="IPL-vI-ygb"/>
+                        <outlet property="callNowBottomButton" destination="1da-vP-8gf" id="Zzy-RE-3rl"/>
                         <outlet property="categoryLable" destination="PEW-CX-ZDZ" id="JpM-L2-KyL"/>
                         <outlet property="categoryView" destination="bky-HV-Iim" id="W8w-51-zh9"/>
                         <outlet property="cityLabel" destination="zGI-bT-owm" id="F92-pH-V5o"/>
@@ -7689,9 +7650,6 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                         <outlet property="phone1Button" destination="tQm-Bc-ZmV" id="tJV-c0-dZW"/>
                         <outlet property="phone1Label" destination="FVR-te-Nor" id="Ebh-es-Yyk"/>
                         <outlet property="phone1TitleLabel" destination="IRN-KZ-92v" id="P7B-R4-VmG"/>
-                        <outlet property="phone2Button" destination="sQY-QD-9tC" id="7do-a0-MHm"/>
-                        <outlet property="phone2Label" destination="sY5-ao-TJy" id="7D6-3b-nVx"/>
-                        <outlet property="phone2TitleLabel" destination="4Ch-Sy-TVZ" id="fdG-jQ-Z2w"/>
                         <outlet property="subCategoryLabel" destination="xda-sI-dlV" id="ELf-PS-Qgx"/>
                         <outlet property="subCategoryWidthConstraint" destination="x9c-UU-BjF" id="vc4-P9-CMs"/>
                         <outlet property="tagView" destination="Th0-jB-asq" id="34p-hr-LLN"/>
@@ -8337,9 +8295,9 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
         <image name="ic_settings" width="23" height="23"/>
         <image name="image_placeholder" width="266" height="266"/>
         <image name="location" width="24" height="24"/>
-        <image name="logoWhite_en" width="1024" height="242"/>
-        <image name="logo_en" width="356" height="86"/>
-        <image name="menu" width="16" height="16"/>
+        <image name="logoWhite_en" width="2048" height="484"/>
+        <image name="logo_en" width="356" height="86.5"/>
+        <image name="menu" width="12.800000190734863" height="12.800000190734863"/>
         <image name="navBackIcon" width="16" height="14"/>
         <image name="pin_white" width="31" height="49"/>
         <image name="profileIcon" width="82" height="83"/>
@@ -8347,6 +8305,6 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
         <image name="shawrma" width="81" height="67"/>
         <image name="signup_female" width="36" height="17"/>
         <image name="signup_male" width="63" height="15"/>
-        <image name="user_placeholder" width="1024" height="1024"/>
+        <image name="user_placeholder" width="245.75999450683594" height="245.75999450683594"/>
     </resources>
 </document>

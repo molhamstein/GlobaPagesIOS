@@ -937,7 +937,7 @@ class ApiManager: NSObject {
     // volumes
     func getVolumes(limit:Int = 1,skip:Int ,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:Volume?) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/volumes?filter[limit]=\(limit)&filter[skip]=\(skip)&filter[order]=creationDate DESC".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let signUpURL = "\(baseURL)/volumes?filter[limit]=\(limit)&filter[where][status]=activated&filter[skip]=\(skip)&filter[order]=creationDate DESC".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         // build request
         DataStore.shared.volume = nil
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { (responseObject) -> Void in

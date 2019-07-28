@@ -40,11 +40,7 @@ class AdsDescriptionViewController: AbstractController {
     @IBOutlet weak var phone1TitleLabel: XUILabel!
     @IBOutlet weak var phone1Label: UILabel!
     @IBOutlet weak var phone1Button: UIButton!
-    @IBOutlet weak var phone2TitleLabel: XUILabel!
-    @IBOutlet weak var phone2Label: UILabel!
-    @IBOutlet weak var phone2Button: UIButton!
-    @IBOutlet weak var faxTitleLabel: XUILabel!
-    @IBOutlet weak var faxLabel: UILabel!
+    @IBOutlet weak var callNowBottomButton: XUIButton!
 
 
     var tagViewWidth:CGFloat = 0{
@@ -95,9 +91,10 @@ class AdsDescriptionViewController: AbstractController {
         if let city = post.city , let value = city.title{ self.cityLabel.text = value}
         if let city = post.location , let value = city.title{ self.areaLabel.text = value}
 
-        if let phone1 = post.phone1 {self.phone1Label.text = phone1}
-        if let phone2 = post.phone2 {self.phone2Label.text = phone2}
-        if let fax = post.fax {self.faxLabel.text = fax}
+        if let phone1 = post.owner?.phoneNumber {
+            self.phone1Label.text = phone1
+            
+        }
     }
     
     override func customizeView() {
@@ -118,6 +115,7 @@ class AdsDescriptionViewController: AbstractController {
         self.areaLabel.font = AppFonts.normal
         self.contactButton.titleLabel?.font = AppFonts.normalBold
         self.contactBottomButton.titleLabel?.font  = AppFonts.normalBold
+        self.callNowBottomButton.titleLabel?.font  = AppFonts.normalBold
         self.descriptionTextView.font = AppFonts.normalBold
         self.descriptinTitleLabel.font = AppFonts.normalBold
         
@@ -126,6 +124,7 @@ class AdsDescriptionViewController: AbstractController {
         
          //shadow
         self.contactBottomButton.dropShadow()
+        self.callNowBottomButton.dropShadow()
         self.containerView.dropShadow()
         self.tagView.dropShadow()
         self.categoryView.dropShadow()
@@ -171,14 +170,8 @@ class AdsDescriptionViewController: AbstractController {
         self.contactsBGView.isHidden = true
     }
     @IBAction func callPhone1(_ sender: UIButton) {
-        if let phone1 = post?.phone1 {
+        if let phone1 = post?.owner?.phoneNumber {
             callPhone(phone:phone1)
-        }
-    }
-
-    @IBAction func callPhone2(_ sender: UIButton) {
-        if let phone2 = post?.phone2{
-            callPhone(phone:phone2)
         }
     }
 

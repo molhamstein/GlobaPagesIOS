@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.0</string>
+	<string>1.1.2</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<true/>
 	<key>LSRequiresIPhoneOS</key>
@@ -79,13 +79,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses camera</string>
+	<string>$(PRODUCT_NAME) uses camera to capture images for your ads and business page</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses location</string>
+	<string>$(PRODUCT_NAME) uses location to find nearby businesses</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses microphone</string>
+	<string>$(PRODUCT_NAME) uses microphone to record videos for your ads and </string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) uses photos</string>
+	<string>$(PRODUCT_NAME) uses photos to add images to your ads and business page</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Antipasto_extrabold.otf</string>

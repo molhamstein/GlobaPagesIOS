@@ -323,7 +323,7 @@ class BussinessGuideViewController: AbstractController {
         }else{
             let cat = categoriesFilter()
             cat.titleAr = "كل المدن"
-            cat.titleEn = "all cities"
+            cat.titleEn = "All Cities"
             filters.append(cat)
         }
         
@@ -336,8 +336,8 @@ class BussinessGuideViewController: AbstractController {
             }
         }else{
             let cat = categoriesFilter()
-            cat.titleAr = "كل الاعلانات"
-            cat.titleEn = "all Ads"
+            cat.titleAr = "كل الفئات"
+            cat.titleEn = "All Categories"
             filters.append(cat)
         }
         filtterCollectionView?.reloadData()
