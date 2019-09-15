@@ -31,8 +31,8 @@ class HomeViewController: AbstractController {
     var isFirstTimeToLoad = true
     
     // bussiness guid View
-    weak var businessGuidView: UIView?
-    weak var businessGuidCollectionView: UICollectionView?
+    @IBOutlet weak var businessGuidView: UIView?
+    @IBOutlet weak var businessGuidCollectionView: UICollectionView?
     weak var volumeTitle:UILabel?
     static var businessGuidCellId = "BusinessGuidCell"
     @IBOutlet weak var logoImageView: UIImageView!
@@ -160,7 +160,7 @@ class HomeViewController: AbstractController {
         navbarCustomization()
     }
     
-    func applyGradiant(){
+    @objc func applyGradiant(){
         // set gradiant
         self.headerView.applyGradient(colours: [AppColors.yellowDark,AppColors.yellowLight], direction: .diagonal)
         

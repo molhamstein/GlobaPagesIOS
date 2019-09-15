@@ -46,7 +46,7 @@ class filtterCell: UICollectionViewCell {
        
     }
 
-    func setupView(){
+    @objc func setupView(){
         self.makerounded()
         self.addShadow()
     }

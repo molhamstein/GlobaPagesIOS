@@ -93,7 +93,7 @@ class LocationViewController: AbstractController {
     
     // add annotion by clicling 
     
-    func handleTap(gestureReconizer: UILongPressGestureRecognizer) {
+    @objc func handleTap(gestureReconizer: UILongPressGestureRecognizer) {
         
         let location = gestureReconizer.location(in: mapView)
         let coordinate = mapView.convert(location,toCoordinateFrom: mapView)
@@ -135,7 +135,7 @@ class LocationViewController: AbstractController {
       locateMyLocation()
     }
     
-    func locateMyLocation(){
+    @objc func locateMyLocation(){
         LocationHelper.shared.startUpdateLocation()
         if let myLocation = LocationHelper.shared.myLocation {
             let location = CLLocation(latitude: myLocation.lat!, longitude: myLocation.long!)

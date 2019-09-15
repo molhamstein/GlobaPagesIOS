@@ -11,11 +11,11 @@ pod 'SwiftyJSON'
 pod 'FBSDKLoginKit', '~> 4.24.0', :inhibit_warnings => true
 pod 'FBSDKCoreKit', '~> 4.24.0', :inhibit_warnings => true
 pod 'TwitterKit'
-pod 'Toast-Swift', '~> 2.0.0'
+pod 'Toast-Swift', '~> 5.0.0'
 pod 'GoogleSignIn'
 pod 'NYTPhotoViewer', '~> 1.1.0'
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
-pod 'SKPhotoBrowser', '~> 4.1.1'
+pod 'SKPhotoBrowser', '~>  5.0.0'
 end
 

@@ -1387,7 +1387,7 @@ class ApiManager: NSObject {
     // edit product    
     func editProduct(product: Product,bussinessId:String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         
-        let signInURL = "\(baseURL)/businesses/\(bussinessId)/myProducts/\(product.id ?? "")"
+        let signInURL = "\(baseURL)/businesses/\(bussinessId)/myProducts/\(product.id)"
         let parameters : [String : Any] = product.dictionaryRepresentation()
         print(parameters)
         // build request
@@ -1545,9 +1545,9 @@ class ApiManager: NSObject {
     }
     
     // businesses
-    func getBusinesses(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
+    func getBusinesses(page:Int,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/businesses"
+        let signUpURL = "\(baseURL)/businesses?filter[limit]=20&filter[skip]=\(page)&filter[order]=creationDate DESC".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -1560,7 +1560,7 @@ class ApiManager: NSObject {
                     // parse response to data model >> user object
                     if let array = jsonResponse.array{
                         let filters = array.map{Bussiness(json:$0)}
-                        DataStore.shared.bussiness = filters
+                        DataStore.shared.bussiness =  filters
                         completionBlock(true , nil, filters)
                     }else{
                         completionBlock(true , nil, [])

@@ -131,7 +131,7 @@ class SSBadgeButton: UIButton {
         badgeLabel.isHidden = badge != nil ? false : true
     }
     
-    func setup(){
+    @objc func setup(){
         
         badgeLabel.makeRounded()
         badgeLabel.layer.borderWidth = 1

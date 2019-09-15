@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -208,7 +208,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7k-dd-iOc">
-                                        <rect key="frame" x="0.0" y="90" width="375" height="120"/>
+                                        <rect key="frame" x="0.0" y="70" width="375" height="120"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lHm-F3-CAy">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
@@ -298,11 +298,6 @@
                                     <constraint firstAttribute="trailing" secondItem="pwL-Tn-JK2" secondAttribute="trailing" id="sr6-xP-Dcl" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                     <constraint firstItem="Q7k-dd-iOc" firstAttribute="leading" secondItem="lzZ-7A-Mqh" secondAttribute="leading" id="yuk-qK-SWB" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="Q7k-dd-iOc"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.96470588235294119" green="0.96862745098039216" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -321,7 +316,7 @@
                     <connections>
                         <outlet property="adsCollectionView" destination="qw6-rv-S15" id="41K-hR-svu"/>
                         <outlet property="adsView" destination="rvY-cr-NTQ" id="r6z-pq-8ia"/>
-                        <outlet property="businessGuidCollectionView" destination="lHm-F3-CAy" id="G57-1Y-E2t"/>
+                        <outlet property="businessGuidCollectionView" destination="lHm-F3-CAy" id="6rB-mc-qrG"/>
                         <outlet property="businessGuidView" destination="Q7k-dd-iOc" id="QkA-48-C9Y"/>
                         <outlet property="headerView" destination="vMY-Ql-96F" id="3ZM-LL-yD5"/>
                         <outlet property="logoImageView" destination="88N-hg-sL2" id="SFN-6V-c96"/>
@@ -1720,7 +1715,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUc-rm-iyV" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="45.5" y="226.5" width="276" height="22"/>
+                                                <rect key="frame" x="48.5" y="226.5" width="273" height="22"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="ADS_DESC_CONTACT_BUTTON" image="ic_call"/>
                                                 <connections>
@@ -2101,7 +2096,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-5822" y="978"/>
+            <point key="canvasLocation" x="-1842" y="1699"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ufm-Kt-5K6">
@@ -2121,7 +2116,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NOI-sy-zQz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6758" y="978"/>
+            <point key="canvasLocation" x="-2778" y="1699"/>
         </scene>
         <!--Bussiniess Guid-->
         <scene sceneID="13Q-ad-66O">
@@ -2627,7 +2622,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXc-1K-rOJ">
-                                                <rect key="frame" x="16" y="0.0" width="25" height="23"/>
+                                                <rect key="frame" x="16" y="0.0" width="16" height="22"/>
                                                 <state key="normal" image="ic_back_white"/>
                                                 <connections>
                                                     <action selector="backAction:" destination="lhd-nH-WWq" eventType="touchUpInside" id="rGM-lV-TTG"/>
@@ -3301,7 +3296,7 @@
                                                 <rect key="frame" x="16" y="184" width="279" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9j-eE-J5P" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="4Ku-ME-6Hx"/>
                                                         </constraints>
@@ -5375,7 +5370,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufU-8t-mBP" userLabel="editIcon">
-                                                                        <rect key="frame" x="119" y="0.0" width="21" height="22"/>
+                                                                        <rect key="frame" x="124" y="0.0" width="16" height="22"/>
                                                                         <state key="normal" image="ic_edit"/>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2HJ-Ta-MGo" userLabel="Edit Button">
@@ -5462,10 +5457,10 @@
                                                                         <rect key="frame" x="0.0" y="118.5" width="337.5" height="119"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="gq9-NM-DYO" userLabel="UserName Stack View">
-                                                                                <rect key="frame" x="20" y="29.5" width="297.5" height="60"/>
+                                                                                <rect key="frame" x="20" y="30.5" width="297.5" height="58"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GU3-7Q-dMh" userLabel="UserName Label" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="297.5" height="24"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="297.5" height="23"/>
                                                                                         <fontDescription key="fontDescription" name="Antipasto" family="Antipasto" pointSize="17"/>
                                                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
@@ -5474,7 +5469,7 @@
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </label>
                                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Z1-tl-xFc" userLabel="username textfield">
-                                                                                        <rect key="frame" x="0.0" y="36" width="297.5" height="24"/>
+                                                                                        <rect key="frame" x="0.0" y="35" width="297.5" height="23"/>
                                                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                                         <fontDescription key="fontDescription" name="Antipasto-ExtraBold" family="Antipasto" pointSize="20"/>
                                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light" returnKeyType="next"/>
@@ -5482,7 +5477,7 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLB-C3-4qF" userLabel="UserName Line View">
-                                                                                <rect key="frame" x="20" y="89.5" width="297.5" height="1"/>
+                                                                                <rect key="frame" x="20" y="88.5" width="297.5" height="1"/>
                                                                                 <color key="backgroundColor" red="0.58424812559999995" green="0.58435159920000002" blue="0.58424162859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="1" id="sq1-v1-EBw"/>
@@ -6598,15 +6593,22 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RzJ-uZ-BLD" userLabel="containerView">
                                 <rect key="frame" x="19" y="168" width="337.5" height="499"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Io4-BE-IFD">
+                                    <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Io4-BE-IFD">
                                         <rect key="frame" x="0.0" y="0.0" width="337.5" height="499"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbj-Bw-kzk">
                                                 <rect key="frame" x="0.0" y="0.0" width="337.5" height="960"/>
                                                 <subviews>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nW4-Cw-Upo">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nW4-Cw-Upo">
                                                         <rect key="frame" x="0.0" y="0.0" width="337.5" height="316"/>
                                                         <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="verified badge" translatesAutoresizingMaskIntoConstraints="NO" id="9Iw-yL-rKC">
+                                                                <rect key="frame" x="-12" y="-12" width="24" height="24"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="24" id="4SL-gE-Yja"/>
+                                                                    <constraint firstAttribute="width" constant="24" id="uIJ-bc-ZSr"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Damascus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VG-8p-IUt">
                                                                 <rect key="frame" x="16" y="211" width="67" height="17"/>
                                                                 <constraints>
@@ -6730,6 +6732,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                             <constraint firstItem="2VG-8p-IUt" firstAttribute="leading" secondItem="nW4-Cw-Upo" secondAttribute="leading" constant="16" id="18t-DU-YDL" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                             <constraint firstItem="MzL-QI-PDZ" firstAttribute="leading" secondItem="nW4-Cw-Upo" secondAttribute="leading" constant="16" id="3Lv-Wp-6Uh" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                             <constraint firstItem="PNG-Bw-SM4" firstAttribute="top" secondItem="nW4-Cw-Upo" secondAttribute="top" constant="16" id="9cT-8f-gpE"/>
+                                                            <constraint firstItem="9Iw-yL-rKC" firstAttribute="leading" secondItem="nW4-Cw-Upo" secondAttribute="leading" constant="-12" id="C6c-2N-PrN"/>
                                                             <constraint firstItem="NRL-E1-OFU" firstAttribute="top" secondItem="W59-aq-g2F" secondAttribute="bottom" constant="4" id="DeB-tL-uxM"/>
                                                             <constraint firstItem="NRL-E1-OFU" firstAttribute="top" secondItem="W59-aq-g2F" secondAttribute="bottom" constant="4" id="FOV-dp-Zw9"/>
                                                             <constraint firstItem="W59-aq-g2F" firstAttribute="top" secondItem="1eR-En-KwN" secondAttribute="bottom" constant="12" id="G2B-zz-8fj"/>
@@ -6737,6 +6740,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                             <constraint firstItem="NRL-E1-OFU" firstAttribute="leading" secondItem="nW4-Cw-Upo" secondAttribute="leading" constant="16" id="OEP-zO-GSL"/>
                                                             <constraint firstItem="Zze-lo-QUx" firstAttribute="leading" secondItem="nW4-Cw-Upo" secondAttribute="leading" constant="16" id="QVj-nv-0gJ" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                             <constraint firstItem="DPF-9r-nZf" firstAttribute="leading" secondItem="nW4-Cw-Upo" secondAttribute="leading" constant="16" id="RHK-HU-4fB"/>
+                                                            <constraint firstItem="9Iw-yL-rKC" firstAttribute="top" secondItem="nW4-Cw-Upo" secondAttribute="top" constant="-12" id="RWX-6H-Glw"/>
                                                             <constraint firstItem="1LK-oc-GYK" firstAttribute="centerY" secondItem="2VG-8p-IUt" secondAttribute="centerY" id="RhL-13-hec" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
                                                             <constraint firstItem="xaM-VY-LPN" firstAttribute="leading" secondItem="nW4-Cw-Upo" secondAttribute="leading" constant="16" id="SLr-fQ-OOA"/>
                                                             <constraint firstItem="MzL-QI-PDZ" firstAttribute="top" secondItem="gUY-ci-QTn" secondAttribute="bottom" constant="12" id="SNU-hd-Gch"/>
@@ -7030,7 +7034,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                 <rect key="frame" x="16" y="184" width="279" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZd-Do-FG2" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="iSc-fH-PKg"/>
                                                         </constraints>
@@ -7188,6 +7192,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                         <outlet property="productsCollectionView" destination="kGa-rv-AtR" id="cQs-rs-JG0"/>
                         <outlet property="subCategoryLabel" destination="gUY-ci-QTn" id="4jM-wJ-Hjd"/>
                         <outlet property="subCategoryTitleLabel" destination="Zze-lo-QUx" id="up3-uJ-M3A"/>
+                        <outlet property="verfideImageView" destination="9Iw-yL-rKC" id="oS5-KR-ayj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYT-hN-b8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -7387,7 +7392,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mF-O5-49M" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="45.5" y="226.5" width="276" height="22"/>
+                                                <rect key="frame" x="48.5" y="226.5" width="273" height="22"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="ADS_DESC_CONTACT_BUTTON" image="ic_call"/>
                                                 <connections>
@@ -8295,9 +8300,9 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
         <image name="ic_settings" width="23" height="23"/>
         <image name="image_placeholder" width="266" height="266"/>
         <image name="location" width="24" height="24"/>
-        <image name="logoWhite_en" width="2048" height="484"/>
+        <image name="logoWhite_en" width="1024" height="242"/>
         <image name="logo_en" width="356" height="86.5"/>
-        <image name="menu" width="12.800000190734863" height="12.800000190734863"/>
+        <image name="menu" width="16" height="16"/>
         <image name="navBackIcon" width="16" height="14"/>
         <image name="pin_white" width="31" height="49"/>
         <image name="profileIcon" width="82" height="83"/>
@@ -8305,6 +8310,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
         <image name="shawrma" width="81" height="67"/>
         <image name="signup_female" width="36" height="17"/>
         <image name="signup_male" width="63" height="15"/>
-        <image name="user_placeholder" width="245.75999450683594" height="245.75999450683594"/>
+        <image name="user_placeholder" width="1024" height="1024"/>
+        <image name="verified badge" width="30.5" height="30.5"/>
     </resources>
 </document>

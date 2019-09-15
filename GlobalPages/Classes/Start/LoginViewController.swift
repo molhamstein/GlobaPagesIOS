@@ -611,7 +611,7 @@ class LoginViewController: AbstractController {
 
 extension LoginViewController{
 
-    func birthdateChanged(_ sender: UIDatePicker) {
+    @objc func birthdateChanged(_ sender: UIDatePicker) {
         self.birthdate = sender.date
         if let date = birthdate{
             self.selectCountryButton.setTitle(DateHelper.getBirthFormatedStringFromDate(date), for: .normal)

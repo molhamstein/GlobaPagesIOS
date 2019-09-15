@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -89,12 +89,19 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZO-Pw-FCz">
-                                <rect key="frame" x="297" y="8" width="21" height="22"/>
+                                <rect key="frame" x="302" y="8" width="16" height="22"/>
                                 <state key="normal" image="ic_edit"/>
                                 <connections>
                                     <action selector="edit:" destination="gTV-IL-0wX" eventType="touchUpInside" id="26p-4P-BxF"/>
                                 </connections>
                             </button>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="verified badge" translatesAutoresizingMaskIntoConstraints="NO" id="KL1-xk-CzB">
+                                <rect key="frame" x="4" y="8" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="4P4-Ih-3o0"/>
+                                    <constraint firstAttribute="width" constant="24" id="Si8-jw-ZrA"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -103,12 +110,14 @@
                             <constraint firstItem="Cw7-WL-1Ra" firstAttribute="leading" secondItem="RrQ-It-FCd" secondAttribute="trailing" constant="16" id="9cg-50-p23"/>
                             <constraint firstAttribute="bottom" secondItem="Of0-HF-zS6" secondAttribute="bottom" constant="8" id="AAr-d7-R46"/>
                             <constraint firstAttribute="trailing" secondItem="Of0-HF-zS6" secondAttribute="trailing" constant="8" id="FOX-dx-6Wv"/>
+                            <constraint firstItem="KL1-xk-CzB" firstAttribute="top" secondItem="WP9-DM-ep3" secondAttribute="top" constant="8" id="JDP-VF-YBa"/>
                             <constraint firstAttribute="trailing" secondItem="OZO-Pw-FCz" secondAttribute="trailing" constant="8" id="OVu-xk-Vh7"/>
                             <constraint firstItem="RrQ-It-FCd" firstAttribute="top" secondItem="WP9-DM-ep3" secondAttribute="top" constant="16" id="OYb-R2-9bF"/>
                             <constraint firstItem="RFb-Xp-ViE" firstAttribute="width" secondItem="WP9-DM-ep3" secondAttribute="width" multiplier="0.3" id="TQ2-Bh-Dxg"/>
                             <constraint firstAttribute="trailing" secondItem="RFb-Xp-ViE" secondAttribute="trailing" constant="-10" id="ama-YM-KND"/>
                             <constraint firstItem="OZO-Pw-FCz" firstAttribute="top" secondItem="WP9-DM-ep3" secondAttribute="top" constant="8" id="asm-54-BfB"/>
                             <constraint firstItem="RFb-Xp-ViE" firstAttribute="leading" secondItem="Ego-0g-13q" secondAttribute="trailing" constant="8" id="fRo-hs-EPB"/>
+                            <constraint firstItem="KL1-xk-CzB" firstAttribute="leading" secondItem="WP9-DM-ep3" secondAttribute="leading" constant="4" id="h2l-Li-Fwm"/>
                             <constraint firstItem="Of0-HF-zS6" firstAttribute="leading" secondItem="Cw7-WL-1Ra" secondAttribute="trailing" constant="8" id="n5f-0k-zYH"/>
                             <constraint firstItem="Ego-0g-13q" firstAttribute="leading" secondItem="RrQ-It-FCd" secondAttribute="trailing" constant="16" id="pKY-eI-Z91"/>
                             <constraint firstAttribute="bottom" secondItem="RrQ-It-FCd" secondAttribute="bottom" constant="16" id="uln-ad-5kF"/>
@@ -139,6 +148,7 @@
                 <outlet property="nextButton" destination="Of0-HF-zS6" id="bX6-nt-idK"/>
                 <outlet property="tagLabel" destination="6GV-p2-n94" id="UcN-ac-oPh"/>
                 <outlet property="tagView" destination="RFb-Xp-ViE" id="TNt-ud-Uqm"/>
+                <outlet property="verfidImageView" destination="KL1-xk-CzB" id="TiI-PK-nOl"/>
             </connections>
             <point key="canvasLocation" x="161.59999999999999" y="64.767616191904054"/>
         </collectionViewCell>
@@ -146,5 +156,6 @@
     <resources>
         <image name="ic_edit" width="21" height="21"/>
         <image name="right_arrow" width="41" height="37"/>
+        <image name="verified badge" width="30.5" height="30.5"/>
     </resources>
 </document>

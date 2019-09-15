@@ -140,6 +140,14 @@ class BussinessGuideViewController: AbstractController {
     var pointAnnotation:MKPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
     
+    
+    // page
+    var currentPage:Int = 0{
+        didSet{
+            getBussiness()
+        }
+    }
+    
     var isListView:Bool = false{
         didSet{
             if isListView{
@@ -167,6 +175,11 @@ class BussinessGuideViewController: AbstractController {
         }else if controllerType == .pharmacy{
             getNearByPharmacies()
         }
+        
+        
+        // inizilaze page
+        DataStore.shared.bussiness = []
+        currentPage = 0
     }
     
     
@@ -290,7 +303,7 @@ class BussinessGuideViewController: AbstractController {
     func getBussiness(){
         self.showActivityLoader(true)
         
-        ApiManager.shared.getBusinesses { (success, error, result) in
+        ApiManager.shared.getBusinesses(page:currentPage) { (success, error, result) in
             self.showActivityLoader(false)
             if success{
                 self.bussinessGuideCollectionView.reloadData()
@@ -575,6 +588,12 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
         }
         return 8
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == DataStore.shared.bussiness.count{
+            currentPage = currentPage +  20
+        }
+    }
 
 }
 
@@ -651,7 +670,7 @@ extension BussinessGuideViewController{
         listMapViewButton.isSelected = false
     }
 
-    func setMyLocation(){
+    @objc func setMyLocation(){
         let location = CLLocation(latitude: (LocationHelper.shared.myLocation?.lat)!, longitude: (LocationHelper.shared.myLocation?.long)!)
         let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
         self.mapView.setRegion(viewRegion, animated: true)

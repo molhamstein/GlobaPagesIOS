@@ -73,22 +73,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GlobalPages/Classes/Managers/ApiManager.swift"
-            timestampString = "575209260.901233"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1178"
-            endingLineNumber = "1178"
-            landmarkName = "editPost(post:cityId:locationId:completionBlock:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GlobalPages/Classes/ViewControllers/CategoriesSubscriptionViewController.swift"
             timestampString = "570890112.701933"
             startingColumnNumber = "9223372036854775807"
@@ -170,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GlobalPages/Classes/ViewControllers/EditProfileViewController.swift"
-            timestampString = "570890112.702768"
+            timestampString = "590250967.889936"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "203"
@@ -185,56 +169,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GlobalPages/Classes/Managers/ApiManager.swift"
-            timestampString = "575209260.903062"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
-            landmarkName = "getMe(completionBlock:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GlobalPages.ApiManager.getMe(completionBlock: (Swift.Bool, Swift.Optional&lt;GlobalPages.ServerError&gt;, Swift.Optional&lt;GlobalPages.AppUser&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "GlobalPages"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/Managers/ApiManager.swift"
-                  timestampString = "573638343.840214"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "345"
-                  endingLineNumber = "345"
-                  offsetFromSymbolStart = "808">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in GlobalPages.ApiManager.getMe(completionBlock: (Swift.Bool, Swift.Optional&lt;GlobalPages.ServerError&gt;, Swift.Optional&lt;GlobalPages.AppUser&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "GlobalPages"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nour/Documents/Projects/IOs/Xcode9/GlobaPages/GlobalPages/Classes/Managers/ApiManager.swift"
-                  timestampString = "573638343.842926"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "346"
-                  endingLineNumber = "346"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
-            timestampString = "573724281.457199"
+            timestampString = "590250967.890079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "206"
@@ -250,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
-            timestampString = "573724281.466092"
+            timestampString = "590250967.890174"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "309"
@@ -266,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
-            timestampString = "573724281.468021"
+            timestampString = "590250967.890255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "402"
@@ -282,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GlobalPages/Classes/ViewControllers/NewBussinesesViewController.swift"
-            timestampString = "573724281.468865"
+            timestampString = "590250967.890301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "274"

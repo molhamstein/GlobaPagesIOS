@@ -70,7 +70,7 @@ extension UILabel {
         let myText = text as NSString
         
         let rect = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-        let labelSize = myText.boundingRect(with: rect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        let labelSize = myText.boundingRect(with: rect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
         return ceil(labelSize.width)
     }
     
@@ -80,7 +80,7 @@ extension UILabel {
         //line height size
         paragraphStyle.lineSpacing = height
         let attrString = NSMutableAttributedString(string: self.text!)
-        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+        attrString.addAttribute(NSAttributedStringKey.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
         self.attributedText = attrString
     }
     

@@ -202,7 +202,7 @@ extension UITextField: UITextFieldDelegate{
     func donePressed(){
         self.superview?.endEditing(true)
     }
-    func cancelPressed(){
+    @objc func cancelPressed(){
         self.superview?.endEditing(true)
     }
     

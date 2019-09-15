@@ -22,6 +22,7 @@ class BussinessGuidListCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var verfidImageView: UIImageView!
     
     @IBOutlet weak var tagView: GradientView!
     
@@ -34,6 +35,9 @@ class BussinessGuidListCell: UICollectionViewCell {
             if let value = bussiness.title{self.bussinessGuideTitleLabel.text = value}
             if let value = bussiness.description{self.bussinessGuideCategoryLabel.text = value }
             if let image = bussiness.cover {self.imageView.setImageForURL(image, placeholder: nil)}
+            if let isVip = bussiness.isVip {
+                verfidImageView.isHidden = !isVip
+            }
         }
     }
     

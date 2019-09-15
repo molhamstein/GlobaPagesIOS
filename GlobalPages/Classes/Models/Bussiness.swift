@@ -90,6 +90,7 @@ public class Bussiness:BaseModel {
     public var phone2:String?
     public var fax:String?
     public var address:String?
+    public var isVip:Bool?
 
     public var lat : Double?{
         return locationPoint?.lat
@@ -213,6 +214,7 @@ public class Bussiness:BaseModel {
         if let value = json["phone1"].string{phone1 = value}
         if let value = json["phone2"].string{phone2 = value}
         if let value = json["fax"].string{fax = value}
+        isVip = json["vip"].bool
   
     }
     
@@ -239,6 +241,7 @@ public class Bussiness:BaseModel {
         dictionary["phone2"] = phone2
         dictionary["fax"] = fax
         dictionary["textAddress"] = address
+        dictionary["vip"] = isVip
         if let value = owner{dictionary["owner"] = value.dictionaryRepresentation()}
         if let value = category {dictionary["category"] = value.dictionaryRepresentation()}
         if let value = subCategory{dictionary["subCategory"] = value.dictionaryRepresentation()}
@@ -246,6 +249,7 @@ public class Bussiness:BaseModel {
 //        if let value = media {dictionary["media"] = value.map{$0.dictionaryRepresentation()}}
         if let value = media {dictionary["covers"] = value.map{$0.dictionaryRepresentation()}}
         if let array = products {dictionary["products"] = array.map{$0.dictionaryRepresentation()}}
+        
         
 		return dictionary
 	}

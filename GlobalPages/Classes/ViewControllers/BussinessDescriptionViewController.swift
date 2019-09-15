@@ -33,6 +33,7 @@ class BussinessDescriptionViewController: AbstractController {
     @IBOutlet weak var subCategoryLabel: UILabel!
     @IBOutlet weak var productsCollectionView: UICollectionView!
     @IBOutlet weak var addProductButton: UIButton!
+    @IBOutlet weak var verfideImageView: UIImageView!
     
     
     
@@ -195,6 +196,9 @@ class BussinessDescriptionViewController: AbstractController {
         if let phone1 = bussiness.phone1 {self.phone1Label.text = phone1}
         if let phone2 = bussiness.phone2 {self.phone2Label.text = phone2}
         if let fax = bussiness.fax {self.faxLabel.text = fax}
+        if let isVip = bussiness.isVip {
+            verfideImageView.isHidden = !isVip
+        }
     }
     
     @IBAction func addProduct(_ sender: UIButton) {

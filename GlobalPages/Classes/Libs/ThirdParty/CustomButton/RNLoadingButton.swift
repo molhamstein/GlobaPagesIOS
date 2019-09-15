@@ -53,7 +53,7 @@ open class RNLoadingButton: UIButton {
     open var activityIndicatorEdgeInsets: UIEdgeInsets = UIEdgeInsets.init(top: 0, left: 15, bottom: 0, right: 15)
     
     /// Activity Indicator Alingment. Default is '.center'
-    @IBInspectable open var activityIndicatorAlignment = RNActivityIndicatorAlignment.center {
+    open var activityIndicatorAlignment = RNActivityIndicatorAlignment.center {
         didSet {
             self.setNeedsLayout()
         }

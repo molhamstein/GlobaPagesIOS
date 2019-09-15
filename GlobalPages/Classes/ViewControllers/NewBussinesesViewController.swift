@@ -597,7 +597,7 @@ class NewBussinesesViewController: AbstractController {
         
     }
     
-    func setLocation(){
+    @objc func setLocation(){
         let loc = DataStore.shared.location
         self.selectLocationButton.isHidden = true
         self.selectedLocation = loc 
