@@ -47,6 +47,7 @@
 		1497BC4121F783F300C0DFE2 /* DroidKufiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1497BC3F21F783F200C0DFE2 /* DroidKufiBold.ttf */; };
 		1497BC4221F783F300C0DFE2 /* DroidKufiRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1497BC4021F783F200C0DFE2 /* DroidKufiRegular.ttf */; };
 		1497EF0D21D6BA2200E63B99 /* FireBaseNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */; };
+		14A8469B2332012800F07B7B /* MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A8469A2332012800F07B7B /* MapKit.swift */; };
 		14B1B88C20DEF17C00D86536 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88920DEF17B00D86536 /* CustomLayout.swift */; };
 		14B1B88D20DEF17C00D86536 /* CustomLayoutSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */; };
 		14B1B88E20DEF17C00D86536 /* CustomLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */; };
@@ -204,6 +205,7 @@
 		1497BC3F21F783F200C0DFE2 /* DroidKufiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidKufiBold.ttf; sourceTree = "<group>"; };
 		1497BC4021F783F200C0DFE2 /* DroidKufiRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidKufiRegular.ttf; sourceTree = "<group>"; };
 		1497EF0C21D6BA2100E63B99 /* FireBaseNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseNotification.swift; sourceTree = "<group>"; };
+		14A8469A2332012800F07B7B /* MapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit.swift; sourceTree = "<group>"; };
 		14B1B88920DEF17B00D86536 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
 		14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutSettings.swift; sourceTree = "<group>"; };
 		14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLayoutAttributes.swift; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 				5786861520C481000002C67B /* PassthroughView.m */,
 				140544D820D7F1BC0042E70F /* PinterestLayout.swift */,
 				140544DA20D7F6E50042E70F /* UICollectionViewCell.swift */,
+				14A8469A2332012800F07B7B /* MapKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1058,6 +1061,7 @@
 				14CC8C9220C8A03D000319B0 /* UIView2.swift in Sources */,
 				5786884E20C4A5B10002C67B /* Location.swift in Sources */,
 				578687A120C481480002C67B /* SocialManager.swift in Sources */,
+				14A8469B2332012800F07B7B /* MapKit.swift in Sources */,
 				146AF24B2123633600FE2919 /* ProductCell.swift in Sources */,
 				5786884620C4841E0002C67B /* Constants.swift in Sources */,
 				14CC8C8E20C8A03D000319B0 /* UIColor.swift in Sources */,

@@ -135,11 +135,9 @@ class BussinessGuideViewController: AbstractController {
     var bussinessGuideListCellId = "BussinessGuidListCell"
     static var filtterCellId = "filtterCell"
     var filters:[categoriesFilter] = []
-//    var bussiness:[Bussiness] = []
     
     var pointAnnotation:MKPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
-    
     
     // page
     var currentPage:Int = 0{
@@ -147,6 +145,8 @@ class BussinessGuideViewController: AbstractController {
             getBussiness()
         }
     }
+    
+    var isFirstTime:Bool = true // this is for the cache issue
     
     var isListView:Bool = false{
         didSet{
@@ -306,6 +306,12 @@ class BussinessGuideViewController: AbstractController {
         ApiManager.shared.getBusinesses(page:currentPage) { (success, error, result) in
             self.showActivityLoader(false)
             if success{
+                if self.isFirstTime {
+                    self.isFirstTime = false
+                    DataStore.shared.bussiness =  result
+                }else{
+                    DataStore.shared.bussiness.append(contentsOf:result)
+                }
                 self.bussinessGuideCollectionView.reloadData()
                 self.setBussinessOnMap()
             }
@@ -590,8 +596,17 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.item == DataStore.shared.bussiness.count{
-            currentPage = currentPage +  20
+//        if indexPath.item == DataStore.shared.bussiness.count {
+//            currentPage = currentPage +  5
+//        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset:CGFloat = 200.0
+        let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+        if (bottomEdge + offset >= scrollView.contentSize.height) {
+            // Load next batch of products
+            currentPage = currentPage +  5
         }
     }
 
