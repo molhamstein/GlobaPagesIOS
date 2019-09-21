@@ -1580,7 +1580,46 @@ class ApiManager: NSObject {
             }
         }
     }
+    /*
+    //"?filter[where][locationPoint][near]=" +
+    pointEntity.lat.toString() + "," + pointEntity.lng.toString() + "&filter[where][status]=activated&filter[limit]=50" + filter[where][locationPoint][maxDistance]=1500
+    */
     
+    func getBusinessesOnMap(lat:Double,lng:Double,radius:Double,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/businesses?filter[where][locationPoint][near]=\(lat),\(lng)&filter[where][status]=activated&filter[limit]=50&filter[where][locationPoint][maxDistance]=\(radius)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        print(signUpURL)
+        // build request
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                print(jsonResponse)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, [])
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let filters = array.map{Bussiness(json:$0)}
+                        
+                        completionBlock(true , nil, filters)
+                    }else{
+                        completionBlock(true , nil, [])
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, [])
+                } else {
+                    completionBlock(false, ServerError.connectionError, [])
+                }
+            }
+        }
+    }
     // get nearby bussiness
     func getNearByBusinesses(lat:String,lng:String,catId:String,subCatId:String,codeSubCat:String,openDay:String,limit:String,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters

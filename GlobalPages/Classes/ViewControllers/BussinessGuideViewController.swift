@@ -152,6 +152,7 @@ class BussinessGuideViewController: AbstractController {
         didSet{
             if isListView{
                 switchToListMode()
+                loadData()
             }else{
                 switchToMapViewMode()
             }
@@ -162,24 +163,28 @@ class BussinessGuideViewController: AbstractController {
         super.viewDidLoad()
         
         customizeMap()
-
+        if controllerType == .bussinessGuide{
+            self.isListView = true
+        }
+        loadData()
+        // inizilaze page
+        DataStore.shared.bussiness = []
+        
+    }
+    
+    func loadData(){
         if controllerType == .nearBy{
             getBussinessFilters()
             showNearbyFilterView()
-//            controllerType.showFilters()
         }else if controllerType == .bussinessGuide{
-            self.isListView = true
+            currentPage = 0
+            isFirstTime = true
             getBussinessFilters()
-            //showNearbyFilterView()
             getBussiness()
         }else if controllerType == .pharmacy{
             getNearByPharmacies()
         }
         
-        
-        // inizilaze page
-        DataStore.shared.bussiness = []
-        currentPage = 0
     }
     
     
@@ -275,9 +280,8 @@ class BussinessGuideViewController: AbstractController {
         let nib = UINib(nibName: filtterCellId2, bundle: nil)
         self.categoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId2)
         self.subCategoryCollectionView.register(nib, forCellWithReuseIdentifier: filtterCellId2)
-        
+
         Filter.bussinesGuid.clear();
-        
     }
     
     
@@ -313,7 +317,7 @@ class BussinessGuideViewController: AbstractController {
                     DataStore.shared.bussiness.append(contentsOf:result)
                 }
                 self.bussinessGuideCollectionView.reloadData()
-                self.setBussinessOnMap()
+                
             }
             if error != nil{
                 if let msg = error?.errorName{
@@ -321,6 +325,25 @@ class BussinessGuideViewController: AbstractController {
                 }
             }
         }
+    }
+    
+    
+    func getBussinessOnMap(lat:Double,lng:Double,radius:Double){
+        self.showActivityLoader(true)
+        
+        ApiManager.shared.getBusinessesOnMap(lat: lat, lng: lng, radius: radius, completionBlock:  { (success, error, result) in
+            self.showActivityLoader(false)
+            if success{
+                DataStore.shared.bussiness =  result
+                self.bussinessGuideCollectionView.reloadData()
+                self.setBussinessOnMap()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        })
     }
     
     func getFilters(){
@@ -595,12 +618,7 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
         return 8
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        if indexPath.item == DataStore.shared.bussiness.count {
-//            currentPage = currentPage +  5
-//        }
-    }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset:CGFloat = 200.0
         let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
@@ -662,8 +680,8 @@ extension BussinessGuideViewController: MKMapViewDelegate {
             self.setBottomViewWith(bussiness: selectedBussiness!)
             self.bottomView.animateIn(mode: .animateInFromBottom, delay: 0.2)
         }
-        
     }
+    
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         if view.tag == 1 {
             return
@@ -672,7 +690,16 @@ extension BussinessGuideViewController: MKMapViewDelegate {
         self.bottomView.animateIn(mode: .animateOutToBottom, delay: 0.2)
         self.bottomView.isHidden = true
     }
-
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        if controllerType == .bussinessGuide {
+            if isListView {return}
+            let centralLocationCoordinate = mapView.centerCoordinate
+            let radius = self.mapView.currentRadius()
+            print("Radius - \(self.mapView.currentRadius())")
+            getBussinessOnMap(lat: centralLocationCoordinate.latitude, lng: centralLocationCoordinate.longitude, radius: radius)
+        }
+    }
     
 }
 
@@ -689,7 +716,6 @@ extension BussinessGuideViewController{
         let location = CLLocation(latitude: (LocationHelper.shared.myLocation?.lat)!, longitude: (LocationHelper.shared.myLocation?.long)!)
         let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
         self.mapView.setRegion(viewRegion, animated: true)
-//        show3NearBy()
     }
     
     
@@ -721,6 +747,7 @@ extension BussinessGuideViewController{
         }
     }
     
+  
 }
 
 class CustomPointAnnotation: MKPointAnnotation {
