@@ -275,7 +275,7 @@ class DataStore :NSObject {
         }
     }
     
-    
+    public var didChangedFilters = false
     public var location:Location = Location()
     
     public var currentUTCTime:TimeInterval {

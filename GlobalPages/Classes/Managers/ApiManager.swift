@@ -1543,11 +1543,42 @@ class ApiManager: NSObject {
             }
         }
     }
+    /*
+     ?filter[where][subCategoryId]=" + subCategory.id +
+     "&filter[where][categoryId]=" + subCategory.id +
+     "&filter[where][locationPoint][near]=" +
+     pointEntity.lat.toString() + "," + pointEntity.lng.toString() + "&filter[where][status]=activated"//&filter[limit]=3
+     */
+    
+    /*http://192.168.1.8:3000/api/businesses/searchByLocation?lat=33.514&lng=36.31&codeCat=pharmacies&limit=100&skip=0&openingDay=0&units=kilometers&maxDistance=3000&cityId=123&locationId=123&catId=123&subCatId=123
+     */
     
     // businesses
-    func getBusinesses(page:Int,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
+    func getBusinesses(keyword:String?,catId:String?,subCatId:String?,page:Int,locationId:String?,cityId:String?,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
+        var parameters = "?limit=20&skip=\(page)&filter[order]=creationDate DESC&filter[where][status]=activated"
+        
+        if let keyValue = keyword{
+            parameters += "&filter[where][keyword]=\(keyValue)"
+        }
+        
+        if let subId = subCatId{
+            parameters += "&subCatId=\(subId)"
+        }
+        
+        if let catId = catId{
+            parameters += "&catId=\(catId)"
+        }
+        
+        if let locationId  = locationId{
+            parameters += "&locationId=\(locationId)"
+        }
+        
+        if let cityId = cityId{
+            parameters += "&cityId=\(cityId)"
+        }
         // url & parameters
-        let signUpURL = "\(baseURL)/businesses?filter[limit]=5&filter[skip]=\(page)&filter[order]=creationDate DESC".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let signUpURL = "\(baseURL)/businesses/searchByLocation\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    
         print(signUpURL)
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -1580,6 +1611,9 @@ class ApiManager: NSObject {
             }
         }
     }
+    
+    /*http://192.168.1.8:3000/api/businesses/searchByLocation?lat=33.514&lng=36.31&codeCat=pharmacies&limit=100&skip=0&openingDay=0&units=kilometers&maxDistance=3000&cityId=123&locationId=123&catId=123&subCatId=123
+     */
     /*
     //"?filter[where][locationPoint][near]=" +
     pointEntity.lat.toString() + "," + pointEntity.lng.toString() + "&filter[where][status]=activated&filter[limit]=50" + filter[where][locationPoint][maxDistance]=1500
@@ -1587,7 +1621,7 @@ class ApiManager: NSObject {
     
     func getBusinessesOnMap(lat:Double,lng:Double,radius:Double,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/businesses?filter[where][locationPoint][near]=\(lat),\(lng)&filter[where][status]=activated&filter[limit]=50&filter[where][locationPoint][maxDistance]=\(radius)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let signUpURL = "\(baseURL)/businesses/searchByLocation?lat=\(lat)&lng=\(lng)&units=kilometers&filter[where][status]=activated&limit=50&maxDistance=\(radius)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         print(signUpURL)
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -1601,7 +1635,6 @@ class ApiManager: NSObject {
                     // parse response to data model >> user object
                     if let array = jsonResponse.array{
                         let filters = array.map{Bussiness(json:$0)}
-                        
                         completionBlock(true , nil, filters)
                     }else{
                         completionBlock(true , nil, [])
@@ -1621,10 +1654,24 @@ class ApiManager: NSObject {
         }
     }
     // get nearby bussiness
-    func getNearByBusinesses(lat:String,lng:String,catId:String,subCatId:String,codeSubCat:String,openDay:String,limit:String,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
+    func getNearByBusinesses(lat:String,lng:String,catId:String?,subCatId:String?,codeSubCat:String?,openDay:String?,limit:String?,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/businesses/searchByLocation?lat=\(lat)&lng=\(lng)&codeCat=\(catId)&codeSubCat=\(subCatId)&code=\(codeSubCat)&openingDay=\(openDay)&limit=\(limit)"
-        
+        var signUpURL = "\(baseURL)/businesses/searchByLocation?lat=\(lat)&lng=\(lng)"
+        if let catId = catId{
+            signUpURL += "&catId=\(catId)"
+        }
+        if let subCatId = subCatId{
+            signUpURL += "&subCatId=\(subCatId)"
+        }
+        if let codeSubCat = codeSubCat{
+            signUpURL += "&code=\(codeSubCat)"
+        }
+        if let openDay = openDay{
+            signUpURL += "&openingDay=\(openDay)"
+        }
+        if let limit = limit {
+            signUpURL += "&limit=\(limit)"
+        }        
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {

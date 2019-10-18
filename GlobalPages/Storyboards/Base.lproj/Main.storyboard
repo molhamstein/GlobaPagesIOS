@@ -2386,7 +2386,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaH-9d-XNj">
-                                                <rect key="frame" x="16" y="0.0" width="25" height="23"/>
+                                                <rect key="frame" x="16" y="0.0" width="16" height="22"/>
                                                 <state key="normal" image="ic_back_white"/>
                                                 <connections>
                                                     <action selector="backAction:" destination="lhd-nH-WWq" eventType="touchUpInside" id="TWw-5c-yFV"/>
@@ -2622,7 +2622,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXc-1K-rOJ">
-                                                <rect key="frame" x="16" y="0.0" width="16" height="22"/>
+                                                <rect key="frame" x="16" y="0.0" width="25" height="23"/>
                                                 <state key="normal" image="ic_back_white"/>
                                                 <connections>
                                                     <action selector="backAction:" destination="lhd-nH-WWq" eventType="touchUpInside" id="rGM-lV-TTG"/>
@@ -3296,7 +3296,7 @@
                                                 <rect key="frame" x="16" y="184" width="279" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9j-eE-J5P" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="4Ku-ME-6Hx"/>
                                                         </constraints>
@@ -6144,7 +6144,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ik7-SS-tiL" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="289" y="18" width="24" height="24"/>
+                                                <rect key="frame" x="297" y="19" width="16" height="22"/>
                                                 <state key="normal" image="chevron"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKz-2e-3jO" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
@@ -6187,7 +6187,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcc-SI-apF" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="289" y="18" width="24" height="24"/>
+                                                <rect key="frame" x="297" y="19" width="16" height="22"/>
                                                 <state key="normal" image="chevron"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvr-Em-iA3" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
@@ -7034,7 +7034,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                 <rect key="frame" x="16" y="184" width="279" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZd-Do-FG2" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="iSc-fH-PKg"/>
                                                         </constraints>
@@ -7991,7 +7991,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                                 </cells>
                                                                             </collectionView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U65-9Q-qrx">
-                                                                                <rect key="frame" x="301" y="16" width="26" height="26"/>
+                                                                                <rect key="frame" x="311" y="16" width="16" height="22"/>
                                                                                 <state key="normal" image="add"/>
                                                                                 <connections>
                                                                                     <segue destination="Ie8-ec-MON" kind="presentation" id="455-Dh-XTB"/>
@@ -8071,7 +8071,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                         </constraints>
                                                                     </view>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CnR-2K-MHx">
-                                                                        <rect key="frame" x="301" y="421" width="26" height="26"/>
+                                                                        <rect key="frame" x="311" y="421" width="16" height="22"/>
                                                                         <state key="normal" image="add"/>
                                                                         <connections>
                                                                             <segue destination="CM8-6g-JEZ" kind="presentation" id="hUa-ie-SQi"/>
@@ -8132,7 +8132,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3F-Qm-CUk">
-                                                                                <rect key="frame" x="301" y="16" width="26" height="26"/>
+                                                                                <rect key="frame" x="311" y="16" width="16" height="22"/>
                                                                                 <state key="normal" image="add"/>
                                                                                 <connections>
                                                                                     <action selector="openSubscriptionPage:" destination="koG-YK-hKP" eventType="touchUpInside" id="PGN-WA-Byu"/>

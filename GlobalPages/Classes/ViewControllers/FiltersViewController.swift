@@ -206,6 +206,7 @@ class FiltersViewController: AbstractController {
     }
     
     override func backButtonAction(_ sender: AnyObject) {
+        DataStore.shared.didChangedFilters = false
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -216,6 +217,7 @@ class FiltersViewController: AbstractController {
         }else{
             categoryfiltertype?.filter.keyWord = nil
         }
+        DataStore.shared.didChangedFilters = true
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -433,10 +435,7 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
         
         return UICollectionViewCell()
     }
-    
-
 }
-
 
 extension FiltersViewController:UICollectionViewDelegateFlowLayout{
     
@@ -458,7 +457,7 @@ extension FiltersViewController:UICollectionViewDelegateFlowLayout{
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         guard let cell = collectionView.cellForItem(at: indexPath) as? filterCell2 else {return}
         if collectionView == categoryCollectionView {
             if let value = categoryfiltertype?.filter.category{

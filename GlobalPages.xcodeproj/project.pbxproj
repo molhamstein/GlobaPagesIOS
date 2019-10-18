@@ -96,6 +96,7 @@
 		14FF478F21162F1500E6A44C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF478E21162F1500E6A44C /* ProfileViewController.swift */; };
 		14FF47912116338800E6A44C /* NewAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF47902116338800E6A44C /* NewAdViewController.swift */; };
 		14FF479321163ABA00E6A44C /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF479221163ABA00E6A44C /* UITextView.swift */; };
+		27AC927B2358B3090066EC1D /* damascus.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 27AC927A2358B3090066EC1D /* damascus.gpx */; };
 		3ADE00B62C70F1DE745EE6A2 /* Pods_GlobalPages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4335E31C6F7CEA245748694A /* Pods_GlobalPages.framework */; };
 		578685EC20C47FD30002C67B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578685EB20C47FD30002C67B /* AppDelegate.swift */; };
 		578685EE20C47FD30002C67B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578685ED20C47FD30002C67B /* HomeViewController.swift */; };
@@ -257,6 +258,7 @@
 		14FF479221163ABA00E6A44C /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		20243EAE8A22CECE89040B79 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		214BB27FEAE378828FD473F7 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		27AC927A2358B3090066EC1D /* damascus.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = damascus.gpx; sourceTree = "<group>"; };
 		4335E31C6F7CEA245748694A /* Pods_GlobalPages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GlobalPages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F419D15CD0D8BE39785C656 /* Pods_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		578685E820C47FD30002C67B /* GlobalPages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalPages.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,6 +433,7 @@
 		578685DF20C47FD30002C67B = {
 			isa = PBXGroup;
 			children = (
+				27AC927A2358B3090066EC1D /* damascus.gpx */,
 				578685EA20C47FD30002C67B /* GlobalPages */,
 				142E8BFF218395CA0081C7E7 /* OneSignalNotificationServiceExtension */,
 				578685E920C47FD30002C67B /* Products */,
@@ -838,6 +841,7 @@
 				5786881820C483190002C67B /* Antipasto_extrabold.otf in Resources */,
 				578687F820C482560002C67B /* VobbleNavigationBar.xib in Resources */,
 				146AF24C2123633600FE2919 /* ProductCell.xib in Resources */,
+				27AC927B2358B3090066EC1D /* damascus.gpx in Resources */,
 				14B1B89220DF88E000D86536 /* HeaderView.xib in Resources */,
 				14CC8CA720C9033E000319B0 /* BusinessGuidCell.xib in Resources */,
 				5786881920C483190002C67B /* MullerRegular.otf in Resources */,
