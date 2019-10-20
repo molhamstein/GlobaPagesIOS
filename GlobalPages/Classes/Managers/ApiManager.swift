@@ -1581,8 +1581,11 @@ class ApiManager: NSObject {
             if let radius = radius{
                 parameters += "&maxDistance=\(radius)"
                 parameters += "&units=kilometers"
+                parameters += "&limit=100"
+            }else{
+                parameters += "&limit=20&skip=\(page)"
             }
-            parameters += "&limit=100"
+            
         }else{
            parameters += "&limit=20&skip=\(page)"
         }

@@ -133,7 +133,8 @@ class BussinessGuideViewController: AbstractController {
     var currentPage:Int = 0{
         didSet{
             if isListView {
-                getBussiness()
+            getBussiness(lat: LocationHelper.shared.myLocation?.lat ?? DefaultLocation.latitude, lng: LocationHelper.shared.myLocation?.long ?? DefaultLocation.longitude)
+
             }
         }
     }
