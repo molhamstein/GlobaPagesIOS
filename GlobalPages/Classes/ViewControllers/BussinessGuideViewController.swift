@@ -132,7 +132,9 @@ class BussinessGuideViewController: AbstractController {
     // page
     var currentPage:Int = 0{
         didSet{
-            getBussiness()
+            if isListView {
+                getBussiness()
+            }
         }
     }
     
@@ -715,8 +717,8 @@ extension BussinessGuideViewController{
         bussinessGuideCollectionView.isHidden = true
         overLayView.isHidden = true
         listMapViewButton.isSelected = false
-        getBussiness(lat: LocationHelper.shared.myLocation?.lat, lng: LocationHelper.shared.myLocation?.long, radius: self.mapView.currentRadius())
         setMyLocation()
+//        getBussiness(lat: LocationHelper.shared.myLocation?.lat ?? DefaultLocation.latitude, lng: LocationHelper.shared.myLocation?.long ?? DefaultLocation.longitude, radius: self.mapView.currentRadius())
     }
     
     @objc func setMyLocation(){

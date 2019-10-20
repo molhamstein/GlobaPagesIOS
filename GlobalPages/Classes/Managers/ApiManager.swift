@@ -1558,7 +1558,7 @@ class ApiManager: NSObject {
         var parameters = "?filter[order]=creationDate DESC&filter[where][status]=activated"
         
         if let keyValue = keyword{
-            parameters += "&filter[where][keyword]=\(keyValue)"
+            parameters += "&keyword=\(keyValue)"
         }
         
         if let subId = subCatId{
