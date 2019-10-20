@@ -1582,9 +1582,9 @@ class ApiManager: NSObject {
                 parameters += "&maxDistance=\(radius)"
                 parameters += "&units=kilometers"
             }
-            parameters += "?limit=100"
+            parameters += "&limit=100"
         }else{
-           parameters += "?limit=20&skip=\(page)"
+           parameters += "&limit=20&skip=\(page)"
         }
 
         // url & parameters
