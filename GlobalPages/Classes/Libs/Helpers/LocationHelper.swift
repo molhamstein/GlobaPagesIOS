@@ -8,10 +8,10 @@
 
 import CoreLocation
 
-// MARK: Default location >> UAE Capital Coordinates
+// MARK: Default location >> Damascus Capital Coordinates
 enum DefaultLocation {
-    static let latitude = 24.4539
-    static let longitude = 54.3773
+    static let latitude = 33.513479664921284
+    static let longitude = 36.27658004625778
 }
 
 //MARK: Current location stuff

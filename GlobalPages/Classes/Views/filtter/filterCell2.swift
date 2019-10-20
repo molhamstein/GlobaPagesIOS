@@ -71,12 +71,12 @@ class filterCell2: UICollectionViewCell {
 
     
     func setupView(type:FilterType){
-        dispatch_main_after(0) {
-            self.makerounded()
+        dispatch_main_after(0.1) {
+//            self.makerounded()
             self.addShadow()
-            self.containerView.makeRounded()
-            self.backGroundView.makeRounded()
-            self.backGroundView.setGradientBorder(width: 1, colors: [AppColors.yellowDark,AppColors.yellowLight])
+//            self.containerView.makeRounded()
+//            self.backGroundView.makeRounded()
+//            self.backGroundView.setGradientBorder(width: 1, colors: [AppColors.yellowDark,AppColors.yellowLight])
             
         }
         self.backGroundView.backgroundColor = type.backGroundColor

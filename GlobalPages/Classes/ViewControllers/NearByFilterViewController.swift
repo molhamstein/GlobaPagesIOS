@@ -132,6 +132,8 @@ extension NearByFilterViewController:UICollectionViewDelegate,UICollectionViewDa
             }
             cell.filter = categoryfilters[indexPath.item]
             cell.setupView(type:.map)
+            cell.layoutSubviews()
+            cell.layoutIfNeeded()
             return cell
         }
         
@@ -206,11 +208,11 @@ extension NearByFilterViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == categoryCollectionView {
-            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (40))
         }
         
         if collectionView == subCategoryCollectionView{
-            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (40))
             
         }
         return CGSize(width:0, height: 0)

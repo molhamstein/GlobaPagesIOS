@@ -58,10 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
                 Messaging.messaging().subscribe(toTopic: "allUsers") { error in
                     print("Subscribed to all users topic")
                 }
-                
             }
         }
-        
         return true
     }
 

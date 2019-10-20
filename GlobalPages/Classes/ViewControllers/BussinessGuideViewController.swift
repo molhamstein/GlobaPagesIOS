@@ -154,8 +154,9 @@ class BussinessGuideViewController: AbstractController {
         customizeMap()
         if controllerType == .bussinessGuide{
             self.isListView = true
+        }else{
+            loadData()
         }
-        loadData()
         // inizilaze page
         DataStore.shared.bussiness = []
     }
@@ -165,7 +166,7 @@ class BussinessGuideViewController: AbstractController {
             getBussinessFilters()
             showNearbyFilterView()
         } else if controllerType == .bussinessGuide {
-            currentPage = 0
+//            currentPage = 0
             isFirstTime = true
             getBussinessFilters()
         } else if controllerType == .pharmacy {
@@ -284,20 +285,24 @@ class BussinessGuideViewController: AbstractController {
         self.showNavBlackBackButton = true
     }
     
-    func getBussiness(){
+    func getBussiness(lat:Double? = nil,lng:Double? = nil,radius:Double? = nil){
         self.showActivityLoader(true)
         
-        ApiManager.shared.getBusinesses(keyword:Filter.bussinesGuid.keyWord,catId: Filter.bussinesGuid.category?.Fid,subCatId: Filter.bussinesGuid.subCategory?.Fid, page:currentPage, locationId: Filter.bussinesGuid.area?.Fid, cityId: Filter.bussinesGuid.city?.Fid) { (success, error, result) in
+        ApiManager.shared.getBusinesses(keyword:Filter.bussinesGuid.keyWord,catId: Filter.bussinesGuid.category?.Fid,subCatId: Filter.bussinesGuid.subCategory?.Fid, page:currentPage, locationId: Filter.bussinesGuid.area?.Fid, cityId: Filter.bussinesGuid.city?.Fid,lat: lat,lng: lng,radius: radius) { (success, error, result) in
             self.showActivityLoader(false)
             if success{
-                if self.isFirstTime {
-                    self.isFirstTime = false
-                    DataStore.shared.bussiness =  result
+                if (self.isListView){
+                    if self.isFirstTime {
+                        self.isFirstTime = false
+                        DataStore.shared.bussiness =  result
+                    }else{
+                        DataStore.shared.bussiness.append(contentsOf:result)
+                    }
+                    self.bussinessGuideCollectionView.reloadData()
                 }else{
-                    DataStore.shared.bussiness.append(contentsOf:result)
+                    DataStore.shared.bussiness =  result
+                    self.setBussinessOnMap()
                 }
-                self.bussinessGuideCollectionView.reloadData()
-                
             }
             if error != nil{
                 if let msg = error?.errorName{
@@ -308,7 +313,7 @@ class BussinessGuideViewController: AbstractController {
     }
     
     
-    func getBussinessOnMap(lat:Double,lng:Double,radius:Double){
+    func getBussinessOnMaps(lat:Double,lng:Double,radius:Double){
         self.showActivityLoader(true)
         
         ApiManager.shared.getBusinessesOnMap(lat: lat, lng: lng, radius: radius, completionBlock:  { (success, error, result) in
@@ -329,6 +334,7 @@ class BussinessGuideViewController: AbstractController {
         if !DataStore.shared.didChangedFilters && !isFirstTime {
             return
         }
+        
         filters.removeAll()
         if let keyWord = Filter.bussinesGuid.keyWord {
             let cat = categoriesFilter()
@@ -369,8 +375,6 @@ class BussinessGuideViewController: AbstractController {
         isFirstTime = true
         filtterCollectionView?.reloadData()
         currentPage = 0
-        getBussiness()
-        
     }
     
     
@@ -579,14 +583,14 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
             return CGSize(width: self.bussinessGuideCollectionView.bounds.width, height: 72)
         }
         if collectionView == filtterCollectionView {
-            return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 40)
         }
         if collectionView == categoryCollectionView {
-            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 40)
         }
         
         if collectionView == subCategoryCollectionView{
-            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 40)
             
         }
         
@@ -598,23 +602,36 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
         if collectionView == bussinessGuideCollectionView{
             return 16
         }
+        if collectionView == categoryCollectionView {
+           return 8
+        }
         if collectionView == subCategoryCollectionView{
             return 8
         }
         return 8
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if controllerType == .bussinessGuide{
-            let offset:CGFloat = 200
-            let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-            if (bottomEdge + offset >= scrollView.contentSize.height) {
-                // Load next batch of products
-                currentPage = currentPage +  5
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        if controllerType == .bussinessGuide{
+//            let offset:CGFloat = 200
+//            let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+//            if (bottomEdge + offset >= scrollView.contentSize.height) {
+//                // Load next batch of products
+//                currentPage = currentPage +  20
+//            }
+//
+//        }
+//
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == bussinessGuideCollectionView{
+            if controllerType == .bussinessGuide{
+                if indexPath.item == DataStore.shared.bussiness.count - 1  {
+                    currentPage = currentPage +  20
+                }
             }
-            
         }
-
     }
     
 }
@@ -685,7 +702,7 @@ extension BussinessGuideViewController: MKMapViewDelegate {
             if isListView {return}
             let centralLocationCoordinate = mapView.centerCoordinate
             let radius = self.mapView.currentRadius()
-            getBussinessOnMap(lat: centralLocationCoordinate.latitude, lng: centralLocationCoordinate.longitude, radius: radius)
+            getBussiness(lat: centralLocationCoordinate.latitude, lng: centralLocationCoordinate.longitude, radius: radius)
         }
     }
     
@@ -698,12 +715,12 @@ extension BussinessGuideViewController{
         bussinessGuideCollectionView.isHidden = true
         overLayView.isHidden = true
         listMapViewButton.isSelected = false
-        getBussinessOnMap(lat: LocationHelper.shared.myLocation?.lat ?? 0, lng: LocationHelper.shared.myLocation?.long ?? 0, radius: self.mapView.currentRadius())
+        getBussiness(lat: LocationHelper.shared.myLocation?.lat, lng: LocationHelper.shared.myLocation?.long, radius: self.mapView.currentRadius())
         setMyLocation()
     }
     
     @objc func setMyLocation(){
-        let location = CLLocation(latitude: (LocationHelper.shared.myLocation?.lat)!, longitude: (LocationHelper.shared.myLocation?.long)!)
+        let location = CLLocation(latitude: (LocationHelper.shared.myLocation?.lat) ?? DefaultLocation.latitude, longitude: (LocationHelper.shared.myLocation?.long) ?? DefaultLocation.longitude)
         let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
         self.mapView.setRegion(viewRegion, animated: true)
     }

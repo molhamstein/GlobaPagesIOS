@@ -1554,8 +1554,8 @@ class ApiManager: NSObject {
      */
     
     // businesses
-    func getBusinesses(keyword:String?,catId:String?,subCatId:String?,page:Int,locationId:String?,cityId:String?,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
-        var parameters = "?limit=20&skip=\(page)&filter[order]=creationDate DESC&filter[where][status]=activated"
+    func getBusinesses(keyword:String?,catId:String?,subCatId:String?,page:Int,locationId:String?,cityId:String?,lat:Double?,lng:Double?,radius:Double?,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
+        var parameters = "?filter[order]=creationDate DESC&filter[where][status]=activated"
         
         if let keyValue = keyword{
             parameters += "&filter[where][keyword]=\(keyValue)"
@@ -1576,6 +1576,17 @@ class ApiManager: NSObject {
         if let cityId = cityId{
             parameters += "&cityId=\(cityId)"
         }
+        if let lat = lat , let lng = lng{
+            parameters += "&lat=\(lat)&lng=\(lng)"
+            if let radius = radius{
+                parameters += "&maxDistance=\(radius)"
+                parameters += "&units=kilometers"
+            }
+            parameters += "?limit=100"
+        }else{
+           parameters += "?limit=20&skip=\(page)"
+        }
+
         // url & parameters
         let signUpURL = "\(baseURL)/businesses/searchByLocation\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     
