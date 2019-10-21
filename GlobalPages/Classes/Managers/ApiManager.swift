@@ -1554,7 +1554,7 @@ class ApiManager: NSObject {
      */
     
     // businesses
-    func getBusinesses(keyword:String?,catId:String?,subCatId:String?,page:Int,locationId:String?,cityId:String?,lat:Double?,lng:Double?,radius:Double?,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
+    func getBusinesses(keyword:String?,catId:String?,subCatId:String?,page:Int,locationId:String?,cityId:String?,lat:Double?,lng:Double?,radius:Double?,pageLimit:Int,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         var parameters = "?filter[order]=creationDate DESC&filter[where][status]=activated"
         
         if let keyValue = keyword{
@@ -1582,10 +1582,8 @@ class ApiManager: NSObject {
                 parameters += "&maxDistance=\(radius)"
                 parameters += "&units=kilometers"
             }
-            parameters += "&limit=100"
-        }else{
-           parameters += "&limit=20&skip=\(page)"
         }
+           parameters += "&limit=\(pageLimit)&skip=\(page)"
 
         // url & parameters
         let signUpURL = "\(baseURL)/businesses/searchByLocation\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!

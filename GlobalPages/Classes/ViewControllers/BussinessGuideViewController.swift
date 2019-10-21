@@ -128,23 +128,22 @@ class BussinessGuideViewController: AbstractController {
     var filterCatId: String?
     var filterSubCatId: String?
     
-    
+    var pageLimit = 100
     // page
-    var currentPage:Int = 0{
-        didSet{
-            if isListView {
-                getBussiness()
-            }
+    var currentPage:Int = 0 {
+        didSet {
+            getBussiness(lat: lat, lng: long, radius: self.mapView.currentRadius())
         }
     }
     
+    var lat = 0.0
+    var long = 0.0
     var isFirstTime:Bool = true // this is for the cache issue
     
-    var isListView:Bool = false{
+    var isListView:Bool = false {
         didSet{
             if isListView{
                 switchToListMode()
-                loadData()
             }else{
                 switchToMapViewMode()
             }
@@ -154,13 +153,16 @@ class BussinessGuideViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeMap()
-        if controllerType == .bussinessGuide{
-            self.isListView = true
-        }else{
-            loadData()
-        }
+        lat = LocationHelper.shared.myLocation?.lat ?? DefaultLocation.latitude
+        long = LocationHelper.shared.myLocation?.long ?? DefaultLocation.longitude
+        loadData()
         // inizilaze page
         DataStore.shared.bussiness = []
+    }
+    
+    override func buildUp() {
+        super.buildUp()
+        getFilters()
     }
     
     func loadData() {
@@ -168,8 +170,9 @@ class BussinessGuideViewController: AbstractController {
             getBussinessFilters()
             showNearbyFilterView()
         } else if controllerType == .bussinessGuide {
-//            currentPage = 0
+            isListView = true
             isFirstTime = true
+            setMyLocation()
             getBussinessFilters()
         } else if controllerType == .pharmacy {
             getNearByPharmacies()
@@ -267,11 +270,7 @@ class BussinessGuideViewController: AbstractController {
         Filter.bussinesGuid.clear();
     }
     
-    
-    override func buildUp() {
-        super.buildUp()
-        getFilters()
-    }
+  
     
     override func viewDidLayoutSubviews() {
         // filter bar shadow
@@ -290,7 +289,7 @@ class BussinessGuideViewController: AbstractController {
     func getBussiness(lat:Double? = nil,lng:Double? = nil,radius:Double? = nil){
         self.showActivityLoader(true)
         
-        ApiManager.shared.getBusinesses(keyword:Filter.bussinesGuid.keyWord,catId: Filter.bussinesGuid.category?.Fid,subCatId: Filter.bussinesGuid.subCategory?.Fid, page:currentPage, locationId: Filter.bussinesGuid.area?.Fid, cityId: Filter.bussinesGuid.city?.Fid,lat: lat,lng: lng,radius: radius) { (success, error, result) in
+        ApiManager.shared.getBusinesses(keyword:Filter.bussinesGuid.keyWord,catId: Filter.bussinesGuid.category?.Fid,subCatId: Filter.bussinesGuid.subCategory?.Fid, page:currentPage, locationId: Filter.bussinesGuid.area?.Fid, cityId: Filter.bussinesGuid.city?.Fid,lat: lat,lng: lng,radius: radius,pageLimit: pageLimit) { (success, error, result) in
             self.showActivityLoader(false)
             if success{
                 if (self.isListView){
@@ -300,11 +299,11 @@ class BussinessGuideViewController: AbstractController {
                     }else{
                         DataStore.shared.bussiness.append(contentsOf:result)
                     }
-                    self.bussinessGuideCollectionView.reloadData()
                 }else{
                     DataStore.shared.bussiness =  result
-                    self.setBussinessOnMap()
                 }
+                self.setBussinessOnMap()
+                self.bussinessGuideCollectionView.reloadData()
             }
             if error != nil{
                 if let msg = error?.errorName{
@@ -336,6 +335,7 @@ class BussinessGuideViewController: AbstractController {
         if !DataStore.shared.didChangedFilters && !isFirstTime {
             return
         }
+        DataStore.shared.didChangedFilters = false
         
         filters.removeAll()
         if let keyWord = Filter.bussinesGuid.keyWord {
@@ -613,27 +613,17 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
         return 8
     }
     
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        if controllerType == .bussinessGuide{
-//            let offset:CGFloat = 200
-//            let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-//            if (bottomEdge + offset >= scrollView.contentSize.height) {
-//                // Load next batch of products
-//                currentPage = currentPage +  20
-//            }
-//
-//        }
-//
-//    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if collectionView == bussinessGuideCollectionView{
-            if controllerType == .bussinessGuide{
-                if indexPath.item == DataStore.shared.bussiness.count - 1  {
-                    currentPage = currentPage +  20
-                }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if controllerType == .bussinessGuide{
+            let offset:CGFloat = 100
+            let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+            if (bottomEdge + offset >= scrollView.contentSize.height) {
+                // Load next batch of products
+                currentPage = currentPage +  pageLimit
             }
+
         }
+
     }
     
 }
@@ -642,6 +632,7 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
 extension BussinessGuideViewController:filterCellProtocol{
     func removeFilter(filter: categoriesFilter) {
         filter.filtervalue?.removeFilter(fltr: Filter.bussinesGuid)
+        DataStore.shared.didChangedFilters = true
         getFilters()
     }
     
@@ -704,7 +695,9 @@ extension BussinessGuideViewController: MKMapViewDelegate {
             if isListView {return}
             let centralLocationCoordinate = mapView.centerCoordinate
             let radius = self.mapView.currentRadius()
-            getBussiness(lat: centralLocationCoordinate.latitude, lng: centralLocationCoordinate.longitude, radius: radius)
+            lat = centralLocationCoordinate.latitude
+            long = centralLocationCoordinate.longitude
+            currentPage = 0
         }
     }
     
@@ -717,13 +710,14 @@ extension BussinessGuideViewController{
         bussinessGuideCollectionView.isHidden = true
         overLayView.isHidden = true
         listMapViewButton.isSelected = false
-        setMyLocation()
+        
 //        getBussiness(lat: LocationHelper.shared.myLocation?.lat ?? DefaultLocation.latitude, lng: LocationHelper.shared.myLocation?.long ?? DefaultLocation.longitude, radius: self.mapView.currentRadius())
     }
     
     @objc func setMyLocation(){
         let location = CLLocation(latitude: (LocationHelper.shared.myLocation?.lat) ?? DefaultLocation.latitude, longitude: (LocationHelper.shared.myLocation?.long) ?? DefaultLocation.longitude)
-        let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
+        let regionRadius: CLLocationDistance = 12000
+        let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
         self.mapView.setRegion(viewRegion, animated: true)
     }
     
@@ -731,7 +725,7 @@ extension BussinessGuideViewController{
     // add pin to the mapView
     func centerMapOnLocation(location: CLLocation) {
         self.view.endEditing(true)
-        let regionRadius: CLLocationDistance = 1000
+        let regionRadius: CLLocationDistance = 12000
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
         setAnnotaion(location: location,tag: -1)
