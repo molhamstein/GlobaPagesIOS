@@ -427,7 +427,7 @@ class BussinessGuideViewController: AbstractController {
     func getNearByBusness(){
         guard let catId = selectedCategory?.Fid, let subCatId = selectedSubCategory?.Fid , let lat = LocationHelper.shared.myLocation?.lat , let lng = LocationHelper.shared.myLocation?.long else{ return}
         self.showActivityLoader(true)
-        ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: catId, subCatId: subCatId,codeSubCat:nil, openDay: nil,limit: "3") { (success, error, resutl) in
+        ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: catId, subCatId: subCatId,codeSubCat:nil, openDay: nil,limit: "100") { (success, error, resutl) in
             
             self.showActivityLoader(false)
             if success{
