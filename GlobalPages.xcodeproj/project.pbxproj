@@ -148,6 +148,30 @@
 		8F46D19E226B50B50025DD85 /* AVAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D19D226B50B50025DD85 /* AVAsset.swift */; };
 		8F46D1A1226ECEAF0025DD85 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D1A0226ECEAF0025DD85 /* NotificationTableViewCell.swift */; };
 		8F46D1A3226F7ACC0025DD85 /* VolumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D1A2226F7ACB0025DD85 /* VolumeViewController.swift */; };
+		CE0E6BD62368741B00EF57E7 /* JobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E6BD52368741B00EF57E7 /* JobsViewController.swift */; };
+		CE0E6BD823687A8300EF57E7 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E6BD723687A8300EF57E7 /* Job.swift */; };
+		CE0E6BDA2369BCA400EF57E7 /* JobDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E6BD92369BCA400EF57E7 /* JobDescriptionViewController.swift */; };
+		CE0F1D182361BC3500AB9286 /* EditCVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F1D172361BC3500AB9286 /* EditCVViewController.swift */; };
+		CE0F1D1A2361DE6E00AB9286 /* AddExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F1D192361DE6E00AB9286 /* AddExperienceViewController.swift */; };
+		CE10B532235DA3E9004BEAB0 /* CVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10B531235DA3E9004BEAB0 /* CVViewController.swift */; };
+		CE179B1C235EE6D90099C74F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE179B1B235EE6D90099C74F /* Tag.swift */; };
+		CE1B79942360420F00B74643 /* SkillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1B79922360420F00B74643 /* SkillCollectionViewCell.swift */; };
+		CE1B79952360421000B74643 /* SkillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1B79932360420F00B74643 /* SkillCollectionViewCell.xib */; };
+		CE3DC66E235DD4A400B0284F /* Eduaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DC66D235DD4A400B0284F /* Eduaction.swift */; };
+		CE3DC670235DD64A00B0284F /* Experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DC66F235DD64A00B0284F /* Experience.swift */; };
+		CE79ED08235F01D90083A825 /* Refrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79ED07235F01D90083A825 /* Refrence.swift */; };
+		CE79ED0A235F0D660083A825 /* CV.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79ED09235F0D660083A825 /* CV.swift */; };
+		CE89796E236EC24C005ECC29 /* AddEditJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89796D236EC24C005ECC29 /* AddEditJobViewController.swift */; };
+		CE95CC7B23702EBD00CEED87 /* ApplicantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CC7A23702EBD00CEED87 /* ApplicantsViewController.swift */; };
+		CE95CC7D2370313800CEED87 /* Applicant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CC7C2370313700CEED87 /* Applicant.swift */; };
+		CE95CC812370347500CEED87 /* ApplicantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CC7F2370347500CEED87 /* ApplicantCollectionViewCell.swift */; };
+		CE95CC822370347500CEED87 /* ApplicantCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE95CC802370347500CEED87 /* ApplicantCollectionViewCell.xib */; };
+		CEB49C432365B87700F03310 /* AddSkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C422365B87700F03310 /* AddSkillViewController.swift */; };
+		CEB49C452365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C442365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift */; };
+		CEB49C4923672B6100F03310 /* JobOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C4723672B6100F03310 /* JobOfferCollectionViewCell.swift */; };
+		CEB49C4A23672B6100F03310 /* JobOfferCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB49C4823672B6100F03310 /* JobOfferCollectionViewCell.xib */; };
+		CEEDB98F235DC3F50034562A /* ExperienceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDB98D235DC3F50034562A /* ExperienceTableViewCell.swift */; };
+		CEEDB990235DC3F50034562A /* ExperienceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEDB98E235DC3F50034562A /* ExperienceTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -319,6 +343,30 @@
 		8F46D19D226B50B50025DD85 /* AVAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAsset.swift; sourceTree = "<group>"; };
 		8F46D1A0226ECEAF0025DD85 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		8F46D1A2226F7ACB0025DD85 /* VolumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeViewController.swift; sourceTree = "<group>"; };
+		CE0E6BD52368741B00EF57E7 /* JobsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsViewController.swift; sourceTree = "<group>"; };
+		CE0E6BD723687A8300EF57E7 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
+		CE0E6BD92369BCA400EF57E7 /* JobDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDescriptionViewController.swift; sourceTree = "<group>"; };
+		CE0F1D172361BC3500AB9286 /* EditCVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCVViewController.swift; sourceTree = "<group>"; };
+		CE0F1D192361DE6E00AB9286 /* AddExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExperienceViewController.swift; sourceTree = "<group>"; };
+		CE10B531235DA3E9004BEAB0 /* CVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVViewController.swift; sourceTree = "<group>"; };
+		CE179B1B235EE6D90099C74F /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		CE1B79922360420F00B74643 /* SkillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE1B79932360420F00B74643 /* SkillCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkillCollectionViewCell.xib; sourceTree = "<group>"; };
+		CE3DC66D235DD4A400B0284F /* Eduaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eduaction.swift; sourceTree = "<group>"; };
+		CE3DC66F235DD64A00B0284F /* Experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
+		CE79ED07235F01D90083A825 /* Refrence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refrence.swift; sourceTree = "<group>"; };
+		CE79ED09235F0D660083A825 /* CV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CV.swift; sourceTree = "<group>"; };
+		CE89796D236EC24C005ECC29 /* AddEditJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditJobViewController.swift; sourceTree = "<group>"; };
+		CE95CC7A23702EBD00CEED87 /* ApplicantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantsViewController.swift; sourceTree = "<group>"; };
+		CE95CC7C2370313700CEED87 /* Applicant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicant.swift; sourceTree = "<group>"; };
+		CE95CC7F2370347500CEED87 /* ApplicantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE95CC802370347500CEED87 /* ApplicantCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplicantCollectionViewCell.xib; sourceTree = "<group>"; };
+		CEB49C422365B87700F03310 /* AddSkillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSkillViewController.swift; sourceTree = "<group>"; };
+		CEB49C442365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		CEB49C4723672B6100F03310 /* JobOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOfferCollectionViewCell.swift; sourceTree = "<group>"; };
+		CEB49C4823672B6100F03310 /* JobOfferCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobOfferCollectionViewCell.xib; sourceTree = "<group>"; };
+		CEEDB98D235DC3F50034562A /* ExperienceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceTableViewCell.swift; sourceTree = "<group>"; };
+		CEEDB98E235DC3F50034562A /* ExperienceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExperienceTableViewCell.xib; sourceTree = "<group>"; };
 		EBE1332543C84F59CE0F0ED5 /* Pods-GlobalPages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalPages.release.xcconfig"; path = "Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -392,6 +440,7 @@
 				14B1B88920DEF17B00D86536 /* CustomLayout.swift */,
 				14B1B88B20DEF17B00D86536 /* CustomLayoutAttributes.swift */,
 				14B1B88A20DEF17B00D86536 /* CustomLayoutSettings.swift */,
+				CEB49C442365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift */,
 			);
 			path = "CollectionView CustomLayout";
 			sourceTree = "<group>";
@@ -603,9 +652,9 @@
 		578687A320C481800002C67B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				578687B220C481800002C67B /* BaseModel.swift */,
 				5786884D20C4A5B10002C67B /* Location.swift */,
 				578687AA20C481800002C67B /* AppUser.swift */,
-				578687B220C481800002C67B /* BaseModel.swift */,
 				578687B520C481800002C67B /* ReportType.swift */,
 				14CC8CA820C905FC000319B0 /* BusinessGuide.swift */,
 				140544DC20D7F7240042E70F /* Ads.swift */,
@@ -619,6 +668,13 @@
 				14DEE7A6211E10BC00561AA3 /* City.swift */,
 				5786885920C4AC6D0002C67B /* Media.swift */,
 				142E8C0E21839ED40081C7E7 /* Notification.swift */,
+				CE3DC66D235DD4A400B0284F /* Eduaction.swift */,
+				CE3DC66F235DD64A00B0284F /* Experience.swift */,
+				CE179B1B235EE6D90099C74F /* Tag.swift */,
+				CE79ED07235F01D90083A825 /* Refrence.swift */,
+				CE79ED09235F0D660083A825 /* CV.swift */,
+				CE0E6BD723687A8300EF57E7 /* Job.swift */,
+				CE95CC7C2370313700CEED87 /* Applicant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -626,6 +682,10 @@
 		578687C820C482560002C67B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE95CC7E2370344F00CEED87 /* ApplicantCell */,
+				CEB49C4623672AB100F03310 /* JobOfferCell */,
+				CE1B7991236041E300B74643 /* SkillCell */,
+				CEEDB98C235DC2AA0034562A /* ExperienceCell */,
 				8F46D19F226ECE860025DD85 /* Notification */,
 				146AF2482123631B00FE2919 /* Products */,
 				144BD89420E82B0F0068D561 /* imageCell */,
@@ -727,6 +787,14 @@
 				142E8C102183A9600081C7E7 /* NotificationsViewController.swift */,
 				148F168521F475F100C02B66 /* CategoriesSubscriptionViewController.swift */,
 				8F46D1A2226F7ACB0025DD85 /* VolumeViewController.swift */,
+				CE10B531235DA3E9004BEAB0 /* CVViewController.swift */,
+				CE0F1D172361BC3500AB9286 /* EditCVViewController.swift */,
+				CE0F1D192361DE6E00AB9286 /* AddExperienceViewController.swift */,
+				CEB49C422365B87700F03310 /* AddSkillViewController.swift */,
+				CE0E6BD52368741B00EF57E7 /* JobsViewController.swift */,
+				CE0E6BD92369BCA400EF57E7 /* JobDescriptionViewController.swift */,
+				CE89796D236EC24C005ECC29 /* AddEditJobViewController.swift */,
+				CE95CC7A23702EBD00CEED87 /* ApplicantsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -757,6 +825,42 @@
 				4335E31C6F7CEA245748694A /* Pods_GlobalPages.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE1B7991236041E300B74643 /* SkillCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE1B79922360420F00B74643 /* SkillCollectionViewCell.swift */,
+				CE1B79932360420F00B74643 /* SkillCollectionViewCell.xib */,
+			);
+			path = SkillCell;
+			sourceTree = "<group>";
+		};
+		CE95CC7E2370344F00CEED87 /* ApplicantCell */ = {
+			isa = PBXGroup;
+			children = (
+				CE95CC7F2370347500CEED87 /* ApplicantCollectionViewCell.swift */,
+				CE95CC802370347500CEED87 /* ApplicantCollectionViewCell.xib */,
+			);
+			path = ApplicantCell;
+			sourceTree = "<group>";
+		};
+		CEB49C4623672AB100F03310 /* JobOfferCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEB49C4723672B6100F03310 /* JobOfferCollectionViewCell.swift */,
+				CEB49C4823672B6100F03310 /* JobOfferCollectionViewCell.xib */,
+			);
+			path = JobOfferCell;
+			sourceTree = "<group>";
+		};
+		CEEDB98C235DC2AA0034562A /* ExperienceCell */ = {
+			isa = PBXGroup;
+			children = (
+				CEEDB98D235DC3F50034562A /* ExperienceTableViewCell.swift */,
+				CEEDB98E235DC3F50034562A /* ExperienceTableViewCell.xib */,
+			);
+			path = ExperienceCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -851,9 +955,11 @@
 				5786872420C481010002C67B /* CountryPicker.bundle in Resources */,
 				1497BC4121F783F300C0DFE2 /* DroidKufiBold.ttf in Resources */,
 				5786883720C483240002C67B /* Start.storyboard in Resources */,
+				CEEDB990235DC3F50034562A /* ExperienceTableViewCell.xib in Resources */,
 				578687F320C482560002C67B /* ShopCollectionViewCell.xib in Resources */,
 				5786881720C483190002C67B /* Antipasto_regular.otf in Resources */,
 				144BD89820E82B2F0068D561 /* ImageCell.xib in Resources */,
+				CE1B79952360421000B74643 /* SkillCollectionViewCell.xib in Resources */,
 				14CC8CB020C9C64A000319B0 /* AdsImageCell.xib in Resources */,
 				578685F120C47FD30002C67B /* Main.storyboard in Resources */,
 				1463C45520D9253500156E84 /* AdsTitledCell.xib in Resources */,
@@ -861,8 +967,10 @@
 				145CF7D62105003600126046 /* BussinessGuidListCell.xib in Resources */,
 				5786884920C488EE0002C67B /* Localizable.strings in Resources */,
 				5786881A20C483190002C67B /* OpenSansSemiBold.ttf in Resources */,
+				CEB49C4A23672B6100F03310 /* JobOfferCollectionViewCell.xib in Resources */,
 				5786881C20C483190002C67B /* OpenSansRegular.ttf in Resources */,
 				1497BC4221F783F300C0DFE2 /* DroidKufiRegular.ttf in Resources */,
+				CE95CC822370347500CEED87 /* ApplicantCollectionViewCell.xib in Resources */,
 				14160BE620E3C72C004CEA7D /* filterCell2.xib in Resources */,
 				1463C44C20D845D100156E84 /* MenuView.xib in Resources */,
 				8F46D19A226528BA0025DD85 /* GoogleService-Info.plist in Resources */,
@@ -975,7 +1083,10 @@
 				578687C420C481800002C67B /* BaseModel.swift in Sources */,
 				142E8C0F21839ED40081C7E7 /* Notification.swift in Sources */,
 				5786860020C480910002C67B /* LoginViewController.swift in Sources */,
+				CEEDB98F235DC3F50034562A /* ExperienceTableViewCell.swift in Sources */,
 				148F168621F475F100C02B66 /* CategoriesSubscriptionViewController.swift in Sources */,
+				CE95CC812370347500CEED87 /* ApplicantCollectionViewCell.swift in Sources */,
+				CE95CC7B23702EBD00CEED87 /* ApplicantsViewController.swift in Sources */,
 				14160BE520E3C72C004CEA7D /* filterCell2.swift in Sources */,
 				14709EF7217FB53F006F4470 /* LocationViewController.swift in Sources */,
 				142E8C112183A9600081C7E7 /* NotificationsViewController.swift in Sources */,
@@ -985,12 +1096,16 @@
 				14CC8C8920C8A03D000319B0 /* RoundedButton.swift in Sources */,
 				5786872620C481010002C67B /* LocationHelper.swift in Sources */,
 				14CC8C9C20C8A03E000319B0 /* Collection.swift in Sources */,
+				CE79ED0A235F0D660083A825 /* CV.swift in Sources */,
 				146643F52143D56500657AA8 /* ViewController.swift in Sources */,
 				578687F920C482560002C67B /* VobbleNavigationBar.swift in Sources */,
 				14B1B89120DF88E000D86536 /* HeaderView.swift in Sources */,
 				144BD89A20E82C430068D561 /* AdsDescriptionViewController.swift in Sources */,
+				CE0F1D182361BC3500AB9286 /* EditCVViewController.swift in Sources */,
 				578687A020C481480002C67B /* DataStore.swift in Sources */,
 				14DAFCA92103B0BC00899872 /* BussinessGuideViewController.swift in Sources */,
+				CE0F1D1A2361DE6E00AB9286 /* AddExperienceViewController.swift in Sources */,
+				CE0E6BDA2369BCA400EF57E7 /* JobDescriptionViewController.swift in Sources */,
 				14CC8CAF20C9C64A000319B0 /* AdsImageCell.swift in Sources */,
 				1463C45420D9253500156E84 /* AdsTitledCell.swift in Sources */,
 				14CC8CAB20C9BA67000319B0 /* ShadowLineView.swift in Sources */,
@@ -1001,6 +1116,7 @@
 				145FCE79211649A200E42AE7 /* NewBussinesesViewController.swift in Sources */,
 				14CC8C9120C8A03D000319B0 /* UITabBarItem.swift in Sources */,
 				14CC8C8420C8A03D000319B0 /* UIBarItemButton.swift in Sources */,
+				CEB49C452365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift in Sources */,
 				14CC8C9420C8A03D000319B0 /* XUILabel.swift in Sources */,
 				5786885A20C4AC6E0002C67B /* Media.swift in Sources */,
 				14CC8C8C20C8A03D000319B0 /* XUIButton.swift in Sources */,
@@ -1010,9 +1126,11 @@
 				578687F420C482560002C67B /* ShopCollectionViewCell.swift in Sources */,
 				5786860420C480A60002C67B /* ResetPasswordViewController.swift in Sources */,
 				5786885320C4A8920002C67B /* CountryPicker.m in Sources */,
+				CE3DC670235DD64A00B0284F /* Experience.swift in Sources */,
 				140544DB20D7F6E50042E70F /* UICollectionViewCell.swift in Sources */,
 				148E77EC2114E0A500683027 /* businessCategories.swift in Sources */,
 				14CC8C8620C8A03D000319B0 /* NSlayoutConstraint.swift in Sources */,
+				CE89796E236EC24C005ECC29 /* AddEditJobViewController.swift in Sources */,
 				14C05AB520E01EDD0096C73C /* SectionHeaderView.swift in Sources */,
 				144BD89720E82B2F0068D561 /* ImageCell.swift in Sources */,
 				14CC8CA920C905FC000319B0 /* BusinessGuide.swift in Sources */,
@@ -1048,26 +1166,36 @@
 				14FF478F21162F1500E6A44C /* ProfileViewController.swift in Sources */,
 				5786879820C481010002C67B /* VobbleButton.swift in Sources */,
 				578685EE20C47FD30002C67B /* HomeViewController.swift in Sources */,
+				CE0E6BD823687A8300EF57E7 /* Job.swift in Sources */,
 				578687EC20C482560002C67B /* AbstractNibView.swift in Sources */,
 				14CC8C9A20C8A03D000319B0 /* UITextField.swift in Sources */,
 				14C9DC9920CA27580031685E /* filtterCell.swift in Sources */,
+				CE79ED08235F01D90083A825 /* Refrence.swift in Sources */,
 				5786881320C483190002C67B /* AppColors.swift in Sources */,
+				CEB49C4923672B6100F03310 /* JobOfferCollectionViewCell.swift in Sources */,
 				146AF2442121E69300FE2919 /* Post.swift in Sources */,
+				CE95CC7D2370313800CEED87 /* Applicant.swift in Sources */,
 				14CC8C8A20C8A03D000319B0 /* Styles.swift in Sources */,
 				14CC8C8520C8A03D000319B0 /* CAShapeLayer.swift in Sources */,
 				142E8C0D21839CC20081C7E7 /* AboutViewController.swift in Sources */,
+				CE179B1C235EE6D90099C74F /* Tag.swift in Sources */,
 				145CF7D52105003600126046 /* BussinessGuidListCell.swift in Sources */,
 				578685EC20C47FD30002C67B /* AppDelegate.swift in Sources */,
 				146AF2452121E69300FE2919 /* Volume.swift in Sources */,
 				140544DD20D7F7240042E70F /* Ads.swift in Sources */,
 				8F46D19E226B50B50025DD85 /* AVAsset.swift in Sources */,
+				CE1B79942360420F00B74643 /* SkillCollectionViewCell.swift in Sources */,
+				CE3DC66E235DD4A400B0284F /* Eduaction.swift in Sources */,
 				5786871920C481010002C67B /* GCD.m in Sources */,
 				14CC8C9220C8A03D000319B0 /* UIView2.swift in Sources */,
+				CE10B532235DA3E9004BEAB0 /* CVViewController.swift in Sources */,
 				5786884E20C4A5B10002C67B /* Location.swift in Sources */,
+				CE0E6BD62368741B00EF57E7 /* JobsViewController.swift in Sources */,
 				578687A120C481480002C67B /* SocialManager.swift in Sources */,
 				14A8469B2332012800F07B7B /* MapKit.swift in Sources */,
 				146AF24B2123633600FE2919 /* ProductCell.swift in Sources */,
 				5786884620C4841E0002C67B /* Constants.swift in Sources */,
+				CEB49C432365B87700F03310 /* AddSkillViewController.swift in Sources */,
 				14CC8C8E20C8A03D000319B0 /* UIColor.swift in Sources */,
 				5786860720C480D90002C67B /* AbstractController.swift in Sources */,
 				5786879920C481010002C67B /* RNLoadingButton.swift in Sources */,
@@ -1243,6 +1371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.almersal.ios.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = off;
 				SWIFT_OBJC_BRIDGING_HEADER = "GlobalPages/GlobalPages-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 4.0;
@@ -1266,6 +1395,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.almersal.ios.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = off;
 				SWIFT_OBJC_BRIDGING_HEADER = "GlobalPages/GlobalPages-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 4.0;

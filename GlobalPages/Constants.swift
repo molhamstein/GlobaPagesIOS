@@ -12,9 +12,10 @@ import UIKit
 struct AppConfig {
     
     // domain
-    static let appBaseDevURL = "http://104.217.253.15:7000/api"
-    static let appBaseLiveURL = "https://brain-socket.com/live"
-    static let useLiveAPI: Bool = false
+    static let appBaseDevURL = "http://192.168.1.11:3000/api"
+    //static let appBaseDevURL = "http://104.217.253.15:7000/api"
+    static let appBaseLiveURL = "http://almersal.co/api"
+    static let useLiveAPI: Bool = true
     static let useCurrentLocation: Bool = false
     static let contactUsEmail: String = "almersalgroupe@gmail.com"
     // flag for language 

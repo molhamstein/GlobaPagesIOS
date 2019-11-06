@@ -63,6 +63,14 @@ struct DateHelper {
         return dateFormater.date(from: dateStr)
     }
     
+    static func convertDateStringToCustomFormat(_ dateStr: String, format: String) -> String? {
+        let dateFormater = DateFormatter()
+        let loc = Locale(identifier: "us")
+        dateFormater.locale = loc
+        dateFormater.dateFormat = format
+        return dateFormater.string(from: self.getDateFromISOString(dateStr) ?? Date())
+    }
+    
     /// Get iso date string from date object
     static func getISOStringFromTimestamp(_ timestamp: Double) -> String? {
         let timestampDate = NSDate(timeIntervalSince1970: Double(timestamp as NSNumber)/1000)

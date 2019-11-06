@@ -35,6 +35,7 @@ protocol HeaderViewDelegate {
     func bussinessGuiedeCliked()
     func findNearByClicked()
     func onDutyPharmacyClicked()
+    func onJobOffersClicked()
 }
 
 
@@ -50,12 +51,15 @@ protocol HeaderViewDelegate {
     @IBOutlet weak var bussinessGuideButton: UIButton!
     @IBOutlet weak var finNearByButton: UIButton!
     @IBOutlet weak var pharmacyButton: UIButton!
+    @IBOutlet weak var jobsButton: UIButton!
     @IBOutlet weak var pharmacyLabel: XUILabel!
     @IBOutlet weak var findNearByLabel: XUILabel!
     @IBOutlet weak var bussinessLabel: XUILabel!
+    @IBOutlet weak var jobsLabel: XUILabel!
     @IBOutlet weak var bussinessView: UIView!
     @IBOutlet weak var nearByView: UIView!
     @IBOutlet weak var pharmacyView: UIView!
+    @IBOutlet weak var jobsView: UIView!
 
     // delegate
     var delegate:HeaderViewDelegate?
@@ -81,11 +85,13 @@ protocol HeaderViewDelegate {
         self.bussinessLabel.font = AppFonts.smallBold
         self.findNearByLabel.font = AppFonts.smallBold
         self.pharmacyLabel.font = AppFonts.smallBold
+        self.jobsLabel.font = AppFonts.smallBold
         
          // colors
         self.bussinessView.backgroundColor = AppColors.skyBlue
         self.nearByView.backgroundColor = AppColors.lightGreen
         self.pharmacyView.backgroundColor = AppColors.lightPink
+        self.jobsView.backgroundColor = AppColors.yellowLight
 
     }
     
@@ -94,10 +100,12 @@ protocol HeaderViewDelegate {
         self.bussinessView.cornerRadius = 5
         self.nearByView.cornerRadius = 5
         self.pharmacyView.cornerRadius = 5
+        self.jobsView.cornerRadius = 5
         // shadow
         self.bussinessView.dropShadow()
         self.nearByView.dropShadow()
         self.pharmacyView.dropShadow()
+        self.jobsView.dropShadow()
     }
     
     @IBAction func showBussinessGuides(_ sender: UIButton) {
@@ -111,6 +119,10 @@ protocol HeaderViewDelegate {
     
     @IBAction func showPharmacies(_ sender: UIButton) {
         delegate?.onDutyPharmacyClicked()
+    }
+    
+    @IBAction func showJobs(_ sender: UIButton) {
+        delegate?.onJobOffersClicked()
     }
     
 }

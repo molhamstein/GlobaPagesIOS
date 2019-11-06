@@ -77,11 +77,11 @@ extension String {
     }
     
     /// Get label height for string
-    func getLabelHeight(width: CGFloat, font: UIFont) -> CGFloat {
+    func getLabelHeight(width: CGFloat, font: UIFont, numberOfLines: Int = 0) -> CGFloat {
         let label = UILabel(frame: .zero)
         label.frame.size.width = width
         label.font = font
-        label.numberOfLines = 0
+        label.numberOfLines = numberOfLines
         label.text = self
         label.sizeToFit()
         return label.frame.size.height

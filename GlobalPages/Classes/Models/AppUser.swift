@@ -9,20 +9,20 @@
 import SwiftyJSON
 
 // MARK: Gender types
-enum GenderType: String {
+public enum GenderType: String {
     case male = "male"
     case female = "female"
     case allGender = "allGender"
 }
 
-enum Status: String {
+public enum Status: String {
     case pending = "pending"
     case active = "active"
     case deactivated = "deactivated"
 }
 
 // MARK: User login type
-enum LoginType: String {
+public enum LoginType: String {
     case vobble = "registration"
     case facebook = "facebook"
     case twitter = "twitter"
@@ -39,7 +39,7 @@ enum LoginType: String {
     }
 }
 
-class AppUser: BaseModel, NSCopying {
+public class AppUser: BaseModel, NSCopying {
     
     // MARK: Keys
     private let kUserObjectIdKey = "id"
@@ -53,8 +53,10 @@ class AppUser: BaseModel, NSCopying {
     private let kUserTokenKey = "token"
     private let kUserImage = "image"
     private let KPostsKey = "postCategoriesIds"
+    private let kCV = "CV"
     
     // MARK: Properties
+    public var cv: CV?
     public var objectId: String?
     public var userName: String?
     public var email: String?
@@ -104,6 +106,10 @@ class AppUser: BaseModel, NSCopying {
         if let array = json["postCategoriesIds"].array{
             posts = array.map{$0.string!}
         }
+        
+        if json[kCV] != JSON.null {
+            cv = CV(json: json[kCV])
+        }
         token = json[kUserTokenKey].string
     }
     
@@ -146,10 +152,16 @@ class AppUser: BaseModel, NSCopying {
             dictionary[kUserTokenKey] = value
         }
         
+        if let value = cv {
+            dictionary[kCV] = value.dictionaryRepresentation()
+        }
+        
+        
+        
         return dictionary
     }
     
-    func copy(with zone: NSZone? = nil) -> Any {
+    public func copy(with zone: NSZone? = nil) -> Any {
         let copy = AppUser()
             copy.objectId = objectId
             copy.userName = userName

@@ -151,6 +151,7 @@
 "BUSSINESS_GUIDE_TITLE"                 = "دليل الأعمال";
 "NEAR_BY_TITLE"                         = "إبحث قربي";
 "ON_DUTY_PHARMACY_TITLE"                = "صيدلية مناوبة";
+"JOB_OFFERS_TITLE"                      = "عروض العمل";
 
 // bussiness guid description
 "ADS_DESC_SUB_CATEGORY_LABEL"         = "اصناف فرعية";
@@ -245,3 +246,88 @@
 // Notifications
 "ALL_NOTIFICATIONS_DELETED"         = "ليس هنالك اي اشعارات لحذفها";
 "DELETE_ALL_MSG_WARNING"            = "هل انت متاكد من انك تريد حذف جميع الاشعارات";
+
+
+// CV Page
+"CV_EXPERIENCE_TITLE"               = "الخبرات";
+"CV_EDUCATION_TITLE"                = "التعليم";
+"CV_SKILLS_TITLE"                   = "المهارات";
+"CV_REFERENCE_TITLE"                = "المراجع";
+"CV_ADD"                            = "اضافة";
+"CV_EDIT"                           = "تعديل";
+"CV_POSITION_TITLE"                 = "اسم المنصب";
+"CV_COMPANY_NAME"                   = "اسم الشركة";
+"CV_TO_DATE"                        = "الى";
+"CV_FROM_DATE"                      = "من";
+"CV_SCHOOL_NAME"                    = "اسم المدرسة";
+"CV_FIELD_OF_STUDY"                 = "مجال الدراسة";
+"CV_CURRENTLY_WORK_HERE"            = "انا اعمل هنا";
+"CV_PRESENT"                        = "الى الان";
+"CV_NAME"                           = "الاسم";
+"CV_SPECIALTY"                      = "التخصص";
+"CV_BIO"                            = "الموجز";
+"CV_CONTACT_INFO"                   = "معلومات التواصل";
+"CV_EMAIL"                          = "البريد الالكتروني";
+"CV_PHONE"                          = "الهاتف";
+"CV_CHANGE_IMAGE"                   = "تغيير الصورة الشخصية";
+"CV_SPECIALIZATION_PLACEHOLDER"     = "الاختصاص لم يحدد";
+"CV_LOCATION_PLACEHOLDER"           = "الموقع لم يحدد";
+"CV_EXPERIENCE_PLACEHOLDER"         = "لم يتم اضافة اي خبرات";
+"CV_EDUCATION_PLACEHOLDER"          = "لم يتم اضافة اي شهادات";
+"CV_SKILLS_PLACEHOLDER"             = "لم يتم اضافة اي مهارات";
+"CV_REFERENCE_PLACEHOLDER"          = "لم يتم اضافة اي مراجع";
+"REMOVE_SKILL_MSG"                  = "هل انت متاكد من انك تريد حذف هذه المهارة؟";
+"USERNAME_REQEIRED_MSG"             = "اسم المستخدم مطلوب";
+"EMAIL_REQEIRED_MSG"                = "البريد الالكتروني مطلوب";
+"PHONE_REQEIRED_MSG"                = "رقم الهاتف مطلوب";
+"DELETE_CONFIRMATION"               = "تاكيد الحذف";
+"DELETE_CONFIRMATION_MSG"           = "هل انت متاكد من حذف هذا الحقل";
+
+// Job Pages
+"APPLY_CONFIRMATION"                = "تاكيد التقدم للوظيفة";
+"APPLY_CONFIRMATION_MSG"            = "هل انت متاكد من التقدم للوظيفة؟";
+"APPLY"                             = "تقدم";
+"APPLIED_MSG"                       = "تم ارسال سيرتك الذاتية بنجاح";
+"JOB_OWNER_MSG"                     = "لا يمكنك التقدم لوظيفة انت صاحبها";
+"LOGIN_FIRST_MSG"                   = "عليك تسجيل الدخول اولا حتى تستطيع التقدم للوظيفة";
+"JOB_ADD_TITLE"                     = "اضافة عمل";
+"JOB_Edit_TITLE"                    = "تعديل عمل";
+"JOB_NAME_REQUEIRED"                = "الرجاء ادخال اسم للوظيفة";
+"JOB_CATEGORY_REQUEIRED"            = "الرجاء اختيار تصنيف";
+"JOB_SUBCATEGORY_REQUEIRED"         = "الرجاء اختيار تصنيف فرعي";
+"JOB_DEACTIVE"                      = "تعطيل";
+"JOB_DEACTIVE_WARNING"              = "هل انت متاكد من تعطيلك لهذه الوظيفة";
+"JOB_TITLE"                         = "الوظائف";
+"JOB_SALARY_RANGE"                  = "الراتب";
+"JOB_EDUCATION_LEVEL"               = "مستوى التعليم";
+"JOB_TYPE_TITLE"                    = "نوع العمل";
+"JOB_QUALIFICATION"                 = "المؤهلات";
+"JOB_RESPONSIPILITIES"              = "المسؤوليات";
+"JOB_DESCRIPTION"                   = "الوصف";
+"JOB_SKILLS"                        = "المهارات";
+"JOB_BASE_INFO_TITLE"               = "المعلومات الاساسية";
+"JOB_NAME_AR"                       = "الاسم العربي";
+"JOB_NAME_EN"                       = "الاسم الانجليزي";
+"JOB_CATEGORY"                      = "التصنيف";
+"JOB_SUBCATEGORY"                   = "التصنيف الفرعي";
+"JOB_SALARY"                        = "الراتب";
+"JOB_DESCRIPTION_AR"                = "الوصف العربي";
+"JOB_DESCRIPTION_EN"                = "الوصف الانجليزي";
+"JOB_RESPONSIPILITIES_AR"           = "المسؤوليات بالعربية";
+"JOB_RESPONSIPILITIES_EN"           = "المسؤوليات بالانجليزية";
+"JOB_QUALIFICATION_AR"              = "المؤهلات بالعربية";
+"JOB_QUALIFICATION_EN"              = "المؤهلات بالانجليزي";
+
+// Job Type Enum
+"PART_TIME"                         = "دوام جزئي";
+"FULL_TIME"                         = "دوام كامل";
+"PROJECT_BASE"                      = "مؤقت";
+"VOLUNTEER"                         = "متطوع";
+"INTERNSHIP"                        = "متدرب";
+
+// Education Level Enum
+"HIGH_SCHOOL_DEGREE"                = "درجة ثانوية عامة";
+"ASSOCIATE_DEGREE"                  = "شهادة معهد";
+"UNIVERSITY_DEGREE"                 = "شهادة جامعية";
+"MASTER_DEGREE"                     = "شهادة ماستر";
+"DOCTORAL_DEGREE"                   = "شهادة دكتورة";

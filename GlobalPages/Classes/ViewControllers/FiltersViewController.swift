@@ -12,12 +12,15 @@ import UIKit
 enum categoryFilterType{
     case Home
     case Category
+    case JobOffer
     var filter:Filter{
         switch self {
         case .Home:
             return Filter.home
         case .Category:
             return Filter.bussinesGuid
+        case .JobOffer:
+            return Filter.jobOffer
         }
     }
 }
@@ -107,9 +110,11 @@ class FiltersViewController: AbstractController {
         if self.categoryfiltertype == categoryFilterType.Home{
 //            self.filters = DataStore.shared.postCategories
             getPostFilters()
-        }else{
+        }else if self.categoryfiltertype == categoryFilterType.Category {
 //            self.filters = DataStore.shared.categoriesfilters
             getBussinessFilters()
+        }else {
+            getJobsFilters()
         }
 //        self.cities = DataStore.shared.citiesfilters
         getCityFilters()
@@ -278,6 +283,27 @@ class FiltersViewController: AbstractController {
                 }
         }
     }
+    
+    func getJobsFilters(){
+        //        if DataStore.shared.categoriesfilters.isEmpty{
+        self.showActivityLoader(true)
+        //        }
+        ApiManager.shared.jobCategories { (success, error, result,cats) in
+            self.showActivityLoader(false)
+            if success{
+                self.filters = result
+                self.categoriesCount = self.categoryfilters.count
+                self.categoryCollectionView.reloadData()
+                self.categoryCollectionView.collectionViewLayout.invalidateLayout()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+    }
+
     
     func getCityFilters(){
 //        if DataStore.shared.citiesfilters.isEmpty{

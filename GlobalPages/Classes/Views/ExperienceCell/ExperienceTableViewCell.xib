@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExperienceTableViewCell" rowHeight="77" id="KGk-i7-Jjw" customClass="ExperienceTableViewCell" customModule="GlobalPages" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="77"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="347" height="76.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QaL-hZ-AjH">
+                        <rect key="frame" x="8" y="8.5" width="12" height="12"/>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="1wx-WW-dXw"/>
+                            <constraint firstAttribute="width" constant="12" id="3kB-Z7-aY6"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKK-na-BLW">
+                        <rect key="frame" x="14" y="24.5" width="0.5" height="52"/>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="0.5" id="UCA-FI-PVN"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Scientist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voV-3d-GNa">
+                        <rect key="frame" x="36" y="4" width="303" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Scientist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JA0-ZX-p2v">
+                        <rect key="frame" x="36" y="28.5" width="255" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Scientist" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QzP-lc-evK">
+                        <rect key="frame" x="36" y="50.5" width="287" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2zB-Nm-vKP">
+                        <rect key="frame" x="299" y="26.5" width="40" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="Sao-Id-VjV"/>
+                            <constraint firstAttribute="height" constant="24" id="yPc-QX-nu1"/>
+                        </constraints>
+                        <state key="normal" title="Edit">
+                            <color key="titleColor" red="0.92941176469999998" green="0.71372549019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="EditAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yGR-8b-z5i"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="QzP-lc-evK" firstAttribute="leading" secondItem="JA0-ZX-p2v" secondAttribute="leading" id="2fs-c6-J0S"/>
+                    <constraint firstAttribute="bottom" secondItem="rKK-na-BLW" secondAttribute="bottom" id="68w-ry-pBR"/>
+                    <constraint firstItem="JA0-ZX-p2v" firstAttribute="leading" secondItem="voV-3d-GNa" secondAttribute="leading" id="6Bm-SL-PhQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="QzP-lc-evK" secondAttribute="trailing" constant="8" id="6d5-gJ-JOK"/>
+                    <constraint firstItem="voV-3d-GNa" firstAttribute="leading" secondItem="QaL-hZ-AjH" secondAttribute="trailing" constant="16" id="Aog-Of-ABk"/>
+                    <constraint firstItem="rKK-na-BLW" firstAttribute="top" secondItem="QaL-hZ-AjH" secondAttribute="bottom" constant="4" id="GAE-GG-J5K"/>
+                    <constraint firstItem="2zB-Nm-vKP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Lvg-F3-F4e"/>
+                    <constraint firstAttribute="trailing" secondItem="2zB-Nm-vKP" secondAttribute="trailing" constant="8" id="UM0-LX-DPY"/>
+                    <constraint firstItem="rKK-na-BLW" firstAttribute="centerX" secondItem="QaL-hZ-AjH" secondAttribute="centerX" id="Y34-qr-cZ5"/>
+                    <constraint firstItem="QaL-hZ-AjH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="eik-C8-2iF"/>
+                    <constraint firstItem="voV-3d-GNa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="ghD-It-aKV"/>
+                    <constraint firstItem="QzP-lc-evK" firstAttribute="top" secondItem="JA0-ZX-p2v" secondAttribute="bottom" constant="4" id="jNx-eU-htI"/>
+                    <constraint firstItem="JA0-ZX-p2v" firstAttribute="top" secondItem="voV-3d-GNa" secondAttribute="bottom" constant="4" id="mAp-yt-Peg"/>
+                    <constraint firstItem="QaL-hZ-AjH" firstAttribute="centerY" secondItem="voV-3d-GNa" secondAttribute="centerY" id="o94-0d-Sxf"/>
+                    <constraint firstAttribute="trailing" secondItem="voV-3d-GNa" secondAttribute="trailing" constant="8" id="sVt-dS-qug"/>
+                    <constraint firstItem="2zB-Nm-vKP" firstAttribute="leading" secondItem="JA0-ZX-p2v" secondAttribute="trailing" constant="8" id="x0L-Ht-hUz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnEdit" destination="2zB-Nm-vKP" id="X78-RB-M9f"/>
+                <outlet property="lblCompanyName" destination="JA0-ZX-p2v" id="4tl-Wc-JgK"/>
+                <outlet property="lblPeriod" destination="QzP-lc-evK" id="Bjh-1Y-v44"/>
+                <outlet property="lblPositionTitle" destination="voV-3d-GNa" id="lLe-gB-bxP"/>
+                <outlet property="lineView" destination="rKK-na-BLW" id="dX3-Z9-tFd"/>
+            </connections>
+            <point key="canvasLocation" x="111.2" y="167.76611694152925"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -593,7 +593,7 @@ extension HomeViewController : PinterestLayoutDelegate {
         else{
             height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // title label height
             height += 20 // tag view height
-            height += (post.description?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // description label Height
+            height += (post.description?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal, numberOfLines: 6)) ?? 0 // description label Height
             height += 18 // line view + 8 + 8
             height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // city label height
             height += 8 // padding
@@ -618,6 +618,13 @@ extension HomeViewController:filterCellProtocol{
 // header View Delegate
 
 extension HomeViewController:HeaderViewDelegate{
+    func onJobOffersClicked() {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: JobsViewController.className) as! JobsViewController
+        let nav = UINavigationController(rootViewController: vc)
+        
+        self.present(nav, animated: true, completion: nil)
+    }
+    
     
     func bussinessGuiedeCliked() {
         // self.performSegue(withIdentifier: "bussinessGuideSegue", sender: nil)

@@ -104,6 +104,13 @@ class ProfileViewController: AbstractController {
         self.infoView.dropShadow()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToCV" {
+            let vc = segue.destination as! CVViewController
+            vc.user = DataStore.shared.me
+        }
+    }
+    
     func setupCollectionViews(){
         let nib = UINib(nibName: categoryCellId, bundle: nil)
         self.categoryCollectionView.register(nib, forCellWithReuseIdentifier: categoryCellId)
@@ -215,7 +222,7 @@ class ProfileViewController: AbstractController {
     
     
     override func editButtonAction(_ sender: AnyObject) {
-        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "EditCVViewController") as! EditCVViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

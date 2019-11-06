@@ -34,7 +34,9 @@ class BussinessDescriptionViewController: AbstractController {
     @IBOutlet weak var productsCollectionView: UICollectionView!
     @IBOutlet weak var addProductButton: UIButton!
     @IBOutlet weak var verfideImageView: UIImageView!
-    
+    @IBOutlet weak var btnAddJob: UIButton!
+    @IBOutlet weak var imgJobPlaceHolder: UIImageView!
+    @IBOutlet weak var lblJobPlaceHolder: UILabel!
     
     
     // contact view
@@ -95,6 +97,16 @@ class BussinessDescriptionViewController: AbstractController {
         super.viewDidLoad()
         addProductButton.isHidden = !editMode
         fillData()
+        
+        if bussiness?.ownerId == DataStore.shared.me?.objectId {
+            self.btnAddJob.isHidden = false
+            self.imgJobPlaceHolder.isHidden = false
+            self.lblJobPlaceHolder.isHidden = false
+        }else {
+            self.btnAddJob.isHidden = true
+            self.imgJobPlaceHolder.isHidden = true
+            self.lblJobPlaceHolder.isHidden = true
+        }
     }
     
     override func customizeView() {
@@ -130,6 +142,7 @@ class BussinessDescriptionViewController: AbstractController {
         self.phone2Label.font = AppFonts.normalBold
         self.faxTitleLabel.font = AppFonts.normal
         self.faxLabel.font = AppFonts.normalBold
+        self.lblJobPlaceHolder.font = AppFonts.normalSemiBold
         
         
         
@@ -172,8 +185,6 @@ class BussinessDescriptionViewController: AbstractController {
         self.showNavBackButton = true
     }
     
-    
-    
     override func backButtonAction(_ sender: AnyObject) {
    //       self.dismiss(animated: true, completion: nil)
         self.popOrDismissViewControllerAnimated(animated: true)
@@ -208,6 +219,16 @@ class BussinessDescriptionViewController: AbstractController {
         self.present(nav, animated: true, completion: nil)
     }
     
+    @IBAction func addJob(_ sender: Any) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: AddEditJobViewController.className)  as! AddEditJobViewController
+        
+        vc.mode = .add
+        vc.businessId = bussiness?.id
+        vc.modalPresentationStyle = .fullScreen
+        
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
+    }
     
     @IBAction func showContactsView(_ sender: UIButton) {
         self.contactsBGView.isHidden = false
@@ -217,6 +238,7 @@ class BussinessDescriptionViewController: AbstractController {
     @IBAction func hideContactsView(_ sender: UITapGestureRecognizer) {
         self.contactsBGView.isHidden = true
     }
+    
     @IBAction func callPhone1(_ sender: UIButton) {
         if let phone1 = bussiness?.phone1 {
             callPhone(phone:phone1)

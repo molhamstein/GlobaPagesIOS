@@ -16,6 +16,7 @@ protocol filterCellProtocol {
 class filtterCell: UICollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var btnDelete: UIButton!
     
     
     var delegate:filterCellProtocol?

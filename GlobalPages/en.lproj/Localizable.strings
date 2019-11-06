@@ -163,7 +163,7 @@
 "BUSSINESS_GUIDE_TITLE"                 = "Business Guide";
 "NEAR_BY_TITLE"                         = "Find Nearby";
 "ON_DUTY_PHARMACY_TITLE"                = "Oncall Pharmacy";
-
+"JOB_OFFERS_TITLE"                      = "Job Offers";
 
 // bussiness guide description
 "ADS_DESC_SUB_CATEGORY_LABEL"         = "Sub Category";
@@ -245,3 +245,95 @@
 // Notifications
 "ALL_NOTIFICATIONS_DELETED"         = "There are no notifications to delete";
 "DELETE_ALL_MSG_WARNING"            = "Are you sure you want to delete all notifications";
+
+
+// CV Page
+"CV_EXPERIENCE_TITLE"               = "Experience";
+"CV_EDUCATION_TITLE"                = "Education";
+"CV_SKILLS_TITLE"                   = "Skills";
+"CV_REFERENCE_TITLE"                = "References";
+"CV_ADD"                            = "Add";
+"CV_EDIT"                           = "Edit";
+"CV_POSITION_TITLE"                 = "Position Title";
+"CV_COMPANY_NAME"                   = "Company Name";
+"CV_TO_DATE"                        = "To";
+"CV_FROM_DATE"                      = "From";
+"CV_SCHOOL_NAME"                    = "School Name";
+"CV_FIELD_OF_STUDY"                 = "Field Of Study";
+"CV_CURRENTLY_WORK_HERE"            = "I Currently work here";
+"CV_PRESENT"                        = "Present";
+"CV_NAME"                           = "Name";
+"CV_SPECIALTY"                      = "Specialty";
+"CV_BIO"                            = "Bio";
+"CV_CONTACT_INFO"                   = "Contact Info";
+"CV_EMAIL"                          = "Email";
+"CV_PHONE"                          = "Phone";
+"CV_CHANGE_IMAGE"                   = "Change profile picture";
+"CV_SPECIALIZATION_PLACEHOLDER"     = "Specialization not set";
+"CV_LOCATION_PLACEHOLDER"           = "Location not set";
+"CV_EXPERIENCE_PLACEHOLDER"         = "No experiences added";
+"CV_EDUCATION_PLACEHOLDER"          = "No educations added";
+"CV_SKILLS_PLACEHOLDER"             = "No skills added";
+"CV_REFERENCE_PLACEHOLDER"          = "No references added";
+"REMOVE_SKILL_MSG"                  = "Are you sure you want to delete this skill";
+"USERNAME_REQEIRED_MSG"             = "Username is reqeired";
+"EMAIL_REQEIRED_MSG"                = "Email is reqeired";
+"PHONE_REQEIRED_MSG"                = "Phone is reqeired";
+"DELETE_CONFIRMATION"               = "Delete Confirmation";
+"DELETE_CONFIRMATION_MSG"           = "Are you sure you want to delete this field";
+
+// Job Pages
+"APPLY_CONFIRMATION"                = "Apply Confirmation";
+"APPLY_CONFIRMATION_MSG"            = "Are you sure you want to apply to this job";
+"APPLY"                             = "Apply";
+"APPLIED_MSG"                       = "Your application has been sent successfuly";
+"JOB_OWNER_MSG"                     = "You can't apply for a job you own";
+"LOGIN_FIRST_MSG"                   = "You have to be logged in first in order to apply";
+"JOB_ADD_TITLE"                     = "Add Job";
+"JOB_EDIT_TITLE"                    = "Edit Job";
+"JOB_NAME_REQUEIRED"                = "Please enter a job name";
+"JOB_CATEGORY_REQUEIRED"            = "Please select category";
+"JOB_SUBCATEGORY_REQUEIRED"         = "Please select subcategory";
+"JOB_DEACTIVE"                      = "Deactive";
+"JOB_DEACTIVE_WARNING"              = "Are you sure you want to deactive this job?";
+"JOB_TITLE"                         = "Jobs";
+"JOB_SALARY_RANGE"                  = "Salary range";
+"JOB_EDUCATION_LEVEL"               = "Education level";
+"JOB_TYPE_TITLE"                    = "Job type";
+"JOB_QUALIFICATION"                 = "Qualifications";
+"JOB_RESPONSIPILITIES"              = "Responsipilites";
+"JOB_DESCRIPTION"                   = "Description";
+"JOB_SKILLS"                        = "Skills";
+"JOB_BASE_INFO_TITLE"               = "Base info";
+"JOB_NAME_AR"                       = "Name Ar";
+"JOB_NAME_EN"                       = "Name En";
+"JOB_CATEGORY"                      = "Category";
+"JOB_SUBCATEGORY"                   = "Subcategory";
+"JOB_SALARY"                        = "Salary";
+"JOB_DESCRIPTION_AR"                = "Description Ar";
+"JOB_DESCRIPTION_EN"                = "Description En";
+"JOB_RESPONSIPILITIES_AR"           = "Responsipilites Ar";
+"JOB_RESPONSIPILITIES_EN"           = "Responsipilites En";
+"JOB_QUALIFICATION_AR"              = "Qualifications Ar";
+"JOB_QUALIFICATION_EN"              = "Qualifications En";
+
+// Job Type Enum
+"PART_TIME"                         = "Part Time";
+"FULL_TIME"                         = "Full Time";
+"PROJECT_BASE"                      = "Project Based";
+"VOLUNTEER"                         = "Volunteer";
+"INTERNSHIP"                        = "Internship";
+
+// Education Level Enum
+"HIGH_SCHOOL_DEGREE"                = "High School Degree";
+"ASSOCIATE_DEGREE"                  = "Associate Degree";
+"UNIVERSITY_DEGREE"                 = "University Degree";
+"MASTER_DEGREE"                     = "Master Degree";
+"DOCTORAL_DEGREE"                   = "Doctoral Degree";
+
+// Applicant
+"APPLICANT_STATE_MSG"               = "Please select candidate state";
+"APPLICANT_PENDING"                 = "Pending";
+"APPLICANT_INTERVIEWING"            = "Interviewing";
+"APPLICANT_NO_HIRE"                 = "No Hire";
+"APPLICANT_HIRE"                    = "Hire";

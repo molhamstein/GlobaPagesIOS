@@ -42,6 +42,7 @@ public enum filterValues {
     
     public static var home = Filter()
     public static var bussinesGuid = Filter()
+    public static var jobOffer = Filter()
     
      func getDictionry()-> [String:Any]{
         var parameters:[String:Any] = [:]

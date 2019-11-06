@@ -30,12 +30,12 @@ extension UICollectionViewCell{
     }
     
     
-    func addShadow(){
+    func addShadow(_ shadowOpacity: Float = 0.3){
         
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = .zero//CGSize(width: 0, height: 2.0)
         self.layer.shadowRadius = 5.0
-        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOpacity = shadowOpacity
         self.layer.masksToBounds = false
         
     }
