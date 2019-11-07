@@ -32,6 +32,7 @@ class AddExperienceViewController: AbstractController {
     
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtCompanyName: UITextField!
+    @IBOutlet weak var txtDescription: UITextView!
     @IBOutlet weak var txtFrom: UITextField!
     @IBOutlet weak var txtTo: UITextField!
     @IBOutlet weak var btnAdd: UIButton!
@@ -64,8 +65,14 @@ class AddExperienceViewController: AbstractController {
         txtTo.placeholder = "CV_TO_DATE".localized
         txtFrom.placeholder = "CV_FROM_DATE".localized
         
+        // Set placeholder for description text view
+        txtDescription.text = "JOB_DESCRIPTION".localized
+        txtDescription.textColor = UIColor.lightGray.withAlphaComponent(0.6)
+        txtDescription.delegate = self
+        
         txtTitle.font = AppFonts.normalSemiBold
         txtCompanyName.font = AppFonts.normalSemiBold
+        txtDescription.font = AppFonts.normalSemiBold
         txtTo.font = AppFonts.normalSemiBold
         txtFrom.font = AppFonts.normalSemiBold
         lblWorkHere.font = AppFonts.normal
@@ -108,12 +115,14 @@ class AddExperienceViewController: AbstractController {
             case .education:
                 txtCompanyName.text = education?.educationalEntity
                 txtTitle.text = education?.title
+                txtDescription.text = education?.description
                 txtTo.text = DateHelper.convertDateStringToCustomFormat(education?.to ?? "", format: "dd MMM yyyy")
                 txtFrom.text = DateHelper.convertDateStringToCustomFormat(education?.from ?? "", format: "dd MMM yyyy")
                 
             case .experience:
                 txtCompanyName.text = experience?.companyName
                 txtTitle.text = experience?.title
+                txtDescription.text = experience?.description
                 txtTo.text = (experience?.isPresent ?? false) ? "" : DateHelper.convertDateStringToCustomFormat(experience?.to ?? "", format: "dd MMM yyyy")
                 txtFrom.text = DateHelper.convertDateStringToCustomFormat(experience?.from ?? "", format: "dd MMM yyyy")
                 
@@ -173,6 +182,7 @@ class AddExperienceViewController: AbstractController {
                 let tempEducation = Education()
                 tempEducation.title = txtTitle.text
                 tempEducation.educationalEntity = txtCompanyName.text
+                tempEducation.description = txtDescription.text == "JOB_DESCRIPTION".localized ? "" : txtDescription.text
                 tempEducation.from = DateHelper.getISOStringFromDate(selectedFromDate ?? Date())
                 tempEducation.to = DateHelper.getISOStringFromDate(selectedToDate ?? Date())
                 
@@ -187,6 +197,7 @@ class AddExperienceViewController: AbstractController {
                 let tempExperience = Experience()
                 tempExperience.title = txtTitle.text
                 tempExperience.companyName = txtCompanyName.text
+                tempExperience.description = txtDescription.text == "JOB_DESCRIPTION".localized ? "" : txtDescription.text
                 tempExperience.from = DateHelper.getISOStringFromDate(selectedFromDate ?? Date())
                 tempExperience.to = isCurrentlyWorkingHere ? nil : DateHelper.getISOStringFromDate(selectedToDate ?? Date())
                 tempExperience.isPresent = isCurrentlyWorkingHere
@@ -220,6 +231,22 @@ extension AddExperienceViewController {
         if textField == txtTo {
             textField.text = DateHelper.getBirthFormatedStringFromDate(datePicker.date)
             self.selectedToDate = datePicker.date
+        }
+    }
+}
+
+extension AddExperienceViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray.withAlphaComponent(0.6) {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "JOB_DESCRIPTION".localized
+            textView.textColor = UIColor.lightGray.withAlphaComponent(0.6)
         }
     }
 }
