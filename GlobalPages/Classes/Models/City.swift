@@ -30,11 +30,7 @@ public class City: BaseModel {
     public var filtervalue:filterValues?
     
     public var title:String?{
-        if AppConfig.useEnglishLanguage {
-            return AppConfig.currentLanguage == .arabic ? titleAr : titleEn
-        }
-        
-        return titleAr
+        return AppConfig.currentLanguage == .arabic ? titleAr : titleEn
     }
     // MARK: Initializers
     override init() {

@@ -32,12 +32,18 @@ class ProfileViewController: AbstractController {
     @IBOutlet weak var femaleButton: UIButton!
     @IBOutlet weak var femaleLabel: UILabel!
     @IBOutlet weak var subscriptionButton: XUIButton!
+    @IBOutlet weak var jobsTitleLabel: XUILabel!
+    @IBOutlet weak var jobsCollectionView: UICollectionView!
+    @IBOutlet weak var adsViewPlaceholder: UIView!
+    @IBOutlet weak var bussinessViewPlaceholder: UIView!
+    @IBOutlet weak var jobsViewPlaceholder: UIView!
 
     let categoryCellId = "filterCell2"
     let adImagedCellId = "AdsImageCell"
     let adTitledCellId = "AdsTitledCell"
     let bussinesCellId = "BussinessGuidListCell"
     
+    var jobs: [Job] = []
     var posts:[Post] = []
     var bussiness:[Bussiness] = []
 
@@ -72,6 +78,7 @@ class ProfileViewController: AbstractController {
         self.setNavBarTitle(title: "My Profile".localized)
         // Do any additional setup after loading the view.
 
+        self.updatePlaceholders()
     }
     
     override func viewDidLayoutSubviews() {
@@ -91,10 +98,14 @@ class ProfileViewController: AbstractController {
         self.adsCountLabel.font = AppFonts.xBigBold
         self.categoriesTitleLabel.font = AppFonts.bigBold
         self.myAdsTitleLabel.font = AppFonts.bigBold
+        self.jobsTitleLabel.font = AppFonts.bigBold
         self.myBussinessTitleLabel.font = AppFonts.bigBold
         self.birthDateButton.titleLabel?.font = AppFonts.xBigBold
         self.maleLabel.font = AppFonts.normalBold
         self.femaleLabel.font = AppFonts.normalBold
+        
+        self.usernameTitleLabel.isHidden = false
+        self.emailTitleLabel.isHidden = false
         
         setupCollectionViews()
     }
@@ -135,9 +146,15 @@ class ProfileViewController: AbstractController {
         self.myBussinessCollectionView.delegate = self
         self.myBussinessCollectionView.dataSource = self
 
+        self.jobsCollectionView.delegate = self
+        self.jobsCollectionView.dataSource = self
+        self.jobsCollectionView.register(UINib(nibName: "JobOfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "JobOfferCollectionViewCell")
+        
         getAds()
         getBussiness()
+        getJobs()
     }
+    
     override func buildUp() {
         super.buildUp()
         fillUserData()
@@ -145,6 +162,7 @@ class ProfileViewController: AbstractController {
         getAds()
         getBussiness()
         getFavorites()
+        getJobs()
     }
 
     func getUserCategories(){
@@ -163,6 +181,24 @@ class ProfileViewController: AbstractController {
         categoryCollectionView.reloadData()
     }
     
+    func getJobs(){
+        self.showActivityLoader(true)
+        ApiManager.shared.getJobsByOwner(completionBlock: {success, error, result in
+            self.showActivityLoader(false)
+            
+            if let error = error {
+                self.showMessage(message: error.type.errorMessage, type: .error)
+                return
+            }
+            
+            self.jobs = result
+            self.jobsCollectionView.reloadData()
+            
+            self.updatePlaceholders()
+        })
+        
+    }
+    
     override func backButtonAction(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -174,7 +210,8 @@ class ProfileViewController: AbstractController {
     func fillUserData(){
         guard let user = DataStore.shared.me else {return}
         if let username = user.userName {self.usernameLabel.text = username}
-        if let email = user.email{self.emailLabel.text = email}
+        self.emailLabel.text = user.cv?.primaryIdentifier ?? user.email ?? ""
+        self.emailTitleLabel.text = user.cv?.primaryIdentifier != nil ? "CV_SPECIALTY".localized : "EMAIL".localized
         if let image = user.profilePic { self.imageView.setImageForURL(image, placeholder: #imageLiteral(resourceName: "user_placeholder"))}
         if let birthDate = user.birthdate { birthDateButton.setTitle(DateHelper.getBirthFormatedStringFromDate(birthDate), for: .normal)  }
         if let count = user.postsCount {self.adsCountLabel.text = "\(count)"}
@@ -199,8 +236,11 @@ class ProfileViewController: AbstractController {
             self.showActivityLoader(false)
             if success{
                 self.posts = result
+                self.adsCountLabel.text = String(self.posts.count)
                 self.myAdsCollectionView.collectionViewLayout.invalidateLayout()
                 self.myAdsCollectionView.reloadData()
+                
+                self.updatePlaceholders()
             }
             if error != nil{}
         }
@@ -215,6 +255,8 @@ class ProfileViewController: AbstractController {
                 self.bussiness = result
                 self.myBussinessCollectionView.collectionViewLayout.invalidateLayout()
                 self.myBussinessCollectionView.reloadData()
+                
+                self.updatePlaceholders()
             }
             if error != nil{}
         }
@@ -276,7 +318,42 @@ class ProfileViewController: AbstractController {
         })
     }
 
+    func updatePlaceholders(){
+        if self.posts.count > 0 {
+            self.adsViewPlaceholder.isHidden = true
+            self.myAdsCollectionView.isHidden = false
+        }else {
+            self.adsViewPlaceholder.isHidden = false
+            self.myAdsCollectionView.isHidden = true
+        }
+        
+        if self.bussiness.count > 0 {
+            self.bussinessViewPlaceholder.isHidden = true
+            self.myBussinessCollectionView.isHidden = false
+        }else {
+            self.bussinessViewPlaceholder.isHidden = false
+            self.myBussinessCollectionView.isHidden = true
+        }
+        
+        if self.jobs.count > 0 {
+            self.jobsViewPlaceholder.isHidden = true
+            self.jobsCollectionView.isHidden = false
+        }else {
+            self.jobsViewPlaceholder.isHidden = false
+            self.jobsCollectionView.isHidden = true
+        }
+    }
 
+    @IBAction func addJob(_ sender: Any) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: AddEditJobViewController.className)  as! AddEditJobViewController
+        
+        vc.mode = .add
+        vc.businessId = nil
+        vc.modalPresentationStyle = .fullScreen
+        
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
+    }
 }
 
 
@@ -301,6 +378,9 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
         
         if collectionView == myBussinessCollectionView {
             return bussiness.count
+        }
+        if collectionView == jobsCollectionView {
+            return jobs.count
         }
         return 0
     }
@@ -355,6 +435,15 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             cell.profileMode()
             return cell
         }
+        
+        if collectionView == jobsCollectionView{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "JobOfferCollectionViewCell", for: indexPath) as! JobOfferCollectionViewCell
+            
+            cell.configureCell(self.jobs[indexPath.row])
+            
+            return cell
+        
+        }
         return UICollectionViewCell()
     }
     
@@ -375,6 +464,16 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             vc.bussiness = bussiness[indexPath.item]
             vc.editMode = true
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        if collectionView == jobsCollectionView {
+            let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: JobDescriptionViewController.className) as! JobDescriptionViewController
+            
+            vc.job = jobs[indexPath.row]
+            
+            let nav = UINavigationController(rootViewController: vc)
+            
+            self.present(nav, animated: true, completion: nil)
         }
     }
     
@@ -421,10 +520,9 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
 extension ProfileViewController:UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == categoryCollectionView{
-            let height = self.categoryCollectionView.bounds.height - 24
             var width = categories[indexPath.item].title?.getLabelWidth(font: AppFonts.normal) ?? 0
             width = width + 32
-            return CGSize(width: width, height: height)
+            return CGSize(width: width, height: 30)
         }
         
         if collectionView == myAdsCollectionView{
@@ -435,6 +533,10 @@ extension ProfileViewController:UICollectionViewDelegateFlowLayout{
             let height:CGFloat = 72//self.myBussinessCollectionView.bounds.height - 24
             let width = self.myBussinessCollectionView.bounds.width * 0.7
             return CGSize(width: width, height: height)
+        }
+        
+        if collectionView == jobsCollectionView {
+            return CGSize(width: self.jobsCollectionView.frame.width / 1.2, height: 110)
         }
         return CGSize(width: 0, height: 0)
     }

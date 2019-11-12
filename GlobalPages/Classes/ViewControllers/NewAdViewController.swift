@@ -651,16 +651,16 @@ extension NewAdViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: height, height: height)
         }
         if collectionView == adCategoryCollectionView{
-            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.adCategoryCollectionView.frame.height - 24)
+            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: 30)
         }
         if collectionView == subCategoryCollectionView{
-            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.subCategoryCollectionView.frame.height - 24)
+            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: 30)
         }
         if collectionView == cityCollectionView{
-            return CGSize(width: cities[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.cityCollectionView.frame.height - 24)
+            return CGSize(width: cities[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: 30)
         }
         if collectionView == areaCollectionView{
-            return CGSize(width: areas[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.areaCollectionView.frame.height - 24)
+            return CGSize(width: areas[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: 30)
         }
         
         return CGSize(width:0, height: 0)

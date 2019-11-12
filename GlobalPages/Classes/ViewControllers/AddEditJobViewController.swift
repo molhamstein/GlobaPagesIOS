@@ -18,6 +18,7 @@ class AddEditJobViewController: AbstractController {
     @IBOutlet weak var txtSalary: UITextField!
     @IBOutlet weak var txtEducationLevel: UITextField!
     @IBOutlet weak var txtJobType: UITextField!
+    @IBOutlet weak var bussinessCollectionView: UICollectionView!
     
     @IBOutlet weak var lblBaseInfoTitle: UILabel!
     @IBOutlet weak var lblNameEnTitle: UILabel!
@@ -27,6 +28,7 @@ class AddEditJobViewController: AbstractController {
     @IBOutlet weak var lblSalaryTitle: UILabel!
     @IBOutlet weak var lblEducationLevelTitle: UILabel!
     @IBOutlet weak var lblJobTypeTitle: UILabel!
+    @IBOutlet weak var lblBussinessTitle: UILabel!
     
     // MARK:- Job Description Section
     @IBOutlet weak var lblJobDetailsTitle: UILabel!
@@ -58,6 +60,7 @@ class AddEditJobViewController: AbstractController {
     public var job: Job?
     public var businessId: String?
     
+    fileprivate var bussiness: [Bussiness] = []
     fileprivate var tags: [Tag] = []
     fileprivate var fixedWidth: CGFloat = CGFloat()
     fileprivate var dataPicker: UIPickerView!
@@ -83,6 +86,11 @@ class AddEditJobViewController: AbstractController {
         self.skillsCollectionView.register(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
         self.skillsCollectionView.collectionViewLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
         
+        // Setup bussiness collection view
+        self.bussinessCollectionView.delegate = self
+        self.bussinessCollectionView.dataSource = self
+        self.bussinessCollectionView.register(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
+        
         if self.mode == .edit {
             self.fillUpData()
             self.title = "JOB_EDIT_TITLE".localized
@@ -100,6 +108,8 @@ class AddEditJobViewController: AbstractController {
         
         getCategories()
         
+        getBussiness()
+        
         setupDataPicker()
     }
     
@@ -112,6 +122,7 @@ class AddEditJobViewController: AbstractController {
         lblSalaryTitle.font = AppFonts.normalBold
         lblEducationLevelTitle.font = AppFonts.normalBold
         lblJobTypeTitle.font = AppFonts.normalBold
+        lblBussinessTitle.font = AppFonts.normalBold
         lblJobDetailsTitle.font = AppFonts.bigBold
         lblResponsipiltiesArTitle.font = AppFonts.normalBold
         lblDescriptionArTitle.font = AppFonts.normalBold
@@ -145,6 +156,7 @@ class AddEditJobViewController: AbstractController {
         lblSalaryTitle.text = "JOB_SALARY".localized
         lblEducationLevelTitle.text = "JOB_EDUCATION_LEVEL".localized
         lblJobTypeTitle.text = "JOB_TYPE_TITLE".localized
+        lblJobTypeTitle.text = "JOB_BUSSINESS_TITLE".localized
         
         lblJobDetailsTitle.text = "JOB_DESCRIPTION".localized
         lblResponsipiltiesArTitle.text = "JOB_RESPONSIPILITIES_AR".localized
@@ -155,7 +167,7 @@ class AddEditJobViewController: AbstractController {
         lblQualificationEnTitle.text = "JOB_QUALIFICATION_EN".localized
         lblSkillsTitle.text = "JOB_SKILLS".localized
         
-        btnAddSkill.setTitle("JOB_ADD".localized, for: .normal)
+        btnAddSkill.setTitle("ADD_BUTTON_TITLE".localized, for: .normal)
     }
     
     override func viewWillLayoutSubviews() {
@@ -235,6 +247,21 @@ class AddEditJobViewController: AbstractController {
             }
         }
 
+    }
+    
+    func getBussiness(){
+        guard let ownerId = DataStore.shared.me?.objectId else { return }
+        self.showActivityLoader(true)
+        ApiManager.shared.getUserBussiness(ownerId: ownerId) { (success, error, result) in
+            self.showActivityLoader(false)
+            if success{
+                self.bussiness = result
+                
+                self.bussinessCollectionView.reloadData()
+                
+            }
+            if error != nil{}
+        }
     }
 }
 
@@ -333,64 +360,69 @@ extension AddEditJobViewController {
         if !(txtNameAr.text!.isEmpty)  || !(txtNameEn.text!.isEmpty) {
             if let category = self.selectedCategory {
                 if let subCategory = self.selectedSubCategory {
-                    if mode == .add {
-                        job = Job()
-                        job?.nameAr = txtNameAr.text
-                        job?.nameEn = txtNameEn.text
-                        job?.category = category
-                        job?.subCategory = subCategory
-                        job?.rangeSalary = txtSalary.text
-                        job?.educationLevel = selectedEducationLevel
-                        job?.jobType = selectedJobType
-                        job?.descriptionAr = txtDescriptionAr.text
-                        job?.descriptionEn = txtDescriptionEn.text
-                        job?.responsibilitiesAr = txtResponsipiltiesAr.text
-                        job?.responsibilitiesEn = txtResponsipiltiesEn.text
-                        job?.qualificationsAr = txtQualificationAr.text
-                        job?.qualificationsEn = txtQualificationEn.text
-                        job?.tags = self.tags
-                        
-                        self.showActivityLoader(true)
-                        ApiManager.shared.addJob(id: businessId ?? "", job: self.job!, completionBlock: { success, error in
-                            self.showActivityLoader(false)
+                    if let bussinessId = self.businessId {
+                        if mode == .add {
+                            job = Job()
+                            job?.nameAr = txtNameAr.text
+                            job?.nameEn = txtNameEn.text
+                            job?.category = category
+                            job?.subCategory = subCategory
+                            job?.rangeSalary = txtSalary.text
+                            job?.educationLevel = selectedEducationLevel
+                            job?.jobType = selectedJobType
+                            job?.descriptionAr = txtDescriptionAr.text
+                            job?.descriptionEn = txtDescriptionEn.text
+                            job?.responsibilitiesAr = txtResponsipiltiesAr.text
+                            job?.responsibilitiesEn = txtResponsipiltiesEn.text
+                            job?.qualificationsAr = txtQualificationAr.text
+                            job?.qualificationsEn = txtQualificationEn.text
+                            job?.tags = self.tags
                             
-                            if let error = error {
-                                self.showMessage(message: error.type.errorMessage, type: .error)
-                                return
-                            }else {
-                                self.dismiss(animated: true, completion: nil)
-                            }
-                        })
-                        
+                            self.showActivityLoader(true)
+                            ApiManager.shared.addJob(id: bussinessId, job: self.job!, completionBlock: { success, error in
+                                self.showActivityLoader(false)
+                                
+                                if let error = error {
+                                    self.showMessage(message: error.type.errorMessage, type: .error)
+                                    return
+                                }else {
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                            })
+                            
+                        }else {
+                            job?.nameAr = txtNameAr.text
+                            job?.nameEn = txtNameEn.text
+                            job?.category = category
+                            job?.subCategory = subCategory
+                            job?.rangeSalary = txtSalary.text
+                            job?.educationLevel = selectedEducationLevel
+                            job?.jobType = selectedJobType
+                            job?.descriptionAr = txtDescriptionAr.text
+                            job?.descriptionEn = txtDescriptionEn.text
+                            job?.responsibilitiesAr = txtResponsipiltiesAr.text
+                            job?.responsibilitiesEn = txtResponsipiltiesEn.text
+                            job?.qualificationsAr = txtQualificationAr.text
+                            job?.qualificationsEn = txtQualificationEn.text
+                            job?.tags = self.tags
+                            
+                            self.showActivityLoader(true)
+                            ApiManager.shared.updateJob(job: self.job!, completionBlock: { success, error in
+                                self.showActivityLoader(false)
+                                
+                                if let error = error {
+                                    self.showMessage(message: error.type.errorMessage, type: .error)
+                                    return
+                                }else {
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                            })
+                        }
+
                     }else {
-                        job?.nameAr = txtNameAr.text
-                        job?.nameEn = txtNameEn.text
-                        job?.category = category
-                        job?.subCategory = subCategory
-                        job?.rangeSalary = txtSalary.text
-                        job?.educationLevel = selectedEducationLevel
-                        job?.jobType = selectedJobType
-                        job?.descriptionAr = txtDescriptionAr.text
-                        job?.descriptionEn = txtDescriptionEn.text
-                        job?.responsibilitiesAr = txtResponsipiltiesAr.text
-                        job?.responsibilitiesEn = txtResponsipiltiesEn.text
-                        job?.qualificationsAr = txtQualificationAr.text
-                        job?.qualificationsEn = txtQualificationEn.text
-                        job?.tags = self.tags
-                        
-                        self.showActivityLoader(true)
-                        ApiManager.shared.updateJob(job: self.job!, completionBlock: { success, error in
-                            self.showActivityLoader(false)
-                            
-                            if let error = error {
-                                self.showMessage(message: error.type.errorMessage, type: .error)
-                                return
-                            }else {
-                                self.dismiss(animated: true, completion: nil)
-                            }
-                        })
+                        self.showMessage(message: "JOB_BUSSINESS_REQUEIRED".localized, type: .error)
                     }
-                    
+                                        
                 }else {
                     self.showMessage(message: "JOB_SUBCATEGORY_REQUEIRED".localized, type: .error)
                 }
@@ -406,23 +438,74 @@ extension AddEditJobViewController {
 // MARK:- UICollectionViewDelegate
 extension AddEditJobViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.tags.count
+        if collectionView == self.skillsCollectionView {
+            return self.tags.count
+        }
+        
+        if collectionView == self.bussinessCollectionView {
+            return self.bussiness.count
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SkillCollectionViewCell", for: indexPath) as! SkillCollectionViewCell
         
-        cell.title = self.tags[indexPath.row].name ?? ""
-        cell.btnRemove.isHidden = true
+        if collectionView == self.skillsCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SkillCollectionViewCell", for: indexPath) as! SkillCollectionViewCell
+            
+            cell.title = self.tags[indexPath.row].name ?? ""
+            cell.btnRemove.isHidden = true
+            
+            cell.layoutIfNeeded()
+            
+            return cell
+        }
         
-        return cell
+        if collectionView == self.bussinessCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SkillCollectionViewCell", for: indexPath) as! SkillCollectionViewCell
+            
+            
+            cell.title = self.bussiness[indexPath.row].title ?? ""
+            cell.btnRemove.isHidden = true
+            
+            if self.businessId == self.bussiness[indexPath.row].id {
+                cell.isSelect = true
+            }else {
+                cell.isSelect = false
+            }
+            
+            //cell.layoutIfNeeded()
+            
+            return cell
+        }
+        
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.bussinessCollectionView {
+            self.businessId = self.bussiness[indexPath.row].id
+            self.bussinessCollectionView.reloadData()
+            
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = self.tags[indexPath.row].name!.getLabelWidth(font: AppFonts.normal) + 32
+        if collectionView == self.skillsCollectionView {
+            let width = self.tags[indexPath.row].name!.getLabelWidth(font: AppFonts.normal) + 32
+            
+            return CGSize(width: width, height: 30)
+        }
         
-        return CGSize(width: width, height: 30)
+        if collectionView == self.bussinessCollectionView {
+            let width = self.bussiness[indexPath.row].title!.getLabelWidth(font: AppFonts.normal) + 32
+            
+            return CGSize(width: width, height: 30)
+        }
+        
+        return .zero
     }
     
 }

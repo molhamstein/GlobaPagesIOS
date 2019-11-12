@@ -742,20 +742,20 @@ extension NewBussinesesViewController:UICollectionViewDelegateFlowLayout{
         if collectionView == adCategoryCollectionView{
             let height = self.adCategoryCollectionView.bounds.height - 16
             let width = (categoryfilters[indexPath.item].title?.getLabelWidth(font: AppFonts.normal))! + 32
-            return CGSize(width: width, height: height)
+            return CGSize(width: width, height: 30)
         }
         
         if collectionView == subCategoryCollectionView{
             let height = self.subCategoryCollectionView.bounds.height - 16
             let width = (subCategoryFilters[indexPath.item].title?.getLabelWidth(font: AppFonts.normal))! + 32
-            return CGSize(width: width, height: height)
+            return CGSize(width: width, height: 30)
         }
 
         if collectionView == cityCollectionView{
-            return CGSize(width: cities[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.cityCollectionView.frame.height - 16)
+            return CGSize(width: cities[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: 30)
         }
         if collectionView == areaCollectionView{
-            return CGSize(width: areas[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: self.areaCollectionView.frame.height - 16)
+            return CGSize(width: areas[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: 30)
         }
         return CGSize(width: 0, height: 0)
     }

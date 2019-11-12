@@ -64,7 +64,7 @@
 "SIGNUP_PRIVACY"                         = "Privacy Policy";
 "SIGNUP_TERMS"                           = "Terms Of Service";
 "SIGNUP_AND"                             = " and ";
-"SIGNUP_SUCCESS_TITLE"                   = "Welcome to GlobalPages";
+"SIGNUP_SUCCESS_TITLE"                   = "Welcome to Almersal";
 "SIGNUP_SUCCESS_SUBTITLE"                = "you can also Register your business to benifet from the advertising capabilities";
 "SIGNUP_SUCCESS_GO_HOME"                 = "Go to Home";
 "SIGNUP_SUCCESS_REGISTER_BUSINESS"       = "Register My Business";
@@ -164,6 +164,7 @@
 "NEAR_BY_TITLE"                         = "Find Nearby";
 "ON_DUTY_PHARMACY_TITLE"                = "Oncall Pharmacy";
 "JOB_OFFERS_TITLE"                      = "Job Offers";
+"NO_JOBS_ADDED"                         = "No Jobs added";
 
 // bussiness guide description
 "ADS_DESC_SUB_CATEGORY_LABEL"         = "Sub Category";
@@ -218,6 +219,10 @@
 "MY_BUSSIESES"                      = "My Bussineses";
 "My Profile"                        = "My Profile";
 "Edit Profile"                      = "Edit Profile";
+"NO_ADS_PLACEHOLDER"                = "No ads added";
+"NO_BUSSINESS_PLACEHOLDER"          = "No bussiness added";
+"NO_JOBS_PLACEHOLDER"               = "No jobs added";
+"MY_JOBS"                           = "My Jobs";
 
 // Product View
 "PRODUCT_INFO"                      = "Upload image for service or product";
@@ -253,6 +258,7 @@
 "CV_SKILLS_TITLE"                   = "Skills";
 "CV_REFERENCE_TITLE"                = "References";
 "CV_ADD"                            = "Add";
+"CV_SAVE"                           = "Save";
 "CV_EDIT"                           = "Edit";
 "CV_POSITION_TITLE"                 = "Position Title";
 "CV_COMPANY_NAME"                   = "Company Name";
@@ -263,7 +269,7 @@
 "CV_CURRENTLY_WORK_HERE"            = "I Currently work here";
 "CV_PRESENT"                        = "Present";
 "CV_NAME"                           = "Name";
-"CV_SPECIALTY"                      = "Specialty";
+"CV_SPECIALTY"                      = "Headline";
 "CV_BIO"                            = "Bio";
 "CV_CONTACT_INFO"                   = "Contact Info";
 "CV_EMAIL"                          = "Email";
@@ -294,12 +300,14 @@
 "JOB_NAME_REQUEIRED"                = "Please enter a job name";
 "JOB_CATEGORY_REQUEIRED"            = "Please select category";
 "JOB_SUBCATEGORY_REQUEIRED"         = "Please select subcategory";
+"JOB_BUSSINESS_REQUEIRED"           = "Please select a bussiness";
 "JOB_DEACTIVE"                      = "Deactive";
 "JOB_DEACTIVE_WARNING"              = "Are you sure you want to deactive this job?";
 "JOB_TITLE"                         = "Jobs";
 "JOB_SALARY_RANGE"                  = "Salary range";
 "JOB_EDUCATION_LEVEL"               = "Education level";
 "JOB_TYPE_TITLE"                    = "Job type";
+"JOB_BUSSINESS_TITLE"               = "Bussiness";
 "JOB_QUALIFICATION"                 = "Qualifications";
 "JOB_RESPONSIPILITIES"              = "Responsipilites";
 "JOB_DESCRIPTION"                   = "Description";

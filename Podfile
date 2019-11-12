@@ -17,5 +17,6 @@ pod 'NYTPhotoViewer', '~> 1.1.0'
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
 pod 'SKPhotoBrowser', '~>  5.0.0'
+pod 'Lightbox'
 end
 

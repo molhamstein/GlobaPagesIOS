@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Fix UITextView crash bug in xcode 11.2
+        UITextViewWorkaround.executeWorkaround()
+        
         // make nav bar trasculante
         AppConfig.setNavigationStyle()
 
@@ -54,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
                 print("Error fetching remote instance ID: \(error)")
             } else if let result = result {
                 print("Remote instance ID token: \(result.token)")
+                AppConfig.FCMToken = result.token
                 
                 Messaging.messaging().subscribe(toTopic: "allUsers") { error in
                     print("Subscribed to all users topic")
@@ -116,7 +120,7 @@ extension AppDelegate  {
         print(userInfo)
         
         // Change this to your preferred presentation option
-        completionHandler(UNNotificationPresentationOptions.alert)
+        completionHandler([.alert , .badge, .sound])
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,

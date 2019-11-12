@@ -350,6 +350,8 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
             cell.filter = filters[indexPath.item]
             cell.tag = indexPath.item
             cell.delegate = self
+            
+            cell.layoutIfNeeded()
             return cell
             
         }

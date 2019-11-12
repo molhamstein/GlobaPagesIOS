@@ -14,10 +14,10 @@ extension UICollectionViewCell{
     
     func makerounded(){
         
-        self.contentView.layer.cornerRadius = self.contentView.frame.height / 2
-        self.contentView.layer.borderWidth = 1.0
-        self.contentView.layer.borderColor = UIColor.clear.cgColor
-        self.contentView.layer.masksToBounds = true
+        self.layer.cornerRadius = self.frame.height / 2
+        self.layer.borderWidth = 1.0
+        self.layer.borderColor = UIColor.clear.cgColor
+        self.layer.masksToBounds = true
         
     }
     

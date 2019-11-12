@@ -482,6 +482,8 @@ extension EditCVViewController: UICollectionViewDelegate, UICollectionViewDataSo
             cell.title = self.tags[indexPath.row].name ?? ""
             cell.btnRemove.isHidden = true
             
+            cell.layoutIfNeeded()
+            
             return cell
         case cityCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as! filterCell2

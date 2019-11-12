@@ -11,6 +11,7 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - Cache (5.2.0)
   - FBSDKCoreKit (4.24.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.24.0):
@@ -98,6 +99,8 @@ PODS:
   - GTMSessionFetcher/Core (1.2.2)
   - GTMSessionFetcher/Full (1.2.2):
     - GTMSessionFetcher/Core (= 1.2.2)
+  - Imaginary (4.2.0):
+    - Cache (~> 5.0)
   - libwebp (1.0.3):
     - libwebp/demux (= 1.0.3)
     - libwebp/mux (= 1.0.3)
@@ -107,6 +110,8 @@ PODS:
   - libwebp/mux (1.0.3):
     - libwebp/demux
   - libwebp/webp (1.0.3)
+  - Lightbox (2.3.0):
+    - Imaginary (~> 4.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -138,6 +143,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Messaging
   - GoogleSignIn
+  - Lightbox
   - NYTPhotoViewer (~> 1.1.0)
   - SDWebImage/WebP
   - SKPhotoBrowser (~> 5.0.0)
@@ -150,6 +156,7 @@ SPEC REPOS:
     - Alamofire
     - AppAuth
     - Bolts
+    - Cache
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -168,7 +175,9 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - Imaginary
     - libwebp
+    - Lightbox
     - nanopb
     - NYTPhotoViewer
     - Protobuf
@@ -183,6 +192,7 @@ SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   AppAuth: bce82c76043657c99d91e7882e8a9e1a93650cd4
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
   FBSDKCoreKit: f8c9eb0dd34a9cd277c7b60da4b32226d142502d
   FBSDKLoginKit: 1214c6d5a1c4995b694d8db8a9ba6910c6028acf
   Firebase: 9cbe4e5b5eaafa05dc932be58b7c8c3820d71e88
@@ -201,7 +211,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
+  Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
   libwebp: 057912d6d0abfb6357d8bb05c0ea470301f5d61e
+  Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
@@ -212,6 +224,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 9d0359c0fdf6a70a54e60276fe9d3ab5e414dc46
+PODFILE CHECKSUM: 32269b237eba894f9d10dc90ff3de06f57eb3468
 
 COCOAPODS: 1.7.5

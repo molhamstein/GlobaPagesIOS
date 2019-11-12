@@ -10,6 +10,7 @@ import Foundation
 import StoreKit
 import AVFoundation
 import AVKit
+import Lightbox
 
 /**
 Repeated and generic actions to be excuted from any context of the app such as show alert
@@ -164,3 +165,54 @@ class ActionCompressVideo {
     }
 }
 
+class ActionShowMediaInFullScreen: Action {
+    class func execute(pageDelegate: LightboxControllerPageDelegate, dismissalDelegate: LightboxControllerDismissalDelegate, media: [Media], currentPage: Int = 1) {
+        // Create an array of images.
+        var items: [LightboxImage] = []
+        for item in media {
+            
+            var imageUrl: String?
+            var videoUrl: String?
+            if item.type == AppMediaType.video {
+                imageUrl = item.thumbUrl
+                videoUrl = item.fileUrl
+                
+            }else {
+                imageUrl = item.fileUrl
+                videoUrl = nil
+                
+            }
+            
+            if var imageUrl = imageUrl {
+                if !imageUrl.contains(find: "http://") {
+                    imageUrl = "http://" + imageUrl
+                }
+            }
+            if var videoUrl = videoUrl {
+                if !videoUrl.contains(find: "http://") {
+                    videoUrl = "http://" + videoUrl
+                }
+            }
+            
+            items.append(LightboxImage(imageURL: URL(string: imageUrl ?? "")!, text: "", videoURL: URL(string: videoUrl ?? "")))
+        }
+        
+
+        // Create an instance of LightboxController.
+        let controller = LightboxController(images: items)
+
+        // Set delegates.
+        controller.pageDelegate = pageDelegate
+        controller.dismissalDelegate = dismissalDelegate
+        
+        // Use dynamic background.
+        controller.dynamicBackground = true
+        
+        // Move to selected page
+        controller.goTo(currentPage)
+        
+        // Present your controller.
+        let nav = UINavigationController(rootViewController: controller)
+        UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
+    }
+}

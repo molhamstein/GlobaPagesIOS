@@ -43,11 +43,15 @@ class filtterCell: UICollectionViewCell {
         
         titleLabel.font = AppFonts.normal
         titleLabel.sizeToFit()
-        self.perform(#selector(setupView), with: nil, afterDelay: 0.3)
+        
        
     }
 
-    @objc func setupView(){
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.layoutIfNeeded()
+        
         self.makerounded()
         self.addShadow()
     }

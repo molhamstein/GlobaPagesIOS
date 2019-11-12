@@ -24,11 +24,7 @@ class ReportType: BaseModel {
     
     public var name: String? {
         get {
-            if AppConfig.useEnglishLanguage {
-                return AppConfig.currentLanguage == .arabic ? name_ar : name_en
-                
-            }
-             return name_ar
+            return AppConfig.currentLanguage == .arabic ? name_ar : name_en
         }
     }
     

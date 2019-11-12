@@ -8,11 +8,14 @@
 
 import UIKit
 import SKPhotoBrowser
+import Lightbox
 
 class AdsDescriptionViewController: AbstractController {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var contactBottomButton: XUIButton!
+    @IBOutlet weak var btnLeftArrow: UIButton!
+    @IBOutlet weak var btnRightArrow: UIButton!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var descriptinTitleLabel: UILabel!
     @IBOutlet weak var contactButton: XUIButton!
@@ -70,7 +73,7 @@ class AdsDescriptionViewController: AbstractController {
     var images:[Media] = []
     var SkImages:[SKPhoto] = []
     var cellID = "ImageCell"
-    
+    var currentImagesIndex = 0
     var post:Post?
     
     
@@ -136,6 +139,10 @@ class AdsDescriptionViewController: AbstractController {
         // change nav bar tint color for back button
         self.navigationController?.navigationBar.tintColor = .white
         
+        self.btnLeftArrow.dropShadow()
+        self.btnRightArrow.dropShadow()
+
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -149,30 +156,9 @@ class AdsDescriptionViewController: AbstractController {
         self.tagViewWidth = (self.categoryLable.text?.getLabelWidth(font: AppFonts.normalBold))! + CGFloat(54)
         self.subTagViewWidth = (self.subCategoryLabel.text?.getLabelWidth(font: AppFonts.smallBold))! + CGFloat(32)
     }
-    
-    
-    @IBAction func close(_ sender: UIButton) {
-        self.popOrDismissViewControllerAnimated(animated: true)
-    }
 
     override func backButtonAction(_ sender: AnyObject) {
         self.popOrDismissViewControllerAnimated(animated: true)
-    }
-
-// contacts view actions
-
-    @IBAction func showContactsView(_ sender: UIButton) {
-        self.contactsBGView.isHidden = false
-        self.contactsMiddleView.animateIn(mode: .animateInFromBottom, delay: 0.2)
-    }
-
-    @IBAction func hideContactsView(_ sender: UITapGestureRecognizer) {
-        self.contactsBGView.isHidden = true
-    }
-    @IBAction func callPhone1(_ sender: UIButton) {
-        if let phone1 = post?.owner?.phoneNumber {
-            callPhone(phone:phone1)
-        }
     }
 
     func callPhone(phone:String){
@@ -182,7 +168,46 @@ class AdsDescriptionViewController: AbstractController {
     
 }
 
+// MARK:- @IBAction
+extension AdsDescriptionViewController {
+    @IBAction func nextImage_left(_ sender: UIButton) {
+        if currentImagesIndex == 0 {
+            return
+        }else {
+            self.imageCollectionView.scrollToItem(at: IndexPath(row: self.currentImagesIndex - 1 , section: 0), at: .left, animated: true)
+            self.currentImagesIndex -= 1
+        }
 
+    }
+    
+    @IBAction func nextImage_right(_ sender: UIButton) {
+        if currentImagesIndex == (self.images.count - 1) {
+            return
+        }else {
+            self.imageCollectionView.scrollToItem(at: IndexPath(row: self.currentImagesIndex + 1 , section: 0), at: .left, animated: true)
+            self.currentImagesIndex += 1
+        }
+    }
+    
+    @IBAction func close(_ sender: UIButton) {
+        self.popOrDismissViewControllerAnimated(animated: true)
+    }
+    
+    @IBAction func showContactsView(_ sender: UIButton) {
+        self.contactsBGView.isHidden = false
+        self.contactsMiddleView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+    }
+
+    @IBAction func hideContactsView(_ sender: UITapGestureRecognizer) {
+        self.contactsBGView.isHidden = true
+    }
+    
+    @IBAction func callPhone1(_ sender: UIButton) {
+        if let phone1 = post?.owner?.phoneNumber {
+            callPhone(phone:phone1)
+        }
+    }
+}
 
 extension AdsDescriptionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -212,20 +237,9 @@ extension AdsDescriptionViewController: UICollectionViewDataSource, UICollection
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == imageCollectionView {
-            let cell = collectionView.cellForItem(at: indexPath) as! ImageCell
-            if cell.media?.type == .video {
-                if var url = cell.media?.fileUrl {
-                    if !url.contains(find: "http://") {
-                        url = "http://" + url
-                    }
-                    ActionPlayVideo.execute(controller: self, url: url)
-                }
-            }else {
-                if let image = cell.iamgeView.image {
-                    self.showFullScreenImage(image: image)
-                }
+            if self.images.count > 0 {
+                ActionShowMediaInFullScreen.execute(pageDelegate: self, dismissalDelegate: self, media: self.images, currentPage: indexPath.row)
             }
-            
         }
     }
 
@@ -247,6 +261,16 @@ extension AdsDescriptionViewController:UICollectionViewDelegateFlowLayout{
     
 }
 
+// MARK:- LightBoxDelegate
+extension AdsDescriptionViewController: LightboxControllerDismissalDelegate, LightboxControllerPageDelegate {
+    func lightboxControllerWillDismiss(_ controller: LightboxController) {
+        
+    }
+    
+    func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
+        
+    }
+}
 
 
 // page controller delegates
@@ -258,7 +282,5 @@ extension AdsDescriptionViewController{
         let pagenumber = Int(abs(targetContentOffset.pointee.x) / view.frame.width)
         self.pageController.currentPage = pagenumber
     }
-    
-    
-    
+
 }

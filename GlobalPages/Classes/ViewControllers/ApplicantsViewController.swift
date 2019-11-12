@@ -29,9 +29,6 @@ class ApplicantsViewController: AbstractController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func buildUp() {
         applicantsCollectionView.delegate = self
         applicantsCollectionView.dataSource = self
 
@@ -43,8 +40,9 @@ class ApplicantsViewController: AbstractController {
         
         fillUpData()
         getApplicants()
-        
-        
+    }
+    
+    override func buildUp() {
 
     }
     

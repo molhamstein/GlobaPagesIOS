@@ -206,7 +206,7 @@ class LoginViewController: AbstractController {
         svLoginPrefixLabel.text = "SIGNUP_LOGIN_BTN_PREFIX".localized
         selectCountryButton.setTitle("SIGNUP_BIRTHDATE_PLACEHOLDER".localized, for: .normal)
         
-        signupSucessTitleLabel.text = "Welcome to GlobalPages".localized
+        signupSucessTitleLabel.text = "SIGNUP_SUCCESS_TITLE".localized
         signupSucessSubtitleLabel.text = "SIGNUP_SUCCESS_SUBTITLE".localized
         signupSucessRegisterBusinessButton.setTitle("SIGNUP_SUCCESS_REGISTER_BUSINESS".localized, for: .normal)
         signupSucessGoHomeButton.setTitle("SIGNUP_SUCCESS_GO_HOME".localized, for: .normal)

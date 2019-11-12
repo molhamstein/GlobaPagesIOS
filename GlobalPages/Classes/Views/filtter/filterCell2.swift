@@ -68,6 +68,16 @@ class filterCell2: UICollectionViewCell {
         titleLabel.sizeToFit()
 //        self.perform(#selector(setupView), with: nil, afterDelay: 0.3)
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.layoutIfNeeded()
+        
+        self.makerounded()
+        self.addShadow()
+        
+    }
 
     
     func setupView(type:FilterType){

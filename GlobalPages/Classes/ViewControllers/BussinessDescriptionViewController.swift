@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Lightbox
 
 class BussinessDescriptionViewController: AbstractController {
     
@@ -32,6 +33,7 @@ class BussinessDescriptionViewController: AbstractController {
     @IBOutlet weak var subCategoryTitleLabel: XUILabel!
     @IBOutlet weak var subCategoryLabel: UILabel!
     @IBOutlet weak var productsCollectionView: UICollectionView!
+    @IBOutlet weak var jobsCollectionView: UICollectionView!
     @IBOutlet weak var addProductButton: UIButton!
     @IBOutlet weak var verfideImageView: UIImageView!
     @IBOutlet weak var btnAddJob: UIButton!
@@ -61,9 +63,11 @@ class BussinessDescriptionViewController: AbstractController {
     @IBOutlet weak var tagViewWidthConstraint: XNSLayoutConstraint!
     @IBOutlet weak var subCategoryWidthConstraint: XNSLayoutConstraint!
     
+    var jobs: [Job] = []
     var bussiness:Bussiness?
     var products:[Product] = []
     var images:[Media] = []
+    var currentImagesIndex = 0
     var editMode:Bool = false
     var tagViewWidth:CGFloat = 0{
         
@@ -97,16 +101,27 @@ class BussinessDescriptionViewController: AbstractController {
         super.viewDidLoad()
         addProductButton.isHidden = !editMode
         fillData()
+
+    }
+    
+    override func buildUp() {
+        jobsCollectionView.delegate = self
+        jobsCollectionView.dataSource = self
+        jobsCollectionView.register(UINib(nibName: "JobOfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "JobOfferCollectionViewCell")
         
-        if bussiness?.ownerId == DataStore.shared.me?.objectId {
-            self.btnAddJob.isHidden = false
-            self.imgJobPlaceHolder.isHidden = false
-            self.lblJobPlaceHolder.isHidden = false
-        }else {
-            self.btnAddJob.isHidden = true
+        self.btnAddJob.isHidden = bussiness?.ownerId == DataStore.shared.me?.objectId ? false : true
+        
+        if self.jobs.count > 0 {
             self.imgJobPlaceHolder.isHidden = true
             self.lblJobPlaceHolder.isHidden = true
+            self.jobsCollectionView.isHidden = false
+        }else {
+            self.imgJobPlaceHolder.isHidden = false
+            self.lblJobPlaceHolder.isHidden = false
+            self.jobsCollectionView.isHidden = true
         }
+        
+        getJobs()
     }
     
     override func customizeView() {
@@ -144,7 +159,7 @@ class BussinessDescriptionViewController: AbstractController {
         self.faxLabel.font = AppFonts.normalBold
         self.lblJobPlaceHolder.font = AppFonts.normalSemiBold
         
-        
+        self.lblJobPlaceHolder.text = "NO_JOBS_ADDED".localized
         
         //colors
         self.headerView.backgroundColor = AppColors.grayXDark
@@ -212,6 +227,33 @@ class BussinessDescriptionViewController: AbstractController {
         }
     }
     
+    func getJobs(){
+        self.showActivityLoader(true)
+        let status = self.bussiness?.ownerId == DataStore.shared.me?.objectId ? "activated" : ""
+        ApiManager.shared.getJobsByBusiness(status: status, businessId: self.bussiness?.id ?? "", completionBlock: {success, error, result in
+            self.showActivityLoader(false)
+            
+            if let error = error {
+                self.showMessage(message: error.type.errorMessage, type: .error)
+                return
+            }
+            
+            self.jobs = result
+            self.jobsCollectionView.reloadData()
+            
+            if self.jobs.count > 0 {
+                self.imgJobPlaceHolder.isHidden = true
+                self.lblJobPlaceHolder.isHidden = true
+                self.jobsCollectionView.isHidden = false
+            }else {
+                self.imgJobPlaceHolder.isHidden = false
+                self.lblJobPlaceHolder.isHidden = false
+                self.jobsCollectionView.isHidden = true
+            }
+        })
+        
+    }
+    
     @IBAction func addProduct(_ sender: UIButton) {
         let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewProductViewController")  as! NewProductViewController
         vc.bussinessId = bussiness?.id
@@ -248,6 +290,25 @@ class BussinessDescriptionViewController: AbstractController {
     @IBAction func callPhone2(_ sender: UIButton) {
         if let phone2 = bussiness?.phone2{
             callPhone(phone:phone2)
+        }
+    }
+    
+    @IBAction func nextImage_left(_ sender: UIButton) {
+        if currentImagesIndex == 0 {
+            return
+        }else {
+            self.imageCollectionView.scrollToItem(at: IndexPath(row: self.currentImagesIndex - 1 , section: 0), at: .left, animated: true)
+            self.currentImagesIndex -= 1
+        }
+
+    }
+    
+    @IBAction func nextImage_right(_ sender: UIButton) {
+        if currentImagesIndex == (self.images.count - 1) {
+            return
+        }else {
+            self.imageCollectionView.scrollToItem(at: IndexPath(row: self.currentImagesIndex + 1 , section: 0), at: .left, animated: true)
+            self.currentImagesIndex += 1
         }
     }
     
@@ -304,6 +365,9 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
         if collectionView == productsCollectionView{
             return products.count
         }
+        if collectionView == jobsCollectionView{
+            return jobs.count
+        }
         if collectionView == imageCollectionView {
             if self.images.count > 0{
                 return self.images.count
@@ -330,6 +394,14 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
             if self.editMode{ cell.editMode()}
             return cell
         }
+        if collectionView == jobsCollectionView{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "JobOfferCollectionViewCell", for: indexPath) as! JobOfferCollectionViewCell
+            
+            cell.configureCell(self.jobs[indexPath.row])
+            
+            return cell
+        
+        }
         return UICollectionViewCell()
     }
     
@@ -348,6 +420,10 @@ extension BussinessDescriptionViewController:UICollectionViewDelegateFlowLayout{
             let itemHeight = collectionView.bounds.height
             return CGSize(width: itemWidth * 0.75, height: itemHeight - 16)
         }
+        
+        if collectionView == jobsCollectionView {
+            return CGSize(width: self.jobsCollectionView.frame.width / 1.2, height: 110)
+        }
         return CGSize(width: 0, height: 0)
     }
     
@@ -364,15 +440,35 @@ extension BussinessDescriptionViewController:UICollectionViewDelegateFlowLayout{
                 self.present(nav, animated: true, completion: nil)
             }
         }
+        
+        if collectionView == jobsCollectionView {
+            let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: JobDescriptionViewController.className) as! JobDescriptionViewController
+            
+            vc.job = jobs[indexPath.row]
+            
+            let nav = UINavigationController(rootViewController: vc)
+            
+            self.present(nav, animated: true, completion: nil)
+        }
 
         if collectionView == imageCollectionView{
-            let cell = collectionView.cellForItem(at: indexPath) as! ImageCell
-            if let image = cell.iamgeView.image{
-                self.showFullScreenImage(image: image)
+            if self.images.count > 0 {
+                ActionShowMediaInFullScreen.execute(pageDelegate: self, dismissalDelegate: self, media: self.images, currentPage: indexPath.row)
             }
         }
     }
     
+}
+
+// MARK:- LightBoxDelegate
+extension BussinessDescriptionViewController: LightboxControllerDismissalDelegate, LightboxControllerPageDelegate {
+    func lightboxControllerWillDismiss(_ controller: LightboxController) {
+        
+    }
+    
+    func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
+        
+    }
 }
 
 

@@ -132,7 +132,9 @@ class BussinessGuideViewController: AbstractController {
     // page
     var currentPage:Int = 0 {
         didSet {
-            getBussiness(lat: lat, lng: long, radius: self.mapView.currentRadius())
+            if controllerType == .bussinessGuide {
+                getBussiness(lat: lat, lng: long, radius: self.mapView.currentRadius())
+            }
         }
     }
     
@@ -155,9 +157,11 @@ class BussinessGuideViewController: AbstractController {
         customizeMap()
         lat = LocationHelper.shared.myLocation?.lat ?? DefaultLocation.latitude
         long = LocationHelper.shared.myLocation?.long ?? DefaultLocation.longitude
-        loadData()
+        
         // inizilaze page
         DataStore.shared.bussiness = []
+        
+        loadData()
     }
     
     override func buildUp() {
@@ -445,6 +449,7 @@ class BussinessGuideViewController: AbstractController {
     func getNearByPharmacies(){
         guard  let lat = LocationHelper.shared.myLocation?.lat , let lng = LocationHelper.shared.myLocation?.long else{ return}
         self.showActivityLoader(true)
+        print(DateHelper.getDayNumberFrom(date: Date()))
         ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: nil, subCatId: nil,codeSubCat:"pharmacies", openDay: "\(DateHelper.getDayNumberFrom(date: Date()))",limit: nil) { (success, error, resutl) in
             
             self.showActivityLoader(false)
@@ -585,14 +590,14 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
             return CGSize(width: self.bussinessGuideCollectionView.bounds.width, height: 72)
         }
         if collectionView == filtterCollectionView {
-            return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 40)
+            return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 30)
         }
         if collectionView == categoryCollectionView {
-            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 40)
+            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 30)
         }
         
         if collectionView == subCategoryCollectionView{
-            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 40)
+            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 30)
             
         }
         

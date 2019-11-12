@@ -152,6 +152,7 @@
 "NEAR_BY_TITLE"                         = "إبحث قربي";
 "ON_DUTY_PHARMACY_TITLE"                = "صيدلية مناوبة";
 "JOB_OFFERS_TITLE"                      = "عروض العمل";
+"NO_JOBS_ADDED"                         = "لم يتم اضافة اي عمل";
 
 // bussiness guid description
 "ADS_DESC_SUB_CATEGORY_LABEL"         = "اصناف فرعية";
@@ -203,6 +204,11 @@
 "MY_BUSSIESES"                      = "اعمالي";
 "My Profile"                        = "ملفي الشخصي";
 "Edit Profile"                      = "تعديل الملف الشخصي";
+"NO_ADS_PLACEHOLDER"                = "لم يتم اضافة اعلانات";
+"NO_BUSSINESS_PLACEHOLDER"          = "لم يتم اضافة اي اعمال";
+"NO_JOBS_PLACEHOLDER"               = "لم يتم اضافة اي وظائف";
+"MY_JOBS"                           = "وظائفي";
+
 // Product View
 "PRODUCT_INFO"                      = "اختر صورة للخدمة او المنتج";
 "PRODUCT_NAME"                      = "اسم المنتج";
@@ -254,6 +260,7 @@
 "CV_SKILLS_TITLE"                   = "المهارات";
 "CV_REFERENCE_TITLE"                = "المراجع";
 "CV_ADD"                            = "اضافة";
+"CV_SAVE"                           = "حفظ";
 "CV_EDIT"                           = "تعديل";
 "CV_POSITION_TITLE"                 = "اسم المنصب";
 "CV_COMPANY_NAME"                   = "اسم الشركة";
@@ -295,12 +302,14 @@
 "JOB_NAME_REQUEIRED"                = "الرجاء ادخال اسم للوظيفة";
 "JOB_CATEGORY_REQUEIRED"            = "الرجاء اختيار تصنيف";
 "JOB_SUBCATEGORY_REQUEIRED"         = "الرجاء اختيار تصنيف فرعي";
+"JOB_BUSSINESS_REQUEIRED"           = "الرجاء اختيار عمل";
 "JOB_DEACTIVE"                      = "تعطيل";
 "JOB_DEACTIVE_WARNING"              = "هل انت متاكد من تعطيلك لهذه الوظيفة";
 "JOB_TITLE"                         = "الوظائف";
 "JOB_SALARY_RANGE"                  = "الراتب";
 "JOB_EDUCATION_LEVEL"               = "مستوى التعليم";
-"JOB_TYPE_TITLE"                    = "نوع العمل";
+"JOB_TYPE_TITLE"                    = "نوع الوظيفة";
+"JOB_BUSSINESS_TITLE"               = "العمل";
 "JOB_QUALIFICATION"                 = "المؤهلات";
 "JOB_RESPONSIPILITIES"              = "المسؤوليات";
 "JOB_DESCRIPTION"                   = "الوصف";

@@ -116,7 +116,8 @@ class CategoriesSubscriptionViewController: AbstractController {
     @IBAction func apply(_ sender: UIButton) {
 
         self.showActivityLoader(true)
-        ApiManager.shared.updateUser(user: DataStore.shared.me!,categories: selectedSubCategories) { (success, error, user) in
+        let user = DataStore.shared.me!
+        ApiManager.shared.updateUser(user: user,categories: selectedSubCategories) { (success, error, user) in
             self.showActivityLoader(false)
             if success {
                 self.popOrDismissViewControllerAnimated(animated: true)
@@ -256,11 +257,11 @@ extension CategoriesSubscriptionViewController:UICollectionViewDelegateFlowLayou
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == categoryCollectionView {
-            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            return CGSize(width: categoryfilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 30)
         }
 
         if collectionView == subCategoryCollectionView{
-            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            return CGSize(width: subCategoryFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: 30)
 
         }
         return CGSize(width:0, height: 0)

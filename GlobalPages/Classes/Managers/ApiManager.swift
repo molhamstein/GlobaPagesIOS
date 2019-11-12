@@ -180,7 +180,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError, nil)
                 } else {
                     // parse response to data model >> user object
-                    let user = AppUser(json: jsonResponse)
+                    let user = AppUser(json: jsonResponse["user"])
                     DataStore.shared.me = user
                     DataStore.shared.token = jsonResponse["id"].string
                     DataStore.shared.me?.objectId = jsonResponse["userId"].string
@@ -1253,7 +1253,7 @@ class ApiManager: NSObject {
     func editPost(post: Post,cityId:String,locationId:String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         // url & parameters
         //        guard let token = DataStore.shared.token else {return}
-        let signInURL = "\(baseURL)/posts?id=\(post.id)"
+        let signInURL = "\(baseURL)/posts/\(post.id)"
         var parameters : [String : Any] = post.dictionaryRepresentation()
         parameters["cityId"] = cityId
         parameters["locationId"] = locationId
@@ -1876,6 +1876,84 @@ class ApiManager: NSObject {
         
         // url & parameters
         let signUpURL = "\(baseURL)/jobOpportunities/searchJob\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        print(signUpURL)
+        // build request
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                print(jsonResponse)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, [])
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let jobs = array.map{Job(json:$0)}
+                        
+                        completionBlock(true , nil, jobs)
+                    }else{
+                        completionBlock(true , nil, [])
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, [])
+                } else {
+                    completionBlock(false, ServerError.connectionError, [])
+                }
+            }
+        }
+    }
+    
+    func getJobsByBusiness(status: String, businessId: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Job]) -> Void) {
+        let parameters = "?filter[where][status]=\(status)&filter[where][businessId]=\(businessId)"
+        
+        // url & parameters
+        let signUpURL = "\(baseURL)/jobOpportunities\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        print(signUpURL)
+        // build request
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                print(jsonResponse)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, [])
+                } else {
+                    // parse response to data model >> user object
+                    if let array = jsonResponse.array{
+                        let jobs = array.map{Job(json:$0)}
+                        
+                        completionBlock(true , nil, jobs)
+                    }else{
+                        completionBlock(true , nil, [])
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, [])
+                } else {
+                    completionBlock(false, ServerError.connectionError, [])
+                }
+            }
+        }
+    }
+    
+    func getJobsByOwner(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Job]) -> Void) {
+        let parameters = "?filter[where][ownerId]=\(DataStore.shared.me?.objectId ?? "")"
+        
+        // url & parameters
+        let signUpURL = "\(baseURL)/jobOpportunities\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         print(signUpURL)
         // build request

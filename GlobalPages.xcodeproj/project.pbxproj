@@ -144,7 +144,6 @@
 		5786884E20C4A5B10002C67B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786884D20C4A5B10002C67B /* Location.swift */; };
 		5786885320C4A8920002C67B /* CountryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5786885220C4A8920002C67B /* CountryPicker.m */; };
 		5786885A20C4AC6E0002C67B /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786885920C4AC6D0002C67B /* Media.swift */; };
-		8F46D19A226528BA0025DD85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F46D199226528BA0025DD85 /* GoogleService-Info.plist */; };
 		8F46D19E226B50B50025DD85 /* AVAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D19D226B50B50025DD85 /* AVAsset.swift */; };
 		8F46D1A1226ECEAF0025DD85 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D1A0226ECEAF0025DD85 /* NotificationTableViewCell.swift */; };
 		8F46D1A3226F7ACC0025DD85 /* VolumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D1A2226F7ACB0025DD85 /* VolumeViewController.swift */; };
@@ -153,6 +152,7 @@
 		CE0E6BDA2369BCA400EF57E7 /* JobDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0E6BD92369BCA400EF57E7 /* JobDescriptionViewController.swift */; };
 		CE0F1D182361BC3500AB9286 /* EditCVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F1D172361BC3500AB9286 /* EditCVViewController.swift */; };
 		CE0F1D1A2361DE6E00AB9286 /* AddExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F1D192361DE6E00AB9286 /* AddExperienceViewController.swift */; };
+		CE0FC3F42377F91D00C365C5 /* UITextViewWorkaround.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0FC3F32377F91C00C365C5 /* UITextViewWorkaround.swift */; };
 		CE10B532235DA3E9004BEAB0 /* CVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10B531235DA3E9004BEAB0 /* CVViewController.swift */; };
 		CE179B1C235EE6D90099C74F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE179B1B235EE6D90099C74F /* Tag.swift */; };
 		CE1B79942360420F00B74643 /* SkillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1B79922360420F00B74643 /* SkillCollectionViewCell.swift */; };
@@ -161,6 +161,7 @@
 		CE3DC670235DD64A00B0284F /* Experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DC66F235DD64A00B0284F /* Experience.swift */; };
 		CE79ED08235F01D90083A825 /* Refrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79ED07235F01D90083A825 /* Refrence.swift */; };
 		CE79ED0A235F0D660083A825 /* CV.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79ED09235F0D660083A825 /* CV.swift */; };
+		CE7FD1282379A979004C0FDF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7FD1272379A979004C0FDF /* GoogleService-Info.plist */; };
 		CE89796E236EC24C005ECC29 /* AddEditJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89796D236EC24C005ECC29 /* AddEditJobViewController.swift */; };
 		CE95CC7B23702EBD00CEED87 /* ApplicantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CC7A23702EBD00CEED87 /* ApplicantsViewController.swift */; };
 		CE95CC7D2370313800CEED87 /* Applicant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CC7C2370313700CEED87 /* Applicant.swift */; };
@@ -339,7 +340,6 @@
 		5786885720C4AADB0002C67B /* GlobalPages-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GlobalPages-Bridging-Header.h"; sourceTree = "<group>"; };
 		5786885920C4AC6D0002C67B /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		8663B5FAE0E11BA602682EC6 /* Pods-GlobalPages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalPages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages.debug.xcconfig"; sourceTree = "<group>"; };
-		8F46D199226528BA0025DD85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F46D19D226B50B50025DD85 /* AVAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAsset.swift; sourceTree = "<group>"; };
 		8F46D1A0226ECEAF0025DD85 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		8F46D1A2226F7ACB0025DD85 /* VolumeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeViewController.swift; sourceTree = "<group>"; };
@@ -348,6 +348,7 @@
 		CE0E6BD92369BCA400EF57E7 /* JobDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDescriptionViewController.swift; sourceTree = "<group>"; };
 		CE0F1D172361BC3500AB9286 /* EditCVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCVViewController.swift; sourceTree = "<group>"; };
 		CE0F1D192361DE6E00AB9286 /* AddExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExperienceViewController.swift; sourceTree = "<group>"; };
+		CE0FC3F32377F91C00C365C5 /* UITextViewWorkaround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewWorkaround.swift; sourceTree = "<group>"; };
 		CE10B531235DA3E9004BEAB0 /* CVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVViewController.swift; sourceTree = "<group>"; };
 		CE179B1B235EE6D90099C74F /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		CE1B79922360420F00B74643 /* SkillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -356,6 +357,7 @@
 		CE3DC66F235DD64A00B0284F /* Experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
 		CE79ED07235F01D90083A825 /* Refrence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refrence.swift; sourceTree = "<group>"; };
 		CE79ED09235F0D660083A825 /* CV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CV.swift; sourceTree = "<group>"; };
+		CE7FD1272379A979004C0FDF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE89796D236EC24C005ECC29 /* AddEditJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditJobViewController.swift; sourceTree = "<group>"; };
 		CE95CC7A23702EBD00CEED87 /* ApplicantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantsViewController.swift; sourceTree = "<group>"; };
 		CE95CC7C2370313700CEED87 /* Applicant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicant.swift; sourceTree = "<group>"; };
@@ -502,7 +504,8 @@
 		578685EA20C47FD30002C67B /* GlobalPages */ = {
 			isa = PBXGroup;
 			children = (
-				8F46D199226528BA0025DD85 /* GoogleService-Info.plist */,
+				CE7FD1272379A979004C0FDF /* GoogleService-Info.plist */,
+				CE0FC3F32377F91C00C365C5 /* UITextViewWorkaround.swift */,
 				14B2BE2622088969000342D1 /* GlobalPages.entitlements */,
 				5786885720C4AADB0002C67B /* GlobalPages-Bridging-Header.h */,
 				578685FD20C480500002C67B /* Classes */,
@@ -952,6 +955,7 @@
 				5786881420C483190002C67B /* MullerBold.otf in Resources */,
 				578685F320C47FD30002C67B /* Assets.xcassets in Resources */,
 				5786881B20C483190002C67B /* OpenSansBold.ttf in Resources */,
+				CE7FD1282379A979004C0FDF /* GoogleService-Info.plist in Resources */,
 				5786872420C481010002C67B /* CountryPicker.bundle in Resources */,
 				1497BC4121F783F300C0DFE2 /* DroidKufiBold.ttf in Resources */,
 				5786883720C483240002C67B /* Start.storyboard in Resources */,
@@ -973,7 +977,6 @@
 				CE95CC822370347500CEED87 /* ApplicantCollectionViewCell.xib in Resources */,
 				14160BE620E3C72C004CEA7D /* filterCell2.xib in Resources */,
 				1463C44C20D845D100156E84 /* MenuView.xib in Resources */,
-				8F46D19A226528BA0025DD85 /* GoogleService-Info.plist in Resources */,
 				5786883220C483240002C67B /* ShoreCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -991,12 +994,15 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
+				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
 				"${BUILT_PRODUCTS_DIR}/NYTPhotoViewer/NYTPhotoViewer.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1013,12 +1019,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMAppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NYTPhotoViewer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1160,6 +1169,7 @@
 				14D2866A2111DB0C0082F3BA /* BussinessDescriptionViewController.swift in Sources */,
 				14DEE799211DE92A00561AA3 /* NewProductViewController.swift in Sources */,
 				14B1B88E20DEF17C00D86536 /* CustomLayoutAttributes.swift in Sources */,
+				CE0FC3F42377F91D00C365C5 /* UITextViewWorkaround.swift in Sources */,
 				1442435621064CE300F479B2 /* NearByFilterViewController.swift in Sources */,
 				14CC8C8820C8A03D000319B0 /* XUITextField.swift in Sources */,
 				578687C520C481800002C67B /* Category.swift in Sources */,

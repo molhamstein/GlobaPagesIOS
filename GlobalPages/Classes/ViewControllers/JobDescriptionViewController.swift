@@ -63,9 +63,6 @@ class JobDescriptionViewController: AbstractController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-
-    override func buildUp() {
         setupNavigationBar()
         fillUpData()
         getJob()
@@ -76,10 +73,9 @@ class JobDescriptionViewController: AbstractController {
         self.skillsCollectionView.dataSource = self
         self.skillsCollectionView.register(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
         self.skillsCollectionView.collectionViewLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
-        
+    }
 
-//
-//        btnApplicants.customView?.addSubview(lblBadge)
+    override func buildUp() {
     }
     
     override func customizeView() {
@@ -354,6 +350,8 @@ extension JobDescriptionViewController: UICollectionViewDelegate, UICollectionVi
         
         cell.title = self.tags[indexPath.row].name ?? ""
         cell.btnRemove.isHidden = true
+        
+        cell.layoutIfNeeded()
         
         return cell
     }

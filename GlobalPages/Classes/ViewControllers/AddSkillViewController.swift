@@ -100,6 +100,8 @@ extension AddSkillViewController: UICollectionViewDelegate, UICollectionViewData
         cell.delegate = self
         cell.title = tags[indexPath.row].name ?? ""
         
+        cell.layoutIfNeeded()
+        
         return cell
         
     }
@@ -110,7 +112,7 @@ extension AddSkillViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = self.tags[indexPath.row].name!.getLabelWidth(font: AppFonts.normal) + 60
+        let width = self.tags[indexPath.row].name!.getLabelWidth(font: AppFonts.normal) + 64
         
         return CGSize(width: width, height: 30)
     }

@@ -38,7 +38,7 @@ class ApplicantCollectionViewCell: UICollectionViewCell {
     
     func configureCell(_ applicant: Applicant) {
         applicantId = applicant.id
-        lblPositionTitle.text = applicant.user?.cv?.primaryIdentifier ?? ""
+        lblPositionTitle.text = applicant.user?.cv?.primaryIdentifier ?? "CV_SPECIALIZATION_PLACEHOLDER".localized
         lblName.text = applicant.user?.userName ?? ""
         lblAddress.text = "\(applicant.user?.cv?.city?.title ?? "")"
         lblDate.text = DateHelper.convertDateStringToCustomFormat(applicant.createdAt ?? "", format: "dd, MMM yyyy")

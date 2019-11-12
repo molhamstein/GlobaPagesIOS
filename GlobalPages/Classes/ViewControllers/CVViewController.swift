@@ -397,6 +397,7 @@ extension CVViewController: UICollectionViewDelegate, UICollectionViewDataSource
             cell.title = self.tags[indexPath.row].name ?? ""
             cell.btnRemove.isHidden = true
             
+            cell.layoutIfNeeded()
             return cell
             
         default:
