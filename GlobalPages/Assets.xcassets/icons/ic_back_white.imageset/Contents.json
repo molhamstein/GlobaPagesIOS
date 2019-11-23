@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_back_white.pdf"
+      "filename" : "ic_back_white.pdf",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {

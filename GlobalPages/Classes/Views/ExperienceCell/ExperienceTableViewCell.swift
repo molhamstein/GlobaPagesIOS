@@ -26,6 +26,8 @@ class ExperienceTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        btnEdit.setTitle("CV_EDIT".localized, for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

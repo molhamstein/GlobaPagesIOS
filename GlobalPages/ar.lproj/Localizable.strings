@@ -46,7 +46,7 @@
 "LOGIN_REGISTER_BTN_PREFIX"             = "أو";
 "LOGIN_REGISTER_BTN"                    = " قم بتسجيل ";
 "LOGIN_REGISTER_BTN_SUFFIX"             = "حساب جديد";
-
+"WELCOME_TITLE"                         = "مرحبا بك في مرسال، وجهتك الافضل لايجاد افضل العروض";
 "SIGNUP_EMAIL_TITLE"                     = "البريد الاالكتروني";
 "SIGNUP_EMAIL_PLACEHOLDER"               = "vobblemail@gmail.com";
 "SIGNUP_NUMBER_TITLE"                    = "رقم الموبايل";
@@ -208,6 +208,7 @@
 "NO_BUSSINESS_PLACEHOLDER"          = "لم يتم اضافة اي اعمال";
 "NO_JOBS_PLACEHOLDER"               = "لم يتم اضافة اي وظائف";
 "MY_JOBS"                           = "وظائفي";
+"SHOW_CV"                           = "عرض السيرة الذاتية";
 
 // Product View
 "PRODUCT_INFO"                      = "اختر صورة للخدمة او المنتج";
@@ -298,7 +299,7 @@
 "JOB_OWNER_MSG"                     = "لا يمكنك التقدم لوظيفة انت صاحبها";
 "LOGIN_FIRST_MSG"                   = "عليك تسجيل الدخول اولا حتى تستطيع التقدم للوظيفة";
 "JOB_ADD_TITLE"                     = "اضافة عمل";
-"JOB_Edit_TITLE"                    = "تعديل عمل";
+"JOB_EDIT_TITLE"                    = "تعديل عمل";
 "JOB_NAME_REQUEIRED"                = "الرجاء ادخال اسم للوظيفة";
 "JOB_CATEGORY_REQUEIRED"            = "الرجاء اختيار تصنيف";
 "JOB_SUBCATEGORY_REQUEIRED"         = "الرجاء اختيار تصنيف فرعي";
@@ -340,3 +341,11 @@
 "UNIVERSITY_DEGREE"                 = "شهادة جامعية";
 "MASTER_DEGREE"                     = "شهادة ماستر";
 "DOCTORAL_DEGREE"                   = "شهادة دكتورة";
+
+// Applicant
+"APPLICANT_STATE_MSG"               = "الرجاء اختيار حالة التوظيف";
+"APPLICANT_PENDING"                 = "قيد العمل";
+"APPLICANT_INTERVIEWING"            = "مقابلة";
+"APPLICANT_NO_HIRE"                 = "غير موظف";
+"APPLICANT_HIRE"                    = "موظف";
+"APPLICANTS_PLACEHOLDER"            = "لم يتقدم احد بعد";

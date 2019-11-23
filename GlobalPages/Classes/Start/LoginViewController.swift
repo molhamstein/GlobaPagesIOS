@@ -177,6 +177,7 @@ class LoginViewController: AbstractController {
         signupSucessRegisterBusinessButton.titleLabel?.font = AppFonts.normalBold
         signupSucessGoHomeButton.titleLabel?.font = AppFonts.normal
         
+        lvTitleLabel.text = "WELCOME_TITLE".localized
         lvEmailLabel.text = "LOGIN_EMAIL_TITLE".localized
         lvEmailTextField.placeholder = "LOGIN_EMAIL_PLACEHOLDER".localized
         lvPasswordLabel.text = "LOGIN_PSW_TITLE".localized

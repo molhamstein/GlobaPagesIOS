@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_back_dark.pdf"
+      "filename" : "ic_back_dark.pdf",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {

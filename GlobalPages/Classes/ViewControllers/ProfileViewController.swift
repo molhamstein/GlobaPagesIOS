@@ -33,6 +33,7 @@ class ProfileViewController: AbstractController {
     @IBOutlet weak var femaleLabel: UILabel!
     @IBOutlet weak var subscriptionButton: XUIButton!
     @IBOutlet weak var jobsTitleLabel: XUILabel!
+    @IBOutlet weak var btnShowCV: UIButton!
     @IBOutlet weak var jobsCollectionView: UICollectionView!
     @IBOutlet weak var adsViewPlaceholder: UIView!
     @IBOutlet weak var bussinessViewPlaceholder: UIView!
@@ -103,9 +104,12 @@ class ProfileViewController: AbstractController {
         self.birthDateButton.titleLabel?.font = AppFonts.xBigBold
         self.maleLabel.font = AppFonts.normalBold
         self.femaleLabel.font = AppFonts.normalBold
+        self.btnShowCV.titleLabel?.font = AppFonts.normalBold
         
         self.usernameTitleLabel.isHidden = false
         self.emailTitleLabel.isHidden = false
+        
+        self.btnShowCV.setTitle("SHOW_CV".localized, for: .normal)
         
         setupCollectionViews()
     }

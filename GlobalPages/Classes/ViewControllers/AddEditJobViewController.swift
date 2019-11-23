@@ -156,7 +156,7 @@ class AddEditJobViewController: AbstractController {
         lblSalaryTitle.text = "JOB_SALARY".localized
         lblEducationLevelTitle.text = "JOB_EDUCATION_LEVEL".localized
         lblJobTypeTitle.text = "JOB_TYPE_TITLE".localized
-        lblJobTypeTitle.text = "JOB_BUSSINESS_TITLE".localized
+        lblBussinessTitle.text = "JOB_BUSSINESS_TITLE".localized
         
         lblJobDetailsTitle.text = "JOB_DESCRIPTION".localized
         lblResponsipiltiesArTitle.text = "JOB_RESPONSIPILITIES_AR".localized
@@ -168,6 +168,8 @@ class AddEditJobViewController: AbstractController {
         lblSkillsTitle.text = "JOB_SKILLS".localized
         
         btnAddSkill.setTitle("ADD_BUTTON_TITLE".localized, for: .normal)
+        
+        btnDone.title = "Done".localized
     }
     
     override func viewWillLayoutSubviews() {

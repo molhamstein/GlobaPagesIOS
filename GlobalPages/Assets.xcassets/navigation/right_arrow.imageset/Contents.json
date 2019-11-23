@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "right_arrow.pdf"
+      "filename" : "right_arrow.pdf",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {

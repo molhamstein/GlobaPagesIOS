@@ -178,7 +178,7 @@ extension CategoriesSubscriptionViewController:UICollectionViewDelegate,UICollec
                 let category = subCategoryFilters[indexPath.item]
             if  selectedSubCategories.contains(where: { (cat) -> Bool in category.Fid == cat.Fid}){
                     cell.isSelected = true
-                    collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+                collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
                 }else{
                     collectionView.deselectItem(at: indexPath, animated: true)
                     cell.isSelected = false

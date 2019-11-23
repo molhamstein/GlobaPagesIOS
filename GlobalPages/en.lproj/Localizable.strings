@@ -46,6 +46,7 @@
 "LOGIN_REGISTER_BTN_PREFIX"             = "Or";
 "LOGIN_REGISTER_BTN"                    = "Register";
 "LOGIN_REGISTER_BTN_SUFFIX"             = "a new account";
+"WELCOME_TITLE"                         = "Welcome to Al-Mersal your best destination to find great deals around";
 
 // Signup screen
 "SIGNUP_EMAIL_TITLE"                     = "EMAIL";
@@ -223,6 +224,7 @@
 "NO_BUSSINESS_PLACEHOLDER"          = "No bussiness added";
 "NO_JOBS_PLACEHOLDER"               = "No jobs added";
 "MY_JOBS"                           = "My Jobs";
+"SHOW_CV"                           = "Show CV";
 
 // Product View
 "PRODUCT_INFO"                      = "Upload image for service or product";
@@ -345,3 +347,4 @@
 "APPLICANT_INTERVIEWING"            = "Interviewing";
 "APPLICANT_NO_HIRE"                 = "No Hire";
 "APPLICANT_HIRE"                    = "Hire";
+"APPLICANTS_PLACEHOLDER"            = "No one applied yet";

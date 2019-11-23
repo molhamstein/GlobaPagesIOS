@@ -54,6 +54,8 @@ class ApplicantsViewController: AbstractController {
         lblSubCategory.font = AppFonts.normal
         lblDate.font = AppFonts.small
         lblPlaceholder.font = AppFonts.normalSemiBold
+        
+        lblPlaceholder.text = "APPLICANTS_PLACEHOLDER".localized
     }
     
     func fillUpData(){

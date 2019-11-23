@@ -28,6 +28,7 @@ class EditCVViewController: AbstractController {
     @IBOutlet weak var btnAddSkills: UIButton!
     @IBOutlet weak var btnAddRefernce: UIButton!
     @IBOutlet weak var btnSave: XUIButton!
+    @IBOutlet weak var btnDone: UIBarButtonItem!
     
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtSpecialty: UITextField!
@@ -146,6 +147,11 @@ class EditCVViewController: AbstractController {
         lblExperienceTitle.text = "CV_EXPERIENCE_TITLE".localized
         lblSkillsTitle.text = "CV_SKILLS_TITLE".localized
         lblReferenceTitle.text = "CV_REFERENCE_TITLE".localized
+        btnAddSkills.setTitle("CV_ADD".localized, for: .normal)
+        btnAddEducation.setTitle("CV_ADD".localized, for: .normal)
+        btnAddExperience.setTitle("CV_ADD".localized, for: .normal)
+        btnSave.setTitle("CV_SAVE".localized, for: .normal)
+        btnDone.title = "Done".localized
         
         txtFacebook.placeholder = "example@facebook.com"
         txtTwitter.placeholder =  "example@twiiter.com"
