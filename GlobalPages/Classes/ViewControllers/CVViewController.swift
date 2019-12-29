@@ -11,6 +11,7 @@ import UIKit
 class CVViewController: AbstractController {
 
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var topView: UIView!
     
     @IBOutlet weak var topViewConstraint: NSLayoutConstraint!
@@ -56,6 +57,7 @@ class CVViewController: AbstractController {
     fileprivate var educations: [Education] = []
     fileprivate var tags: [Tag] = []
     fileprivate var refrences: [Refrence] = []
+    fileprivate var didInitilize: Bool = false
     
     public var user: AppUser?
     
@@ -131,7 +133,7 @@ class CVViewController: AbstractController {
         self.experienceTableViewConstraint.constant = self.experienceTableView.contentSize.height
         self.educationTableViewConstraint.constant = self.educationTableView.contentSize.height
         self.skillsCollectionViewConstraint.constant = self.skillsCollectionView.contentSize.height
-        self.referenceCollectionViewConstraint.constant = self.refrencesCollectionView.contentSize.height
+//        self.referenceCollectionViewConstraint.constant = self.refrencesCollectionView.contentSize.height
         
         // Check for placeholders
         if educations.count == 0 {
@@ -166,6 +168,7 @@ class CVViewController: AbstractController {
             self.lblNoRefrences.isHidden = false
             self.imgReferencePlaceholder.isHidden = false
         }else {
+            self.referenceCollectionViewConstraint.constant = 75
             self.lblNoRefrences.isHidden = true
             self.imgReferencePlaceholder.isHidden = true
         }
@@ -175,6 +178,7 @@ class CVViewController: AbstractController {
         self.currentTopViewConstraint = self.topView.frame.height
         self.currentScrollViewY = self.scrollView.frame.origin.y
         self.scrollViewHeight = scrollView.frame.size.height
+        self.didInitilize = true
     }
 }
 
@@ -201,7 +205,7 @@ extension CVViewController {
         self.educationTableView.register(UINib(nibName: "ExperienceTableViewCell", bundle: nil), forCellReuseIdentifier: "ExperienceTableViewCell")
         self.skillsCollectionView.register(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
         
-        self.skillsCollectionView.collectionViewLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
+        self.skillsCollectionView.collectionViewLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: AppConfig.currentLanguage == .arabic ? .right : .left, verticalAlignment: .top)
         
         self.scrollView.alwaysBounceVertical = true
         
@@ -250,6 +254,7 @@ extension CVViewController {
         self.skillsCollectionView.reloadData()
         self.refrencesCollectionView.reloadData()
         
+        self.contentView.layoutIfNeeded()
         viewWillLayoutSubviews()
     }
 }
@@ -303,8 +308,9 @@ extension CVViewController: UIScrollViewDelegate {
 //    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    
-        UIView.animate(withDuration: 0.5, animations: {[weak self] in
+        
+        if didInitilize {
+            UIView.animate(withDuration: 0.5, animations: {[weak self] in
             let offset = scrollView.contentOffset.y
             
             //var newHeight_topView = (self?.currentTopViewConstraint)! - offset
@@ -325,6 +331,8 @@ extension CVViewController: UIScrollViewDelegate {
             self?.scrollView.frame.size = CGSize(width: (self?.view.frame.width)!, height: newHeight)
             
             }, completion: nil)
+        }
+        
     }
 
 }

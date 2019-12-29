@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -86,20 +84,28 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+963991735234" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7B-09-GqZ">
+                                <rect key="frame" x="56" y="69" width="96" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="c7B-09-GqZ" firstAttribute="top" secondItem="oPM-0b-MN7" secondAttribute="bottom" constant="2" id="1E9-YG-Rvy"/>
                             <constraint firstAttribute="trailing" secondItem="XlY-de-Pfj" secondAttribute="trailing" constant="16" id="893-a2-QfO"/>
                             <constraint firstAttribute="bottom" secondItem="VIp-lI-4YB" secondAttribute="bottom" constant="16" id="8nF-bj-VeP"/>
                             <constraint firstItem="oPM-0b-MN7" firstAttribute="leading" secondItem="Uic-3t-7cC" secondAttribute="leading" id="BGH-MS-9vK"/>
+                            <constraint firstItem="c7B-09-GqZ" firstAttribute="leading" secondItem="oPM-0b-MN7" secondAttribute="leading" id="F3a-jj-10I"/>
                             <constraint firstItem="XlY-de-Pfj" firstAttribute="top" secondItem="Uic-3t-7cC" secondAttribute="top" id="F5u-Yx-n6D"/>
                             <constraint firstItem="XlY-de-Pfj" firstAttribute="leading" secondItem="Uic-3t-7cC" secondAttribute="trailing" constant="16" id="V6h-Gy-xrI"/>
                             <constraint firstItem="Uic-3t-7cC" firstAttribute="top" secondItem="40Z-Sc-EgE" secondAttribute="top" id="XcR-RU-9ZG"/>
                             <constraint firstAttribute="trailing" secondItem="VIp-lI-4YB" secondAttribute="trailing" constant="16" id="dHm-hw-cal"/>
                             <constraint firstItem="Uic-3t-7cC" firstAttribute="leading" secondItem="40Z-Sc-EgE" secondAttribute="trailing" constant="8" id="fYr-KD-dBo"/>
                             <constraint firstItem="40Z-Sc-EgE" firstAttribute="top" secondItem="aqs-pQ-GTm" secondAttribute="top" constant="16" id="gAh-3w-5Ac"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oPM-0b-MN7" secondAttribute="bottom" constant="8" id="hi5-S9-sdP"/>
                             <constraint firstItem="40Z-Sc-EgE" firstAttribute="leading" secondItem="aqs-pQ-GTm" secondAttribute="leading" constant="8" id="jz3-1y-zSW"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="c7B-09-GqZ" secondAttribute="bottom" constant="8" id="nH2-vi-kgj"/>
                             <constraint firstItem="oPM-0b-MN7" firstAttribute="top" secondItem="Uic-3t-7cC" secondAttribute="bottom" constant="4" id="y31-rg-lLd"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -124,6 +130,7 @@
                 <outlet property="lblAddress" destination="oPM-0b-MN7" id="fRr-cN-xni"/>
                 <outlet property="lblDate" destination="XlY-de-Pfj" id="PJQ-bu-dAs"/>
                 <outlet property="lblName" destination="Evs-zQ-UJA" id="6wk-A6-O9Y"/>
+                <outlet property="lblPhoneNumber" destination="c7B-09-GqZ" id="60B-g2-R3k"/>
                 <outlet property="lblPositionTitle" destination="IyW-R7-O1N" id="dbs-oV-Sbk"/>
             </connections>
             <point key="canvasLocation" x="377.536231884058" y="114.84375"/>

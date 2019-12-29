@@ -85,6 +85,7 @@ public class Bussiness:BaseModel {
     public var city : City?
     public var location : City?
     public var locationPoint : Points?
+    public var locationPointDB : Points?
     public var media:[Media]?
     public var phone1:String?
     public var phone2:String?
@@ -93,11 +94,11 @@ public class Bussiness:BaseModel {
     public var isVip:Bool?
 
     public var lat : Double?{
-        return locationPoint?.lat
+        return locationPointDB?.lat
     }
     
     public var long : Double?{
-        return locationPoint?.long
+        return locationPointDB?.long
     }
     
     public var cover : String?{
@@ -185,6 +186,12 @@ public class Bussiness:BaseModel {
         if json["locationPoint"] != JSON.null {
             locationPoint = Points(json: json["locationPoint"])
         }
+        
+        if json["locationPointDB"] != JSON.null {
+            self.locationPointDB = Points()
+            self.locationPointDB?.lat = json["locationPointDB"].array?[0].doubleValue
+            self.locationPointDB?.long = json["locationPointDB"].array?[1].doubleValue
+        }
 
 //        if json["owner"] != JSON.null {
 //            owner = Owner(json:json["owner"])
@@ -242,6 +249,8 @@ public class Bussiness:BaseModel {
         if let value = category {dictionary["category"] = value.dictionaryRepresentation()}
         if let value = subCategory{dictionary["subCategory"] = value.dictionaryRepresentation()}
         if let value = locationPoint{dictionary["locationPoint"] = value.dictionaryRepresentation()}
+        
+        if let value = locationPointDB { dictionary["locationPointDB"] = [value.lat, value.long] }
 //        if let value = media {dictionary["media"] = value.map{$0.dictionaryRepresentation()}}
         if let value = media {dictionary["covers"] = value.map{$0.dictionaryRepresentation()}}
         if let array = products {dictionary["products"] = array.map{$0.dictionaryRepresentation()}}

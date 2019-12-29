@@ -17,6 +17,7 @@ class ApplicantCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblPositionTitle: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblPhoneNumber: UILabel!
     @IBOutlet weak var btnStatus: UIButton!
     @IBOutlet weak var imgIcon: UIImageView!
     
@@ -42,6 +43,7 @@ class ApplicantCollectionViewCell: UICollectionViewCell {
         lblName.text = applicant.user?.userName ?? ""
         lblAddress.text = "\(applicant.user?.cv?.city?.title ?? "")"
         lblDate.text = DateHelper.convertDateStringToCustomFormat(applicant.createdAt ?? "", format: "dd, MMM yyyy")
+        lblPhoneNumber.text = applicant.user?.mobileNumber ?? ""
         btnStatus.setTitle(ApplicantStatus(rawValue: applicant.status ?? "")?.title, for: .normal)
         
         if let url = applicant.user?.profilePic {

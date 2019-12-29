@@ -724,6 +724,10 @@ extension BussinessGuideViewController{
         let regionRadius: CLLocationDistance = 12000
         let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
         self.mapView.setRegion(viewRegion, animated: true)
+        
+        if controllerType == .pharmacy {
+            getNearByPharmacies()
+        }
     }
     
     

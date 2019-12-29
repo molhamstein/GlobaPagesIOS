@@ -34,7 +34,20 @@ class ApiManager: NSObject {
         }
     }
     
-    let baseURL = AppConfig.useLiveAPI ? AppConfig.appBaseLiveURL : AppConfig.appBaseDevURL
+    var baseURL: String  {
+        
+        if AppConfig.useLiveAPI {
+            if AppConfig.isInReview {
+                return AppConfig.appReviewURL
+            }else {
+                return AppConfig.appBaseLiveURL
+            }
+        }else {
+            return AppConfig.appBaseDevURL
+        }
+//        AppConfig.useLiveAPI ? (AppConfig.isInReview ? AppConfig.appReviewURL : AppConfig.appBaseLiveURL) : AppConfig.appBaseDevURL
+        
+    }
     let error_domain = "GlobalPages"
     
     //MARK: Shared Instance
@@ -44,7 +57,36 @@ class ApiManager: NSObject {
         super.init()
     }    
 
+    // MARK: Check App Status
+    func checkAppStatus(completionBlock: @escaping (_ error: ServerError?, _ version: Version?) -> Void) {
+            // url & parameters
+        let signUpURL = "\(baseURL)/users/checkVersion?version=1.18.0&platform=ios"
 
+            // build request
+            Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+                if responseObject.result.isSuccess {
+                    let jsonResponse = JSON(responseObject.result.value!)
+                    if let code = responseObject.response?.statusCode, code >= 400 {
+                        let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                        completionBlock(serverError, nil)
+                    } else {
+                        // parse response to data model >> user object
+                        let version = Version(json: jsonResponse)
+                        completionBlock(nil, version)
+                    }
+                }
+                // Network error request time out or server error with no payload
+                if responseObject.result.isFailure {
+                    let nsError : NSError = responseObject.result.error! as NSError
+                    print(nsError.localizedDescription)
+                    if let code = responseObject.response?.statusCode, code >= 400 {
+                        completionBlock(ServerError.unknownError, nil)
+                    } else {
+                        completionBlock(ServerError.connectionError, nil)
+                    }
+                }
+            }
+        }
     // MARK: Authorization
     /// User facebook login request
     func userFacebookLogin(facebookId: String, fbName: String, fbToken: String, email: String, fbGender: String, imageLink: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
@@ -1327,7 +1369,7 @@ class ApiManager: NSObject {
     // edit Bussiness
     func editBussiness(bussiness: Bussiness, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
         // url & parameters
-        let signInURL = "\(baseURL)/businesses?id=\(bussiness.id)"
+        let signInURL = "\(baseURL)/businesses/\(bussiness.id)"
         let parameters : [String : Any] =  bussiness.dictionaryRepresentation()
         // build request
         Alamofire.request(signInURL, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -1559,7 +1601,7 @@ class ApiManager: NSObject {
     
     // businesses
     func getBusinesses(keyword:String?,catId:String?,subCatId:String?,page:Int,locationId:String?,cityId:String?,lat:Double?,lng:Double?,radius:Double?,pageLimit:Int,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
-        var parameters = "?filter[order]=creationDate DESC&filter[where][status]=activated"
+        var parameters = "?status=activated"
         
         if let keyValue = keyword{
             parameters += "&keyword=\(keyValue)"
@@ -1590,7 +1632,7 @@ class ApiManager: NSObject {
            parameters += "&limit=\(pageLimit)&skip=\(page)"
 
         // url & parameters
-        let signUpURL = "\(baseURL)/businesses/searchByLocation\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let signUpURL = "\(baseURL)/businesses/newSearchByLocation\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     
         print(signUpURL)
         // build request
@@ -1634,7 +1676,7 @@ class ApiManager: NSObject {
     
     func getBusinessesOnMap(lat:Double,lng:Double,radius:Double,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters
-        let signUpURL = "\(baseURL)/businesses/searchByLocation?lat=\(lat)&lng=\(lng)&units=kilometers&filter[where][status]=activated&limit=50&maxDistance=\(radius)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let signUpURL = "\(baseURL)/businesses/newSearchByLocation?lat=\(lat)&lng=\(lng)&units=kilometers&filter[where][status]=activated&limit=50&maxDistance=\(radius)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         print(signUpURL)
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -1669,7 +1711,7 @@ class ApiManager: NSObject {
     // get nearby bussiness
     func getNearByBusinesses(lat:String,lng:String,catId:String?,subCatId:String?,codeSubCat:String?,openDay:String?,limit:String?,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters
-        var signUpURL = "\(baseURL)/businesses/searchByLocation?lat=\(lat)&lng=\(lng)"
+        var signUpURL = "\(baseURL)/businesses/newSearchByLocation?lat=\(lat)&lng=\(lng)"
         if let catId = catId{
             signUpURL += "&catId=\(catId)"
         }

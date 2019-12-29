@@ -4053,7 +4053,7 @@
                                                 <rect key="frame" x="16" y="184" width="279" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9j-eE-J5P" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="4Ku-ME-6Hx"/>
                                                         </constraints>
@@ -6195,6 +6195,7 @@
                     <connections>
                         <outlet property="btnContact" destination="mfg-Aj-xOp" id="N3x-Tz-O6z"/>
                         <outlet property="contactButtonConstraint" destination="4fA-Fr-dwX" id="1Kd-Np-IOT"/>
+                        <outlet property="contentView" destination="UNG-dm-QBV" id="siH-8g-BUH"/>
                         <outlet property="educationTableView" destination="b1Y-RX-SZg" id="uL3-WY-Nyh"/>
                         <outlet property="educationTableViewConstraint" destination="Dha-2g-uW3" id="6z9-qa-VhY"/>
                         <outlet property="experienceTableView" destination="Ngh-e0-r4A" id="Kic-Te-D1z"/>

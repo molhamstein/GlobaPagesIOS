@@ -460,9 +460,9 @@ class NewBussinesesViewController: AbstractController {
         }
         
         if let loc  = self.selectedLocation{
-            tempBussiness?.locationPoint = Points()
-            tempBussiness?.locationPoint?.lat = loc.lat
-            tempBussiness?.locationPoint?.long = loc.long
+            tempBussiness?.locationPointDB = Points()
+            tempBussiness?.locationPointDB?.lat = loc.lat
+            tempBussiness?.locationPointDB?.long = loc.long
         }
         
         if let address = locationTextField.text , !address.isEmpty {

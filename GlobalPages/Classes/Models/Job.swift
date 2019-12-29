@@ -65,19 +65,68 @@ public class Job: BaseModel {
     public var numberOfApplicants: Int?
     
     public var name: String? {
-        return AppConfig.currentLanguage == .arabic ? nameAr : nameEn
+        if AppConfig.currentLanguage == .arabic {
+            if nameAr != nil && nameAr != "" {
+                return nameAr
+            }else {
+                return nameEn
+            }
+        }else {
+            if nameEn != nil && nameEn != "" {
+                return nameEn
+            }else {
+                return nameAr
+            }
+        }
     }
     
     public var description: String? {
-        return AppConfig.currentLanguage == .arabic ? descriptionAr : descriptionEn
+        if AppConfig.currentLanguage == .arabic {
+            if descriptionAr != nil && descriptionAr != "" {
+                return descriptionAr
+            }else {
+                return descriptionEn
+            }
+        }else {
+            if descriptionEn != nil && descriptionEn != "" {
+                return descriptionEn
+            }else {
+                return descriptionAr
+            }
+        }
     }
     
     public var qualificationsTitle: String? {
-        return AppConfig.currentLanguage == .arabic ? qualificationsAr : qualificationsEn
+        if AppConfig.currentLanguage == .arabic {
+            if qualificationsAr != nil && qualificationsAr != "" {
+                return qualificationsAr
+            }else {
+                return qualificationsEn
+            }
+        }else {
+            if qualificationsEn != nil && qualificationsEn != "" {
+                return qualificationsEn
+            }else {
+                return qualificationsAr
+            }
+        }
+
     }
     
     public var responsibilitiesTitle: String? {
-        return AppConfig.currentLanguage == .arabic ? responsibilitiesAr : responsibilitiesEn
+        if AppConfig.currentLanguage == .arabic {
+            if responsibilitiesAr != nil && responsibilitiesAr != "" {
+                return responsibilitiesAr
+            }else {
+                return responsibilitiesEn
+            }
+        }else {
+            if responsibilitiesEn != nil && responsibilitiesEn != "" {
+                return responsibilitiesEn
+            }else {
+                return responsibilitiesAr
+            }
+        }
     }
     
     // MARK: Initializers

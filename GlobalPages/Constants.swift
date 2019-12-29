@@ -15,8 +15,10 @@ struct AppConfig {
     static let appBaseDevURL = "http://192.168.1.12:3000/api"
     //static let appBaseDevURL = "http://104.217.253.15:7000/api"
     static let appBaseLiveURL = "http://almersal.co/api"
+    static let appReviewURL = "https://almersal.co/reviewApi"
     static let useLiveAPI: Bool = true
     static let useCurrentLocation: Bool = false
+    static var isInReview: Bool = false
     static let contactUsEmail: String = "info@almersal.co"
     // flag for language 
     static let useEnglishLanguage: Bool = false
@@ -64,6 +66,13 @@ struct AppConfig {
         UINavigationBar.appearance().isTranslucent = true
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+    }
+    
+    // Get current app version
+    static func getBundleVersion () -> String{
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        return version
     }
 }
 

@@ -97,13 +97,14 @@ class HomeViewController: AbstractController {
     override func customizeView() {
         let image = "logoWhite_\(AppConfig.currentLanguage.langCode)"
         logoImageView.image = UIImage(named:image)
-        getFeaturedPosts()
+
         collectionViewSetup()
+        checkForAppStatus()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchUser()
+        //fetchUser()
     }
 
 
@@ -152,7 +153,7 @@ class HomeViewController: AbstractController {
             isFirstTimeToLoad = false
         }
         getFilters()
-        getNotifications()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -176,7 +177,7 @@ class HomeViewController: AbstractController {
         setupCollectionViewLayout()
         adsCollectionView.dataSource = self
         adsCollectionView.delegate = self
-        self.currentVolume = 0
+        //self.currentVolume = 0
         
         self.businessGuidCollectionView?.showsVerticalScrollIndicator = false
         self.businessGuidCollectionView?.showsHorizontalScrollIndicator = false
@@ -236,7 +237,6 @@ class HomeViewController: AbstractController {
         
     }
     
-    
     func getFeaturedPosts(){
         ApiManager.shared.getPosts { (success, error, result) in
             if success{self.businessGuidCollectionView?.reloadData()}
@@ -267,6 +267,34 @@ class HomeViewController: AbstractController {
                 }
             }
         }
+    }
+    
+    func checkForAppStatus() {
+        ApiManager.shared.checkAppStatus(completionBlock: {error, appVersion in
+            if let error = error {
+                
+                let alert = UIAlertController(title: "".localized, message: error.type.errorMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "CANCEL".localized, style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "RETRY".localized, style: .default, handler: {_ in
+                    self.checkForAppStatus()
+                }))
+                
+                self.present(alert, animated: true, completion: nil)
+            }else {
+                if let version = appVersion {
+                    if version.status == .inReview {
+                        AppConfig.isInReview = true
+                    }else {
+                        AppConfig.isInReview = false
+                    }
+                    
+                    self.getFeaturedPosts()
+                    self.getNotifications()
+                    self.fetchUser()
+                    self.currentVolume = 0
+                }
+            }
+        })
     }
     
     @objc func scrollToNextPost(){
@@ -434,6 +462,7 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
             return 10
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView == businessGuidCollectionView{return 64}
         if collectionView == filtterCollectionView{return 8}
@@ -530,6 +559,8 @@ extension HomeViewController {
                     menuView.filtterCollectionView?.delegate = self
                     menuView.filtterCollectionView?.dataSource = self
                     self.volumeTitle = menuView.dateLabel
+                    menuView.dateLabel.layoutIfNeeded()
+                    menuView.dateLabel.frame = CGRect(x: 32, y: 0, width: self.view.frame.width - 64, height: 35)
                     menuView.animateAddButton()
                 }
                 return menuView

@@ -323,7 +323,7 @@ class BussinessDescriptionViewController: AbstractController {
     @IBAction func showMapView(_ sender: UIButton) {
         self.mapBGView.isHidden = false
         self.mapView.animateIn(mode: .animateInFromBottom, delay: 0.2)
-        if let lat = bussiness?.locationPoint?.lat , let long = bussiness?.locationPoint?.long{
+        if let lat = bussiness?.locationPointDB?.lat , let long = bussiness?.locationPointDB?.long{
             let location = CLLocation(latitude: lat , longitude: long)
             centerMapOnLocation(location: location)
         }

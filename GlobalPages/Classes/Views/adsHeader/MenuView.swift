@@ -18,7 +18,11 @@ protocol MenuViewDelegate {
 
 class MenuView: UICollectionReusableView {
     
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel! {
+        didSet {
+            print("set")
+        }
+    }
     @IBOutlet weak var filtterCollectionView: UICollectionView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var previoseButton: UIButton!

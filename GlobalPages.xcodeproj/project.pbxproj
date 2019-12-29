@@ -167,6 +167,7 @@
 		CE95CC7D2370313800CEED87 /* Applicant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CC7C2370313700CEED87 /* Applicant.swift */; };
 		CE95CC812370347500CEED87 /* ApplicantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CC7F2370347500CEED87 /* ApplicantCollectionViewCell.swift */; };
 		CE95CC822370347500CEED87 /* ApplicantCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE95CC802370347500CEED87 /* ApplicantCollectionViewCell.xib */; };
+		CEADA43023AFB28200BEE753 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADA42F23AFB28200BEE753 /* Version.swift */; };
 		CEB49C432365B87700F03310 /* AddSkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C422365B87700F03310 /* AddSkillViewController.swift */; };
 		CEB49C452365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C442365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift */; };
 		CEB49C4923672B6100F03310 /* JobOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C4723672B6100F03310 /* JobOfferCollectionViewCell.swift */; };
@@ -363,6 +364,7 @@
 		CE95CC7C2370313700CEED87 /* Applicant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicant.swift; sourceTree = "<group>"; };
 		CE95CC7F2370347500CEED87 /* ApplicantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE95CC802370347500CEED87 /* ApplicantCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplicantCollectionViewCell.xib; sourceTree = "<group>"; };
+		CEADA42F23AFB28200BEE753 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		CEB49C422365B87700F03310 /* AddSkillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSkillViewController.swift; sourceTree = "<group>"; };
 		CEB49C442365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		CEB49C4723672B6100F03310 /* JobOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOfferCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -678,6 +680,7 @@
 				CE79ED09235F0D660083A825 /* CV.swift */,
 				CE0E6BD723687A8300EF57E7 /* Job.swift */,
 				CE95CC7C2370313700CEED87 /* Applicant.swift */,
+				CEADA42F23AFB28200BEE753 /* Version.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1135,6 +1138,7 @@
 				578687F420C482560002C67B /* ShopCollectionViewCell.swift in Sources */,
 				5786860420C480A60002C67B /* ResetPasswordViewController.swift in Sources */,
 				5786885320C4A8920002C67B /* CountryPicker.m in Sources */,
+				CEADA43023AFB28200BEE753 /* Version.swift in Sources */,
 				CE3DC670235DD64A00B0284F /* Experience.swift in Sources */,
 				140544DB20D7F6E50042E70F /* UICollectionViewCell.swift in Sources */,
 				148E77EC2114E0A500683027 /* businessCategories.swift in Sources */,
@@ -1374,12 +1378,12 @@
 				CODE_SIGN_ENTITLEMENTS = GlobalPages/GlobalPages.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BBSB6N9C9P;
 				INFOPLIST_FILE = GlobalPages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.almersal.ios.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1400,12 +1404,12 @@
 				CODE_SIGN_ENTITLEMENTS = GlobalPages/GlobalPages.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BBSB6N9C9P;
 				INFOPLIST_FILE = GlobalPages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.1.3;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.almersal.ios.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

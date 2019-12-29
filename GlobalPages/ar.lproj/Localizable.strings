@@ -13,6 +13,7 @@
 "CANCEL"                                = "الغاء";
 "Ok"                                    = "موافق";
 "DELETE"                                = "حذف";
+"RETRY"                                 = "اعادة محاولة";
 
 // Generic erros
 "ERROR_NO_CONNECTION"                   = "لايوجد اتصال، يرجى التأكد من إعدادات الجهاز";

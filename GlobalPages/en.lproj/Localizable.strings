@@ -13,6 +13,7 @@
 "CANCEL"                                = "Cancel";
 "Ok"                                    = "Ok";
 "DELETE"                                = "Delete";
+"RETRY"                                 = "Retry";
 
 // Generic erros
 "ERROR_NO_CONNECTION"                   = "No internet connection, please check your phone settings";

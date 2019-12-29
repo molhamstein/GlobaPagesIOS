@@ -94,7 +94,7 @@ class EditCVViewController: AbstractController {
         skillCollectionView.register(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
         cityCollectionView.register(UINib(nibName: "filterCell2", bundle: nil), forCellWithReuseIdentifier: FiltersViewController.filtterCellId)
         
-        skillCollectionView.collectionViewLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
+        skillCollectionView.collectionViewLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: AppConfig.currentLanguage == .arabic ? .right : .left, verticalAlignment: .top)
         
         experienceTableView.rowHeight = tableViewRowHeight
         educationTableView.rowHeight = tableViewRowHeight
