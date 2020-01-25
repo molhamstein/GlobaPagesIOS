@@ -74,6 +74,7 @@ public class Bussiness:BaseModel {
 	public var openingDaysEnabled : Bool?
 	public var ownerId : String?
 	public var products : Array<Product>?
+    public var marketProducts : Array<MarketProduct>?
 	public var categoryId : String?
 	public var subCategoryId : String?
 	public var cityId : String?
@@ -155,6 +156,10 @@ public class Bussiness:BaseModel {
         
         if let array = json["products"].array{
             products = array.map{Product(json:$0)}
+            
+        }
+        if let array = json["myMarketProducts"].array{
+            marketProducts = array.map{MarketProduct(json:$0)}
             
         }
         
@@ -254,7 +259,7 @@ public class Bussiness:BaseModel {
 //        if let value = media {dictionary["media"] = value.map{$0.dictionaryRepresentation()}}
         if let value = media {dictionary["covers"] = value.map{$0.dictionaryRepresentation()}}
         if let array = products {dictionary["products"] = array.map{$0.dictionaryRepresentation()}}
-        
+        if let array = marketProducts {dictionary["myMarketProducts"] = array.map{$0.dictionaryRepresentation()}}
         
 		return dictionary
 	}

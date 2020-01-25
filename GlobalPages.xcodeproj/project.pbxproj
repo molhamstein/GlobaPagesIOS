@@ -172,6 +172,10 @@
 		CEB49C452365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C442365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift */; };
 		CEB49C4923672B6100F03310 /* JobOfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C4723672B6100F03310 /* JobOfferCollectionViewCell.swift */; };
 		CEB49C4A23672B6100F03310 /* JobOfferCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB49C4823672B6100F03310 /* JobOfferCollectionViewCell.xib */; };
+		CEB975A323C1F6C3002FA6B6 /* MarketProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB975A223C1F6C3002FA6B6 /* MarketProductDetailsViewController.swift */; };
+		CEC9B5BE23BA0B150064D072 /* MarketProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B5BC23BA0B150064D072 /* MarketProductCell.swift */; };
+		CEC9B5BF23BA0B150064D072 /* MarketProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEC9B5BD23BA0B150064D072 /* MarketProductCell.xib */; };
+		CEC9B5C823BBB2B40064D072 /* MarketProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC9B5C723BBB2B40064D072 /* MarketProduct.swift */; };
 		CEEDB98F235DC3F50034562A /* ExperienceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEDB98D235DC3F50034562A /* ExperienceTableViewCell.swift */; };
 		CEEDB990235DC3F50034562A /* ExperienceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEDB98E235DC3F50034562A /* ExperienceTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -369,6 +373,10 @@
 		CEB49C442365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		CEB49C4723672B6100F03310 /* JobOfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobOfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEB49C4823672B6100F03310 /* JobOfferCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobOfferCollectionViewCell.xib; sourceTree = "<group>"; };
+		CEB975A223C1F6C3002FA6B6 /* MarketProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketProductDetailsViewController.swift; sourceTree = "<group>"; };
+		CEC9B5BC23BA0B150064D072 /* MarketProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketProductCell.swift; sourceTree = "<group>"; };
+		CEC9B5BD23BA0B150064D072 /* MarketProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarketProductCell.xib; sourceTree = "<group>"; };
+		CEC9B5C723BBB2B40064D072 /* MarketProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketProduct.swift; sourceTree = "<group>"; };
 		CEEDB98D235DC3F50034562A /* ExperienceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceTableViewCell.swift; sourceTree = "<group>"; };
 		CEEDB98E235DC3F50034562A /* ExperienceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExperienceTableViewCell.xib; sourceTree = "<group>"; };
 		EBE1332543C84F59CE0F0ED5 /* Pods-GlobalPages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalPages.release.xcconfig"; path = "Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages.release.xcconfig"; sourceTree = "<group>"; };
@@ -410,6 +418,7 @@
 				14B1B88F20DF88DD00D86536 /* HeaderView.swift */,
 				14B1B89020DF88DF00D86536 /* HeaderView.xib */,
 				1463C44D20D845E100156E84 /* MenuView.swift */,
+				1463C44B20D845D100156E84 /* MenuView.xib */,
 			);
 			path = adsHeader;
 			sourceTree = "<group>";
@@ -479,6 +488,8 @@
 				14CC8CAE20C9C649000319B0 /* AdsImageCell.xib */,
 				1463C45220D9253500156E84 /* AdsTitledCell.swift */,
 				1463C45320D9253500156E84 /* AdsTitledCell.xib */,
+				CEC9B5BC23BA0B150064D072 /* MarketProductCell.swift */,
+				CEC9B5BD23BA0B150064D072 /* MarketProductCell.xib */,
 			);
 			path = Ads;
 			sourceTree = "<group>";
@@ -681,6 +692,7 @@
 				CE0E6BD723687A8300EF57E7 /* Job.swift */,
 				CE95CC7C2370313700CEED87 /* Applicant.swift */,
 				CEADA42F23AFB28200BEE753 /* Version.swift */,
+				CEC9B5C723BBB2B40064D072 /* MarketProduct.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -763,7 +775,6 @@
 		5786881E20C483230002C67B /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				1463C44B20D845D100156E84 /* MenuView.xib */,
 				5786881F20C483240002C67B /* ShoreCell.xib */,
 				578685EF20C47FD30002C67B /* Main.storyboard */,
 				578685F420C47FD30002C67B /* LaunchScreen.storyboard */,
@@ -801,6 +812,7 @@
 				CE0E6BD92369BCA400EF57E7 /* JobDescriptionViewController.swift */,
 				CE89796D236EC24C005ECC29 /* AddEditJobViewController.swift */,
 				CE95CC7A23702EBD00CEED87 /* ApplicantsViewController.swift */,
+				CEB975A223C1F6C3002FA6B6 /* MarketProductDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -968,6 +980,7 @@
 				144BD89820E82B2F0068D561 /* ImageCell.xib in Resources */,
 				CE1B79952360421000B74643 /* SkillCollectionViewCell.xib in Resources */,
 				14CC8CB020C9C64A000319B0 /* AdsImageCell.xib in Resources */,
+				CEC9B5BF23BA0B150064D072 /* MarketProductCell.xib in Resources */,
 				578685F120C47FD30002C67B /* Main.storyboard in Resources */,
 				1463C45520D9253500156E84 /* AdsTitledCell.xib in Resources */,
 				14C9DC9A20CA27580031685E /* filtterCell.xib in Resources */,
@@ -1110,6 +1123,8 @@
 				14CC8C9C20C8A03E000319B0 /* Collection.swift in Sources */,
 				CE79ED0A235F0D660083A825 /* CV.swift in Sources */,
 				146643F52143D56500657AA8 /* ViewController.swift in Sources */,
+				CEC9B5BE23BA0B150064D072 /* MarketProductCell.swift in Sources */,
+				CEB975A323C1F6C3002FA6B6 /* MarketProductDetailsViewController.swift in Sources */,
 				578687F920C482560002C67B /* VobbleNavigationBar.swift in Sources */,
 				14B1B89120DF88E000D86536 /* HeaderView.swift in Sources */,
 				144BD89A20E82C430068D561 /* AdsDescriptionViewController.swift in Sources */,
@@ -1142,6 +1157,7 @@
 				CE3DC670235DD64A00B0284F /* Experience.swift in Sources */,
 				140544DB20D7F6E50042E70F /* UICollectionViewCell.swift in Sources */,
 				148E77EC2114E0A500683027 /* businessCategories.swift in Sources */,
+				CEC9B5C823BBB2B40064D072 /* MarketProduct.swift in Sources */,
 				14CC8C8620C8A03D000319B0 /* NSlayoutConstraint.swift in Sources */,
 				CE89796E236EC24C005ECC29 /* AddEditJobViewController.swift in Sources */,
 				14C05AB520E01EDD0096C73C /* SectionHeaderView.swift in Sources */,

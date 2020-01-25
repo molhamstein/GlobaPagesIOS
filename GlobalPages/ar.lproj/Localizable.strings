@@ -37,6 +37,10 @@
 "ERROR_SOCIAL_INSTAGRAM"                = "فشلت عملية تسجيل الدخول عبر الانستغرام، يرجى إعادة المحاولة";
 "ERROR_SOCIAL_GOOGLE"                   = "فشلت عملية تسجيل الدخول عبر غوغل، يرجى إعادة المحاولة";
 
+// Home
+"HOME_MARKET"                           = "السوق";
+"HOME_NEWSPAPERE"                        = "الجريدة";
+
 // login screen
 "LOGIN_EMAIL_TITLE"                     = "البريد الاالكتروني";
 "LOGIN_EMAIL_PLACEHOLDER"               = "vobblemail@gmail.com";
@@ -145,7 +149,8 @@
 "ADS_DESC_AREA_LABEL"                   = "المنطقة";
 "ADS_DESC_CONTACT_BUTTON"               = "اتصال";
 "ADS_DESC_DESCRIPTION"                  = "التفاصيل";
-
+"ADS_DESC_PRICE"                        = "السعر";
+"ADS_DESC_GALLERY"                      = "معرض الصور";
 
 // Bussiness Guide
 
@@ -203,11 +208,13 @@
 "SUBSCRIBE_CATEGORY"                = "اشترك في اصناف";
 "MY_ADS"                            = "اعلاناتي";
 "MY_BUSSIESES"                      = "اعمالي";
+"MY_PRODUCTS"                       = "منتجاتي";
 "My Profile"                        = "ملفي الشخصي";
 "Edit Profile"                      = "تعديل الملف الشخصي";
 "NO_ADS_PLACEHOLDER"                = "لم يتم اضافة اعلانات";
 "NO_BUSSINESS_PLACEHOLDER"          = "لم يتم اضافة اي اعمال";
 "NO_JOBS_PLACEHOLDER"               = "لم يتم اضافة اي وظائف";
+"NO_PRODUCTS_PLACEHOLDER"           = "لم يتم اضافة اي منتج";
 "MY_JOBS"                           = "وظائفي";
 "SHOW_CV"                           = "عرض السيرة الذاتية";
 

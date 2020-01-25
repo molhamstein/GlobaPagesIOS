@@ -65,7 +65,7 @@ class BussinessDescriptionViewController: AbstractController {
     
     var jobs: [Job] = []
     var bussiness:Bussiness?
-    var products:[Product] = []
+    var products:[MarketProduct] = []
     var images:[Media] = []
     var currentImagesIndex = 0
     var editMode:Bool = false
@@ -95,7 +95,7 @@ class BussinessDescriptionViewController: AbstractController {
     
     
     var cellID = "ImageCell"
-    var productCellId = "ProductCell"
+    var productCellId = "MarketProductCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -185,7 +185,7 @@ class BussinessDescriptionViewController: AbstractController {
 //        self.cityLabel.text =
 //        self.areaLabel.font = AppFonts.normalBold
         self.descriptionTextView.text = bussiness.description
-        if let value = self.bussiness?.products{
+        if let value = self.bussiness?.marketProducts{
             self.products = value
         }
         
@@ -214,7 +214,7 @@ class BussinessDescriptionViewController: AbstractController {
         if let value = bussiness.city?.title { self.cityLabel.text = value}
         if let value = bussiness.location?.title { self.areaLabel.text = value}
         if let value = bussiness.description { self.descriptionTextView.text = value}
-        if let value = bussiness.products { self.products = value}
+        if let value = bussiness.marketProducts { self.products = value}
         productsCollectionView.reloadData()
         if let value = bussiness.media{self.images = value}
         imageCollectionView.reloadData()
@@ -389,9 +389,10 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
         return cell
         }
         if collectionView == productsCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellId, for: indexPath) as! ProductCell
-            cell.product = self.products[indexPath.item]
-            if self.editMode{ cell.editMode()}
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: productCellId, for: indexPath) as! MarketProductCell
+            cell.configureCell(self.products[indexPath.item])
+            cell.delegate = self
+            cell.btnEdit.isHidden = false
             return cell
         }
         if collectionView == jobsCollectionView{
@@ -418,7 +419,7 @@ extension BussinessDescriptionViewController:UICollectionViewDelegateFlowLayout{
         if collectionView == productsCollectionView {
             let itemWidth = collectionView.bounds.width
             let itemHeight = collectionView.bounds.height
-            return CGSize(width: itemWidth * 0.75, height: itemHeight - 16)
+            return CGSize(width: 140, height: 140)
         }
         
         if collectionView == jobsCollectionView {
@@ -432,13 +433,12 @@ extension BussinessDescriptionViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == productsCollectionView{
-            if editMode{
-                let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewProductViewController")  as! NewProductViewController
-                vc.bussinessId = bussiness?.id
-                vc.tempProduct = self.products[indexPath.item]
-                let nav = UINavigationController(rootViewController: vc)
-                self.present(nav, animated: true, completion: nil)
-            }
+            let marketProduct = self.products[indexPath.row]
+            let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier:  MarketProductDetailsViewController.className) as! MarketProductDetailsViewController
+            
+            vc.marketProduct = marketProduct
+            //let nav = UINavigationController(rootViewController: vc)
+            self.present(vc, animated: true, completion: nil)
         }
         
         if collectionView == jobsCollectionView {
@@ -487,3 +487,14 @@ extension BussinessDescriptionViewController{
     
 }
 
+extension BussinessDescriptionViewController: MarketProductCellDelegate {
+    func didEditPressed(_ cell: MarketProductCell) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewProductViewController")  as! NewProductViewController
+        
+        vc.bussinessId = self.bussiness?.id
+        vc.editMode = true
+        vc.tempProduct = cell.product
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
+    }
+}

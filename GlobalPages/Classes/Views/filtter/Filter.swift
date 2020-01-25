@@ -40,6 +40,7 @@ public enum filterValues {
     public var area:categoriesFilter?
     public var value:filterValues?
     
+    public static var homeMarketProduct = Filter()
     public static var home = Filter()
     public static var bussinesGuid = Filter()
     public static var jobOffer = Filter()

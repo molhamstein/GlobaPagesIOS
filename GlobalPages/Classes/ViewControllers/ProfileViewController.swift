@@ -33,17 +33,21 @@ class ProfileViewController: AbstractController {
     @IBOutlet weak var femaleLabel: UILabel!
     @IBOutlet weak var subscriptionButton: XUIButton!
     @IBOutlet weak var jobsTitleLabel: XUILabel!
+    @IBOutlet weak var productsTitleLabel: XUILabel!
     @IBOutlet weak var btnShowCV: UIButton!
     @IBOutlet weak var jobsCollectionView: UICollectionView!
+    @IBOutlet weak var productsCollectionView: UICollectionView!
     @IBOutlet weak var adsViewPlaceholder: UIView!
     @IBOutlet weak var bussinessViewPlaceholder: UIView!
     @IBOutlet weak var jobsViewPlaceholder: UIView!
+    @IBOutlet weak var productsViewPlaceholder: UIView!
 
     let categoryCellId = "filterCell2"
     let adImagedCellId = "AdsImageCell"
     let adTitledCellId = "AdsTitledCell"
     let bussinesCellId = "BussinessGuidListCell"
     
+    var products: [MarketProduct] = []
     var jobs: [Job] = []
     var posts:[Post] = []
     var bussiness:[Bussiness] = []
@@ -100,6 +104,7 @@ class ProfileViewController: AbstractController {
         self.categoriesTitleLabel.font = AppFonts.bigBold
         self.myAdsTitleLabel.font = AppFonts.bigBold
         self.jobsTitleLabel.font = AppFonts.bigBold
+        self.productsTitleLabel.font = AppFonts.bigBold
         self.myBussinessTitleLabel.font = AppFonts.bigBold
         self.birthDateButton.titleLabel?.font = AppFonts.xBigBold
         self.maleLabel.font = AppFonts.normalBold
@@ -138,6 +143,7 @@ class ProfileViewController: AbstractController {
         
         
         self.myBussinessCollectionView.register(UINib(nibName: bussinesCellId, bundle: nil), forCellWithReuseIdentifier: bussinesCellId)
+        
 
 
         self.categoryCollectionView.allowsMultipleSelection = true
@@ -154,9 +160,14 @@ class ProfileViewController: AbstractController {
         self.jobsCollectionView.dataSource = self
         self.jobsCollectionView.register(UINib(nibName: "JobOfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "JobOfferCollectionViewCell")
         
+        self.productsCollectionView.delegate = self
+        self.productsCollectionView.dataSource = self
+        self.productsCollectionView.register(UINib(nibName: "MarketProductCell", bundle: nil), forCellWithReuseIdentifier: "MarketProductCell")
+        
         getAds()
         getBussiness()
         getJobs()
+        getProducts()
     }
     
     override func buildUp() {
@@ -167,6 +178,7 @@ class ProfileViewController: AbstractController {
         getBussiness()
         getFavorites()
         getJobs()
+        getProducts()
     }
 
     func getUserCategories(){
@@ -197,6 +209,24 @@ class ProfileViewController: AbstractController {
             
             self.jobs = result
             self.jobsCollectionView.reloadData()
+            
+            self.updatePlaceholders()
+        })
+        
+    }
+    
+    func getProducts(){
+        self.showActivityLoader(true)
+        ApiManager.shared.getMarketProductsByOwner(completionBlock: {success, error, result in
+            self.showActivityLoader(false)
+            
+            if let error = error {
+                self.showMessage(message: error.type.errorMessage, type: .error)
+                return
+            }
+            
+            self.products = result ?? []
+            self.productsCollectionView.reloadData()
             
             self.updatePlaceholders()
         })
@@ -346,6 +376,14 @@ class ProfileViewController: AbstractController {
             self.jobsViewPlaceholder.isHidden = false
             self.jobsCollectionView.isHidden = true
         }
+        
+        if self.products.count > 0 {
+            self.productsViewPlaceholder.isHidden = true
+            self.productsCollectionView.isHidden = false
+        }else {
+            self.productsViewPlaceholder.isHidden = false
+            self.productsCollectionView.isHidden = true
+        }
     }
 
     @IBAction func addJob(_ sender: Any) {
@@ -355,6 +393,14 @@ class ProfileViewController: AbstractController {
         vc.businessId = nil
         vc.modalPresentationStyle = .fullScreen
         
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
+    }
+    
+    @IBAction func addProduct(_ sender: Any) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewProductViewController")  as! NewProductViewController
+        
+        vc.editMode = false
         let nav = UINavigationController(rootViewController: vc)
         self.present(nav, animated: true, completion: nil)
     }
@@ -385,6 +431,10 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
         }
         if collectionView == jobsCollectionView {
             return jobs.count
+        }
+        
+        if collectionView == productsCollectionView {
+            return products.count
         }
         return 0
     }
@@ -448,6 +498,16 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             return cell
         
         }
+        
+        if collectionView == productsCollectionView {
+            let marketProduct = self.products[indexPath.row]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketProductCell", for: indexPath) as! MarketProductCell
+            
+            cell.delegate = self
+            cell.configureCell(marketProduct)
+            cell.btnEdit.isHidden = false
+            return cell
+        }
         return UICollectionViewCell()
     }
     
@@ -478,6 +538,15 @@ extension ProfileViewController:UICollectionViewDataSource,UICollectionViewDeleg
             let nav = UINavigationController(rootViewController: vc)
             
             self.present(nav, animated: true, completion: nil)
+        }
+        
+        if collectionView == productsCollectionView {
+            let marketProduct = self.products[indexPath.row]
+            let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: MarketProductDetailsViewController.className) as! MarketProductDetailsViewController
+            
+            vc.marketProduct = marketProduct
+            //let nav = UINavigationController(rootViewController: vc)
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
@@ -539,6 +608,12 @@ extension ProfileViewController:UICollectionViewDelegateFlowLayout{
             return CGSize(width: width, height: height)
         }
         
+        if collectionView == productsCollectionView{
+            let height:CGFloat = 140
+            let width:CGFloat = 140
+            return CGSize(width: width, height: height)
+        }
+        
         if collectionView == jobsCollectionView {
             return CGSize(width: self.jobsCollectionView.frame.width / 1.2, height: 110)
         }
@@ -568,5 +643,16 @@ extension ProfileViewController:BussinessGuidListCellDelegate,AdsCellDelegate{
         vc.tempPost = post
         vc.mode = .editMode
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension ProfileViewController: MarketProductCellDelegate {
+    func didEditPressed(_ cell: MarketProductCell) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "NewProductViewController")  as! NewProductViewController
+        
+        vc.editMode = true
+        vc.tempProduct = cell.product
+        let nav = UINavigationController(rootViewController: vc)
+        self.present(nav, animated: true, completion: nil)
     }
 }

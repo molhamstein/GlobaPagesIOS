@@ -34,7 +34,9 @@ class BussinessGuidListCell: UICollectionViewCell {
             if let value = bussiness.category?.title{self.tagLabel.text = value}
             if let value = bussiness.title{self.bussinessGuideTitleLabel.text = value}
             if let value = bussiness.description{self.bussinessGuideCategoryLabel.text = value }
-            if let image = bussiness.cover {self.imageView.setImageForURL(image, placeholder: nil)}
+            if let image = bussiness.cover {self.imageView.setImageForURL(image, placeholder: nil)}else {
+                self.imageView.image = #imageLiteral(resourceName: "business_placeholder")
+            }
             if let isVip = bussiness.isVip {
                 verfidImageView.isHidden = !isVip
             }

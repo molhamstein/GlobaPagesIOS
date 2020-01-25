@@ -12,7 +12,7 @@ import UIKit
 struct AppConfig {
     
     // domain
-    static let appBaseDevURL = "http://192.168.1.12:3000/api"
+    static let appBaseDevURL = "http://192.168.1.7:3000/api"
     //static let appBaseDevURL = "http://104.217.253.15:7000/api"
     static let appBaseLiveURL = "http://almersal.co/api"
     static let appReviewURL = "https://almersal.co/reviewApi"

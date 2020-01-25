@@ -10,11 +10,14 @@ import UIKit
 
 
 enum categoryFilterType{
+    case HomeMarketProducts
     case Home
     case Category
     case JobOffer
     var filter:Filter{
         switch self {
+        case .HomeMarketProducts:
+            return Filter.homeMarketProduct
         case .Home:
             return Filter.home
         case .Category:
@@ -107,7 +110,10 @@ class FiltersViewController: AbstractController {
         if let keyword = categoryfiltertype?.filter.keyWord , !keyword.isEmpty {
             self.keyWordTextField.text = keyword
         }
-        if self.categoryfiltertype == categoryFilterType.Home{
+        if self.categoryfiltertype == categoryFilterType.HomeMarketProducts{
+        
+            getMarketProductsFilters()
+        }else if self.categoryfiltertype == categoryFilterType.Home{
 //            self.filters = DataStore.shared.postCategories
             getPostFilters()
         }else if self.categoryfiltertype == categoryFilterType.Category {
@@ -142,7 +148,6 @@ class FiltersViewController: AbstractController {
     }
 
     override func customizeView() {
-        
         
         // set text
         self.setNavBarTitle(title: "FILTER_VIEW_TITLE".localized)
@@ -345,7 +350,23 @@ class FiltersViewController: AbstractController {
         }
     }
     
- 
+    func getMarketProductsFilters(){
+        self.showActivityLoader(true)
+        ApiManager.shared.marketProductCategories { (success, error, result) in
+            self.showActivityLoader(false)
+            if success{
+                self.filters = result
+                self.categoriesCount = self.categoryfilters.count
+                self.categoryCollectionView.reloadData()
+                self.categoryCollectionView.collectionViewLayout.invalidateLayout()
+            }
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        }
+    }
 }
 
 

@@ -56,6 +56,7 @@ class JobDescriptionViewController: AbstractController {
     fileprivate var fieldConstantHeight: CGFloat = 50
     fileprivate var lblBadge: UILabel!
     
+    public var jobId: String = ""
     public var job: Job?
     public var showBudget: Bool = false
     
@@ -223,7 +224,7 @@ class JobDescriptionViewController: AbstractController {
     }
     
     func getJob(){
-        ApiManager.shared.getJobById(id: job?.jobId ?? "", completionBlock: {success, error, result in
+        ApiManager.shared.getJobById(id: job?.jobId ?? jobId, completionBlock: {success, error, result in
             if let error = error {
                 self.showMessage(message: error.type.errorMessage, type: .error)
                 return

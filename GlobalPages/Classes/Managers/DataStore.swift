@@ -23,6 +23,8 @@ class DataStore :NSObject {
     private let CACHE_KEY_CATEGORIES = "categories"
     private let CACHE_KEY_CATEGORIES_FILTERS = "categories_filters"
     private let CACHE_KEY_POST_CATEGORIES = "postcategories"
+    private let CACHE_KEY_PRODUCT_CATEGORIES_FILTERS = "productcategoriesfilters"
+    private let CACHE_KEY_PRODUCT_CATEGORIES = "productcategories"
     private let CACHE_KEY_SHORES = "SHORES"
     private let CACHE_KEY_SHOPITEM = "SHOPITEM"
     private let CACHE_KEY_INVENTORY = "INVENTORY_ITEMS"
@@ -39,6 +41,7 @@ class DataStore :NSObject {
     private let CACHE_KEY_MY_BOTTLES = "myBottles"
     private let CACHE_KEY_MY_REPLIES = "myReplies"
     private let CACHE_KEY_POSTS = "posts"
+    private let CACHE_KEY_MARKET_PRODUCTS = "marketProducts"
     private let CACHE_KEY_Volume = "volume"
     private let CACHE_KEY_FAVORITE = "favorites"
     //MARK: Temp data holders
@@ -47,9 +50,12 @@ class DataStore :NSObject {
     private var _reportTypes: [ReportType] = [ReportType]()
     private var _volume:Volume?
     private var _posts:[Post] = [Post]()
+    private var _marketProducts:[MarketProduct] = []
     private var _categories:[Category] = [Category]()
     private var _categories_filters:[categoriesFilter] = [categoriesFilter]()
     private var _post_categories:[categoriesFilter] = [categoriesFilter]()
+    private var _product_categories_filters:[categoriesFilter] = [categoriesFilter]()
+    private var _product_categories:[Category] = [Category]()
     private var _favorites:[Category] = [Category]()
     private var _subcategories:[Category] = [Category]()
     private var _cities:[City] = [City]()
@@ -105,6 +111,32 @@ class DataStore :NSObject {
                 _post_categories = loadBaseModelArrayForKey(key: CACHE_KEY_POST_CATEGORIES)
             }
             return _post_categories
+        }
+    }
+    
+    public var productCategoriesFilters: [categoriesFilter] {
+        set {
+            _product_categories_filters = newValue
+            saveBaseModelArray(array: _product_categories_filters, withKey: CACHE_KEY_PRODUCT_CATEGORIES_FILTERS)
+        }
+        get {
+            if(_product_categories_filters.isEmpty){
+                _product_categories_filters = loadBaseModelArrayForKey(key: CACHE_KEY_PRODUCT_CATEGORIES_FILTERS)
+            }
+            return _product_categories_filters
+        }
+    }
+    
+    public var productCategories: [Category] {
+        set {
+            _product_categories = newValue
+            saveBaseModelArray(array: _product_categories, withKey: CACHE_KEY_PRODUCT_CATEGORIES)
+        }
+        get {
+            if(_product_categories.isEmpty){
+                _product_categories = loadBaseModelArrayForKey(key: CACHE_KEY_PRODUCT_CATEGORIES)
+            }
+            return _product_categories
         }
     }
 
@@ -226,6 +258,19 @@ class DataStore :NSObject {
                 _posts = loadBaseModelArrayForKey(key: CACHE_KEY_POSTS)
             }
             return _posts
+        }
+    }
+    
+    public var marketProducts: [MarketProduct] {
+        set {
+            _marketProducts = newValue
+            saveBaseModelArray(array: _marketProducts, withKey: CACHE_KEY_MARKET_PRODUCTS)
+        }
+        get {
+            if(_marketProducts.isEmpty){
+                _marketProducts = loadBaseModelArrayForKey(key: CACHE_KEY_MARKET_PRODUCTS)
+            }
+            return _marketProducts
         }
     }
     

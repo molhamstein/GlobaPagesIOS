@@ -130,8 +130,57 @@ extension AppDelegate  {
         let userInfo = response.notification.request.content.userInfo
 
         // Print full message.
-        print("tap on on forground app",userInfo)
+        print("tap on on forground app", userInfo)
+        print("content \(response.notification.request.content)")
         
+        if let volumeId = userInfo["volumeId"] as? String {
+            
+            ApiManager.shared.getOneVolume(id: volumeId , completionBlock: {(success, error, result) in
+            
+                
+                if success {
+                    ActionShowVolume.execute(volume: result)
+                }
+                
+                
+            })
+        }else if let adId = userInfo["adId"] as? String {
+            
+            ApiManager.shared.getPostById(id: adId, completionBlock: { (success, error, result) in
+            
+                
+                if success {
+                    ActionShowAdsDescrption.execute(post: result!)
+                }
+                
+               
+            })
+        }else if let businessId = userInfo["businessId"] as? String {
+            
+            ApiManager.shared.getBussinessById(id: businessId, completionBlock: { (success, error, result) in
+            
+                
+                if success {
+                    ActionShowBusinessDescrption.execute(business: result)
+                }
+            
+            })
+            
+            
+        }else if let marketProductId = userInfo["marketProductId"] as? String {
+            
+            ApiManager.shared.getMarketProductById(id: marketProductId, completionBlock: { (success, error, result) in
+                
+                if success {
+                    
+                    ActionShowMarketProductDescrption.execute(marketProduct: result)
+                }
+                
+                
+            })
+        }else if let jobId = userInfo["jobId"] as? String {
+            ActionShowJob.execute(jobId: jobId)
+        }
         completionHandler()
     }
 }

@@ -626,11 +626,8 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
                 // Load next batch of products
                 currentPage = currentPage +  pageLimit
             }
-
         }
-
     }
-    
 }
 
 // filter cell Delegate

@@ -122,25 +122,53 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! NotificationTableViewCell
         
-        if cell.item?.type == "addNewVolume" {
-            let volumeId = cell.item?.data?["volumeId"] as? String
-            
-            let item = DataStore.shared.notifications.filter {$0.Nid == cell.item?.Nid!}
-            item[0].clicked = true
-            cell.item?.clicked = true
-            
-            ApiManager.shared.editNotification(item: cell.item!, completionBlock: {(isSuccess, error) in
-                if isSuccess {
-                    self.tableView.reloadData()
-                }
-            })
-            
+        let item = DataStore.shared.notifications.filter {$0.Nid == cell.item?.Nid!}
+        item[0].clicked = true
+        cell.item?.clicked = true
+        
+        ApiManager.shared.editNotification(item: cell.item!, completionBlock: {(isSuccess, error) in
+            if isSuccess {
+                self.tableView.reloadData()
+            }
+        })
+        
+        if let volumeId = cell.item?.data?["volumeId"] as? String {
             self.showActivityLoader(true)
-            ApiManager.shared.getOneVolume(id: volumeId ?? "" , completionBlock: {(success, error, result) in
+            ApiManager.shared.getOneVolume(id: volumeId , completionBlock: {(success, error, result) in
                 self.showActivityLoader(false)
                 
                 if success {
-                    self.performSegue(withIdentifier: "toNotificationDetails", sender: self)
+                    ActionShowVolume.execute(volume: result)
+                }
+                
+                if error != nil{
+                    if let msg = error?.errorName{
+                        self.showMessage(message: msg, type: .error)
+                    }
+                }
+            })
+        }else if let adId = cell.item?.data?["adId"] as? String {
+            self.showActivityLoader(true)
+            ApiManager.shared.getPostById(id: adId, completionBlock: { (success, error, result) in
+                self.showActivityLoader(false)
+                
+                if success {
+                    ActionShowAdsDescrption.execute(post: result!)
+                }
+                
+                if error != nil{
+                    if let msg = error?.errorName{
+                        self.showMessage(message: msg, type: .error)
+                    }
+                }
+            })
+        }else if let businessId = cell.item?.data?["businessId"] as? String {
+            self.showActivityLoader(true)
+            ApiManager.shared.getBussinessById(id: businessId, completionBlock: { (success, error, result) in
+                self.showActivityLoader(false)
+                
+                if success {
+                    ActionShowBusinessDescrption.execute(business: result)
                 }
                 
                 if error != nil{
@@ -150,7 +178,27 @@ extension NotificationsViewController: UITableViewDelegate, UITableViewDataSourc
                 }
             })
             
+            
+        }else if let marketProductId = cell.item?.data?["marketProductId"] as? String {
+            self.showActivityLoader(true)
+            ApiManager.shared.getMarketProductById(id: marketProductId, completionBlock: { (success, error, result) in
+                self.showActivityLoader(false)
+                
+                if success {
+                    
+                    ActionShowMarketProductDescrption.execute(marketProduct: result)
+                }
+                
+                if error != nil{
+                    if let msg = error?.errorName{
+                        self.showMessage(message: msg, type: .error)
+                    }
+                }
+            })
+        }else if let jobId = cell.item?.data?["jobId"] as? String {
+            ActionShowJob.execute(jobId: jobId)
         }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

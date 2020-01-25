@@ -37,6 +37,10 @@
 "ERROR_SOCIAL_INSTAGRAM"                = "Instagram login failed, please try again";
 "ERROR_SOCIAL_GOOGLE"                   = "Google login failed, please try again";
 
+// Home
+"HOME_MARKET"                           = "Market";
+"HOME_NEWSPAPERE"                        = "Newspaper";
+
 // login screen
 "LOGIN_EMAIL_TITLE"                     = "EMAIL";
 "LOGIN_EMAIL_PLACEHOLDER"               = "Email@gmail.com";
@@ -159,6 +163,8 @@
 "ADS_DESC_AREA_LABEL"                   = "Area";
 "ADS_DESC_CONTACT_BUTTON"               = "Contact";
 "ADS_DESC_DESCRIPTION"                  = "Description";
+"ADS_DESC_PRICE"                        = "Price";
+"ADS_DESC_GALLERY"                      = "Gallery";
 
 
 // Bussiness Gudie
@@ -219,11 +225,13 @@
 "SUBSCRIBE_CATEGORY"                = "Subscribe to categories";
 "MY_ADS"                            = "My Ads";
 "MY_BUSSIESES"                      = "My Bussineses";
+"MY_PRODUCTS"                       = "My Produtcs";
 "My Profile"                        = "My Profile";
 "Edit Profile"                      = "Edit Profile";
 "NO_ADS_PLACEHOLDER"                = "No ads added";
 "NO_BUSSINESS_PLACEHOLDER"          = "No bussiness added";
 "NO_JOBS_PLACEHOLDER"               = "No jobs added";
+"NO_PRODUCTS_PLACEHOLDER"           = "No products added";
 "MY_JOBS"                           = "My Jobs";
 "SHOW_CV"                           = "Show CV";
 

@@ -125,6 +125,7 @@ class NewBussinesesViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subCategoryViewHeight = 0
+        self.subCategoryView.isHidden = true
    
         if let bussiness = tempBussiness{
             fillData()
@@ -331,6 +332,7 @@ class NewBussinesesViewController: AbstractController {
         subCategoryCollectionView.layoutSubviews()
         UIView.animate(withDuration: 0.2, animations: {
             self.subCategoryViewHeight  = 100
+            self.subCategoryView.isHidden = false
         }){ (success) in}
         scrollToSelectedSubCategory()
     }
@@ -338,6 +340,7 @@ class NewBussinesesViewController: AbstractController {
     func hideSubCategoryView(){
         UIView.animate(withDuration: 0.2, animations: {
             self.subCategoryViewHeight  = 0
+            self.subCategoryView.isHidden = true
         }){ (success) in}
     }
 

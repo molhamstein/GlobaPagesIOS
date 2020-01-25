@@ -46,8 +46,10 @@ class HomeViewController: AbstractController {
     
     
     var categoryfiltertype:categoryFilterType = .Home
+    var marketCategoryfiltertype:categoryFilterType = .HomeMarketProducts
     
     var filters:[categoriesFilter] = []
+    var marketFilters:[categoriesFilter] = []
     
 
     static var adsImageCellId = "AdsImageCell"
@@ -76,7 +78,30 @@ class HomeViewController: AbstractController {
         }
         return []
     }
-    
+    var products: [MarketProduct] {
+        if DataStore.shared.marketProducts.count > 0{
+            var temp = DataStore.shared.marketProducts
+            if let keyword = marketCategoryfiltertype.filter.keyWord , !keyword.isEmpty{
+                temp = temp.filter({($0.title?.lowercased().contains(find: keyword.lowercased()))!})
+            }
+            if let city = marketCategoryfiltertype.filter.city{
+                temp = temp.filter({$0.city?.Fid == city.Fid})
+            }
+            if let area = marketCategoryfiltertype.filter.area{
+                temp = temp.filter({$0.location?.Fid == area.Fid})
+            }
+            if let cat = marketCategoryfiltertype.filter.category{
+                temp = temp.filter({$0.category?.Fid == cat.Fid})
+            }
+            if let subCat = marketCategoryfiltertype.filter.subCategory{
+                temp = temp.filter({$0.subCategory?.Fid == subCat.Fid})
+            }
+            
+            return temp
+        }
+        return []
+    }
+    var shouldLoadMoreProducts: Bool = true
     var currentVolume:Int?{
         didSet{
             getVolume()
@@ -89,9 +114,12 @@ class HomeViewController: AbstractController {
     
     var profileImageView = UIImageView()
     
+    var isMarketProducts: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.notificationButton.badge = nil
+        DataStore.shared.marketProducts = []
     }
 
     override func customizeView() {
@@ -105,8 +133,8 @@ class HomeViewController: AbstractController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //fetchUser()
+        getNotifications()
     }
-
 
     func changeUserProfileIamge(){
         if let user = DataStore.shared.me{
@@ -185,6 +213,7 @@ class HomeViewController: AbstractController {
     
     func getFilters(){
         filters.removeAll()
+        
         if let keyWord = categoryfiltertype.filter.keyWord{
             let cat = categoriesFilter()
             cat.filtervalue = .keyword
@@ -214,6 +243,44 @@ class HomeViewController: AbstractController {
             cat.titleAr = "كل الاصناف"
             cat.titleEn = "all categories"
             filters.append(cat)
+        }
+        filtterCollectionView?.reloadData()
+        self.adsCollectionView.collectionViewLayout.invalidateLayout()
+        self.adsCollectionView.reloadData()
+        
+    }
+    
+    func getMarketFilters(){
+        marketFilters.removeAll()
+        if let keyWord = marketCategoryfiltertype.filter.keyWord{
+            let cat = categoriesFilter()
+            cat.filtervalue = .keyword
+            cat.titleAr = keyWord
+            cat.titleEn = keyWord
+            marketFilters.append(cat)
+        }
+        if let city = marketCategoryfiltertype.filter.city{
+            marketFilters.append(city)
+            if let area = marketCategoryfiltertype.filter.area{
+                marketFilters.append(area)
+            }
+        }else{
+            let cat = categoriesFilter()
+            cat.titleAr = "كل المدن"
+            cat.titleEn = "all cities"
+            marketFilters.append(cat)
+        }
+        
+        if let cat = marketCategoryfiltertype.filter.category{
+            marketFilters.append(cat)
+            if let subCat = marketCategoryfiltertype.filter.subCategory{
+                marketFilters.append(subCat)
+            }
+        }else{
+            let cat = categoriesFilter()
+            cat.titleAr = "كل الاصناف"
+            cat.titleEn = "all categories"
+            marketFilters.append(cat)
         }
         filtterCollectionView?.reloadData()
         self.adsCollectionView.collectionViewLayout.invalidateLayout()
@@ -267,6 +334,30 @@ class HomeViewController: AbstractController {
                 }
             }
         }
+    }
+    
+    func getMarketProducts(){
+        self.showActivityLoader(true)
+        ApiManager.shared.getMarketProducts(skip: self.products.count, completionBlock: { (success, error, result) in
+            
+            self.showActivityLoader(false)
+            if success {
+                
+                self.adsCollectionView.reloadData()
+                
+                if result == nil || result?.count == 0 {
+                    self.shouldLoadMoreProducts = false
+                }else {
+                    self.shouldLoadMoreProducts = true
+                }
+            }
+            
+            if error != nil{
+                if let msg = error?.errorName{
+                    self.showMessage(message: msg, type: .error)
+                }
+            }
+        })
     }
     
     func checkForAppStatus() {
@@ -340,9 +431,12 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
             return DataStore.shared.featuredPosts.count
         }
         if collectionView == filtterCollectionView {
-            return filters.count
+            return isMarketProducts ? marketFilters.count : filters.count
         }
         if collectionView ==  adsCollectionView{
+            if self.isMarketProducts {
+                return products.count
+            }
             return self.posts.count
         }
         return 0
@@ -351,18 +445,30 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
     // load collecton view cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView ==  adsCollectionView{
-            let post = self.posts[indexPath.item]
-            if post.type == .image{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.adsImageCellId, for: indexPath) as! AdsImageCell
-                cell.post = post
-                cell.resizeTagView()
+            
+            if isMarketProducts {
+                let marketProduct = self.products[indexPath.row]
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketProductCell", for: indexPath) as! MarketProductCell
+                
+                cell.configureCell(marketProduct)
+                cell.btnEdit.isHidden = true
+                
                 return cell
-            }else{
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.adsTitledCellId, for: indexPath) as! AdsTitledCell
-                cell.post = post
-                cell.resizeTagView()
-                return cell
+            }else {
+                let post = self.posts[indexPath.item]
+                if post.type == .image{
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.adsImageCellId, for: indexPath) as! AdsImageCell
+                    cell.post = post
+                    cell.resizeTagView()
+                    return cell
+                }else{
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.adsTitledCellId, for: indexPath) as! AdsTitledCell
+                    cell.post = post
+                    cell.resizeTagView()
+                    return cell
+                }
             }
+            
             
         }
 
@@ -375,7 +481,7 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         }
         if collectionView == filtterCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.filtterCellId, for: indexPath) as! filtterCell
-            cell.filter = filters[indexPath.item]
+            cell.filter = isMarketProducts ? marketFilters[indexPath.item] : filters[indexPath.item]
             cell.tag = indexPath.item
             cell.delegate = self
             
@@ -395,11 +501,26 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         }
         
         if collectionView == filtterCollectionView {
-            ActionShowFilters.execute(type: .Home)
+            if isMarketProducts {
+                ActionShowFilters.execute(type: .HomeMarketProducts)
+            }else {
+                ActionShowFilters.execute(type: .Home)
+            }
+            
         }
         if collectionView == adsCollectionView {
-            let post = self.posts[indexPath.item]
-            ActionShowAdsDescrption.execute(post:post)
+            if isMarketProducts {
+                let marketProduct = self.products[indexPath.row]
+                let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: MarketProductDetailsViewController.className) as! MarketProductDetailsViewController
+                
+                vc.marketProduct = marketProduct
+                //let nav = UINavigationController(rootViewController: vc)
+                self.present(vc, animated: true, completion: nil)
+            }else {
+                let post = self.posts[indexPath.item]
+                ActionShowAdsDescrption.execute(post:post)
+            }
+            
         }
     }
     
@@ -414,17 +535,27 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
     
     // MARK:- This block of code is for businessGuidCollectionView paging
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if isMarketProducts && shouldLoadMoreProducts {
+            let offset:CGFloat = 100
+            let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+            if (bottomEdge + offset >= scrollView.contentSize.height) {
+                // Load next batch of products
+                self.getMarketProducts()
+            }
+        }else {
+            targetContentOffset.pointee = scrollView.contentOffset
+            var factor: CGFloat = 0.5
+            if velocity.x < 0 {
+                factor = -factor
+            }
+            let indexPath = IndexPath(row: Int(scrollView.contentOffset.x/pagingCellSize + factor), section: 0)
+            if indexPath.row < DataStore.shared.featuredPosts.count && indexPath.row >= 0{
+                self.businessGuidCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                self.pagingCurrentIndex = indexPath.row
+            }
+        }
         
-        targetContentOffset.pointee = scrollView.contentOffset
-        var factor: CGFloat = 0.5
-        if velocity.x < 0 {
-            factor = -factor
-        }
-        let indexPath = IndexPath(row: Int(scrollView.contentOffset.x/pagingCellSize + factor), section: 0)
-        if indexPath.row < DataStore.shared.featuredPosts.count && indexPath.row >= 0{
-            self.businessGuidCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            self.pagingCurrentIndex = indexPath.row
-        }
+        
         
     }
 }
@@ -439,7 +570,12 @@ extension HomeViewController:UICollectionViewDelegateFlowLayout{
             return CGSize(width: self.view.frame.width - 128, height: self.businessGuidView!.frame.height - 16)
         }
         if collectionView == filtterCollectionView {
-            return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            if isMarketProducts {
+                return CGSize(width: marketFilters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            }else {
+                return CGSize(width: filters[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 36, height: (47.5 * ScreenSizeRatio.smallRatio) - 16)
+            }
+            
         }
         if collectionView ==  adsCollectionView{
             return CGSize(width: self.view.frame.width * 0.5 - 16, height: getCellContentSize(indexPath: indexPath))
@@ -482,6 +618,9 @@ extension HomeViewController {
         
         let nib3 = UINib(nibName: HomeViewController.adsTitledCellId, bundle: nil)
         self.adsCollectionView.register(nib3, forCellWithReuseIdentifier: HomeViewController.adsTitledCellId)
+        
+        self.adsCollectionView.register(UINib(nibName: "MarketProductCell", bundle: nil), forCellWithReuseIdentifier: "MarketProductCell")
+        
         guard let collectionView = adsCollectionView, let customLayout = adsCollectionView.collectionViewLayout as? CustomLayout else { return }
         adsCollectionView.register(
             UINib(nibName: "HeaderView", bundle: nil),
@@ -497,7 +636,7 @@ extension HomeViewController {
 
         customLayout.settings.itemSize = CGSize(width: self.view.frame.width, height: 200)
         customLayout.settings.headerSize = CGSize(width: self.view.frame.width, height: self.view.frame.height * 0.26)
-        customLayout.settings.menuSize = CGSize(width: self.view.frame.width, height: 87.5)
+        customLayout.settings.menuSize = CGSize(width: self.view.frame.width, height: isMarketProducts ? 127.5 : 162.5)
         customLayout.settings.sectionsHeaderSize = CGSize(width: collectionView.frame.width, height: 0)
         customLayout.settings.sectionsFooterSize = CGSize(width: collectionView.frame.width, height: 0)
         customLayout.settings.isHeaderStretchy = true
@@ -561,8 +700,13 @@ extension HomeViewController {
                     self.volumeTitle = menuView.dateLabel
                     menuView.dateLabel.layoutIfNeeded()
                     menuView.dateLabel.frame = CGRect(x: 32, y: 0, width: self.view.frame.width - 64, height: 35)
-                    menuView.animateAddButton()
+                    //menuView.animateAddButton()
+                    
+                    menuView.volumeView.isHidden = self.isMarketProducts
+                    menuView.contentViewConstraint.constant = self.isMarketProducts ? 127.5 : 162.5
+                    menuView.volumeViewConstraint.constant = self.isMarketProducts ? 0 : 35
                 }
+                
                 return menuView
             }
             return UICollectionReusableView()
@@ -574,6 +718,21 @@ extension HomeViewController {
 
 // MARK: - MenuViewDelegate
 extension HomeViewController: MenuViewDelegate {
+    func newspaperDidPressed() {
+        self.isMarketProducts = false
+        self.getFilters()
+        self.adsCollectionView.reloadData()
+    }
+    
+    func marketDidPressed() {
+        self.isMarketProducts = true
+        self.getMarketFilters()
+        
+        self.adsCollectionView.reloadData()
+        if self.products.count == 0 {
+            self.getMarketProducts()
+        }
+    }
 
     func reloadCollectionViewDataWithTeamIndex(_ index: Int) {
     }
@@ -610,31 +769,37 @@ extension HomeViewController : PinterestLayoutDelegate {
     }
     
     func getCellContentSize(indexPath:IndexPath) -> CGFloat{
-        var height:CGFloat = 0
-        let post = self.posts[indexPath.item]
         
-        if post.type == .image{
-            height += 100 // image heigh
-            height += 10 // half of the tag view
-            height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // city label height
-            height += 8
-            height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // area label height
-            height += 18 // line view + 8 + 8
-            height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normalBold)) ?? 0 // title label height
-            height += 16
-        }
-        else{
-            height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // title label height
-            height += 20 // tag view height
-            height += (post.description?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal, numberOfLines: 6)) ?? 0 // description label Height
-            height += 18 // line view + 8 + 8
-            height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // city label height
-            height += 8 // padding
-            height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normalBold)) ?? 0 // area label height
-            height += 16 // extra
+        if isMarketProducts {
+            return 200
+            
+        }else {
+            var height:CGFloat = 0
+            let post = self.posts[indexPath.item]
+            if post.type == .image{
+                height += 100 // image heigh
+                height += 10 // half of the tag view
+                height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // city label height
+                height += 8
+                height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // area label height
+                height += 18 // line view + 8 + 8
+                height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normalBold)) ?? 0 // title label height
+                height += 16
+            }
+            else{
+                height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // title label height
+                height += 20 // tag view height
+                height += (post.description?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal, numberOfLines: 6)) ?? 0 // description label Height
+                height += 18 // line view + 8 + 8
+                height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // city label height
+                height += 8 // padding
+                height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normalBold)) ?? 0 // area label height
+                height += 16 // extra
 
+            }
+            return height
         }
-        return height
+        
     }
     
 }

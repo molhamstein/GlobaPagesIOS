@@ -19,6 +19,10 @@ class Action: NSObject {
     class func execute() {}
     class func execute(type:categoryFilterType){}
     class func execute(post:Post){}
+    class func execute(business: Bussiness?){}
+    class func execute(marketProduct: MarketProduct?){}
+    class func execute(volume: Volume?){}
+    class func execute(jobId: String?){}
 }
 
 class ActionLogout:Action {
@@ -108,6 +112,45 @@ class ActionShowAdsDescrption: Action {
     override class func execute(post:Post) {
         let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: AdsDescriptionViewController.className) as! AdsDescriptionViewController
         ViewController.post = post
+        let nav = UINavigationController(rootViewController: ViewController)
+        UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
+    }
+}
+
+class ActionShowMarketProductDescrption: Action {
+    override class func execute(marketProduct: MarketProduct?) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: MarketProductDetailsViewController.className) as! MarketProductDetailsViewController
+        
+        vc.marketProduct = marketProduct
+        //let nav = UINavigationController(rootViewController: vc)
+        
+        UIApplication.visibleViewController()?.present(vc, animated: true, completion: nil)
+    }
+}
+
+class ActionShowBusinessDescrption: Action {
+    override class func execute(business: Bussiness?) {
+        let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "BussinessDescriptionViewController") as! BussinessDescriptionViewController
+        vc.bussiness = business
+        vc.editMode = false
+        let nav = UINavigationController(rootViewController: vc)
+        UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
+    }
+}
+
+class ActionShowJob: Action {
+    override class func execute(jobId: String?) {
+        let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: JobDescriptionViewController.className) as! JobDescriptionViewController
+        ViewController.jobId = jobId ?? ""
+        let nav = UINavigationController(rootViewController: ViewController)
+        UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
+    }
+}
+
+class ActionShowVolume: Action {
+    override class func execute(volume: Volume?) {
+        let ViewController = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: VolumeViewController.className) as! VolumeViewController
+        
         let nav = UINavigationController(rootViewController: ViewController)
         UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
     }
