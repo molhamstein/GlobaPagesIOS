@@ -161,12 +161,12 @@
 		CE3DC670235DD64A00B0284F /* Experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3DC66F235DD64A00B0284F /* Experience.swift */; };
 		CE79ED08235F01D90083A825 /* Refrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79ED07235F01D90083A825 /* Refrence.swift */; };
 		CE79ED0A235F0D660083A825 /* CV.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79ED09235F0D660083A825 /* CV.swift */; };
-		CE7FD1282379A979004C0FDF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7FD1272379A979004C0FDF /* GoogleService-Info.plist */; };
 		CE89796E236EC24C005ECC29 /* AddEditJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE89796D236EC24C005ECC29 /* AddEditJobViewController.swift */; };
 		CE95CC7B23702EBD00CEED87 /* ApplicantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CC7A23702EBD00CEED87 /* ApplicantsViewController.swift */; };
 		CE95CC7D2370313800CEED87 /* Applicant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CC7C2370313700CEED87 /* Applicant.swift */; };
 		CE95CC812370347500CEED87 /* ApplicantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95CC7F2370347500CEED87 /* ApplicantCollectionViewCell.swift */; };
 		CE95CC822370347500CEED87 /* ApplicantCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE95CC802370347500CEED87 /* ApplicantCollectionViewCell.xib */; };
+		CEA1C4F423E6AC7100F93A11 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA1C4F323E6AC7100F93A11 /* GoogleService-Info.plist */; };
 		CEADA43023AFB28200BEE753 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEADA42F23AFB28200BEE753 /* Version.swift */; };
 		CEB49C432365B87700F03310 /* AddSkillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C422365B87700F03310 /* AddSkillViewController.swift */; };
 		CEB49C452365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB49C442365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift */; };
@@ -362,12 +362,12 @@
 		CE3DC66F235DD64A00B0284F /* Experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
 		CE79ED07235F01D90083A825 /* Refrence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refrence.swift; sourceTree = "<group>"; };
 		CE79ED09235F0D660083A825 /* CV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CV.swift; sourceTree = "<group>"; };
-		CE7FD1272379A979004C0FDF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE89796D236EC24C005ECC29 /* AddEditJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditJobViewController.swift; sourceTree = "<group>"; };
 		CE95CC7A23702EBD00CEED87 /* ApplicantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantsViewController.swift; sourceTree = "<group>"; };
 		CE95CC7C2370313700CEED87 /* Applicant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicant.swift; sourceTree = "<group>"; };
 		CE95CC7F2370347500CEED87 /* ApplicantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantCollectionViewCell.swift; sourceTree = "<group>"; };
 		CE95CC802370347500CEED87 /* ApplicantCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ApplicantCollectionViewCell.xib; sourceTree = "<group>"; };
+		CEA1C4F323E6AC7100F93A11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEADA42F23AFB28200BEE753 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		CEB49C422365B87700F03310 /* AddSkillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSkillViewController.swift; sourceTree = "<group>"; };
 		CEB49C442365F3CC00F03310 /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -517,7 +517,7 @@
 		578685EA20C47FD30002C67B /* GlobalPages */ = {
 			isa = PBXGroup;
 			children = (
-				CE7FD1272379A979004C0FDF /* GoogleService-Info.plist */,
+				CEA1C4F323E6AC7100F93A11 /* GoogleService-Info.plist */,
 				CE0FC3F32377F91C00C365C5 /* UITextViewWorkaround.swift */,
 				14B2BE2622088969000342D1 /* GlobalPages.entitlements */,
 				5786885720C4AADB0002C67B /* GlobalPages-Bridging-Header.h */,
@@ -970,7 +970,7 @@
 				5786881420C483190002C67B /* MullerBold.otf in Resources */,
 				578685F320C47FD30002C67B /* Assets.xcassets in Resources */,
 				5786881B20C483190002C67B /* OpenSansBold.ttf in Resources */,
-				CE7FD1282379A979004C0FDF /* GoogleService-Info.plist in Resources */,
+				CEA1C4F423E6AC7100F93A11 /* GoogleService-Info.plist in Resources */,
 				5786872420C481010002C67B /* CountryPicker.bundle in Resources */,
 				1497BC4121F783F300C0DFE2 /* DroidKufiBold.ttf in Resources */,
 				5786883720C483240002C67B /* Start.storyboard in Resources */,
@@ -1392,15 +1392,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GlobalPages/GlobalPages.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BBSB6N9C9P;
+				DEVELOPMENT_TEAM = 763UQWDG9U;
 				INFOPLIST_FILE = GlobalPages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.almersal.ios.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.almersal.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = off;
@@ -1418,15 +1418,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GlobalPages/GlobalPages.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BBSB6N9C9P;
+				DEVELOPMENT_TEAM = 763UQWDG9U;
 				INFOPLIST_FILE = GlobalPages/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.1.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.almersal.ios.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.almersal.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = off;

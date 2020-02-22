@@ -19,7 +19,7 @@ class ProfileViewController: AbstractController {
     @IBOutlet weak var emailTitleLabel: XUILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var adsCountTitleLabel: XUILabel!
-    @IBOutlet weak var adsCountLabel: UILabel!
+    @IBOutlet weak var userBalanceLabel: UILabel!
     @IBOutlet weak var categoriesTitleLabel: XUILabel!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var myAdsTitleLabel: XUILabel!
@@ -100,7 +100,7 @@ class ProfileViewController: AbstractController {
         self.emailTitleLabel.font = AppFonts.normal
         self.emailLabel.font = AppFonts.xBigBold
         self.adsCountTitleLabel.font = AppFonts.normal
-        self.adsCountLabel.font = AppFonts.xBigBold
+        self.userBalanceLabel.font = AppFonts.xBigBold
         self.categoriesTitleLabel.font = AppFonts.bigBold
         self.myAdsTitleLabel.font = AppFonts.bigBold
         self.jobsTitleLabel.font = AppFonts.bigBold
@@ -248,7 +248,7 @@ class ProfileViewController: AbstractController {
         self.emailTitleLabel.text = user.cv?.primaryIdentifier != nil ? "CV_SPECIALTY".localized : "EMAIL".localized
         if let image = user.profilePic { self.imageView.setImageForURL(image, placeholder: #imageLiteral(resourceName: "user_placeholder"))}
         if let birthDate = user.birthdate { birthDateButton.setTitle(DateHelper.getBirthFormatedStringFromDate(birthDate), for: .normal)  }
-        if let count = user.postsCount {self.adsCountLabel.text = "\(count)"}
+        if let balance = user.balance {self.userBalanceLabel.text = balance}
         if let gender = user.gender{isMale = gender.rawValue == "male" ? true : false}
         getUserCategories()
     }
@@ -270,7 +270,7 @@ class ProfileViewController: AbstractController {
             self.showActivityLoader(false)
             if success{
                 self.posts = result
-                self.adsCountLabel.text = String(self.posts.count)
+                //self.adsCountLabel.text = String(self.posts.count)
                 self.myAdsCollectionView.collectionViewLayout.invalidateLayout()
                 self.myAdsCollectionView.reloadData()
                 

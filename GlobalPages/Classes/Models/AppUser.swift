@@ -54,6 +54,7 @@ public class AppUser: BaseModel, NSCopying {
     private let kUserImage = "image"
     private let KPostsKey = "postCategoriesIds"
     private let kCV = "CV"
+    private let kBalance = "balance"
     
     // MARK: Properties
     public var cv: CV?
@@ -68,7 +69,7 @@ public class AppUser: BaseModel, NSCopying {
     public var status: Status?
     public var token: String?
     public var posts:[String]?
-    
+    public var balance: String?
     
     public var postsCount:Int?{
         if posts != nil{
@@ -102,6 +103,9 @@ public class AppUser: BaseModel, NSCopying {
         }
         if let phoneNum = json["phoneNumber"].string {
             mobileNumber = phoneNum
+        }
+        if let value = json[kBalance].string {
+            balance = value
         }
         if let array = json["postCategoriesIds"].array{
             posts = array.map{$0.string!}
@@ -156,7 +160,9 @@ public class AppUser: BaseModel, NSCopying {
             dictionary[kCV] = value.dictionaryRepresentation()
         }
         
-        
+        if let value = balance {
+            dictionary[kBalance] = value
+        }
         
         return dictionary
     }

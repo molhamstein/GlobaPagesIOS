@@ -538,16 +538,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="810"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ad Submitted" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2P-I8-f3n">
-                                        <rect key="frame" x="32" y="238.5" width="311" height="29"/>
+                                        <rect key="frame" x="32" y="117" width="311" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ad submitted icon" translatesAutoresizingMaskIntoConstraints="NO" id="h8h-XD-GMh">
-                                        <rect key="frame" x="62.5" y="283.5" width="250" height="243"/>
+                                        <rect key="frame" x="-62.5" y="162" width="500" height="486"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will review your ad and contact you back." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOi-82-LoS" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="558.5" width="311" height="41"/>
+                                        <rect key="frame" x="32" y="680" width="311" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2472,7 +2472,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUc-rm-iyV" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="45.5" y="226.5" width="276" height="22"/>
+                                                <rect key="frame" x="26.5" y="218.5" width="295" height="38"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="ADS_DESC_CONTACT_BUTTON" image="ic_call"/>
                                                 <connections>
@@ -3041,7 +3041,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhj-BD-59G" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                                <rect key="frame" x="112" y="211.5" width="207" height="22"/>
+                                                                <rect key="frame" x="112" y="203.5" width="207" height="38"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="ADS_DESC_CONTACT_BUTTON" image="ic_call"/>
                                                                 <connections>
@@ -3141,7 +3141,7 @@
                                                         </cells>
                                                     </collectionView>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NY5-Vt-l4x" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                        <rect key="frame" x="9.5" y="666.5" width="308" height="40"/>
+                                                        <rect key="frame" x="0.0" y="666.5" width="327" height="40"/>
                                                         <color key="backgroundColor" red="1" green="0.84705882349999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="MEw-0e-IT3" customClass="XNSLayoutConstraint" customModule="GlobalPages" customModuleProvider="target"/>
@@ -3723,7 +3723,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaH-9d-XNj">
-                                                <rect key="frame" x="16" y="0.0" width="25" height="23"/>
+                                                <rect key="frame" x="16" y="0.0" width="50" height="46"/>
                                                 <state key="normal" image="ic_back_white"/>
                                                 <connections>
                                                     <action selector="backAction:" destination="lhd-nH-WWq" eventType="touchUpInside" id="TWw-5c-yFV"/>
@@ -3959,7 +3959,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXc-1K-rOJ">
-                                                <rect key="frame" x="16" y="0.0" width="25" height="23"/>
+                                                <rect key="frame" x="16" y="0.0" width="50" height="46"/>
                                                 <state key="normal" image="ic_back_white"/>
                                                 <connections>
                                                     <action selector="backAction:" destination="lhd-nH-WWq" eventType="touchUpInside" id="rGM-lV-TTG"/>
@@ -4914,7 +4914,7 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="119"/>
                                                                                 <subviews>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGS-F3-HTP" userLabel="arrow">
-                                                                                        <rect key="frame" x="165" y="30" width="12" height="12"/>
+                                                                                        <rect key="frame" x="165" y="42" width="12" height="12"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="12" id="DNn-KO-mpQ"/>
                                                                                         </constraints>
@@ -4922,14 +4922,14 @@
                                                                                         <state key="normal" image="downArrow"/>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2v-dL-Et2">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="157" height="42"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="157" height="54"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                         <state key="normal">
                                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         </state>
                                                                                     </button>
                                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2AU-v7-4FU" userLabel="Line View">
-                                                                                        <rect key="frame" x="0.0" y="47" width="177" height="1"/>
+                                                                                        <rect key="frame" x="0.0" y="59" width="177" height="1"/>
                                                                                         <color key="backgroundColor" red="0.58424812559999995" green="0.58435159920000002" blue="0.58424162859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="1" id="xJo-4d-xXX"/>
@@ -4962,11 +4962,11 @@
                                                                         <rect key="frame" x="187" y="0.0" width="124" height="119"/>
                                                                         <subviews>
                                                                             <button opaque="NO" alpha="0.5" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBN-2z-Num" userLabel="male">
-                                                                                <rect key="frame" x="0.0" y="10" width="62" height="22"/>
+                                                                                <rect key="frame" x="0.0" y="10" width="62" height="34"/>
                                                                                 <state key="normal" image="signup_male"/>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="male" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tvx-QB-K5F" userLabel="male label" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="32" width="62" height="20.5"/>
+                                                                                <rect key="frame" x="0.0" y="44" width="62" height="20.5"/>
                                                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -4975,11 +4975,11 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <button opaque="NO" alpha="0.5" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPG-Of-z30" userLabel="female">
-                                                                                <rect key="frame" x="62" y="10" width="62" height="22"/>
+                                                                                <rect key="frame" x="62" y="10" width="62" height="34"/>
                                                                                 <state key="normal" image="signup_female"/>
                                                                             </button>
                                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="female" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvZ-we-Yu2" userLabel="female label" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                                                <rect key="frame" x="62" y="32" width="62" height="20.5"/>
+                                                                                <rect key="frame" x="62" y="44" width="62" height="20.5"/>
                                                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -5149,7 +5149,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8V-bU-RfX">
-                                                                        <rect key="frame" x="301" y="16" width="26" height="26"/>
+                                                                        <rect key="frame" x="275" y="16" width="52" height="52"/>
                                                                         <state key="normal" image="add"/>
                                                                         <connections>
                                                                             <action selector="openSubscriptionPage:" destination="HFS-tc-yzr" eventType="touchUpInside" id="cKR-XD-8AE"/>
@@ -5215,7 +5215,7 @@
                                                                         </cells>
                                                                     </collectionView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHS-YC-rGb">
-                                                                        <rect key="frame" x="301" y="16" width="26" height="26"/>
+                                                                        <rect key="frame" x="275" y="16" width="52" height="52"/>
                                                                         <state key="normal" image="add"/>
                                                                     </button>
                                                                 </subviews>
@@ -5292,7 +5292,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUE-ZQ-5Wc">
-                                                                <rect key="frame" x="301" y="421" width="26" height="26"/>
+                                                                <rect key="frame" x="275" y="421" width="52" height="52"/>
                                                                 <state key="normal" image="add"/>
                                                             </button>
                                                         </subviews>
@@ -5871,7 +5871,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzy-m6-chl">
-                                                                <rect key="frame" x="279" y="8" width="24" height="24"/>
+                                                                <rect key="frame" x="255" y="-4" width="48" height="48"/>
                                                                 <state key="normal" image="chevron"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d38-nU-oOG">
@@ -6102,7 +6102,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahf-kk-YAc">
-                                                                <rect key="frame" x="283" y="10.5" width="20" height="22"/>
+                                                                <rect key="frame" x="263" y="0.5" width="40" height="42"/>
                                                                 <state key="normal" image="checkBox"/>
                                                                 <state key="selected" image="checkBoxActive"/>
                                                                 <connections>
@@ -6132,7 +6132,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7K-ej-BkH">
-                                                                <rect key="frame" x="283" y="10.5" width="20" height="22"/>
+                                                                <rect key="frame" x="263" y="0.5" width="40" height="42"/>
                                                                 <state key="normal" image="checkBox"/>
                                                                 <state key="selected" image="checkBoxActive"/>
                                                                 <connections>
@@ -6162,7 +6162,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUr-pR-Uj1">
-                                                                <rect key="frame" x="283" y="10.5" width="20" height="22"/>
+                                                                <rect key="frame" x="263" y="0.5" width="40" height="42"/>
                                                                 <state key="normal" image="checkBox"/>
                                                                 <state key="selected" image="checkBoxActive"/>
                                                                 <connections>
@@ -6192,7 +6192,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3rv-Ez-jnt">
-                                                                <rect key="frame" x="283" y="10.5" width="20" height="22"/>
+                                                                <rect key="frame" x="263" y="0.5" width="40" height="42"/>
                                                                 <state key="normal" image="checkBox"/>
                                                                 <state key="selected" image="checkBoxActive"/>
                                                                 <connections>
@@ -6222,7 +6222,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V13-Ci-Smv">
-                                                                <rect key="frame" x="283" y="10.5" width="20" height="22"/>
+                                                                <rect key="frame" x="263" y="0.5" width="40" height="42"/>
                                                                 <state key="normal" image="checkBox"/>
                                                                 <state key="selected" image="checkBoxActive"/>
                                                                 <connections>
@@ -6252,7 +6252,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5R2-a5-vUe">
-                                                                <rect key="frame" x="283" y="10" width="20" height="22"/>
+                                                                <rect key="frame" x="263" y="0.0" width="40" height="42"/>
                                                                 <state key="normal" image="checkBox"/>
                                                                 <state key="selected" image="checkBoxActive"/>
                                                                 <connections>
@@ -6282,7 +6282,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82N-rV-zWa">
-                                                                <rect key="frame" x="283" y="10.5" width="20" height="22"/>
+                                                                <rect key="frame" x="263" y="0.5" width="40" height="42"/>
                                                                 <state key="normal" image="checkBox"/>
                                                                 <state key="selected" image="checkBoxActive"/>
                                                                 <connections>
@@ -10024,7 +10024,7 @@ En</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ik7-SS-tiL" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="289" y="18" width="24" height="24"/>
+                                                <rect key="frame" x="265" y="6" width="48" height="48"/>
                                                 <state key="normal" image="chevron"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKz-2e-3jO" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
@@ -10067,7 +10067,7 @@ En</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jcc-SI-apF" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="289" y="18" width="24" height="24"/>
+                                                <rect key="frame" x="265" y="6" width="48" height="48"/>
                                                 <state key="normal" image="chevron"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvr-Em-iA3" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
@@ -11394,7 +11394,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mF-O5-49M" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                <rect key="frame" x="45.5" y="226.5" width="276" height="22"/>
+                                                <rect key="frame" x="26.5" y="218.5" width="295" height="38"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="ADS_DESC_CONTACT_BUTTON" image="ic_call"/>
                                                 <connections>
@@ -12290,7 +12290,7 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="localization" value="ADS_ADDED"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="localization" value="USER_BALANCE"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k31-Gq-CZ0">
@@ -12573,7 +12573,6 @@ may be reproduced, distributed, or transmitted in any form or by any means.</str
                     <navigationItem key="navigationItem" id="T8P-vp-tAf"/>
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
-                        <outlet property="adsCountLabel" destination="s7f-Ku-abZ" id="sQ8-D2-7RY"/>
                         <outlet property="adsCountTitleLabel" destination="GT3-M6-VDh" id="FlH-ae-GXI"/>
                         <outlet property="adsViewPlaceholder" destination="WXq-42-Bnq" id="EMd-EJ-NFM"/>
                         <outlet property="birthDateButton" destination="jFv-ht-ybP" id="bsu-EP-B0d"/>
