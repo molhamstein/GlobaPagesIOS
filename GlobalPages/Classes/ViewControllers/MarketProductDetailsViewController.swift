@@ -26,6 +26,7 @@ class MarketProductDetailsViewController: AbstractController {
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblGalleryTitle: UILabel!
     @IBOutlet weak var lblSkillsTitle: UILabel!
+    @IBOutlet weak var btnDeactiveProduct: UIButton!
     
     @IBOutlet weak var btnTopContact: XUIButton!
     @IBOutlet weak var btnBottomContact: XUIButton!
@@ -82,6 +83,7 @@ class MarketProductDetailsViewController: AbstractController {
         lblDescription.font = AppFonts.normal
         lblGalleryTitle.font = AppFonts.normalBold
         phone1Label.font = AppFonts.normalBold
+        btnDeactiveProduct.titleLabel?.font = AppFonts.smallSemiBold
         
         lblSkillsTitle.text = "JOB_SKILLS".localized
         lblDateTitle.text = "ADS_DESC_DATE_LABEL".localized
@@ -92,6 +94,7 @@ class MarketProductDetailsViewController: AbstractController {
         lblGalleryTitle.text = "ADS_DESC_GALLERY".localized
         btnTopContact.setTitle("ADS_DESC_CONTACT_BUTTON".localized, for: .normal)
         btnBottomContact.setTitle("ADS_DESC_CONTACT_BUTTON".localized, for: .normal)
+        btnDeactiveProduct.setTitle("JOB_DEACTIVE".localized, for: .normal)
         
         let nib = UINib(nibName: cellID, bundle: nil)
         imagesCollectionView.register(nib, forCellWithReuseIdentifier: cellID)
@@ -168,8 +171,12 @@ class MarketProductDetailsViewController: AbstractController {
             //skillsCollectionViewConstant.constant = skillsCollectionView.contentSize.height
             self.scrollViewContent.layoutIfNeeded()
             self.viewWillLayoutSubviews()
-            
-            
+        }
+        
+        if (self.marketProduct?.ownerID == DataStore.shared.me?.objectId || self.marketProduct?.bussiness?.ownerId == DataStore.shared.me?.objectId) && self.marketProduct?.status != Status.active.rawValue {
+            self.btnDeactiveProduct.isHidden = false
+        }else {
+            self.btnDeactiveProduct.isHidden = true
         }
         
         imagesCollectionView.reloadData()
@@ -206,7 +213,25 @@ extension MarketProductDetailsViewController {
         }else if let phone3 = marketProduct?.owner?.phoneNumber {
             callPhone(phone:phone3)
         }
-        
+    }
+    @IBAction func deactiveProductAction(_ sender: Any){
+        let deactiveAlert = UIAlertController(title: "GLOBAL_WARNING_TITLE".localized, message: "PRODUCT_DEACTIVE_WARNING".localized, preferredStyle: .alert)
+        deactiveAlert.addAction(UIAlertAction(title: "CANCEL".localized, style: .cancel, handler: nil))
+        deactiveAlert.addAction(UIAlertAction(title: "JOB_DEACTIVE".localized, style: .destructive, handler: {_ in
+            if let prod = self.marketProduct {
+                self.showActivityLoader(true)
+                prod.status = Status.deactivated.rawValue
+                ApiManager.shared.editMarketProduct(product: prod, bussinessId: self.marketProduct?.businessID ?? "") { (success, error) in
+                    self.showActivityLoader(false)
+                    if let error = error {
+                        self.showMessage(message: error.type.errorMessage , type: .error )
+                        return
+                    }
+                    self.btnDeactiveProduct.isHidden = true
+                }
+            }
+        }))
+        self.present(deactiveAlert, animated: true, completion: nil)
     }
 }
 
@@ -302,7 +327,7 @@ extension MarketProductDetailsViewController{
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if scrollView == imagesCollectionView {
-            print("x \(targetContentOffset.pointee.x)")
+            //print("x \(targetContentOffset.pointee.x)")
             let pagenumber = Int(abs(targetContentOffset.pointee.x) / view.frame.width)
             self.pageController.currentPage = pagenumber
         }

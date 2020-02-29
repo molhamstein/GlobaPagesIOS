@@ -144,6 +144,8 @@
 		5786884E20C4A5B10002C67B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786884D20C4A5B10002C67B /* Location.swift */; };
 		5786885320C4A8920002C67B /* CountryPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5786885220C4A8920002C67B /* CountryPicker.m */; };
 		5786885A20C4AC6E0002C67B /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786885920C4AC6D0002C67B /* Media.swift */; };
+		57B561DE23FC3E6600851ABF /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57B561DC23FC3E0200851ABF /* Roboto-Bold.ttf */; };
+		57B561DF23FC3E6600851ABF /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57B561D923FC3DD300851ABF /* RobotoCondensed-Regular.ttf */; };
 		8F46D19E226B50B50025DD85 /* AVAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D19D226B50B50025DD85 /* AVAsset.swift */; };
 		8F46D1A1226ECEAF0025DD85 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D1A0226ECEAF0025DD85 /* NotificationTableViewCell.swift */; };
 		8F46D1A3226F7ACC0025DD85 /* VolumeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D1A2226F7ACB0025DD85 /* VolumeViewController.swift */; };
@@ -344,6 +346,9 @@
 		5786885220C4A8920002C67B /* CountryPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryPicker.m; sourceTree = "<group>"; };
 		5786885720C4AADB0002C67B /* GlobalPages-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GlobalPages-Bridging-Header.h"; sourceTree = "<group>"; };
 		5786885920C4AC6D0002C67B /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		57B561D923FC3DD300851ABF /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		57B561DB23FC3DFC00851ABF /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RobotoCondensed-Regular.ttf"; path = "../../../../../../Desktop/RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		57B561DC23FC3E0200851ABF /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		8663B5FAE0E11BA602682EC6 /* Pods-GlobalPages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobalPages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GlobalPages/Pods-GlobalPages.debug.xcconfig"; sourceTree = "<group>"; };
 		8F46D19D226B50B50025DD85 /* AVAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAsset.swift; sourceTree = "<group>"; };
 		8F46D1A0226ECEAF0025DD85 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -759,7 +764,10 @@
 			isa = PBXGroup;
 			children = (
 				1497BC3F21F783F200C0DFE2 /* DroidKufiBold.ttf */,
+				57B561DB23FC3DFC00851ABF /* RobotoCondensed-Regular.ttf */,
+				57B561DC23FC3E0200851ABF /* Roboto-Bold.ttf */,
 				1497BC4021F783F200C0DFE2 /* DroidKufiRegular.ttf */,
+				57B561D923FC3DD300851ABF /* RobotoCondensed-Regular.ttf */,
 				146B39F420ED4B8D0064286D /* Cairo */,
 				5786880920C483190002C67B /* MullerBold.otf */,
 				5786880C20C483190002C67B /* Antipasto_regular.otf */,
@@ -953,6 +961,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57B561DE23FC3E6600851ABF /* Roboto-Bold.ttf in Resources */,
+				57B561DF23FC3E6600851ABF /* RobotoCondensed-Regular.ttf in Resources */,
 				1481AF5120F154E9003A1F10 /* Cairo-Black.ttf in Resources */,
 				1481AF5220F154E9003A1F10 /* Cairo-Bold.ttf in Resources */,
 				1481AF5320F154E9003A1F10 /* Cairo-ExtraLight.ttf in Resources */,
@@ -1025,8 +1035,6 @@
 				"${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
-				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -1050,8 +1058,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SKPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -1086,12 +1092,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-GlobalPages/Pods-GlobalPages-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

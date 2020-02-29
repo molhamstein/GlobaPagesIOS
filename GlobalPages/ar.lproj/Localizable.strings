@@ -163,7 +163,7 @@
 // bussiness guid description
 "ADS_DESC_SUB_CATEGORY_LABEL"         = "اصناف فرعية";
 "ADS_DESC_CATEGORY_LABEL"             = "اصناف";
-"ADS_DESC_SERVICES_PRODUCTS"          = "المنتجات";
+"ADS_DESC_SERVICES_PRODUCTS"          = "المنتجات و الخدمات";
 
 // Near by filters
 "NEAR_BY_FILTERS_INFO"                = "اختر ما تبحث عنه وسنختار لك اقرب ٣ اليك !";
@@ -176,6 +176,7 @@
 "NEW_PRODUCT_NAME_PLACEHOLDER"       = "الاسم";
 "NEW_PRODUCT_DESC_PLACEHOLDER"       = "الوصف";
 "NEW_PRODUCT_APPLY_BTN"              = "حفظ";
+"NEW_PRODUCT_PRICE_PLACEHOLDER"       = "السعر";
 
 // location view
 "LOCATION_TITLE"                     = "العنوان";
@@ -202,7 +203,7 @@
 // profile view
 "USER_NAME"                         = "اسم المستخدم";
 "EMAIL"                             = "البريد الالكتروني";
-"ADS_ADDED"                         = "اعلانات مضافة";
+"ADS_ADDED"                         = "الرصيد";
 "FEMALE"                            = "انثى";
 "MALE"                              = "ذكر";
 "SUBSCRIBE_CATEGORY"                = "اشترك في اصناف";
@@ -221,6 +222,7 @@
 // Product View
 "PRODUCT_INFO"                      = "اختر صورة للخدمة او المنتج";
 "PRODUCT_NAME"                      = "اسم المنتج";
+"PRODUCT_DEACTIVE_WARNING"              = "اخفاء المنتج؟ المستخدمون الأخرون لن يكونو قادرين على رؤية هذا المنتج";
 
 
 // birthdate view

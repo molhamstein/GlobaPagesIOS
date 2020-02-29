@@ -312,9 +312,7 @@ extension JobDescriptionViewController {
                 self.btnDeactiveJob.isHidden = true
             })
         }))
-        
         self.present(deactiveAlert, animated: true, completion: nil)
-        
     }
     
     @IBAction func EditJobAction(_ sender: Any){

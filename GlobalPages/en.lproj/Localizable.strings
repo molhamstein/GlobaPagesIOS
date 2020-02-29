@@ -177,7 +177,7 @@
 // bussiness guide description
 "ADS_DESC_SUB_CATEGORY_LABEL"         = "Sub Category";
 "ADS_DESC_CATEGORY_LABEL"             = "Category";
-"ADS_DESC_SERVICES_PRODUCTS"          = "Products";
+"ADS_DESC_SERVICES_PRODUCTS"          = "Services and products";
 
 // Near by filters
 "NEAR_BY_FILTERS_INFO"                                      = "select what you are looking for and we will find you top 3 nearby ones!";
@@ -191,6 +191,7 @@
 "NEW_PRODUCT_NAME_PLACEHOLDER"        = "Name";
 "NEW_PRODUCT_DESC_PLACEHOLDER"        = "Description";
 "NEW_PRODUCT_APPLY_BTN"               = "Apply";
+"NEW_PRODUCT_PRICE_PLACEHOLDER"       = "Price";
 
 
 // location view
@@ -219,7 +220,7 @@
 // profile view
 "USER_NAME"                         = "User Name";
 "EMAIL"                             = "Email";
-"ADS_ADDED"                         = "Ads Added";
+"ADS_ADDED"                         = "Balance";
 "FEMALE"                            = "female";
 "MALE"                              = "male";
 "SUBSCRIBE_CATEGORY"                = "Subscribe to categories";
@@ -238,6 +239,7 @@
 // Product View
 "PRODUCT_INFO"                      = "Upload image for service or product";
 "PRODUCT_NAME"                      = "Product Name";
+"PRODUCT_DEACTIVE_WARNING"              = "Deactive this product? other users won't be able to see it anymore ";
 
  // birthdate view
 "Done"                              = "Done";

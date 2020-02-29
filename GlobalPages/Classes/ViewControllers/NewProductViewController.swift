@@ -12,6 +12,8 @@ class NewProductViewController: AbstractController {
     
     @IBOutlet weak var adTitleLabel: UILabel!
     @IBOutlet weak var adtitleTextField: UITextField!
+    @IBOutlet weak var adPriceLabel: UILabel!
+    @IBOutlet weak var adPriceTextField: UITextField!
     @IBOutlet weak var descriptionTitleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var imagesTitleLabel: UILabel!
@@ -139,6 +141,8 @@ class NewProductViewController: AbstractController {
         // fonts
         self.adTitleLabel.font = AppFonts.big
         self.adtitleTextField.font = AppFonts.xBigBold
+        self.adPriceLabel.font = AppFonts.big
+        self.adPriceTextField.font = AppFonts.bigBold
         self.descriptionTitleLabel.font = AppFonts.big
         self.descriptionTextView.font = AppFonts.xBigBold
         self.imagesTitleLabel.font = AppFonts.big
@@ -154,6 +158,7 @@ class NewProductViewController: AbstractController {
         self.lblSkillsTitle.text = "JOB_SKILLS".localized
         self.btnAddSkill.setTitle("ADD_BUTTON_TITLE".localized, for: .normal)
         self.adtitleTextField.placeholder = "NEW_PRODUCT_NAME_PLACEHOLDER".localized
+        self.adPriceTextField.placeholder = "NEW_PRODUCT_PRICE_PLACEHOLDER".localized
         self.descriptionTextView.placeholder = "(Optional)".localized
         
         if !editMode{
@@ -171,6 +176,7 @@ class NewProductViewController: AbstractController {
         
         guard let product = tempProduct else {return}
         if let name = product.title {self.adtitleTextField.text = name}
+        if let price = product.price {self.adPriceTextField.text = "\(price)"}
         if let array = product.images{
             var count = 0
             for url in array{
@@ -392,6 +398,14 @@ class NewProductViewController: AbstractController {
         }else{
             tempProduct?.descriptionAr = nil
             tempProduct?.descriptionEn = nil
+        }
+        
+        if let priceStr = adPriceTextField.text , let price = Int(priceStr) {
+            tempProduct?.price = price
+            tempProduct?.price = price
+        }else{
+            tempProduct?.price = 0
+            tempProduct?.price = 0
         }
         
         tempProduct?.ownerID = DataStore.shared.me?.objectId

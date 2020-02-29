@@ -90,8 +90,8 @@ protocol HeaderViewDelegate {
          // colors
         self.bussinessView.backgroundColor = AppColors.skyBlue
         self.nearByView.backgroundColor = AppColors.lightGreen
-        self.pharmacyView.backgroundColor = AppColors.lightPink
-        self.jobsView.backgroundColor = AppColors.yellowLight
+        //self.pharmacyView.backgroundColor = AppColors.lightPink
+        self.jobsView.backgroundColor = AppColors.lightPink
 
     }
     

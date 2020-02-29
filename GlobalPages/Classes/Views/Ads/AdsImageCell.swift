@@ -86,8 +86,8 @@ class AdsImageCell: UICollectionViewCell {
         // fonts
         self.tagLabel.font =  AppFonts.small
         self.titleLabel.font = AppFonts.normalBold
-        self.cityLabel.font = AppFonts.normal
-        self.areaLabel.font = AppFonts.normal
+        self.cityLabel.font = AppFonts.small
+        self.areaLabel.font = AppFonts.small
         
         self.roundedBorder(value: 5.0)
         self.addShadow()

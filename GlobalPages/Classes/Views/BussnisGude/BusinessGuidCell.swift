@@ -15,6 +15,7 @@ class BusinessGuidCell: UICollectionViewCell {
     @IBOutlet weak var businessTitleLabel: UILabel!
     @IBOutlet weak var businessInfoLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var shadowView: UIView!
     
     
     var businessGuide:BusinessGuide?{
@@ -52,8 +53,17 @@ class BusinessGuidCell: UICollectionViewCell {
         super.awakeFromNib()
         self.businessInfoLabel.font = AppFonts.xBigBold
         self.businessInfoLabel.dropShadow()
+        self.addShadow()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.shadowView.layoutIfNeeded()
+        self.layoutIfNeeded()
+        self.shadowView.removeGradientLayer()
+        self.shadowView.applyGradient(colours: [UIColor.clear, UIColor.black.withAlphaComponent(0.4)], direction: .vertical)
+    }
    
     
 }

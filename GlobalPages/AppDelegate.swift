@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
             if let error = error {
                 print("Error fetching remote instance ID: \(error)")
             } else if let result = result {
-                print("Remote instance ID token: \(result.token)")
+                //print("Remote instance ID token: \(result.token)")
                 AppConfig.FCMToken = result.token
                 
                 Messaging.messaging().subscribe(toTopic: "allUsers") { error in
@@ -117,7 +117,7 @@ extension AppDelegate  {
         let userInfo = notification.request.content.userInfo
 
         // Print full message.
-        print(userInfo)
+        //print(userInfo)
         
         // Change this to your preferred presentation option
         completionHandler([.alert , .badge, .sound])
@@ -130,8 +130,8 @@ extension AppDelegate  {
         let userInfo = response.notification.request.content.userInfo
 
         // Print full message.
-        print("tap on on forground app", userInfo)
-        print("content \(response.notification.request.content)")
+        //print("tap on on forground app", userInfo)
+        //print("content \(response.notification.request.content)")
         
         if let volumeId = userInfo["volumeId"] as? String {
             
@@ -187,7 +187,7 @@ extension AppDelegate  {
 
 extension AppDelegate : MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
+        //print("Firebase registration token: \(fcmToken)")
         
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)

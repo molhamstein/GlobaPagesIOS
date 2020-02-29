@@ -181,7 +181,7 @@ extension AdsDescriptionViewController {
     }
     
     @IBAction func nextImage_right(_ sender: UIButton) {
-        if currentImagesIndex == (self.images.count - 1) {
+        if currentImagesIndex >= (self.images.count - 1) {
             return
         }else {
             self.imageCollectionView.scrollToItem(at: IndexPath(row: self.currentImagesIndex + 1 , section: 0), at: .left, animated: true)
@@ -278,7 +278,7 @@ extension AdsDescriptionViewController: LightboxControllerDismissalDelegate, Lig
 extension AdsDescriptionViewController{
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        print("x \(targetContentOffset.pointee.x)")
+        //print("x \(targetContentOffset.pointee.x)")
         let pagenumber = Int(abs(targetContentOffset.pointee.x) / view.frame.width)
         self.pageController.currentPage = pagenumber
     }

@@ -107,6 +107,7 @@ class HomeViewController: AbstractController {
             getVolume()
         }
     }
+    var maxVolumeCount:Int = 20
     
     var pagingTimer = Timer()
     var pagingCurrentIndex = 0
@@ -120,6 +121,7 @@ class HomeViewController: AbstractController {
         super.viewDidLoad()
         self.notificationButton.badge = nil
         DataStore.shared.marketProducts = []
+        LocationHelper.shared.startUpdateLocation()
     }
 
     override func customizeView() {
@@ -336,6 +338,16 @@ class HomeViewController: AbstractController {
         }
     }
     
+    func getMaxVolumesCount(){
+        self.showActivityLoader(true)
+        ApiManager.shared.getVolumesCount() { (success, error, result) in
+            self.showActivityLoader(false)
+            if success {
+                self.maxVolumeCount = result
+            }
+        }
+    }
+    
     func getMarketProducts(){
         self.showActivityLoader(true)
         ApiManager.shared.getMarketProducts(skip: self.products.count, completionBlock: { (success, error, result) in
@@ -383,6 +395,7 @@ class HomeViewController: AbstractController {
                     self.getNotifications()
                     self.fetchUser()
                     self.currentVolume = 0
+                    self.getMaxVolumesCount()
                 }
             }
         })
@@ -705,6 +718,7 @@ extension HomeViewController {
                     menuView.volumeView.isHidden = self.isMarketProducts
                     menuView.contentViewConstraint.constant = self.isMarketProducts ? 127.5 : 162.5
                     menuView.volumeViewConstraint.constant = self.isMarketProducts ? 0 : 35
+                    menuView.layoutSubviews()
                 }
                 
                 return menuView
@@ -744,7 +758,7 @@ extension HomeViewController: MenuViewDelegate {
     }
     
     func preVolume(){
-        if let value = currentVolume , value < 6{
+        if let value = currentVolume , value < maxVolumeCount - 1{
             currentVolume = currentVolume! + 1
         }else{
             self.showMessage(message: "END_OF_VOULUMES".localized, type: .warning)
@@ -779,12 +793,12 @@ extension HomeViewController : PinterestLayoutDelegate {
             if post.type == .image{
                 height += 100 // image heigh
                 height += 10 // half of the tag view
-                height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // city label height
+                height += (post.city?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.small)) ?? 0 // city label height
                 height += 8
-                height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // area label height
+                height += (post.location?.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.small)) ?? 0 // area label height
                 height += 18 // line view + 8 + 8
                 height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normalBold)) ?? 0 // title label height
-                height += 16
+                height += 10
             }
             else{
                 height += (post.title?.getLabelHeight(width: self.view.frame.width * 0.5 - 32, font: AppFonts.normal)) ?? 0 // title label height

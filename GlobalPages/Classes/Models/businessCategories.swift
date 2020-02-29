@@ -77,7 +77,7 @@ public class categoriesFilter: BaseModel {
         }
         
         if let array = json[klocationsKey].array {
-            print(array)
+            //print(array)
             locations = array.map{categoriesFilter(json:$0)
                 
             }

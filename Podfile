@@ -10,7 +10,6 @@ pod 'SDWebImage/WebP'
 pod 'SwiftyJSON'
 pod 'FBSDKLoginKit', '~> 4.24.0', :inhibit_warnings => true
 pod 'FBSDKCoreKit', '~> 4.24.0', :inhibit_warnings => true
-pod 'TwitterKit'
 pod 'Toast-Swift', '~> 5.0.0'
 pod 'GoogleSignIn'
 pod 'NYTPhotoViewer', '~> 1.1.0'

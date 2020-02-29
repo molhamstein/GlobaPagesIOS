@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -36,10 +34,10 @@
                                     <rect key="frame" x="12" y="16" width="616" height="120.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tsz-is-eh1">
-                                            <rect key="frame" x="0.0" y="0.0" width="145" height="120.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bussiness Guides" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9Wf-uQ-syM" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="120.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -48,7 +46,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reB-kx-BBe" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="120.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
                                                     <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -70,10 +68,10 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IGJ-60-mOc">
-                                            <rect key="frame" x="157" y="0.0" width="145" height="120.5"/>
+                                            <rect key="frame" x="209.5" y="0.0" width="197" height="120.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Near By" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hke-FY-gQP" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="120.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="120.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -82,7 +80,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRz-et-HAy" userLabel="Find Near By Button" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="120.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="120.5"/>
                                                     <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -103,11 +101,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="nRz-et-HAy" secondAttribute="bottom" id="npE-FU-fGn"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKk-cQ-Ssn">
-                                            <rect key="frame" x="314" y="0.0" width="145" height="120.5"/>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKk-cQ-Ssn">
+                                            <rect key="frame" x="412.5" y="0.0" width="0.0" height="120.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On Duty Pharmacy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="E6M-9S-AI2" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="120.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="120.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -116,7 +114,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CG0-aP-ZTD" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="120.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="120.5"/>
                                                     <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -138,10 +136,10 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wYP-f8-y3x">
-                                            <rect key="frame" x="471" y="0.0" width="145" height="120.5"/>
+                                            <rect key="frame" x="418.5" y="0.0" width="197.5" height="120.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bussiness Guides" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VOe-qL-lOd" customClass="XUILabel" customModule="GlobalPages" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="120.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -150,7 +148,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uW-Vl-dTp" customClass="XUIButton" customModule="GlobalPages" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="145" height="120.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="197.5" height="120.5"/>
                                                     <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>

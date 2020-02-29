@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,14 +23,23 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GSM-6X-PyQ">
                                 <rect key="frame" x="0.0" y="0.0" width="420" height="96"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4IO-5B-Arl">
+                                <rect key="frame" x="0.0" y="36" width="420" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="LWs-uh-8GX"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9s-zs-hrk">
-                                <rect key="frame" x="16" y="88.5" width="388" height="0.0"/>
+                                <rect key="frame" x="16" y="88" width="388" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="4IO-5B-Arl" firstAttribute="leading" secondItem="QCl-yP-ZEE" secondAttribute="leading" id="1Z2-WR-n3z"/>
+                            <constraint firstAttribute="bottom" secondItem="4IO-5B-Arl" secondAttribute="bottom" id="1z2-Br-phk"/>
                             <constraint firstItem="O9s-zs-hrk" firstAttribute="leading" secondItem="QCl-yP-ZEE" secondAttribute="leading" constant="16" id="3mz-nJ-vU6"/>
                             <constraint firstItem="GSM-6X-PyQ" firstAttribute="leading" secondItem="QCl-yP-ZEE" secondAttribute="leading" id="6dA-Hd-xMV"/>
                             <constraint firstAttribute="bottom" secondItem="O9s-zs-hrk" secondAttribute="bottom" constant="8" id="C86-l9-fHo"/>
@@ -40,6 +47,7 @@
                             <constraint firstAttribute="trailing" secondItem="GSM-6X-PyQ" secondAttribute="trailing" id="kRL-Fn-dEW"/>
                             <constraint firstAttribute="bottom" secondItem="GSM-6X-PyQ" secondAttribute="bottom" id="t1G-HJ-pQg"/>
                             <constraint firstItem="GSM-6X-PyQ" firstAttribute="top" secondItem="QCl-yP-ZEE" secondAttribute="top" id="wOw-sk-lr8"/>
+                            <constraint firstAttribute="trailing" secondItem="4IO-5B-Arl" secondAttribute="trailing" id="wy5-vK-l2k"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
@@ -71,6 +79,7 @@
                 <outlet property="businessInfoLabel" destination="O9s-zs-hrk" id="jzr-JL-36n"/>
                 <outlet property="containerView" destination="QCl-yP-ZEE" id="CcW-RJ-wGn"/>
                 <outlet property="imageView" destination="GSM-6X-PyQ" id="dyr-ry-IX0"/>
+                <outlet property="shadowView" destination="4IO-5B-Arl" id="2zH-PT-gCW"/>
             </connections>
             <point key="canvasLocation" x="112" y="56"/>
         </collectionViewCell>

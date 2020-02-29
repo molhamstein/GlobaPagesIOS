@@ -7,7 +7,6 @@
 
 import UIKit
 import FBSDKLoginKit
-import TwitterKit
 import GoogleSignIn
 
 /// - Social Manager
@@ -85,33 +84,6 @@ class SocialManager: NSObject{
         }
     }
     
-    /// Twitter login request
-    func twitterLogin(controller: UIViewController, completionBlock: @escaping (_ success: Bool, _ error: ServerError?) -> Void) {
-        TWTRTwitter.sharedInstance().logIn(with: controller, completion: { (session, error) in
-            // check errors
-            if (error == nil) {
-                if (session != nil) {
-                    if let accessToken = session?.authToken, let accessTokenSecret = session?.authTokenSecret {
-                        // send access token and secret to start login process
-                        ApiManager.shared.userTwitterLogin(accessToken: accessToken, secret: accessTokenSecret) { (isSuccess, error, user) in
-                            // login success
-                            if (isSuccess) {
-                                completionBlock(true , nil)
-                            } else {
-                                completionBlock(false , error)
-                            }
-                        }
-                    } else {
-                        completionBlock(false , ServerError.socialLoginError)
-                    }
-                } else {
-                    completionBlock(false , ServerError.socialLoginError)
-                }
-            } else {
-                completionBlock(false , ServerError.socialLoginError)
-            }
-        })
-    }
     
     /// Instagram login request
     func instagramLogin(controller: UIViewController, completionBlock: @escaping (_ user: AppUser?, _ success: Bool, _ error: ServerError?) -> Void) {

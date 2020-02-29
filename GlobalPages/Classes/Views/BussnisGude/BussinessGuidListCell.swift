@@ -66,7 +66,7 @@ class BussinessGuidListCell: UICollectionViewCell {
     }
     @IBAction func edit(_ sender: UIButton) {
         delegate?.showEdit(bussiness: bussiness!)
-        print("sdsd")
+        //print("sdsd")
     }
     
     

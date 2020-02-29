@@ -86,7 +86,7 @@ public class Bussiness:BaseModel {
     public var city : City?
     public var location : City?
     public var locationPoint : Points?
-    public var locationPointDB : Points?
+    public var locationPointDB : [Double]?
     public var media:[Media]?
     public var phone1:String?
     public var phone2:String?
@@ -95,11 +95,11 @@ public class Bussiness:BaseModel {
     public var isVip:Bool?
 
     public var lat : Double?{
-        return locationPointDB?.lat
+        return locationPointDB?[0]
     }
     
     public var long : Double?{
-        return locationPointDB?.long
+        return locationPointDB?[1]
     }
     
     public var cover : String?{
@@ -192,10 +192,10 @@ public class Bussiness:BaseModel {
             locationPoint = Points(json: json["locationPoint"])
         }
         
-        if json["locationPointDB"] != JSON.null {
-            self.locationPointDB = Points()
-            self.locationPointDB?.lat = json["locationPointDB"].array?[0].doubleValue
-            self.locationPointDB?.long = json["locationPointDB"].array?[1].doubleValue
+        if json["locationPointDB"] != JSON.null &&  json["locationPointDB"].array?.count ?? 0 >= 2{
+            self.locationPointDB = [0.0, 0.0]
+            self.locationPointDB?[0] = json["locationPointDB"].array?[0].doubleValue ?? 0.0
+            self.locationPointDB?[1] = json["locationPointDB"].array?[1].doubleValue ?? 0.0
         }
 
 //        if json["owner"] != JSON.null {
@@ -255,7 +255,7 @@ public class Bussiness:BaseModel {
         if let value = subCategory{dictionary["subCategory"] = value.dictionaryRepresentation()}
         if let value = locationPoint{dictionary["locationPoint"] = value.dictionaryRepresentation()}
         
-        if let value = locationPointDB { dictionary["locationPointDB"] = [value.lat, value.long] }
+        if let value = locationPointDB { dictionary["locationPointDB"] = [value[0], value[1]] }
 //        if let value = media {dictionary["media"] = value.map{$0.dictionaryRepresentation()}}
         if let value = media {dictionary["covers"] = value.map{$0.dictionaryRepresentation()}}
         if let array = products {dictionary["products"] = array.map{$0.dictionaryRepresentation()}}

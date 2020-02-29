@@ -248,7 +248,7 @@ class ProfileViewController: AbstractController {
         self.emailTitleLabel.text = user.cv?.primaryIdentifier != nil ? "CV_SPECIALTY".localized : "EMAIL".localized
         if let image = user.profilePic { self.imageView.setImageForURL(image, placeholder: #imageLiteral(resourceName: "user_placeholder"))}
         if let birthDate = user.birthdate { birthDateButton.setTitle(DateHelper.getBirthFormatedStringFromDate(birthDate), for: .normal)  }
-        if let count = user.postsCount {self.adsCountLabel.text = "\(count)"}
+        if let balance = user.balance {self.adsCountLabel.text = "\(balance)"}
         if let gender = user.gender{isMale = gender.rawValue == "male" ? true : false}
         getUserCategories()
     }
@@ -270,7 +270,6 @@ class ProfileViewController: AbstractController {
             self.showActivityLoader(false)
             if success{
                 self.posts = result
-                self.adsCountLabel.text = String(self.posts.count)
                 self.myAdsCollectionView.collectionViewLayout.invalidateLayout()
                 self.myAdsCollectionView.reloadData()
                 

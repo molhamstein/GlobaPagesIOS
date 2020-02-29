@@ -300,11 +300,10 @@ class BussinessDescriptionViewController: AbstractController {
             self.imageCollectionView.scrollToItem(at: IndexPath(row: self.currentImagesIndex - 1 , section: 0), at: .left, animated: true)
             self.currentImagesIndex -= 1
         }
-
     }
     
     @IBAction func nextImage_right(_ sender: UIButton) {
-        if currentImagesIndex == (self.images.count - 1) {
+        if currentImagesIndex >= (self.images.count - 1) {
             return
         }else {
             self.imageCollectionView.scrollToItem(at: IndexPath(row: self.currentImagesIndex + 1 , section: 0), at: .left, animated: true)
@@ -323,7 +322,7 @@ class BussinessDescriptionViewController: AbstractController {
     @IBAction func showMapView(_ sender: UIButton) {
         self.mapBGView.isHidden = false
         self.mapView.animateIn(mode: .animateInFromBottom, delay: 0.2)
-        if let lat = bussiness?.locationPointDB?.lat , let long = bussiness?.locationPointDB?.long{
+        if let lat = bussiness?.lat , let long = bussiness?.long{
             let location = CLLocation(latitude: lat , longitude: long)
             centerMapOnLocation(location: location)
         }
@@ -478,7 +477,7 @@ extension BussinessDescriptionViewController: LightboxControllerDismissalDelegat
 extension BussinessDescriptionViewController{
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        print("x \(targetContentOffset.pointee.x)")
+        //print("x \(targetContentOffset.pointee.x)")
         let pagenumber = Int(abs(targetContentOffset.pointee.x) / view.frame.width)
         self.pageController.currentPage = pagenumber
     }

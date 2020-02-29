@@ -52,7 +52,7 @@ public enum filterValues {
         parameters["keyWord"] = keyWord
         parameters["area"] = area?.title
         parameters["subCategory"] = subCategory?.title
-        print(parameters)
+        //print(parameters)
         return parameters
     }
     

@@ -133,6 +133,7 @@ class BussinessGuideViewController: AbstractController {
     var currentPage:Int = 0 {
         didSet {
             if controllerType == .bussinessGuide {
+                
                 getBussiness(lat: lat, lng: long, radius: self.mapView.currentRadius())
             }
         }
@@ -293,7 +294,29 @@ class BussinessGuideViewController: AbstractController {
     func getBussiness(lat:Double? = nil,lng:Double? = nil,radius:Double? = nil){
         self.showActivityLoader(true)
         
-        ApiManager.shared.getBusinesses(keyword:Filter.bussinesGuid.keyWord,catId: Filter.bussinesGuid.category?.Fid,subCatId: Filter.bussinesGuid.subCategory?.Fid, page:currentPage, locationId: Filter.bussinesGuid.area?.Fid, cityId: Filter.bussinesGuid.city?.Fid,lat: lat,lng: lng,radius: radius,pageLimit: pageLimit) { (success, error, result) in
+        // if any filter optiosn is selected then dont limit the search geographically, dont sent the raius or the coords
+        var searchLat = lat
+        var searchLng = lng
+        var searchRadius = radius
+        if listMapViewButton.isSelected {
+            if let _ = Filter.bussinesGuid.keyWord {
+                searchRadius = nil
+                searchLat = nil
+                searchLng = nil
+            }
+            if let _ = Filter.bussinesGuid.city {
+                searchRadius = nil
+                searchLat = nil
+                searchLng = nil
+            }
+            if let _ = Filter.bussinesGuid.category {
+                searchRadius = nil
+                searchLat = nil
+                searchLng = nil
+            }
+        }
+        
+        ApiManager.shared.getBusinesses(keyword:Filter.bussinesGuid.keyWord,catId: Filter.bussinesGuid.category?.Fid,subCatId: Filter.bussinesGuid.subCategory?.Fid, page:currentPage, locationId: Filter.bussinesGuid.area?.Fid, cityId: Filter.bussinesGuid.city?.Fid,lat: searchLat,lng: searchLng,radius: searchRadius,pageLimit: pageLimit) { (success, error, result) in
             self.showActivityLoader(false)
             if success{
                 if (self.isListView){
@@ -449,7 +472,7 @@ class BussinessGuideViewController: AbstractController {
     func getNearByPharmacies(){
         guard  let lat = LocationHelper.shared.myLocation?.lat , let lng = LocationHelper.shared.myLocation?.long else{ return}
         self.showActivityLoader(true)
-        print(DateHelper.getDayNumberFrom(date: Date()))
+        //print(DateHelper.getDayNumberFrom(date: Date()))
         ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: nil, subCatId: nil,codeSubCat:"pharmacies", openDay: "\(DateHelper.getDayNumberFrom(date: Date()))",limit: nil) { (success, error, resutl) in
             
             self.showActivityLoader(false)

@@ -183,16 +183,16 @@ class LocationViewController: AbstractController {
             
         } else {
             if let placemarks = placemarks, let placemark = placemarks.first {
-                print(placemark.name)
-                print(placemark.country)
+                //print(placemark.name)
+                //print(placemark.country)
                 if let locationName = placemark.addressDictionary!["Name"] as? NSString {
-                    print(locationName)
+                    //print(locationName)
                 }
                 
                 // Street address
-                if let street = placemark.addressDictionary!["Thoroughfare"] as? NSString {
-                    print(street)
-                }
+//                if let street = placemark.addressDictionary!["Thoroughfare"] as? NSString {
+//                    print(street)
+//                }
                 
             } else {
                 print("No Matching Addresses Found")

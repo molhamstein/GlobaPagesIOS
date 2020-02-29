@@ -130,7 +130,7 @@ class NewBussinesesViewController: AbstractController {
         if let bussiness = tempBussiness{
             fillData()
             editMode = true
-            print(bussiness.dictionaryRepresentation())
+            //print(bussiness.dictionaryRepresentation())
         }
         else{
             tempBussiness = Bussiness()
@@ -463,9 +463,13 @@ class NewBussinesesViewController: AbstractController {
         }
         
         if let loc  = self.selectedLocation{
-            tempBussiness?.locationPointDB = Points()
-            tempBussiness?.locationPointDB?.lat = loc.lat
-            tempBussiness?.locationPointDB?.long = loc.long
+            tempBussiness?.locationPointDB = [0.0, 0.0]
+            tempBussiness?.locationPointDB?[0] = loc.lat ?? 0.0
+            tempBussiness?.locationPointDB?[1] = loc.long ?? 0.0
+            
+            tempBussiness?.locationPoint = Points()
+            tempBussiness?.locationPoint?.lat = loc.lat
+            tempBussiness?.locationPoint?.long = loc.long
         }
         
         if let address = locationTextField.text , !address.isEmpty {
@@ -570,7 +574,7 @@ class NewBussinesesViewController: AbstractController {
     @IBAction func togglyDay(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         openDays[sender.tag] = sender.isSelected
-        print(openDays)
+        //print(openDays)
     }
     
     @IBAction func showOpenDaysView(_ sender: UIButton) {

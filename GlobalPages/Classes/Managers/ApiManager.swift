@@ -28,7 +28,7 @@ class ApiManager: NSObject {
                 "Accept-Language": AppConfig.currentLanguage.langCode
             ]
             
-            print(httpHeaders)
+            //print(httpHeaders)
             
             return httpHeaders
         }
@@ -293,11 +293,11 @@ class ApiManager: NSObject {
             "password": password,
             "image": ""
         ]
-        print(parameters)
+        //print(parameters)
         
         // build request
         Alamofire.request(signUpURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -351,7 +351,7 @@ class ApiManager: NSObject {
         if categories.count > 0 {
             parameters["postCategoriesIds"] = categories.map{$0.Fid ?? ""}
         }
-        print(parameters)
+        //print(parameters)
         
         // build request
         Alamofire.request(signUpURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -390,7 +390,7 @@ class ApiManager: NSObject {
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
-                print(jsonResponse)
+                //print(jsonResponse)
                 if let code = responseObject.response?.statusCode, code >= 400 {
                     let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, nil)
@@ -837,7 +837,7 @@ class ApiManager: NSObject {
         
         // build request
         Alamofire.request(bottleURL, method: .get,encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -1065,7 +1065,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError, nil)
                 } else {
                     // parse response to data model >> user object
-                    print(jsonResponse)
+                    //print(jsonResponse)
                     let volume = Volume(json: jsonResponse)
                     DataStore.shared.volume = volume
                     completionBlock(true , nil, volume)
@@ -1086,6 +1086,40 @@ class ApiManager: NSObject {
         
     }
     
+    func getVolumesCount(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:Int) -> Void) {
+        // url & parameters
+        let signUpURL = "\(baseURL)/volumes/count?where[status]=activated".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        // build request
+        DataStore.shared.volume = nil
+        Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, 10)
+                } else {
+                    // parse response to data model >> user object
+                    if let jsonRes = jsonResponse.dictionary{
+                        let volumesCount = jsonRes["count"]?.int
+                        completionBlock(true , nil, volumesCount ?? 10)
+                    }else{
+                        completionBlock(true , nil, 10)
+                    }
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, 10)
+                } else {
+                    completionBlock(false, ServerError.connectionError, 10)
+                }
+            }
+        }
+    }
+    
     // posts
     func getPosts(completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Post]) -> Void) {
         // url & parameters
@@ -1100,7 +1134,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError, [])
                 } else {
                     // parse response to data model >> user object
-                    print(jsonResponse)
+                    //print(jsonResponse)
                     if let array = jsonResponse.array{
                         let filters = array.map{Post(json:$0)}
                         DataStore.shared.posts = filters
@@ -1167,7 +1201,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError, [])
                 } else {
                     // parse response to data model >> user object
-                    print(jsonResponse)
+                    //print(jsonResponse)
                     if let array = jsonResponse.array{
                         let filters = array.map{Post(json:$0)}
                         //                        DataStore.shared.posts = filters
@@ -1262,7 +1296,7 @@ class ApiManager: NSObject {
         let signInURL = "\(baseURL)/users/\(uid)/faveoriteCategories"
         // build request
         Alamofire.request(signInURL, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -1296,10 +1330,10 @@ class ApiManager: NSObject {
         // url & parameters
         let signInURL = "\(baseURL)/users/\(uid)/faveoriteCategories"
         let parameters : [String : Any] = category.dictionaryRepresentation()
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -1328,7 +1362,7 @@ class ApiManager: NSObject {
         let signInURL = "\(baseURL)/users/\(uid)/faveoriteCategories/\(category_id)"
         // build request
         Alamofire.request(signInURL, method: .delete, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -1356,15 +1390,15 @@ class ApiManager: NSObject {
         // url & parameters
         guard let token = DataStore.shared.token else {return}
         let signInURL = "\(baseURL)/posts?access_token=\(token)"
-        print(signInURL)
+        //print(signInURL)
         var parameters : [String : Any] = post.dictionaryRepresentation()
         parameters["cityId"] = cityId
         parameters["locationId"] = locationId
-        print(parameters)
+        //print(parameters)
 
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -1402,7 +1436,7 @@ class ApiManager: NSObject {
         parameters.removeValue(forKey: "location")
         parameters.removeValue(forKey: "creationDate")
 //        parameters.removeValue(forKey: "viewsCount")
-        print(parameters)
+        //print(parameters)
         
         // build request
         Alamofire.request(signInURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
@@ -1435,10 +1469,10 @@ class ApiManager: NSObject {
         guard let token = DataStore.shared.token else {return}
         let signInURL = "\(baseURL)/businesses?access_token=\(token)"
         let parameters : [String : Any] =  bussiness.dictionaryRepresentation()
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -1533,7 +1567,7 @@ class ApiManager: NSObject {
         let signInURL = "\(baseURL)/marketProducts/\(product.id)/updateProduct"
         var parameters : [String : Any] = product.dictionaryRepresentation()
         parameters["tags"] = product.tags?.map({$0.idString ?? ""})
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(signInURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -1563,7 +1597,7 @@ class ApiManager: NSObject {
         
         let signInURL = "\(baseURL)/notifications/seenNotification"
         let parameters : [String:Any] = ["notifications": ids]
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -1573,7 +1607,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError)
                 } else {
                     // parse response to data model >> user object
-                    print(jsonResponse)
+                    //print(jsonResponse)
                     completionBlock(true , nil)
                 }
             }
@@ -1595,7 +1629,7 @@ class ApiManager: NSObject {
         
         let deleteURL = "\(baseURL)/notifications/\(id)"
         let parameters : [String:Any] = [:]
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(deleteURL, method: .delete, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -1605,7 +1639,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError)
                 } else {
             
-                    print(jsonResponse)
+                    //print(jsonResponse)
                     completionBlock(true , nil)
                 }
             }
@@ -1627,7 +1661,7 @@ class ApiManager: NSObject {
         
         let deleteURL = "\(baseURL)/notifications/clear"
         let parameters : [String:Any] = [:]
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(deleteURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -1637,7 +1671,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError)
                 } else {
                     
-                    print(jsonResponse)
+                    //print(jsonResponse)
                     completionBlock(true , nil)
                 }
             }
@@ -1661,7 +1695,7 @@ class ApiManager: NSObject {
         
         let parameters : [String:Any] = item.dictionaryRepresentation()
         
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(editURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -1671,7 +1705,7 @@ class ApiManager: NSObject {
                     completionBlock(false , serverError)
                 } else {
                     
-                    print(jsonResponse)
+                    //print(jsonResponse)
                     completionBlock(true , nil)
                 }
             }
@@ -1727,17 +1761,17 @@ class ApiManager: NSObject {
                 parameters += "&units=kilometers"
             }
         }
-           parameters += "&limit=\(pageLimit)&skip=\(page)"
+        parameters += "&limit=\(pageLimit)&skip=\(page)"
 
         // url & parameters
         let signUpURL = "\(baseURL)/businesses/newSearchByLocation\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     
-        print(signUpURL)
+        //print(signUpURL)
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
-                print(jsonResponse)
+                //print(jsonResponse)
                 if let code = responseObject.response?.statusCode, code >= 400 {
                     let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
@@ -1775,12 +1809,12 @@ class ApiManager: NSObject {
     func getBusinessesOnMap(lat:Double,lng:Double,radius:Double,completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Bussiness]) -> Void) {
         // url & parameters
         let signUpURL = "\(baseURL)/businesses/newSearchByLocation?lat=\(lat)&lng=\(lng)&units=kilometers&filter[where][status]=activated&limit=50&maxDistance=\(radius)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        print(signUpURL)
+        //print(signUpURL)
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
-                print(jsonResponse)
+                //print(jsonResponse)
                 if let code = responseObject.response?.statusCode, code >= 400 {
                     let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
@@ -1895,12 +1929,12 @@ class ApiManager: NSObject {
     func getTags(like: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ result:[Tag]) -> Void) {
         // url & parameters
         let url = "\(baseURL)/tags?[filter][where][name][like]=\(like)&[filter][where][name][options]=i".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        print(url)
+        //print(url)
         // build request
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
-                print(jsonResponse)
+                //print(jsonResponse)
                 if let code = responseObject.response?.statusCode, code >= 400 {
                     let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
@@ -1934,7 +1968,7 @@ class ApiManager: NSObject {
         
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -1965,7 +1999,7 @@ class ApiManager: NSObject {
         var parameters : [String : Any] =  cv.dictionaryRepresentation()
         parameters["tags"] = cv.tags?.map({$0.idString ?? ""})
         parameters["cityId"] = cv.city?.Fid ?? ""
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(signInURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
@@ -2017,12 +2051,12 @@ class ApiManager: NSObject {
         // url & parameters
         let signUpURL = "\(baseURL)/jobOpportunities/searchJob\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
-        print(signUpURL)
+        //print(signUpURL)
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
-                print(jsonResponse)
+                //print(jsonResponse)
                 if let code = responseObject.response?.statusCode, code >= 400 {
                     let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
@@ -2056,12 +2090,12 @@ class ApiManager: NSObject {
         // url & parameters
         let signUpURL = "\(baseURL)/jobOpportunities\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
-        print(signUpURL)
+        //print(signUpURL)
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
-                print(jsonResponse)
+                //print(jsonResponse)
                 if let code = responseObject.response?.statusCode, code >= 400 {
                     let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
@@ -2095,12 +2129,12 @@ class ApiManager: NSObject {
         // url & parameters
         let signUpURL = "\(baseURL)/jobOpportunities\(parameters)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
-        print(signUpURL)
+        //print(signUpURL)
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
-                print(jsonResponse)
+                //print(jsonResponse)
                 if let code = responseObject.response?.statusCode, code >= 400 {
                     let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
@@ -2133,12 +2167,12 @@ class ApiManager: NSObject {
         // url & parameters
         let signUpURL = "\(baseURL)/jobOpportunities/\(id)/getJobOpportunity".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
-        print(signUpURL)
+        //print(signUpURL)
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
-                print(jsonResponse)
+                //print(jsonResponse)
                 if let code = responseObject.response?.statusCode, code >= 400 {
                     let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, nil)
@@ -2200,10 +2234,10 @@ class ApiManager: NSObject {
         parameters["categoryId"] = job.category?.Fid
         parameters["subCategoryId"] = job.subCategory?.Fid
         
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -2235,10 +2269,10 @@ class ApiManager: NSObject {
         parameters["categoryId"] = job.category?.Fid
         parameters["subCategoryId"] = job.subCategory?.Fid
         
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(signInURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -2268,10 +2302,10 @@ class ApiManager: NSObject {
         let signInURL = "\(baseURL)/jobOpportunityUsers/\(id)/changeStatus"
         let parameters : [String : Any] =  ["newStatus" : status]
         
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(signInURL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -2300,10 +2334,10 @@ class ApiManager: NSObject {
         let signInURL = "\(baseURL)/jobOpportunities/\(id)"
         let parameters : [String : Any] =  ["status" : "deactive"]
         
-        print(parameters)
+        //print(parameters)
         // build request
         Alamofire.request(signInURL, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
-            print(responseObject)
+            //print(responseObject)
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
                 if let code = responseObject.response?.statusCode, code >= 400 {
@@ -2332,12 +2366,12 @@ class ApiManager: NSObject {
         // url & parameters
         let signUpURL = "\(baseURL)/jobOpportunities/\(id)/employee"
         
-        print(signUpURL)
+        //print(signUpURL)
         // build request
         Alamofire.request(signUpURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
             if responseObject.result.isSuccess {
                 let jsonResponse = JSON(responseObject.result.value!)
-                print(jsonResponse)
+                //print(jsonResponse)
                 if let code = responseObject.response?.statusCode, code >= 400 {
                     let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
                     completionBlock(false , serverError, [])
@@ -2502,6 +2536,7 @@ class ApiManager: NSObject {
             }
         }
     }
+    
 }
 
 

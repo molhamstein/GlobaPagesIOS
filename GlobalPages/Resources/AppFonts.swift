@@ -9,43 +9,43 @@ import UIKit
 
 struct AppFonts {
     // MARK: fonts names
-    private static let fontNameBoldEN = "Antipasto-ExtraBold"
+    private static let fontNameBoldEN = "Cairo-Bold"
     private static let fontNameBoldAR = "Cairo-Bold"
-    private static let fontNameSemiBoldEN = "Antipasto-ExtraBold"
+    private static let fontNameSemiBoldEN = "Cairo-SemiBold"
     private static let fontNameSemiBoldAR = "Cairo-SemiBold"
-    private static let fontNameRegularEN = "Antipasto"
+    private static let fontNameRegularEN = "Cairo-Regular"
     private static let fontNameRegularAR = "Cairo-Regular"
 
     // MARK: font sizes
     private static var sizeXBig:Double {
         if AppConfig.currentLanguage == .arabic{
-            return 20
+            return 18
         }
-        return 26
+        return 24
     }
     private static var sizeBig:Double {
-        if AppConfig.currentLanguage == .arabic{
-            return 16
-        }
-        return 20
-    }
-    private static var sizeNormal:Double{
         if AppConfig.currentLanguage == .arabic{
             return 14
         }
         return 18
     }
+    private static var sizeNormal:Double{
+        if AppConfig.currentLanguage == .arabic{
+            return 12
+        }
+        return 16
+    }
     private static var sizeSmall:Double{
         if AppConfig.currentLanguage == .arabic{
-            return 10
+            return 9
         }
-        return 14
+        return 11
     }
     private static var sizeXSmall:Double{
         if AppConfig.currentLanguage == .arabic{
-            return 8
+            return 7
         }
-        return 12
+        return 11
     }
 
     private enum FontWeight {

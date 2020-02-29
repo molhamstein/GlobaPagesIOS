@@ -68,6 +68,7 @@ public class AppUser: BaseModel, NSCopying {
     public var status: Status?
     public var token: String?
     public var posts:[String]?
+    public var balance:Int?
     
     
     public var postsCount:Int?{
@@ -106,6 +107,9 @@ public class AppUser: BaseModel, NSCopying {
         if let array = json["postCategoriesIds"].array{
             posts = array.map{$0.string!}
         }
+        if let bala = json["balance"].int{
+            balance = bala
+        }
         
         if json[kCV] != JSON.null {
             cv = CV(json: json[kCV])
@@ -139,6 +143,9 @@ public class AppUser: BaseModel, NSCopying {
         if let value = mobileNumber {
             dictionary["phoneNumber"] = value
         }
+        if let value = balance {
+            dictionary["balance"] = value
+        }
         // login type
         if let value = loginType?.rawValue {
             dictionary[kUserLoginTypeKey] = value
@@ -171,6 +178,7 @@ public class AppUser: BaseModel, NSCopying {
             copy.birthdate = birthdate
             copy.loginType = loginType
             copy.status = status
+            copy.balance = balance
             copy.token = token
             copy.mobileNumber = mobileNumber
         return copy

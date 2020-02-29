@@ -110,7 +110,7 @@ struct Location {
         }
         let location = CLLocation(latitude: lat, longitude: long)
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
-            print(location)
+            //print(location)
             
             if error != nil {
                 print("Reverse geocoder failed with error" + error!.localizedDescription)
@@ -165,7 +165,7 @@ struct Location {
                     }
                 }
                 onDone(title, address)
-                print("\(country) + \(city) + \(countryCode)")
+                //print("\(country) + \(city) + \(countryCode)")
             } else {
                 print("Problem with the data received from geocoder")
                 onDone(nil,nil)
