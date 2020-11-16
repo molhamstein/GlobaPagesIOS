@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class NewBussinesesViewController: AbstractController {
     
@@ -127,6 +128,7 @@ class NewBussinesesViewController: AbstractController {
         self.subCategoryViewHeight = 0
         self.subCategoryView.isHidden = true
    
+        Analytics.logEvent("new_business_opened", parameters: [:])
         if let bussiness = tempBussiness{
             fillData()
             editMode = true

@@ -64,6 +64,5 @@ class BusinessGuidCell: UICollectionViewCell {
         self.shadowView.removeGradientLayer()
         self.shadowView.applyGradient(colours: [UIColor.clear, UIColor.black.withAlphaComponent(0.4)], direction: .vertical)
     }
-   
     
 }

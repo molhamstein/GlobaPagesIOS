@@ -15,7 +15,7 @@ struct AppConfig {
     static let appBaseDevURL = "http://192.168.1.7:3000/api"
     //static let appBaseDevURL = "http://104.217.253.15:7000/api"
     static let appBaseLiveURL = "http://almersal.co/api"
-    static let appReviewURL = "https://almersal.co/reviewApi"
+    static let appReviewURL = "https://almersal.co/api-valid"
     static let useLiveAPI: Bool = true
     static let useCurrentLocation: Bool = false
     static var isInReview: Bool = false

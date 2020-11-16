@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Firebase
 
 class HomeViewController: AbstractController {
 
@@ -736,6 +737,7 @@ extension HomeViewController: MenuViewDelegate {
         self.isMarketProducts = false
         self.getFilters()
         self.adsCollectionView.reloadData()
+        Analytics.logEvent("home_newspaper_pressed", parameters: [:])
     }
     
     func marketDidPressed() {
@@ -746,6 +748,7 @@ extension HomeViewController: MenuViewDelegate {
         if self.products.count == 0 {
             self.getMarketProducts()
         }
+        Analytics.logEvent("home_market_pressed", parameters: [:])
     }
 
     func reloadCollectionViewDataWithTeamIndex(_ index: Int) {
@@ -835,23 +838,27 @@ extension HomeViewController:HeaderViewDelegate{
         let nav = UINavigationController(rootViewController: vc)
         
         self.present(nav, animated: true, completion: nil)
+        Analytics.logEvent("home_jobs_btn_pressed", parameters: [:])
     }
     
     
     func bussinessGuiedeCliked() {
         // self.performSegue(withIdentifier: "bussinessGuideSegue", sender: nil)
         self.showMapView(controllerType: .bussinessGuide)
+        Analytics.logEvent("home_guide_btn_pressed", parameters: [:])
     }
     
     
     func findNearByClicked() {
         self.showMapView(controllerType: .nearBy)
         //self.performSegue(withIdentifier: "nearBySege", sender: nil)
+        Analytics.logEvent("home_nearby_btn_pressed", parameters: [:])
     }
     
     func onDutyPharmacyClicked() {
         self.showMapView(controllerType: .pharmacy)
         //        self.performSegue(withIdentifier: "pharmacySegue", sender: nil)
+        Analytics.logEvent("home_pharmacies_btn_pressed", parameters: [:])
     }
     
     func showMapView(controllerType:ControllerType){

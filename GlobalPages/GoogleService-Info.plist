@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>33034891653-8dr1aas3estvra3q7tr7egqk11415p5h.apps.googleusercontent.com</string>
+	<string>33034891653-q5r8rn8soltjohfs75ri3rcm2stbv5fn.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.33034891653-8dr1aas3estvra3q7tr7egqk11415p5h</string>
+	<string>com.googleusercontent.apps.33034891653-q5r8rn8soltjohfs75ri3rcm2stbv5fn</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>33034891653-u7oo6mqm7ldq034hh9utrr0o9fofia80.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDNVTb11odzwKmwSTlM6RBdq967nHU5ujE</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.almersal.ios.app</string>
+	<string>com.almersal.app</string>
 	<key>PROJECT_ID</key>
 	<string>almersal-c46b8</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:33034891653:ios:badd517baf3b150a6114ec</string>
+	<string>1:33034891653:ios:6f56efade147640d6114ec</string>
 	<key>DATABASE_URL</key>
 	<string>https://almersal-c46b8.firebaseio.com</string>
 </dict>

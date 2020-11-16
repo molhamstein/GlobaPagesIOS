@@ -17,5 +17,6 @@ pod 'Firebase/Core'
 pod 'Firebase/Messaging'
 pod 'SKPhotoBrowser', '~>  5.0.0'
 pod 'Lightbox'
+pod 'Firebase/Analytics'
 end
 

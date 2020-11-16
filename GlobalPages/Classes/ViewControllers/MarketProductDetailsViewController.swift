@@ -8,6 +8,7 @@
 
 import UIKit
 import Lightbox
+import Firebase
 
 class MarketProductDetailsViewController: AbstractController {
     
@@ -60,8 +61,7 @@ class MarketProductDetailsViewController: AbstractController {
         self.scrollView.isUserInteractionEnabled = true
         self.scrollViewContent.isUserInteractionEnabled = true
         
-        
-
+        Analytics.logEvent("prod_details_opened", parameters: [:])
         
     }
 
@@ -199,6 +199,7 @@ extension MarketProductDetailsViewController {
     @IBAction func showContactsView(_ sender: UIButton) {
         self.contactsBGView.isHidden = false
         self.contactsMiddleView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+        Analytics.logEvent("show_product_contact", parameters: [:])
     }
 
     @IBAction func hideContactsView(_ sender: UITapGestureRecognizer) {

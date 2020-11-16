@@ -8,6 +8,8 @@
 
 import UIKit
 import SDWebImage
+import Firebase
+
 class NewAdViewController: AbstractController {
     
     
@@ -114,7 +116,7 @@ class NewAdViewController: AbstractController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Analytics.logEvent("new_ad_opened", parameters: [:])
     }
     
     func fillPostData(post:Post){

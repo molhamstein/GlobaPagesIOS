@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CVViewController: AbstractController {
 
@@ -63,6 +64,7 @@ class CVViewController: AbstractController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Analytics.logEvent("cv_opened", parameters: [:])
     }
     
     override func buildUp() {

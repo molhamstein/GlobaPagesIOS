@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AddEditJobViewController: AbstractController {
 
@@ -76,6 +77,7 @@ class AddEditJobViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        Analytics.logEvent("add_job_opened", parameters: [:])
         // Do any additional setup after loading the view.
     }
     

@@ -64,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
                 }
             }
         }
+        
         return true
     }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class NewProductViewController: AbstractController {
     
@@ -91,6 +92,8 @@ class NewProductViewController: AbstractController {
         self.skillsCollectionView.dataSource = self
         self.skillsCollectionView.register(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
         self.skillsCollectionView.collectionViewLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: AppConfig.currentLanguage == .arabic ? .right : .left, verticalAlignment: .top)
+        
+        Analytics.logEvent("new_product_opened", parameters: [:])
         
         self.showNavBackButton = true
         self.subCategoryViewHeight = 0

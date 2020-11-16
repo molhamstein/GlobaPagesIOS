@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Lightbox
+import Firebase
 
 class BussinessDescriptionViewController: AbstractController {
     
@@ -102,6 +103,7 @@ class BussinessDescriptionViewController: AbstractController {
         addProductButton.isHidden = !editMode
         fillData()
 
+        Analytics.logEvent("business_details_opened", parameters: [:])
     }
     
     override func buildUp() {
@@ -274,7 +276,8 @@ class BussinessDescriptionViewController: AbstractController {
     
     @IBAction func showContactsView(_ sender: UIButton) {
         self.contactsBGView.isHidden = false
-    self.contactsMiddleView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+        self.contactsMiddleView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+        Analytics.logEvent("show_business_contact", parameters: [:])
     }
     
     @IBAction func hideContactsView(_ sender: UITapGestureRecognizer) {

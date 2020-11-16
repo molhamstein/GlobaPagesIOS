@@ -9,6 +9,7 @@
 import UIKit
 import SKPhotoBrowser
 import Lightbox
+import Firebase
 
 class AdsDescriptionViewController: AbstractController {
 
@@ -98,6 +99,7 @@ class AdsDescriptionViewController: AbstractController {
             self.phone1Label.text = phone1
             
         }
+        Analytics.logEvent("ad_details_opened", parameters: [:])
     }
     
     override func customizeView() {
@@ -196,6 +198,7 @@ extension AdsDescriptionViewController {
     @IBAction func showContactsView(_ sender: UIButton) {
         self.contactsBGView.isHidden = false
         self.contactsMiddleView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+        Analytics.logEvent("show_ad_contact", parameters: [:])
     }
 
     @IBAction func hideContactsView(_ sender: UITapGestureRecognizer) {

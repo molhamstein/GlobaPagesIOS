@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class JobDescriptionViewController: AbstractController {
 
@@ -74,6 +75,8 @@ class JobDescriptionViewController: AbstractController {
         self.skillsCollectionView.dataSource = self
         self.skillsCollectionView.register(UINib(nibName: "SkillCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkillCollectionViewCell")
         self.skillsCollectionView.collectionViewLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: AppConfig.currentLanguage == .arabic ? .right : .left, verticalAlignment: .top)
+        
+        Analytics.logEvent("job_details_opened", parameters: [:])
     }
 
     override func buildUp() {

@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleSignIn
+import Firebase
 
 enum ViewType {
     case login
@@ -95,6 +96,8 @@ class LoginViewController: AbstractController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showNavCloseButton = true
+        
+        Analytics.logEvent("login_opened", parameters: [:])
     }
     
     override func viewDidLayoutSubviews() {
@@ -262,6 +265,7 @@ class LoginViewController: AbstractController {
                                 self.loginButton.isLoading = false
                                 self.dismiss(animated: true, completion: { })
                                 self.performSegue(withIdentifier: "loginHomeSegue", sender: self)
+                                Analytics.logEvent("login_success", parameters: [:])
                               //  DataStore.shared.fetchBaseData()
                                 
                             } else {
@@ -341,7 +345,7 @@ class LoginViewController: AbstractController {
 
                             self.hideView(withType: .signup)
                             self.showView(withType: .signupSuccess)
-
+                            Analytics.logEvent("signup_success", parameters: [:])
                         } else {
                             self.showMessage(message:(error?.type.errorMessage)!, type: .error)
                         }

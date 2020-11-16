@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class EditCVViewController: AbstractController {
     
@@ -62,6 +63,7 @@ class EditCVViewController: AbstractController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Analytics.logEvent("cv_edit_opened", parameters: [:])
     }
     
     override func viewWillLayoutSubviews() {
