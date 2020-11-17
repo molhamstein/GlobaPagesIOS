@@ -134,7 +134,8 @@ class BussinessGuideViewController: AbstractController {
         didSet {
             if controllerType == .bussinessGuide {
                 
-                getBussiness(lat: lat, lng: long, radius: self.mapView.currentRadius())
+                //getBussiness(lat: lat, lng: long, radius: self.mapView.currentRadius())
+                    getBussiness()
             }
         }
     }
@@ -148,17 +149,14 @@ class BussinessGuideViewController: AbstractController {
             if isListView{
                 switchToListMode()
             }else{
-                switchToMapViewMode()
+               // switchToMapViewMode()
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        customizeMap()
-        lat = LocationHelper.shared.myLocation?.lat ?? DefaultLocation.latitude
-        long = LocationHelper.shared.myLocation?.long ?? DefaultLocation.longitude
-        
+       
         // inizilaze page
         DataStore.shared.bussiness = []
         
@@ -168,6 +166,8 @@ class BussinessGuideViewController: AbstractController {
     override func buildUp() {
         super.buildUp()
         getFilters()
+
+        
     }
     
     func loadData() {
@@ -177,10 +177,8 @@ class BussinessGuideViewController: AbstractController {
         } else if controllerType == .bussinessGuide {
             isListView = true
             isFirstTime = true
-            setMyLocation()
+            //setMyLocation()
             getBussinessFilters()
-        } else if controllerType == .pharmacy {
-            getNearByPharmacies()
         }
     }
     
@@ -231,17 +229,18 @@ class BussinessGuideViewController: AbstractController {
             self.categoryView.animateIn(mode: .animateInFromLeft, delay: 0.2)
             self.subCategoryView.isHidden = true
         }
+
     }
     
     //
-    func customizeMap(){
-        mapView.delegate = self
-        // my location Settings
-        mapView.showsUserLocation = true
-        NotificationCenter.default.addObserver(self, selector: #selector(setMyLocation), name: .notificationLocationChanged, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(show3NearBy), name: .notificationShow3NearByChanged, object: nil)
-        LocationHelper.shared.startUpdateLocation()
-    }
+//    func customizeMap(){
+//        mapView.delegate = self
+//        // my location Settings
+//        mapView.showsUserLocation = true
+//        NotificationCenter.default.addObserver(self, selector: #selector(setMyLocation), name: .notificationLocationChanged, object: nil)
+////        NotificationCenter.default.addObserver(self, selector: #selector(show3NearBy), name: .notificationShow3NearByChanged, object: nil)
+//        LocationHelper.shared.startUpdateLocation()
+//    }
     
     override func customizeView() {
         super.customizeView()
@@ -289,34 +288,36 @@ class BussinessGuideViewController: AbstractController {
         // gradiant
         self.tagView.applyGradient(colours: [AppColors.yellowDark,AppColors.yellowLight], direction: .diagonal)
         self.showNavBlackBackButton = true
+        
+
     }
     
     func getBussiness(lat:Double? = nil,lng:Double? = nil,radius:Double? = nil){
         self.showActivityLoader(true)
         
         // if any filter optiosn is selected then dont limit the search geographically, dont sent the raius or the coords
-        var searchLat = lat
-        var searchLng = lng
-        var searchRadius = radius
-        if listMapViewButton.isSelected {
-            if let _ = Filter.bussinesGuid.keyWord {
-                searchRadius = nil
-                searchLat = nil
-                searchLng = nil
-            }
-            if let _ = Filter.bussinesGuid.city {
-                searchRadius = nil
-                searchLat = nil
-                searchLng = nil
-            }
-            if let _ = Filter.bussinesGuid.category {
-                searchRadius = nil
-                searchLat = nil
-                searchLng = nil
-            }
-        }
+//        var searchLat = lat
+//        var searchLng = lng
+//        var searchRadius = radius
+//        if listMapViewButton.isSelected {
+//            if let _ = Filter.bussinesGuid.keyWord {
+//                searchRadius = nil
+//                searchLat = nil
+//                searchLng = nil
+//            }
+//            if let _ = Filter.bussinesGuid.city {
+//                searchRadius = nil
+//                searchLat = nil
+//                searchLng = nil
+//            }
+//            if let _ = Filter.bussinesGuid.category {
+//                searchRadius = nil
+//                searchLat = nil
+//                searchLng = nil
+//            }
+//        }
         
-        ApiManager.shared.getBusinesses(keyword:Filter.bussinesGuid.keyWord,catId: Filter.bussinesGuid.category?.Fid,subCatId: Filter.bussinesGuid.subCategory?.Fid, page:currentPage, locationId: Filter.bussinesGuid.area?.Fid, cityId: Filter.bussinesGuid.city?.Fid,lat: searchLat,lng: searchLng,radius: searchRadius,pageLimit: pageLimit) { (success, error, result) in
+        ApiManager.shared.getBusinesses(keyword:Filter.bussinesGuid.keyWord,catId: Filter.bussinesGuid.category?.Fid,subCatId: Filter.bussinesGuid.subCategory?.Fid, page:currentPage, locationId: Filter.bussinesGuid.area?.Fid, cityId: Filter.bussinesGuid.city?.Fid,lat: lat,lng: lng,radius: radius,pageLimit: pageLimit) { (success, error, result) in
             self.showActivityLoader(false)
             if success{
                 if (self.isListView){
@@ -329,7 +330,7 @@ class BussinessGuideViewController: AbstractController {
                 }else{
                     DataStore.shared.bussiness =  result
                 }
-                self.setBussinessOnMap()
+          //      self.setBussinessOnMap()
                 self.bussinessGuideCollectionView.reloadData()
             }
             if error != nil{
@@ -340,23 +341,23 @@ class BussinessGuideViewController: AbstractController {
         }
     }
     
-    
-    func getBussinessOnMaps(lat:Double,lng:Double,radius:Double){
-        self.showActivityLoader(true)
-        
-        ApiManager.shared.getBusinessesOnMap(lat: lat, lng: lng, radius: radius, completionBlock:  { (success, error, result) in
-            self.showActivityLoader(false)
-            if success{
-                DataStore.shared.bussiness =  result
-                self.setBussinessOnMap()
-            }
-            if error != nil{
-                if let msg = error?.errorName{
-                    self.showMessage(message: msg, type: .error)
-                }
-            }
-        })
-    }
+//
+//    func getBussinessOnMaps(lat:Double,lng:Double,radius:Double){
+//        self.showActivityLoader(true)
+//
+//        ApiManager.shared.getBusinessesOnMap(lat: lat, lng: lng, radius: radius, completionBlock:  { (success, error, result) in
+//            self.showActivityLoader(false)
+//            if success{
+//                DataStore.shared.bussiness =  result
+//                self.setBussinessOnMap()
+//            }
+//            if error != nil{
+//                if let msg = error?.errorName{
+//                    self.showMessage(message: msg, type: .error)
+//                }
+//            }
+//        })
+//    }
     
     func getFilters(){
         if !DataStore.shared.didChangedFilters && !isFirstTime {
@@ -427,7 +428,7 @@ class BussinessGuideViewController: AbstractController {
         overLayView.isHidden = false
         bussinessGuideCollectionView.isHidden = false
         bussinessGuideCollectionView.animateIn(mode: .animateInFromLeft, delay: 0.3)
-        listMapViewButton.isSelected = true
+       // listMapViewButton.isSelected = true
     }
     
     
@@ -451,42 +452,42 @@ class BussinessGuideViewController: AbstractController {
         controllerType.showFilters()
     }
     
-    func getNearByBusness(){
-        guard let catId = selectedCategory?.Fid, let subCatId = selectedSubCategory?.Fid , let lat = LocationHelper.shared.myLocation?.lat , let lng = LocationHelper.shared.myLocation?.long else{ return}
-        self.showActivityLoader(true)
-        ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: catId, subCatId: subCatId,codeSubCat:nil, openDay: nil,limit: "100") { (success, error, resutl) in
-            
-            self.showActivityLoader(false)
-            if success{
-                self.nearByView.animateIn(mode: .animateOutToBottom, delay: 0.2)
-                self.setBussinessOnMap()
-            }
-            if error != nil{
-                if let msg = error?.errorName {
-                    self.showMessage(message: msg, type: .error)
-                }
-            }
-        }
-    }
+//    func getNearByBusness(){
+//        guard let catId = selectedCategory?.Fid, let subCatId = selectedSubCategory?.Fid , let lat = LocationHelper.shared.myLocation?.lat , let lng = LocationHelper.shared.myLocation?.long else{ return}
+//        self.showActivityLoader(true)
+//        ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: catId, subCatId: subCatId,codeSubCat:nil, openDay: nil,limit: "100") { (success, error, resutl) in
+//
+//            self.showActivityLoader(false)
+//            if success{
+//                self.nearByView.animateIn(mode: .animateOutToBottom, delay: 0.2)
+//                self.setBussinessOnMap()
+//            }
+//            if error != nil{
+//                if let msg = error?.errorName {
+//                    self.showMessage(message: msg, type: .error)
+//                }
+//            }
+//        }
+//    }
     
-    func getNearByPharmacies(){
-        guard  let lat = LocationHelper.shared.myLocation?.lat , let lng = LocationHelper.shared.myLocation?.long else{ return}
-        self.showActivityLoader(true)
-        //print(DateHelper.getDayNumberFrom(date: Date()))
-        ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: nil, subCatId: nil,codeSubCat:"pharmacies", openDay: "\(DateHelper.getDayNumberFrom(date: Date()))",limit: nil) { (success, error, resutl) in
-            
-            self.showActivityLoader(false)
-            if success{
-                
-                self.setBussinessOnMap()
-            }
-            if error != nil{
-                if let msg = error?.errorName {
-                    self.showMessage(message: msg, type: .error)
-                }
-            }
-        }
-    }
+//    func getNearByPharmacies(){
+//        guard  let lat = LocationHelper.shared.myLocation?.lat , let lng = LocationHelper.shared.myLocation?.long else{ return}
+//        self.showActivityLoader(true)
+//        //print(DateHelper.getDayNumberFrom(date: Date()))
+//        ApiManager.shared.getNearByBusinesses(lat: "\(lat)", lng: "\(lng)", catId: nil, subCatId: nil,codeSubCat:"pharmacies", openDay: "\(DateHelper.getDayNumberFrom(date: Date()))",limit: nil) { (success, error, resutl) in
+//
+//            self.showActivityLoader(false)
+//            if success{
+//
+//                self.setBussinessOnMap()
+//            }
+//            if error != nil{
+//                if let msg = error?.errorName {
+//                    self.showMessage(message: msg, type: .error)
+//                }
+//            }
+//        }
+//    }
     
     @IBAction func goToBussinessDescription(_ sender: UIButton) {
         let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: "BussinessDescriptionViewController") as! BussinessDescriptionViewController
@@ -599,7 +600,7 @@ extension BussinessGuideViewController:UICollectionViewDelegate,UICollectionView
             ///
             
             self.selectedSubCategory = self.subCategoryFilters[indexPath.item]
-            self.getNearByBusness()
+          //  self.getNearByBusness()
         }
     }
 }
@@ -656,6 +657,7 @@ extension BussinessGuideViewController:UICollectionViewDelegateFlowLayout{
 // filter cell Delegate
 extension BussinessGuideViewController:filterCellProtocol{
     func removeFilter(filter: categoriesFilter) {
+        
         filter.filtervalue?.removeFilter(fltr: Filter.bussinesGuid)
         DataStore.shared.didChangedFilters = true
         getFilters()
@@ -664,123 +666,123 @@ extension BussinessGuideViewController:filterCellProtocol{
 }
 
 
-// map kit delegate
-extension BussinessGuideViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = "MyPin"
-        if annotation.isKind(of: MKUserLocation.self) {
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.image = UIImage(named: "my_pin")
-            annotationView?.canShowCallout = false
-            let detailButton = UIButton(type: .detailDisclosure)
-            annotationView?.rightCalloutAccessoryView = detailButton
-            annotationView?.tag = 1
-            return annotationView
-        }else{
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            
-            if annotationView == nil {
-                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView?.image = UIImage(named: "pin_black")
-                annotationView?.canShowCallout = false
-                let detailButton = UIButton(type: .detailDisclosure)
-                annotationView?.rightCalloutAccessoryView = detailButton
-            } else {
-                annotationView?.annotation = annotation
-            }
-            return annotationView
-        }
-    }
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if view.tag == 1 {
-            return
-        }
-        view.image = UIImage(named : "pin_yellow")
-        if let title = view.annotation?.title, let tag = Int(title!){
-            selectedBussiness = controllerType.bussiness()[tag]
-            self.bottomView.isHidden = false
-            self.setBottomViewWith(bussiness: selectedBussiness!)
-            self.bottomView.animateIn(mode: .animateInFromBottom, delay: 0.2)
-        }
-    }
-    
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        if view.tag == 1 {
-            return
-        }
-        view.image = UIImage(named : "pin_black")
-        self.bottomView.animateIn(mode: .animateOutToBottom, delay: 0.2)
-        self.bottomView.isHidden = true
-    }
-    
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        if controllerType == .bussinessGuide {
-            if isListView {return}
-            let centralLocationCoordinate = mapView.centerCoordinate
-            let radius = self.mapView.currentRadius()
-            lat = centralLocationCoordinate.latitude
-            long = centralLocationCoordinate.longitude
-            currentPage = 0
-        }
-    }
-    
-}
-
-// maps function
-extension BussinessGuideViewController{
-    func switchToMapViewMode(){
-        bussinessGuideCollectionView.animateIn(mode: .animateOutToLeft, delay: 0.2)
-        bussinessGuideCollectionView.isHidden = true
-        overLayView.isHidden = true
-        listMapViewButton.isSelected = false
-        
-//        getBussiness(lat: LocationHelper.shared.myLocation?.lat ?? DefaultLocation.latitude, lng: LocationHelper.shared.myLocation?.long ?? DefaultLocation.longitude, radius: self.mapView.currentRadius())
-    }
-    
-    @objc func setMyLocation(){
-        let location = CLLocation(latitude: (LocationHelper.shared.myLocation?.lat) ?? DefaultLocation.latitude, longitude: (LocationHelper.shared.myLocation?.long) ?? DefaultLocation.longitude)
-        let regionRadius: CLLocationDistance = 12000
-        let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
-        self.mapView.setRegion(viewRegion, animated: true)
-        
-        if controllerType == .pharmacy {
-            getNearByPharmacies()
-        }
-    }
-    
-    
-    // add pin to the mapView
-    func centerMapOnLocation(location: CLLocation) {
-        self.view.endEditing(true)
-        let regionRadius: CLLocationDistance = 12000
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
-        setAnnotaion(location: location,tag: -1)
-    }
-    
-    func setAnnotaion(location:CLLocation,tag:Int){
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        annotation.title = "\(tag)"
-        self.mapView.addAnnotation(annotation)
-    }
-    
-    func setBussinessOnMap(){
-        mapView.removeAnnotations(mapView.annotations)
-        var i = 0
-        for bussines in controllerType.bussiness(){
-            if let lat = bussines.lat,let long = bussines.long {
-                let loc1 = CLLocation(latitude: lat ,longitude: long)
-                setAnnotaion(location: loc1,tag: i)
-                i += 1
-            }
-        }
-    }
-    
-    
-}
+//// map kit delegate
+//extension BussinessGuideViewController: MKMapViewDelegate {
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        let identifier = "MyPin"
+//        if annotation.isKind(of: MKUserLocation.self) {
+//            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+//
+//            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            annotationView?.image = UIImage(named: "my_pin")
+//            annotationView?.canShowCallout = false
+//            let detailButton = UIButton(type: .detailDisclosure)
+//            annotationView?.rightCalloutAccessoryView = detailButton
+//            annotationView?.tag = 1
+//            return annotationView
+//        }else{
+//            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+//
+//            if annotationView == nil {
+//                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//                annotationView?.image = UIImage(named: "pin_black")
+//                annotationView?.canShowCallout = false
+//                let detailButton = UIButton(type: .detailDisclosure)
+//                annotationView?.rightCalloutAccessoryView = detailButton
+//            } else {
+//                annotationView?.annotation = annotation
+//            }
+//            return annotationView
+//        }
+//    }
+//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+//        if view.tag == 1 {
+//            return
+//        }
+//        view.image = UIImage(named : "pin_yellow")
+//        if let title = view.annotation?.title, let tag = Int(title!){
+//            selectedBussiness = controllerType.bussiness()[tag]
+//            self.bottomView.isHidden = false
+//            self.setBottomViewWith(bussiness: selectedBussiness!)
+//            self.bottomView.animateIn(mode: .animateInFromBottom, delay: 0.2)
+//        }
+//    }
+//
+//    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+//        if view.tag == 1 {
+//            return
+//        }
+//        view.image = UIImage(named : "pin_black")
+//        self.bottomView.animateIn(mode: .animateOutToBottom, delay: 0.2)
+//        self.bottomView.isHidden = true
+//    }
+//
+//    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+//        if controllerType == .bussinessGuide {
+//            if isListView {return}
+//            let centralLocationCoordinate = mapView.centerCoordinate
+//            let radius = self.mapView.currentRadius()
+//            lat = centralLocationCoordinate.latitude
+//            long = centralLocationCoordinate.longitude
+//            currentPage = 0
+//        }
+//    }
+//
+//}
+//
+//// maps function
+//extension BussinessGuideViewController{
+//    func switchToMapViewMode(){
+//        bussinessGuideCollectionView.animateIn(mode: .animateOutToLeft, delay: 0.2)
+//        bussinessGuideCollectionView.isHidden = true
+//        overLayView.isHidden = true
+//        listMapViewButton.isSelected = false
+//
+////        getBussiness(lat: LocationHelper.shared.myLocation?.lat ?? DefaultLocation.latitude, lng: LocationHelper.shared.myLocation?.long ?? DefaultLocation.longitude, radius: self.mapView.currentRadius())
+//    }
+//
+//    @objc func setMyLocation(){
+//        let location = CLLocation(latitude: (LocationHelper.shared.myLocation?.lat) ?? DefaultLocation.latitude, longitude: (LocationHelper.shared.myLocation?.long) ?? DefaultLocation.longitude)
+//        let regionRadius: CLLocationDistance = 12000
+//        let viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
+//        self.mapView.setRegion(viewRegion, animated: true)
+//
+//        if controllerType == .pharmacy {
+//            getNearByPharmacies()
+//        }
+//    }
+//
+//
+//    // add pin to the mapView
+//    func centerMapOnLocation(location: CLLocation) {
+//        self.view.endEditing(true)
+//        let regionRadius: CLLocationDistance = 12000
+//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius, regionRadius)
+//        mapView.setRegion(coordinateRegion, animated: true)
+//        setAnnotaion(location: location,tag: -1)
+//    }
+//
+//    func setAnnotaion(location:CLLocation,tag:Int){
+//        let annotation = MKPointAnnotation()
+//        annotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+//        annotation.title = "\(tag)"
+//        self.mapView.addAnnotation(annotation)
+//    }
+//
+//    func setBussinessOnMap(){
+//        mapView.removeAnnotations(mapView.annotations)
+//        var i = 0
+//        for bussines in controllerType.bussiness(){
+//            if let lat = bussines.lat,let long = bussines.long {
+//                let loc1 = CLLocation(latitude: lat ,longitude: long)
+//                setAnnotaion(location: loc1,tag: i)
+//                i += 1
+//            }
+//        }
+//    }
+//
+//
+//}
 
 class CustomPointAnnotation: MKPointAnnotation {
     var pinCustomImageName:String!

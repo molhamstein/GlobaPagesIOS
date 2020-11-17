@@ -104,6 +104,7 @@ class ActionShowFilters: Action {
         ViewController.categoryfiltertype = type
         let nav = UINavigationController(rootViewController: ViewController)
                 UIApplication.visibleViewController()?.present(nav, animated: true, completion: nil)
+        
     }
 }
 

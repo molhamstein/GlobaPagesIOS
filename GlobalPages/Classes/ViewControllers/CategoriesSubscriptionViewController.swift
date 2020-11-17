@@ -48,8 +48,7 @@ class CategoriesSubscriptionViewController: AbstractController {
         self.navigationController?.navigationBar.tintColor = .white
 //        getBussinessFilters()
     }
-
-
+    
     override func customizeView() {
         self.view.backgroundColor = UIColor.black.withAlphaComponent(5.0)
         getUserCategories()
@@ -127,8 +126,8 @@ class CategoriesSubscriptionViewController: AbstractController {
                     self.showMessage(message: msg, type: .error)
                 }
             }
+            
         }
-
     }
 
 }
