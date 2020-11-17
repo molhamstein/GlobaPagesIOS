@@ -348,7 +348,7 @@ class BussinessGuideViewController: AbstractController {
 //        ApiManager.shared.getBusinessesOnMap(lat: lat, lng: lng, radius: radius, completionBlock:  { (success, error, result) in
 //            self.showActivityLoader(false)
 //            if success{
-//                DataStore.shared.bussiness =  result
+//                DataStore.shared.bussißßness =  result
 //                self.setBussinessOnMap()
 //            }
 //            if error != nil{
