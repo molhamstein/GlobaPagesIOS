@@ -74,9 +74,9 @@ class MarketProductDetailsViewController: AbstractController {
         lblTitle.font = AppFonts.normalSemiBold
 //        lblCityTitle.font = AppFonts.smallSemiBold
       //  lblCity.font = AppFonts.normalSemiBold
-        //lblAreaTitle.font = AppFonts.smallSemiBold
+        lblAreaTitle.font = AppFonts.smallSemiBold
         lblSkillsTitle.font = AppFonts.normalBold
-       // lblArea.font = AppFonts.normalSemiBold
+        lblArea.font = AppFonts.normalSemiBold
         lblPriceTitle.font = AppFonts.smallSemiBold
         lblPrice.font = AppFonts.normalSemiBold
         lblDescriptionTitle.font = AppFonts.normalBold
@@ -89,7 +89,7 @@ class MarketProductDetailsViewController: AbstractController {
         lblDateTitle.text = "ADS_DESC_DATE_LABEL".localized
         lblPriceTitle.text = "ADS_DESC_PRICE".localized
         //lblCityTitle.text = "ADS_DESC_CITY_LABEL".localized
-        //lblAreaTitle.text = "ADS_DESC_AREA_LABEL".localized
+        lblAreaTitle.text = "ADS_DESC_AREA_LABEL".localized
         lblDescriptionTitle.text = "ADS_DESC_DESCRIPTION".localized
         lblGalleryTitle.text = "ADS_DESC_GALLERY".localized
         btnTopContact.setTitle("ADS_DESC_CONTACT_BUTTON".localized, for: .normal)
@@ -148,7 +148,7 @@ class MarketProductDetailsViewController: AbstractController {
         if let value = marketProduct?.creationDate{lblDate.text = DateHelper.getStringFromDate(value)}
         self.lblTitle.text = marketProduct?.title
         //self.lblCity.text = marketProduct?.city?.title
-        //self.lblArea.text = marketProduct?.location?.title
+        self.lblArea.text = marketProduct?.location?.title
         self.lblCategory.text = marketProduct?.category?.title
         self.lblSubCategory.text = marketProduct?.subCategory?.title
         self.lblDescription.text = marketProduct?.description
