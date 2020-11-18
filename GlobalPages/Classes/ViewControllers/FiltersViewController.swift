@@ -51,11 +51,15 @@ class FiltersViewController: AbstractController {
     @IBOutlet weak var subCategoryCollectionView: UICollectionView!
     
     
+    // CountryView
+    @IBOutlet weak var countryView: UIView!
+    @IBOutlet weak var countryTitleLabel: UILabel!
+    @IBOutlet weak var countryCollectionView: UICollectionView!
+    
     // cityView
     @IBOutlet weak var cityView: UIView!
     @IBOutlet weak var cityTitleLabel: UILabel!
     @IBOutlet weak var cityCollectionView: UICollectionView!
-    
     // area View
     @IBOutlet weak var areaView: UIView!
     @IBOutlet weak var areaTitleLabel: UILabel!
@@ -87,7 +91,7 @@ class FiltersViewController: AbstractController {
         return []
     }
     
-    
+    var countries:[categoriesFilter] = []
     var cities:[categoriesFilter] = []
     var selectedCity:categoriesFilter?
     var areas:[categoriesFilter] {
@@ -99,9 +103,9 @@ class FiltersViewController: AbstractController {
     
     var categoriesCount = 0
     var subCategoriesCount = 0
+    var countriesCount = 0
     var citiesCount = 0
     var areasCount = 0
-    
     var isInitialized = false
     
     override func viewDidLoad() {
@@ -124,7 +128,7 @@ class FiltersViewController: AbstractController {
         }
 //        self.cities = DataStore.shared.citiesfilters
         getCityFilters()
-        
+        getCountryFilter()
     }
     
     
@@ -156,6 +160,7 @@ class FiltersViewController: AbstractController {
         self.keyWordTextField.placeholder = "FILTER_KEYWORD_TEXT_FIELD_PLACEHOLDER".localized
         self.categoryTitleLabel.text = "FILTER_CATEGORY_TITLE".localized
         self.subCategoryTitleLabel.text = "FILTER_SUB_CATEGORY_TITLE".localized
+        self.countryTitleLabel.text = "Country"     //not added to filter yet
         self.cityTitleLabel.text = "FILTER_CITY_TITLE".localized
         self.areaTitleLabel.text = "FILTER_AREA_TITLE".localized
         self.applyButton.setTitle("FILTER_APPLY_BUTTON_TITLE".localized, for: .normal)
@@ -166,6 +171,7 @@ class FiltersViewController: AbstractController {
         self.keyWordTextField.font = AppFonts.bigBold
         self.categoryTitleLabel.font = AppFonts.normalBold
         self.subCategoryTitleLabel.font = AppFonts.normalBold
+        self.countryTitleLabel.font = AppFonts.normalBold
         self.cityTitleLabel.font = AppFonts.normalBold
         self.areaTitleLabel.font = AppFonts.normalBold
         self.applyButton.titleLabel?.font = AppFonts.bigBold
@@ -173,6 +179,7 @@ class FiltersViewController: AbstractController {
         self.searchKeyWordTitleLabel.textColor = AppColors.grayDark
         self.categoryTitleLabel.textColor = AppColors.grayDark
         self.subCategoryTitleLabel.textColor = AppColors.grayDark
+        self.countryTitleLabel.textColor = AppColors.grayDark
         self.cityTitleLabel.textColor = AppColors.grayDark
         self.areaTitleLabel.textColor = AppColors.grayDark
         // style
@@ -195,6 +202,7 @@ class FiltersViewController: AbstractController {
         
         self.categoryCollectionView.register(nib, forCellWithReuseIdentifier: FiltersViewController.filtterCellId)
         self.subCategoryCollectionView.register(nib, forCellWithReuseIdentifier: FiltersViewController.filtterCellId)
+        self.countryCollectionView.register(nib, forCellWithReuseIdentifier: FiltersViewController.filtterCellId)
         self.cityCollectionView.register(nib, forCellWithReuseIdentifier: FiltersViewController.filtterCellId)
         self.areaCollectionView.register(nib, forCellWithReuseIdentifier: FiltersViewController.filtterCellId)
         
@@ -202,6 +210,8 @@ class FiltersViewController: AbstractController {
         self.categoryCollectionView.dataSource = self
         self.subCategoryCollectionView.delegate = self
         self.subCategoryCollectionView.dataSource = self
+        self.countryCollectionView.dataSource = self
+        self.countryCollectionView.delegate = self
         self.cityCollectionView.dataSource = self
         self.cityCollectionView.delegate = self
         self.areaCollectionView.delegate = self
@@ -209,9 +219,11 @@ class FiltersViewController: AbstractController {
         
         self.categoryCollectionView.allowsMultipleSelection = false
         self.subCategoryCollectionView.allowsMultipleSelection = false
+        self.countryCollectionView.allowsMultipleSelection = false
         self.cityCollectionView.allowsMultipleSelection = false
         self.areaCollectionView.allowsMultipleSelection = false
         
+        //self.countryCollectionView.dataSource?.
         
     }
     
@@ -317,6 +329,7 @@ class FiltersViewController: AbstractController {
         ApiManager.shared.getCities { (success, error, result,cats) in
             self.showActivityLoader(false)
             if success{
+                
                 self.cities = result
                 self.citiesCount = self.cities.count
                 self.cityCollectionView.reloadData()
@@ -327,8 +340,20 @@ class FiltersViewController: AbstractController {
                 }
             }
         }
-    }
     
+       
+    }
+    //countriesCategories
+    func getCountryFilter()
+    {
+        //without api static
+        self.countries.append(categoriesFilter())
+        self.countries[0].nameAr="سوريا"
+        self.countries[0].nameEn="syria"
+        self.countriesCount = 1
+        self.cityCollectionView.reloadData()
+        
+    }
     //postCategories
     func getPostFilters(){
 //        if DataStore.shared.postCategories.isEmpty{
@@ -383,6 +408,8 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
         if collectionView == subCategoryCollectionView { return subCategoriesCount }
         if collectionView == cityCollectionView        { return citiesCount }
         if collectionView == areaCollectionView        { return areasCount }
+        // adding manually to country
+        if collectionView == countryCollectionView        { return 1 }
         return 0
     }
     
@@ -478,6 +505,14 @@ extension FiltersViewController:UICollectionViewDataSource,UICollectionViewDeleg
             cell.filter?.filtervalue = filterValues.area
             cell.setupView(type:.normal)
             return cell
+        }// country enterd manually..
+        else if collectionView == countryCollectionView{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FiltersViewController.filtterCellId, for: indexPath) as? filterCell2 else{return UICollectionViewCell()}
+         
+                 cell.isSelected = true
+//                   collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init(rawValue: UInt(indexPath.item)))
+            cell.title = "سوريا"
+         return cell
         }
         
         return UICollectionViewCell()
@@ -495,6 +530,9 @@ extension FiltersViewController:UICollectionViewDelegateFlowLayout{
         }
         if collectionView == cityCollectionView{
             return CGSize(width: cities[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: 30)
+        }//Width of title entered manually
+        if collectionView == countryCollectionView{
+            return CGSize(width: "سوريا".getLabelWidth(font: AppFonts.normal) + 32, height: 30)
         }
         if collectionView == areaCollectionView{
             return CGSize(width: areas[indexPath.item].title!.getLabelWidth(font: AppFonts.normal) + 32, height: 30)
@@ -609,6 +647,14 @@ extension FiltersViewController:UICollectionViewDelegateFlowLayout{
             cell.isSelected = false
             cell.configureCell()
             }
+        }
+            else if collectionView == countryCollectionView{
+                if let cell = collectionView.cellForItem(at: indexPath) as? filterCell2{
+                categoryfiltertype?.filter.area = nil
+                cell.isSelected = false
+                cell.configureCell()
+                }
+            
         }
         
     }
