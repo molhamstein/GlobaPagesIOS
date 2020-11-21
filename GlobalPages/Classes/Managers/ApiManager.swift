@@ -128,6 +128,48 @@ class ApiManager: NSObject {
         }
     }
     
+    // MARK: Authorization
+    /// User Google login request
+    //written for testing only !! not ready to use !
+    func userGoogleLogin(facebookId: String, fbName: String, fbToken: String, email: String, fbGender: String, imageLink: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
+        // url & parameters
+        let signInURL = "\(baseURL)/users/googleLogin"
+        let parameters : [String : Any] = [
+            "socialId": facebookId,
+            "token": fbToken,
+            "gender": fbGender,
+            "image": imageLink,
+            "email": email,
+            "name": fbName
+        ]
+        // build request
+        Alamofire.request(signInURL, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { (responseObject) -> Void in
+            if responseObject.result.isSuccess {
+                let jsonResponse = JSON(responseObject.result.value!)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    let serverError = ServerError(json: jsonResponse["error"]) ?? ServerError.unknownError
+                    completionBlock(false , serverError, nil)
+                } else {
+                    // parse response to data model >> user object
+                    let user = AppUser(json: jsonResponse["user"])
+                    DataStore.shared.token = jsonResponse["id"].string
+                    DataStore.shared.onUserLogin()
+                    completionBlock(true , nil, user)
+                }
+            }
+            // Network error request time out or server error with no payload
+            if responseObject.result.isFailure {
+                let nsError : NSError = responseObject.result.error! as NSError
+                print(nsError.localizedDescription)
+                if let code = responseObject.response?.statusCode, code >= 400 {
+                    completionBlock(false, ServerError.unknownError, nil)
+                } else {
+                    completionBlock(false, ServerError.connectionError, nil)
+                }
+            }
+        }
+    }
+    
     /// User twitter login request
     func userTwitterLogin(accessToken: String, secret: String, completionBlock: @escaping (_ success: Bool, _ error: ServerError?, _ user:AppUser?) -> Void) {
         // url & parameters
