@@ -92,13 +92,21 @@ class LoginViewController: AbstractController {
     
     var viewType:ViewType = .login
     
+    //KeyBoard
+    var keyboardShowed = false ;
+    
+    
     // MARK: Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showNavCloseButton = true
         
         Analytics.logEvent("login_opened", parameters: [:])
-    }
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
+           NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+       }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -622,4 +630,24 @@ extension LoginViewController{
             self.selectCountryButton.setTitle(DateHelper.getBirthFormatedStringFromDate(date), for: .normal)
         }
     }
+    
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        if (!keyboardShowed)
+        {
+            self.view.frame.origin.y -= 100
+            keyboardShowed=true;
+        }
+    }
+    @objc func keyboardWillHide(sender: NSNotification) {
+        
+        if (keyboardShowed)
+        {
+            self.view.frame.origin.y += 100
+            keyboardShowed=false;
+        }
+      
+    }
+ 
+
 }
