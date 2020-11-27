@@ -31,7 +31,9 @@ class MenuView: UICollectionReusableView {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var volumeView: UIView!
     @IBOutlet weak var newspaperViewButton: UIView!
+    @IBOutlet weak var newspaperBarColor: UIView!
     @IBOutlet weak var marketViewButton: UIView!
+    @IBOutlet weak var marketBarColor: UIView!
     @IBOutlet weak var lblMarket: UILabel!
     @IBOutlet weak var lblNewspaper: UILabel!
     @IBOutlet weak var marketViewButtonConstraint: NSLayoutConstraint!
@@ -66,11 +68,11 @@ class MenuView: UICollectionReusableView {
         self.newspaperViewButton.addGestureRecognizer(newspaperTap)
         self.marketViewButton.addGestureRecognizer(marketTap)
         
-        self.lblMarket.font = AppFonts.smallSemiBold
+        self.lblMarket.font = AppFonts.smallSemiBold 
         self.lblNewspaper.font = AppFonts.smallSemiBold
         
-        self.newspaperViewButton.backgroundColor = newspaperViewColor
-        self.marketViewButton.backgroundColor = UIColor.lightGray
+        self.newspaperBarColor.backgroundColor = newspaperViewColor
+        self.marketBarColor.backgroundColor = UIColor.lightGray
         
         self.lblMarket.text = "HOME_MARKET".localized
         self.lblNewspaper.text = "HOME_NEWSPAPERE".localized
@@ -129,9 +131,9 @@ class MenuView: UICollectionReusableView {
             }, completion: nil)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.fillUpViewWithPaint(sender , view: self.newspaperViewButton, color: self.newspaperViewColor)
+                self.fillUpViewWithPaint(sender , view: self.newspaperBarColor, color: self.newspaperViewColor)
                 
-                self.marketViewButton.backgroundColor = UIColor.lightGray
+                self.marketBarColor.backgroundColor = UIColor.lightGray
             }
             
             self.delegate?.newspaperDidPressed()
@@ -155,9 +157,9 @@ class MenuView: UICollectionReusableView {
             }, completion: nil)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.fillUpViewWithPaint(sender, view: self.marketViewButton, color: self.marketViewColor)
+                self.fillUpViewWithPaint(sender, view: self.marketBarColor, color: self.marketViewColor)
                 
-                self.newspaperViewButton.backgroundColor = UIColor.lightGray
+                self.newspaperBarColor.backgroundColor = UIColor.lightGray
             }
             
             self.delegate?.marketDidPressed()

@@ -82,30 +82,30 @@ protocol HeaderViewDelegate {
         
         
         // customize
-        self.bussinessLabel.font = AppFonts.smallBold
-        self.findNearByLabel.font = AppFonts.smallBold
-        self.pharmacyLabel.font = AppFonts.smallBold
-        self.jobsLabel.font = AppFonts.smallBold
+//        self.bussinessLabel.font = AppFonts.smallBold
+        //self.findNearByLabel.font = AppFonts.smallBold
+       // self.pharmacyLabel.font = AppFonts.smallBold
+       // self.jobsLabel.font = AppFonts.smallBold
         
          // colors
-        self.bussinessView.backgroundColor = AppColors.skyBlue
-        self.nearByView.backgroundColor = AppColors.lightGreen
+     //   self.bussinessView.backgroundColor = AppColors.skyBlue
+      //  self.nearByView.backgroundColor = AppColors.lightGreen
         //self.pharmacyView.backgroundColor = AppColors.lightPink
-        self.jobsView.backgroundColor = AppColors.lightPink
+      //  self.jobsView.backgroundColor = AppColors.lightPink
 
     }
     
     func customizeCell(){
-        // corner raduice
-        self.bussinessView.cornerRadius = 5
-        self.nearByView.cornerRadius = 5
-        self.pharmacyView.cornerRadius = 5
-        self.jobsView.cornerRadius = 5
-        // shadow
-        self.bussinessView.dropShadow()
-        self.nearByView.dropShadow()
-        self.pharmacyView.dropShadow()
-        self.jobsView.dropShadow()
+//        // corner raduice
+//        self.bussinessView.cornerRadius = 5
+//        self.nearByView.cornerRadius = 5
+//        self.pharmacyView.cornerRadius = 5
+//        self.jobsView.cornerRadius = 5
+//        // shadow
+//        self.bussinessView.dropShadow()
+//        self.nearByView.dropShadow()
+//        self.pharmacyView.dropShadow()
+//        self.jobsView.dropShadow()
     }
     
     @IBAction func showBussinessGuides(_ sender: UIButton) {

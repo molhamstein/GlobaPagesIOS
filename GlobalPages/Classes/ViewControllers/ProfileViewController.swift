@@ -101,7 +101,7 @@ class ProfileViewController: AbstractController {
         self.emailTitleLabel.font = AppFonts.normal
         self.emailLabel.font = AppFonts.xBigBold
         self.adsCountTitleLabel.font = AppFonts.normal
-        self.userBalanceLabel.font = AppFonts.xBigBold
+        //self.userBalanceLabel.font = AppFonts.xBigBold
         self.categoriesTitleLabel.font = AppFonts.bigBold
         self.myAdsTitleLabel.font = AppFonts.bigBold
         self.jobsTitleLabel.font = AppFonts.bigBold
@@ -169,6 +169,7 @@ class ProfileViewController: AbstractController {
         getBussiness()
         getJobs()
         getProducts()
+    
     }
     
     override func buildUp() {

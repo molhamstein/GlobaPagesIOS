@@ -12,7 +12,7 @@
 //#import "ReactiveCocoa.h"
 //#import "CMDQueryStringReader.h"
 //#import "ISO8601.h"
-//#import <GoogleSignIn/GoogleSignIn.h>
+#import <GoogleSignIn/GoogleSignIn.h>
 #import "GCD.h"
 //#import "PassthroughView.h"
 

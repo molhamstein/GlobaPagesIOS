@@ -19,6 +19,8 @@ class HomeViewController: AbstractController {
     @IBOutlet weak var navBarTitleLabel: UILabel!
     @IBOutlet weak var notificationButton: SSBadgeButton!
     @IBOutlet weak var profileButton: SSBadgeButton!
+    @IBOutlet weak var messagesButton: SSBadgeButton!
+    @IBOutlet weak var orderButton: SSBadgeButton!
     @IBOutlet weak var profileButtonView: UIView!
     // date View
     @IBOutlet weak var dateView: UIView!
@@ -38,6 +40,12 @@ class HomeViewController: AbstractController {
     static var businessGuidCellId = "BusinessGuidCell"
     @IBOutlet weak var logoImageView: UIImageView!
 
+    // botom navigation bar
+    @IBOutlet weak var nearbyBarItem: UITabBarItem!
+    @IBOutlet weak var bottomTabBar: UITabBar!
+    
+    
+    
     var businessGuides:[BusinessGuide] = []
     
     var gradiantColors:[[UIColor]] = [[AppColors.blueLight,AppColors.blueDark],[AppColors.pinkLight,AppColors.pinkDark],[AppColors.blueLight,AppColors.blueDark]]
@@ -123,6 +131,10 @@ class HomeViewController: AbstractController {
         self.notificationButton.badge = nil
         DataStore.shared.marketProducts = []
         LocationHelper.shared.startUpdateLocation()
+        self.bottomTabBar.delegate = self
+        
+        
+      
     }
 
     override func customizeView() {
@@ -169,6 +181,8 @@ class HomeViewController: AbstractController {
         self.notificationButton.makeRounded()
         self.profileButton.makeRounded()
         self.notificationButton.dropShortShadow()
+        self.messagesButton.dropShortShadow()
+        self.orderButton.dropShortShadow()
         self.profileButton.dropShortShadow()
         self.profileButtonView.makeRounded()
         self.profileButtonView.dropShortShadow()
@@ -562,8 +576,8 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
             if velocity.x < 0 {
                 factor = -factor
             }
-            let indexPath = IndexPath(row: Int(scrollView.contentOffset.x/pagingCellSize + factor), section: 0)
-            if indexPath.row < DataStore.shared.featuredPosts.count && indexPath.row >= 0{
+           let indexPath = IndexPath(row: Int(scrollView.contentOffset.x/pagingCellSize + factor), section: 0)
+           if indexPath.row < DataStore.shared.featuredPosts.count && indexPath.row >= 0{
                 self.businessGuidCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
                 self.pagingCurrentIndex = indexPath.row
             }
@@ -693,7 +707,7 @@ extension HomeViewController {
                 topHeaderView.businessGuidCollectionView?.isPagingEnabled = true
                 topHeaderView.businessGuidCollectionView?.showsHorizontalScrollIndicator = false
                 topHeaderView.customizeCell()
-                topHeaderView.delegate = self
+               // topHeaderView.delegate = self
                 return topHeaderView
                 
             }
@@ -832,7 +846,11 @@ extension HomeViewController:filterCellProtocol{
 
 // header View Delegate
 
-extension HomeViewController:HeaderViewDelegate{
+extension HomeViewController{
+   
+    
+   
+    
     func onJobOffersClicked() {
         let vc = UIStoryboard.mainStoryboard.instantiateViewController(withIdentifier: JobsViewController.className) as! JobsViewController
         let nav = UINavigationController(rootViewController: vc)
@@ -846,6 +864,7 @@ extension HomeViewController:HeaderViewDelegate{
         // self.performSegue(withIdentifier: "bussinessGuideSegue", sender: nil)
         self.showMapView(controllerType: .bussinessGuide)
         Analytics.logEvent("home_guide_btn_pressed", parameters: [:])
+        
     }
     
     
@@ -870,4 +889,25 @@ extension HomeViewController:HeaderViewDelegate{
         
     }
     
+}
+extension HomeViewController :  UITabBarDelegate {
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        //This method will be called when user changes tab.
+        if(item.tag == 1) {
+                print("Home")
+            
+        }
+            else if(item.tag == 2) {
+                bussinessGuiedeCliked()
+            }
+            else if(item.tag == 3) {
+                findNearByClicked()
+            }
+            else if(item.tag == 4) {
+               print(":)")
+            }
+            else if(item.tag == 5) {
+                onJobOffersClicked()
+            }
+    }
 }

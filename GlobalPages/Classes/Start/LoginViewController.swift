@@ -9,6 +9,7 @@
 import UIKit
 import GoogleSignIn
 import Firebase
+import FBSDKLoginKit
 
 enum ViewType {
     case login
@@ -103,9 +104,13 @@ class LoginViewController: AbstractController {
         
         Analytics.logEvent("login_opened", parameters: [:])
         
-        
+        //KeyBoard minimization screen
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+        
+        
+        //GoogleSignIN
+        
        }
     
     override func viewDidLayoutSubviews() {

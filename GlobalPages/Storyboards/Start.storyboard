@@ -1123,10 +1123,10 @@ ZGVhbHMgYXJyb3VuZA
                                                         <rect key="frame" x="0.0" y="128.99999999999994" width="337.66666666666669" height="129.33333333333331"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="kaw-IW-A6e" userLabel="Email Stack View">
-                                                                <rect key="frame" x="20" y="37" width="297.66666666666669" height="55.333333333333343"/>
+                                                                <rect key="frame" x="20" y="37.666666666666686" width="297.66666666666669" height="54"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-oO-g4x" userLabel="Email Label">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="297.66666666666669" height="21.666666666666668"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="297.66666666666669" height="21"/>
                                                                         <fontDescription key="fontDescription" name="Antipasto" family="Antipasto" pointSize="17"/>
                                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -1135,7 +1135,7 @@ ZGVhbHMgYXJyb3VuZA
                                                                         </variation>
                                                                     </label>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="vobblemail@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qhS-fL-MFC" userLabel="Email textField">
-                                                                        <rect key="frame" x="0.0" y="33.666666666666686" width="297.66666666666669" height="21.666666666666671"/>
+                                                                        <rect key="frame" x="0.0" y="33" width="297.66666666666669" height="21"/>
                                                                         <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" name="Antipasto-ExtraBold" family="Antipasto" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="light" returnKeyType="next"/>
@@ -1146,7 +1146,7 @@ ZGVhbHMgYXJyb3VuZA
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sNL-Z8-jfg" userLabel="Email line view">
-                                                                <rect key="frame" x="20" y="92.333333333333371" width="297.66666666666669" height="1"/>
+                                                                <rect key="frame" x="20" y="91.666666666666686" width="297.66666666666669" height="1"/>
                                                                 <color key="backgroundColor" red="0.58424812559999995" green="0.58435159920000002" blue="0.58424162859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="OA4-Af-fO9"/>

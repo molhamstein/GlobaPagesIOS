@@ -11,14 +11,14 @@ import Firebase
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenterDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+       
         // Fix UITextView crash bug in xcode 11.2
         UITextViewWorkaround.executeWorkaround()
         
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , UNUserNotificationCenter
                 }
             }
         }
-        
+
         return true
     }
 
