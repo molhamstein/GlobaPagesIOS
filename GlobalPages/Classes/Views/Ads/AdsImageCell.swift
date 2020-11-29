@@ -87,8 +87,11 @@ class AdsImageCell: UICollectionViewCell {
         // fonts
         self.tagLabel.font =  AppFonts.small
         self.tagLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+       
         self.titleLabel.font = AppFonts.normalBold
-        self.titleLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        self.titleLabel.textColor = self.titleLabel.textColor
+        
+        self.titleLabel.applyGradient(colours: [UIColor.black], direction: GradientDirection.vertical)
         self.cityLabel.font = AppFonts.small
         self.cityLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.areaLabel.font = AppFonts.small
