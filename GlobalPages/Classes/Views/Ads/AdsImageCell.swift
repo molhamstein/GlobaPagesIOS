@@ -67,6 +67,7 @@ class AdsImageCell: UICollectionViewCell {
                 self.areaLabel.text = value
             }else{
                 self.areaLabel.text = ""
+                
             }
         }
         
@@ -85,10 +86,13 @@ class AdsImageCell: UICollectionViewCell {
         super.awakeFromNib()
         // fonts
         self.tagLabel.font =  AppFonts.small
+        self.tagLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.titleLabel.font = AppFonts.normalBold
+        self.titleLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.cityLabel.font = AppFonts.small
+        self.cityLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.areaLabel.font = AppFonts.small
-        
+        self.areaLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.roundedBorder(value: 5.0)
         self.addShadow()
     }
