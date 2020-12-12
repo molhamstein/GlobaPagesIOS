@@ -16,6 +16,9 @@ class BussinessDescriptionViewController: AbstractController {
    
     @IBOutlet weak var contactBottomButton: XUIButton!
     @IBOutlet weak var descriptionTextView: UITextView!
+    
+    @IBOutlet weak var descriptionTextLabel: UILabel!
+    
     @IBOutlet weak var descriptinTitleLabel: UILabel!
     @IBOutlet weak var contactButton: XUIButton!
     @IBOutlet weak var areaLabel: UILabel!
@@ -25,6 +28,10 @@ class BussinessDescriptionViewController: AbstractController {
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var imageCollectionView: UICollectionView!
+    
+    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var bussiniesTitleLabel: UILabel!
     @IBOutlet weak var bussinessCategoryLabel: UILabel!
@@ -41,6 +48,7 @@ class BussinessDescriptionViewController: AbstractController {
     @IBOutlet weak var imgJobPlaceHolder: UIImageView!
     @IBOutlet weak var lblJobPlaceHolder: UILabel!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
     // contact view
     @IBOutlet weak var contactsBGView: UIView!
@@ -54,6 +62,22 @@ class BussinessDescriptionViewController: AbstractController {
     @IBOutlet weak var faxTitleLabel: XUILabel!
     @IBOutlet weak var faxLabel: UILabel!
     
+    //LabelsBtnView
+    
+ 
+    
+    
+    @IBOutlet weak var productPressed: UIButton!
+    @IBOutlet weak var productLabel: UILabel!
+    @IBOutlet weak var productColorView: UIView!
+    
+    @IBOutlet weak var galleryPressed: UIButton!
+    @IBOutlet weak var galleryLabel: UILabel!
+    @IBOutlet weak var galleryColorView: UIView!
+    
+    @IBOutlet weak var jobsPressed: UIButton!
+    @IBOutlet weak var jobsLabel: UILabel!
+    @IBOutlet weak var jobsColorView: UIView!
     
     
     // mapView
@@ -94,35 +118,59 @@ class BussinessDescriptionViewController: AbstractController {
         
     }
     
+
+    @IBAction func pressedLabel(_ sender: UIButton) {
+        if (sender.restorationIdentifier=="1")
+        {
+            self.productisPressed()
+        }
+        else if (sender.restorationIdentifier=="2")
+        {
+            self.galleryisPressed()
+        }
+        else if (sender.restorationIdentifier=="3")
+        {
+            self.jobsisPressed()
+        }
+        print(sender.restorationIdentifier!)
+    }
     
     var cellID = "ImageCell"
     var productCellId = "MarketProductCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addProductButton.isHidden = !editMode
+//        collectionView.delegate=self
+//        collectionView.dataSource=self
+        //collectionView=jobsCollectionView
+//        addProductButton.isHidden = !editMode
         fillData()
-
+        
         Analytics.logEvent("business_details_opened", parameters: [:])
     }
     
     override func buildUp() {
+        self.productLabel.text="المنتجات"
+        self.galleryLabel.text="معرض الصور"
+        self.jobsLabel.text="الوظائف"
         jobsCollectionView.delegate = self
         jobsCollectionView.dataSource = self
         jobsCollectionView.register(UINib(nibName: "JobOfferCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "JobOfferCollectionViewCell")
         
-        self.btnAddJob.isHidden = bussiness?.ownerId == DataStore.shared.me?.objectId ? false : true
         
-        if self.jobs.count > 0 {
-            self.imgJobPlaceHolder.isHidden = true
-            self.lblJobPlaceHolder.isHidden = true
-            self.jobsCollectionView.isHidden = false
-        }else {
-            self.imgJobPlaceHolder.isHidden = false
-            self.lblJobPlaceHolder.isHidden = false
-            self.jobsCollectionView.isHidden = true
-        }
-        
+//
+       //self.btnAddJob.isHidden = bussiness?.ownerId == DataStore.shared.me?.objectId ? false : true
+
+//        if self.jobs.count > 0 {
+//            self.imgJobPlaceHolder.isHidden = true
+//            self.lblJobPlaceHolder.isHidden = true
+//            self.jobsCollectionView.isHidden = false
+//        }else {
+//            self.imgJobPlaceHolder.isHidden = false
+//            self.lblJobPlaceHolder.isHidden = false
+//            self.jobsCollectionView.isHidden = true
+//        }
+
         getJobs()
     }
     
@@ -132,46 +180,50 @@ class BussinessDescriptionViewController: AbstractController {
         imageCollectionView.register(nib, forCellWithReuseIdentifier: cellID)
         
         productsCollectionView.register(UINib(nibName: productCellId, bundle: nil), forCellWithReuseIdentifier: productCellId)
-        
+
         productsCollectionView.delegate = self
         productsCollectionView.dataSource = self
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         
         // fonts
-        self.bussiniesTitleLabel.font = AppFonts.xBigBold
-        self.bussinessCategoryLabel.font = AppFonts.xBigBold
-        self.categoryTitleLabel.font = AppFonts.smallBold
-        self.categoryLabel.font = AppFonts.normalBold
-        self.subCategoryTitleLabel.font = AppFonts.smallBold
-        self.subCategoryLabel.font = AppFonts.normalBold
-        self.cityTitleLable.font = AppFonts.smallBold
-        self.cityLabel.font = AppFonts.normalBold
-        self.areaTitleLabel.font = AppFonts.smallBold
-        self.areaLabel.font = AppFonts.normalBold
-        self.contactButton.titleLabel?.font = AppFonts.normalBold
-        self.contactBottomButton.titleLabel?.font  = AppFonts.normalBold
-        self.descriptionTextView.font = AppFonts.normalBold
+//        self.bussiniesTitleLabel.font = AppFonts.xBigBold
+//        self.bussinessCategoryLabel.font = AppFonts.xBigBold
+//        self.categoryTitleLabel.font = AppFonts.smallBold
+//        self.categoryLabel.font = AppFonts.normalBold
+//        self.subCategoryTitleLabel.font = AppFonts.smallBold
+//        self.subCategoryLabel.font = AppFonts.normalBold
+//        self.cityTitleLable.font = AppFonts.smallBold
+//        self.cityLabel.font = AppFonts.normalBold
+//        self.areaTitleLabel.font = AppFonts.smallBold
+//        self.areaLabel.font = AppFonts.normalBold
+//        self.contactButton.titleLabel?.font = AppFonts.normalBold
+//        self.contactBottomButton.titleLabel?.font  = AppFonts.normalBold
+//        self.descriptionTextView.font = AppFonts.normalBold
         self.descriptinTitleLabel.font = AppFonts.normalBold
-        self.phone1TitleLabel.font = AppFonts.normal
-        self.phone1Label.font = AppFonts.normalBold
-        self.phone2TitleLabel.font = AppFonts.normal
-        self.phone2Label.font = AppFonts.normalBold
-        self.faxTitleLabel.font = AppFonts.normal
-        self.faxLabel.font = AppFonts.normalBold
-        self.lblJobPlaceHolder.font = AppFonts.normalSemiBold
-        
-        self.lblJobPlaceHolder.text = "NO_JOBS_ADDED".localized
+        self.productLabel.font = AppFonts.normalBold
+        self.galleryLabel.font = AppFonts.normalBold
+        self.jobsLabel.font = AppFonts.normalBold
+        self.productisPressed()
+//        self.phone1TitleLabel.font = AppFonts.normal
+//        self.phone1Label.font = AppFonts.normalBold
+//        self.phone2TitleLabel.font = AppFonts.normal
+//        self.phone2Label.font = AppFonts.normalBold
+//        self.faxTitleLabel.font = AppFonts.normal
+//        self.faxLabel.font = AppFonts.normalBold
+//        self.lblJobPlaceHolder.font = AppFonts.normalSemiBold
+//
+        //self.lblJobPlaceHolder.text = "NO_JOBS_ADDED".localized
         
         //colors
-        self.headerView.backgroundColor = AppColors.grayXDark
+   //     self.headerView.backgroundColor = AppColors.grayXDark
         
         //shadow
-        self.contactBottomButton.dropShadow()
-        self.containerView.dropShadow()
+    //    self.contactBottomButton.dropShadow()
+      //  self.containerView.dropShadow()
    
         // page Controller
-        self.pageController.numberOfPages = 0
+  //      self.pageController.numberOfPages = 0
         
         // change nav bar tint color for back button
         self.navigationController?.navigationBar.tintColor = .white
@@ -181,12 +233,15 @@ class BussinessDescriptionViewController: AbstractController {
         
         // set data
         self.bussiniesTitleLabel.text = bussiness.title
-        self.bussinessCategoryLabel.text = bussiness.category?.title
-        self.categoryLabel.text = bussiness.category?.title
-        self.subCategoryLabel.text = bussiness.subCategory?.title
-//        self.cityLabel.text =
-//        self.areaLabel.font = AppFonts.normalBold
-        self.descriptionTextView.text = bussiness.description
+        self.descriptinTitleLabel.text = bussiness.title
+        
+        self.bussinessCategoryLabel.text = (bussiness.category?.title!)! + ">" + (bussiness.subCategory?.title!)!
+        //self.categoryLabel.text = bussiness.category?.title
+        //self.subCategoryLabel.text = bussiness.subCategory?.title
+        self.cityLabel.text =  bussiness.city?.title
+        self.descriptionTextLabel   .text = "Description :) " //bussiness.description
+        self.areaLabel.text = "," + (bussiness.location?.title)!
+        // self.descriptionTextView.text = bussiness.description
         if let value = self.bussiness?.marketProducts{
             self.products = value
         }
@@ -195,10 +250,10 @@ class BussinessDescriptionViewController: AbstractController {
     
     override func viewDidLayoutSubviews() {
         // change the page controlelr indecator size and alpha
-        pageController.subviews.forEach {
-            $0.transform = CGAffineTransform(scaleX: 2, y: 2)
-            $0.alpha  = 0.5
-        }
+//        pageController.subviews.forEach {
+//            $0.transform = CGAffineTransform(scaleX: 2, y: 2)
+//            $0.alpha  = 0.5
+//        }
         self.showNavBackButton = true
     }
     
@@ -210,23 +265,23 @@ class BussinessDescriptionViewController: AbstractController {
     func fillData(){
         guard  let bussiness = self.bussiness else {return}
         if let value = bussiness.title { self.bussiniesTitleLabel.text = value}
-        if let value = bussiness.category?.title { self.bussinessCategoryLabel.text = value}
-        if let value = bussiness.category?.title { self.categoryLabel.text = value}
-        if let value = bussiness.subCategory?.title { self.subCategoryLabel.text = value}
-        if let value = bussiness.city?.title { self.cityLabel.text = value}
-        if let value = bussiness.location?.title { self.areaLabel.text = value}
-        if let value = bussiness.description { self.descriptionTextView.text = value}
-        if let value = bussiness.marketProducts { self.products = value}
+//        if let value = bussiness.category?.title { self.bussinessCategoryLabel.text = value}
+//        if let value = bussiness.category?.title { self.categoryLabel.text = value}
+//        if let value = bussiness.subCategory?.title { self.subCategoryLabel.text = value}
+//        if let value = bussiness.city?.title { self.cityLabel.text = value}
+//        if let value = bussiness.location?.title { self.areaLabel.text = value}
+//        if let value = bussiness.description { self.descriptionTextView.text = value}
+//        if let value = bussiness.marketProducts { self.products = value}
         productsCollectionView.reloadData()
         if let value = bussiness.media{self.images = value}
         imageCollectionView.reloadData()
-        self.pageController.numberOfPages = self.images.count
-        if let phone1 = bussiness.phone1 {self.phone1Label.text = phone1}
-        if let phone2 = bussiness.phone2 {self.phone2Label.text = phone2}
-        if let fax = bussiness.fax {self.faxLabel.text = fax}
-        if let isVip = bussiness.isVip {
-            verfideImageView.isHidden = !isVip
-        }
+//        self.pageController.numberOfPages = self.images.count
+//        if let phone1 = bussiness.phone1 {self.phone1Label.text = phone1}
+//        if let phone2 = bussiness.phone2 {self.phone2Label.text = phone2}
+//        if let fax = bussiness.fax {self.faxLabel.text = fax}
+//        if let isVip = bussiness.isVip {
+//            verfideImageView.isHidden = !isVip
+        //}
     }
     
     func getJobs(){
@@ -247,11 +302,12 @@ class BussinessDescriptionViewController: AbstractController {
                 self.imgJobPlaceHolder.isHidden = true
                 self.lblJobPlaceHolder.isHidden = true
                 self.jobsCollectionView.isHidden = false
-            }else {
-                self.imgJobPlaceHolder.isHidden = false
-                self.lblJobPlaceHolder.isHidden = false
-                self.jobsCollectionView.isHidden = true
             }
+            //else {
+                //self.imgJobPlaceHolder.isHidden = false
+               // self.lblJobPlaceHolder.isHidden = false
+                //self.jobsCollectionView.isHidden = true
+            //}
         })
         
     }
@@ -351,6 +407,7 @@ class BussinessDescriptionViewController: AbstractController {
         self.mapView.addAnnotation(annotation)
     }
     
+    
 }
 
 
@@ -386,6 +443,7 @@ extension BussinessDescriptionViewController:UICollectionViewDataSource,UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ImageCell
             if self.images.count > 0{
                 cell.media = self.images[indexPath.item]
+                cell.sizeToFit()
             }
             
         return cell
@@ -414,13 +472,11 @@ extension BussinessDescriptionViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == imageCollectionView{
-        let itemWidth = collectionView.bounds.width
-        let itemHeight = collectionView.bounds.height
-            return CGSize(width: itemWidth, height: itemHeight + 64)
+                    return CGSize(width: 140, height: 140)
         }
         if collectionView == productsCollectionView {
-            let itemWidth = collectionView.bounds.width
-            let itemHeight = collectionView.bounds.height
+            //let itemWidth = collectionView.bounds.width
+            //let itemHeight = collectionView.bounds.height
             return CGSize(width: 140, height: 140)
         }
         
@@ -430,8 +486,7 @@ extension BussinessDescriptionViewController:UICollectionViewDelegateFlowLayout{
         return CGSize(width: 0, height: 0)
     }
     
-    
- 
+   
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == productsCollectionView{
@@ -501,4 +556,48 @@ extension BussinessDescriptionViewController: MarketProductCellDelegate {
     }
     
 
+}
+
+extension BussinessDescriptionViewController        {
+    func productisPressed()
+    {
+        productColorView.backgroundColor=#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        galleryColorView.backgroundColor=nil
+        jobsColorView.backgroundColor=nil
+        
+        
+        productsCollectionView.isHidden=false
+        imageCollectionView.isHidden=true
+        jobsCollectionView.isHidden=true
+        
+        
+        self.productsCollectionView.reloadData()
+       
+    }
+    func galleryisPressed()
+    {
+        productColorView.backgroundColor=nil
+        galleryColorView.backgroundColor=#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        jobsColorView.backgroundColor=nil
+
+        productsCollectionView.isHidden=true
+        imageCollectionView.isHidden=false
+        jobsCollectionView.isHidden=true
+        self.imageCollectionView.reloadData()
+        
+    }
+    func jobsisPressed()
+    {
+        productColorView.backgroundColor=nil
+        galleryColorView.backgroundColor=nil
+        jobsColorView.backgroundColor=#colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        
+        productsCollectionView.isHidden=true
+        imageCollectionView.isHidden=true
+        jobsCollectionView.isHidden=false
+        
+        self.jobsCollectionView.reloadData()
+    }
+    
+    
 }

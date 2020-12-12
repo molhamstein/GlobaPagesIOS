@@ -503,7 +503,7 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         if collectionView ==  businessGuidCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeViewController.businessGuidCellId, for: indexPath) as! BusinessGuidCell
             cell.post = DataStore.shared.featuredPosts[indexPath.item]
-            //  cell.setpView(colors:self.gradiantColors[indexPath.item])
+              //cell.setpView(colors:self.gradiantColors[indexPath.item])
             return cell
             
         }
@@ -663,7 +663,7 @@ extension HomeViewController {
         
 
         customLayout.settings.itemSize = CGSize(width: self.view.frame.width, height: 200)
-        customLayout.settings.headerSize = CGSize(width: self.view.frame.width, height: self.view.frame.height * 0.26)
+        customLayout.settings.headerSize = CGSize(width: self.view.frame.width, height: self.view.frame.height * 0.2)
         customLayout.settings.menuSize = CGSize(width: self.view.frame.width, height: isMarketProducts ? 127.5 : 162.5)
         customLayout.settings.sectionsHeaderSize = CGSize(width: collectionView.frame.width, height: 0)
         customLayout.settings.sectionsFooterSize = CGSize(width: collectionView.frame.width, height: 0)
